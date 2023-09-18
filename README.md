@@ -45,16 +45,22 @@ _Cities_
 - URL for their website
 
 **instances of each model must connect to instances of at least two other models**
+
 Each city can have a list of shelters and medicare/medicaid offices.
 Each shelter/service can link back to its city and show nearby shelters/shelters and medicare/medicaid offices.
 Each medicare/medicaid office can link back to its city and show nearby shelters/services and medicare/medicaid offices.
 
 **instances of each model must be rich with different media (e.g., feeds, images, maps, text, videos, etc.) (be very sure about this)**
+
 **describe two types of media for instances of each model**
+
 Every instance of every model can have a map to show its location, and we can use Google’s images for the places as well.
 
 **describe three questions that your site will answer**
+
 What communities are the most underserved?
+
 What services does each community have?
+
 How can people access these services?
 
