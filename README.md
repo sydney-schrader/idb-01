@@ -1,17 +1,25 @@
-**Canvas / Ed Discussion group number:** 01
-**names of the team members** Sydney Schrader, John Park, Pavan Marathi, Zachary Voltz, Jamie-Lynn Wong
-**name of the project (alphanumeric, no spaces, max 32 chars; this will also be your URL):** LAHomelessHelper
+**Canvas / Ed Discussion group number:** 01  
 
-**the proposed project:** Los Angeles has the largest homeless population in the United States. We propose a website that is a tool for both people wanting to help homeless people around them and also a tool for homeless people to see what resources are available for them. 
+**names of the team members** Sydney Schrader, John Park, Pavan Marathi, Zachary Voltz, Jamie-Lynn Wong  
+
+**name of the project (alphanumeric, no spaces, max 32 chars; this will also be your URL):** LAHomelessHelper  
+
+**the proposed project:** Los Angeles has the largest homeless population in the United States. We propose a website that is a tool for both  people wanting to help homeless people around them and also a tool for homeless people to see what resources are available for them   
 
 **URLs of at least three data sources that you will programmatically scrape using a RESTful API (be very sure about this):**
+
 https://geohub.lacity.org/datasets/lacounty::homeless-counts-2020/explore?location=33.759300%2C-117.328488%2C8.29&showTable=true
+
 https://geohub.lacity.org/datasets/lacounty::homeless-shelters-and-services/api
-https://geohub.lacity.org/datasets/lacounty::medicare-and-medicaid-offices/api
+
+https://geohub.lacity.org/datasets/lacounty::medicare-and-medicaid-offices/api  
 
 **at least three models and an estimate for the number of instances of each model: **
+
 Cities - 63
+
 Shelters and Services - 182
+
 Medicare and Medicaid offices - 31
 
 **each model must have many attributes, describe five of those attributes for each model that you can filter or sort**
@@ -21,6 +29,7 @@ _Cities_
 - Total homeless population
 - Square miles of city
 - Density of total homeless population
+
 **Shelters and Services**
 - Name
 - City
@@ -28,6 +37,7 @@ _Cities_
 - Zip code
 - Phone Number
 **Medicare and Medicaid Offices**
+
 - Name
 - Address
 - Hours
