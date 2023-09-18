@@ -23,7 +23,9 @@ Shelters and Services - 182
 Medicare and Medicaid offices - 31
 
 **each model must have many attributes, describe five of those attributes for each model that you can filter or sort**
-_Cities_
+
+**_Cities_**
+
 - Unsheltered population
 - Sheltered population
 - Total homeless population
@@ -31,11 +33,13 @@ _Cities_
 - Density of total homeless population
 
 **Shelters and Services**
+
 - Name
 - City
 - Hours
 - Zip code
 - Phone Number
+
 **Medicare and Medicaid Offices**
 
 - Name
