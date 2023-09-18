@@ -14,7 +14,7 @@ https://geohub.lacity.org/datasets/lacounty::homeless-shelters-and-services/api
 
 https://geohub.lacity.org/datasets/lacounty::medicare-and-medicaid-offices/api  
 
-**at least three models and an estimate for the number of instances of each model: **
+**at least three models and an estimate for the number of instances of each model:**
 
 Cities - 63
 
@@ -24,7 +24,7 @@ Medicare and Medicaid offices - 31
 
 **each model must have many attributes, describe five of those attributes for each model that you can filter or sort**
 
-**_Cities_**
+**Cities**
 
 - Unsheltered population
 - Sheltered population
