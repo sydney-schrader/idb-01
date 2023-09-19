@@ -16,7 +16,7 @@ https://geohub.lacity.org/datasets/lacounty::medicare-and-medicaid-offices/api
 
 **at least three models and an estimate for the number of instances of each model:**
 
-Cities - 63
+Cities in LA County - 63
 
 Shelters and Services - 182
 
@@ -24,7 +24,7 @@ Medicare and Medicaid offices - 31
 
 **each model must have many attributes, describe five of those attributes for each model that you can filter or sort**
 
-**Cities**
+**Cities in LA County**
 
 - Unsheltered population
 - Sheltered population
