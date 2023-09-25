@@ -1,0 +1,24 @@
+{
+    "links": [
+        {
+            "label": "Home",
+            "href": "/home"
+        },
+        {
+            "label": "About",
+            "href": "/home"
+        },
+        {
+            "label": "Cities",
+            "href": "/cities"
+        },
+        {
+            "label": "Resources",
+            "href": "/resources"
+        },
+        {
+            "label": "Medical",
+            "href": "/medical"
+        }
+    ]
+}
