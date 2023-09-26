@@ -55,8 +55,9 @@ def specific_medicare(name):
 
 @app.route("/about")
 def about():
-    commit_map = query_APIs.query_gitlab()
-    return render_template("about.html", data=commit_map)
+    author_map = query_APIs.query_gitlab()
+    # return render_template("about.html", data=author_map)
+    return jsonify(author_map)
 
 if __name__ == "__main__":
     app.run(debug=True)
