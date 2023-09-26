@@ -68,3 +68,6 @@ What services does each community have?
 
 How can people access these services?
 
+**Documentation for API**
+https://www.postman.com/pmarathi/workspace/cs373-idb-la-homeless-helper/documentation/28474521-c2680f7e-715c-41eb-9829-8d39392a2939
+

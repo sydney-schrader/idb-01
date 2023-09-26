@@ -40,7 +40,8 @@ import requests
 apis = {"shelters" : "https://public.gis.lacounty.gov/public/rest/services/LACounty_Dynamic/LMS_Data_Public/MapServer/158/query?where=1%3D1&outFields=*&outSR=4326&f=json",
         "cities" : "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Homeless_Counts_2020/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json",
         "medicare" : "https://public.gis.lacounty.gov/public/rest/services/LACounty_Dynamic/LMS_Data_Public/MapServer/83/query?where=1%3D1&outFields=*&outSR=4326&f=json",
-        "gitlab" : "https://gitlab.com/api/v4/projects/sydneyschrader%2Fcs373-idb-01/repository/commits?ref_name=main"}
+        "commits" : "https://gitlab.com/api/v4/projects/sydneyschrader%2Fcs373-idb-01/repository/commits?ref_name=main",
+        "issues" : "https://gitlab.com/api/v4/projects/sydneyschrader%2Fcs373-idb-01/issues?state=closed"}
 
 """
 Takes in a string api_name which can take 1 of 3 values: "shelters", "cities",
@@ -56,16 +57,42 @@ def query_API(api_name):
     return items
 
 """
-Queries Gitlab for our repository, gets every commit, cycles through them, and
-counts the number of commits per person. This does not include coauthors yet,
-but should do so in the future. Returns a dictionary mapping a string, name, to
-an int, number of commits.
+Queries Gitlab for our repository, gets every commit and issue.
+Returns a dict that maps a string name to a dict with keys "issues" and 
+"commits" that map to an int of number of issues closed or commits made. This 
+does not include coauthors yet but should do so in the future.
 """
 def query_gitlab():
-    response = requests.get(apis["gitlab"])
+    author_map = {}
+    commit_map = query_commits()
+    issue_map = query_issues()
+    for author in commit_map.keys():
+        author_map.setdefault(author, {})["commits"] = commit_map[author]
+    for author in issue_map.keys():
+        author_map.setdefault(author, {})["issues"] = issue_map[author]
+    
+    return author_map
+
+"""
+Queries Gitlab for all commits, returns a dictionary mapping a string name to
+an int number of commits.
+"""
+def query_commits():
     commit_map = {}
+    response = requests.get(apis["commits"])
     for commit in response.json():
         author = commit["author_name"]
         commit_map[author] = commit_map.get(author, 0) + 1
-
     return commit_map
+
+"""
+Queries Gitlab for all issues, returns a dictionary mapping a string name to
+an int number of commits.
+"""
+def query_issues():
+    issue_map = {}
+    response = requests.get(apis["issues"])
+    for issue in response.json():
+        author = issue["closed_by"]["name"]
+        issue_map[author] = issue_map.get(author, 0) + 1
+    return issue_map
