@@ -1,0 +1,7 @@
+<title>City</title>
+<h1>Specific City</h1>
+<a href="{{url_for('cities')}}">Back</a>
+
+{% for key, value in data.items() %}
+    <li>{{key}} : {{ value }}</li>
+{% endfor %}

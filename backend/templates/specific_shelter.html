@@ -1,0 +1,7 @@
+<title>Shelter</title>
+<h1>Specific Shelter</h1>
+<a href="{{url_for('shelters')}}">Back</a>
+
+{% for key, value in data.items() %}
+    <li>{{key}} : {{ value }}</li>
+{% endfor %}
