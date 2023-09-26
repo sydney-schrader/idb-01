@@ -1,0 +1,7 @@
+<title>About Us</title>
+<h1>About Us</h1>
+<a href="{{url_for('home')}}">Back</a>
+
+{% for key, value in data.items() %}
+    <li>{{key}} : {{value}} </li>  
+{% endfor %}

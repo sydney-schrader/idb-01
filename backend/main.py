@@ -46,5 +46,10 @@ def specific_medicare(name):
             return render_template("specific_medicare.html", data=medicare)
     return "<h1>Error 404 Not Found</h1>"
 
+@app.route("/about")
+def about():
+    commit_map = query_APIs.query_gitlab()
+    return render_template("about.html", data=commit_map)
+
 if __name__ == "__main__":
     app.run(debug=True)
