@@ -30,11 +30,12 @@ const Nav: React.FC<{}> = () => {
     return (
         <nav className={styles.navbar}>
             <div className={styles['logo-container']}>
-                <span>Logo</span>
+                <span>LAHomelessHelper</span>
             </div>
             <Links links={links} />
         </nav>
     )
 }
+
 
 export default Nav;
