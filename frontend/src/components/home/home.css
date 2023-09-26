@@ -1,5 +1,5 @@
 .background {
-    background-image: url("./LAbackground.jpg");
+    background-image: url("../../assets/LAbackground.jpg");
     background-size: contain;
     min-height: 110vh;
     display: flex;
@@ -18,9 +18,23 @@
   .lower-title {
     font-weight: bold;
     color: #000000;
-    font-size: 32px;
+    font-size: 35px;
     text-align: center;
     margin: auto;
     margin-top: 5%;
     margin-bottom: 5%;
   }
+
+.background-image{
+    opacity: 0.4;
+    text-shadow: 1px 1px black;
+}
+.text-on-image {
+    position: absolute;
+    bottom: 75%;
+    color:whitesmoke
+}
+.header-1 {
+    text-align: center;
+    color: black;
+}

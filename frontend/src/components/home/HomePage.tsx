@@ -1,7 +1,12 @@
 import React from 'react';
 import './home.css'
-import Button from '../Nav/Button';
-import Section from '../Nav/Button';
+import { Container, Row, Col } from 'react-bootstrap'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+import medicarePic from '../../assets/medicare-image.jpeg'
+import citiesPic from '../../assets/cities-image.jpg'
+import resourcesPic from '../../assets/resources-image.jpeg'
+
 
 function Home() {
     return (
@@ -13,10 +18,75 @@ function Home() {
         </div>
         <div>
            <h1 className='lower-title'>
-             three main pages here
+           Instances
            </h1>
         </div>
-    `` <Section title={"Cities"}/> <Section title={"Resources"}/> <Section title={"Medical"}/>
+        <Container>
+        <Row>
+          <Col>
+            <Card style={{ alignItems: 'center' }}>
+              <Card.Title className='header-1'>
+                <b>Medical</b>
+              </Card.Title>
+              <img
+                src={medicarePic}
+                alt=""
+                className='card-image-top'
+                style={{
+                  width: '100%',
+                }}
+              ></img>
+              <Card.Body>
+                <Button name='href' href='/medical' className='card-link'>
+                  Explore Medical Options
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{ alignItems: 'center' }}>
+              <Card.Title className='header-1'>
+                <b>Cities</b>
+              </Card.Title>
+              <img
+                src={citiesPic}
+                alt=""
+                className='card-image-top'
+                style={{
+                  width: '100%',
+                }}
+              ></img>
+              <Card.Body>
+                <Button name='href' href='/cities' className='card-link'>
+                  Explore Cities in LA
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{ alignItems: 'center' }}>
+              <Card.Title className='header-1'>
+                <b>Resources</b>
+              </Card.Title>
+              <img
+                src={resourcesPic}
+                alt=""
+                className='card-image-top'
+                style={{
+                  width: '90%',
+                }}
+              ></img>
+              <Card.Body>
+                <Button name='href' href='/resources' className='card-link'>
+                  Explore Resources
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+
+        
         </>
     );
     

@@ -9,7 +9,7 @@ all:
 install:
 	(cd $(FRONTEND_DIR) && npm install)
 	(cd $(FRONTEND_DIR) && npm i react-router-dom)
-
+	(cd $(FRONTEND_DIR) && npm install @mui/material @emotion/react @emotion/styled)
 start:
 	(cd $(FRONTEND_DIR) && npm start)
 
