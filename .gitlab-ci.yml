@@ -1,5 +1,0 @@
-python:
-    - date
-    - uname -p
-    - uname -s
-    - printenv | sort
