@@ -1,0 +1,4 @@
+# Only calls make all for the pipeline
+job:
+  script:
+    - make all
