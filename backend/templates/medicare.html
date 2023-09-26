@@ -1,0 +1,7 @@
+<title>Medicare</title>
+<h1>Medicare</h1>
+<a href="{{url_for('home')}}">Back</a>
+
+{% for medicare in data %}
+    <li> <a href="{{url_for('specific_medicare', name=medicare['Name'])}}">{{ medicare["Name"] }}</a></li>
+{% endfor %}

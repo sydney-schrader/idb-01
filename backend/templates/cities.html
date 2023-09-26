@@ -1,0 +1,8 @@
+<title>Cities</title>
+<h1>Cities</h1>
+<a href="{{url_for('home')}}">Back</a>
+
+{% for city in data %}
+    <li> <a href="{{url_for('specific_city', name=city['CSA_Label'])}}">{{ city["CSA_Label"] }}</a></li>
+{% endfor %}
+
