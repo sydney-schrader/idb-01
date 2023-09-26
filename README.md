@@ -2,7 +2,11 @@
 
 **names of the team members** Sydney Schrader, John Park, Pavan Marathi, Zachary Voltz, Jamie-Lynn Wong  
 
-**name of the project (alphanumeric, no spaces, max 32 chars; this will also be your URL):** LAHomelessHelper  
+**name of the project (alphanumeric, no spaces, max 32 chars; this will also be your URL):** LAHomelessHelper
+
+**link**
+
+http://lahomelesshelper.me/
 
 **the proposed project:** Los Angeles has the largest homeless population in the United States. We propose a website that is a tool for both  people wanting to help homeless people around them and also a tool for homeless people to see what resources are available for them   
 
@@ -69,5 +73,13 @@ What services does each community have?
 How can people access these services?
 
 **Documentation for API**
+
 https://www.postman.com/pmarathi/workspace/cs373-idb-la-homeless-helper/documentation/28474521-c2680f7e-715c-41eb-9829-8d39392a2939
 
+**Estimated work time**
+
+100 hours
+
+**Actual work time**
+
+TBD
