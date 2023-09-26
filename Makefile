@@ -8,6 +8,7 @@ all:
 
 install:
 	(cd $(FRONTEND_DIR) && npm install)
+	(cd $(FRONTEND_DIR) && npm i react-router-dom)
 
 start:
 	(cd $(FRONTEND_DIR) && npm start)
