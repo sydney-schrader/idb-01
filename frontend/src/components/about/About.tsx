@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button'
 import jamie from '../../assets/jamie.jpeg'
 import pavan from '../../assets/pavan.jpg'
 import sydney from '../../assets/sydney.jpeg'
+import john from '../../assets/john.jpg'
+import zach from '../../assets/zach.jpg'
 import citiesPic from '../../assets/cities-image.jpg'
 import resourcesPic from '../../assets/resources-image.jpeg'
 import styles from './About.module.css'
@@ -17,7 +19,9 @@ const About: React.FC<{}> = () => {
             <h1>About LA Homeless Helper</h1>
         </Col>
         <Row>
-          
+        <div className="card mx-auto">
+            
+        <div className="card-group">
             <Card style={{ alignItems: 'center', width: '18rem', height: '35rem'  }}>
               <Card.Title className='header-1'>
                 <b>Jamie Wong</b>
@@ -49,7 +53,7 @@ const About: React.FC<{}> = () => {
                 <b>John Park</b>
               </Card.Title>
               <img
-                src={citiesPic}
+                src={john}
                 alt=""
                 className='card-image-top'
                 style={{
@@ -61,10 +65,8 @@ const About: React.FC<{}> = () => {
               <div className= {styles['devType']}>
                         Full Stack Developer
                     </div>
-                Address <br/>
-                Hours <br/>
-                Phone number <br/>
-                URL for their website
+                    I’m a senior CS student from Austin, TX. 
+                    My favorite hobby is training jiu jitsu.
                 </p>
               </Card.Body>
             </Card>
@@ -123,7 +125,7 @@ const About: React.FC<{}> = () => {
                 <b>Zachary Voltz</b>
               </Card.Title>
               <img
-                src={resourcesPic}
+                src={zach}
                 alt=""
                 className='card-image-top'
                 style={{
@@ -135,14 +137,14 @@ const About: React.FC<{}> = () => {
               <div className= {styles['devType']}>
                         Backend Developer
                     </div>
-                Address <br/>
-                Hours <br/>
-                Phone number <br/>
-                URL for their website
+                    I'm a senior CS student from Houston, 
+                    Texas, and I've been programming since I was 9. Outside of programming, 
+                    I like to read manga and rock climb
                 </p>
               </Card.Body>
             </Card>
-         
+            </ div>
+            </ div>
           </Row>
       </Container>
     );
