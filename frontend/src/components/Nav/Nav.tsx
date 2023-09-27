@@ -29,9 +29,9 @@ const Links: React.FC<{ links: Link[] }> = ({ links }) => {
 const Nav: React.FC<{}> = () => {
     return (
         <nav className={styles.navbar}>
-            <div className={styles['logo-container']}>
+            {/* <div className={styles['logo-container']}>
                 <span>LAHomelessHelper</span>
-            </div>
+            </div> */}
             <Links links={links} />
         </nav>
     )
