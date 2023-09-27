@@ -6,6 +6,8 @@ import pavan from '../../assets/pavan.jpg'
 import sydney from '../../assets/sydney.jpeg'
 import john from '../../assets/john.jpg'
 import zach from '../../assets/zach.jpg'
+import bootstrapPic from '../../assets/bootstrapPic.jpeg'
+import gitlabPic from '../../assets/gitlabPic.png'
 import styles from './About.module.css'
   
 const About: React.FC<{}> = () => {
@@ -154,54 +156,110 @@ const About: React.FC<{}> = () => {
           </Row>
 
           <Col>
-          <div className= {styles['heading1Type']}>
-          LA Homeless Helper Sources
-          </div>
+
+        <div className= {styles['heading1Type']}>
+        LA Homeless Helper Sources
+        </div>
             
+        <div className="d-flex position-relative">
+  
+        <div className="position-relative">
+            <div className= {styles['linkSpaceType']}>
+    
+    
+            <a href="https://geohub.lacity.org/datasets/lacounty::homeless-counts-2020/explore?location=33.759300%2C-117.328488%2C8.29&showTable=true" className="stretched-link" >City Data</a>
+            </ div>
+        </div>
+  
+        <div className="position-relative">
+        <div className= {styles['linkSpaceType']}>
+            <a href="https://geohub.lacity.org/datasets/lacounty::homeless-shelters-and-services/api" className="stretched-link" >Resource Data</a>
+            </ div>
+        </div>
+
+        <div className="position-relative">
+        <div className= {styles['linkSpaceType']}>
+            <a href="https://geohub.lacity.org/datasets/lacounty::medicare-and-medicaid-offices/api" className="stretched-link" >Medical Data</a>
+            </ div>
+        </div>
+        
+
+        
+    
+    </div>
+
+    <div className= {styles['heading1Type']}>
+        Tools
+    </div>
+    <div className="card mx-auto">
             
-          <div className="d-flex position-relative">
-  
-  <div className="position-relative">
-  <div className= {styles['linkSpaceType']}>
-    
-    
-    <a href="https://geohub.lacity.org/datasets/lacounty::homeless-counts-2020/explore?location=33.759300%2C-117.328488%2C8.29&showTable=true" className="stretched-link" >City Data</a>
-    </ div>
-  </div>
-  
-  <div className="position-relative">
-  <div className= {styles['linkSpaceType']}>
-    
-   
-    <a href="https://geohub.lacity.org/datasets/lacounty::homeless-shelters-and-services/api" className="stretched-link" >Resource Data</a>
-    </ div>
-  </div>
-
-  <div className="position-relative">
-  <div className= {styles['linkSpaceType']}>
-    
-   
-    <a href="https://geohub.lacity.org/datasets/lacounty::medicare-and-medicaid-offices/api" className="stretched-link" >Medical Data</a>
-    </ div>
-  </div>
-  
-    
-  
-
-
-
-
-  
-</div>
-
-
-
+        <div className="card-group">
+        <Card style={{ alignItems: 'center', width: '10rem', height: '20rem'  }}>
+              <Card.Title className='header-1'>
+                <b>Gitlab</b>
+              </Card.Title>
+              <img
+                src={gitlabPic}
+                alt=""
+                className='card-image-top'
+                style={{
+                  width: '20%',
+                }}
+              ></img>
+              <Card.Body>
+              <p>
+              <div className= {styles['devType']}>
+                        Gitlab
+                </div>
+                    <div className="position-relative">
+                    <a href="https://gitlab.com/sydneyschrader/cs373-idb-01" className="stretched-link" >Our Repository</a>
+                    </div>
+                </p>
+              </Card.Body>
+            </Card>
             
-            
+
+
+            <Card style={{ alignItems: 'center', width: '10rem', height: '20rem'  }}>
+              <Card.Title className='header-1'>
+                <b>Bootstrap</b>
+              </Card.Title>
+              <img
+                src={bootstrapPic}
+                alt=""
+                className='card-image-top'
+                style={{
+                  width: '20%',
+                }}
+              ></img>
+              <Card.Body>
+              <p>
+              <div className= {styles['devType']}>
+                        Gitlab
+                </div>
+                    <div className="position-relative">
+                    <a href="https://getbootstrap.com/" className="stretched-link" >Bootstrap Website</a>
+                    </div>
+                </p>
+              </Card.Body>
+            </Card>
+
+
+
+
+        </ div>  
+        
+
+
+
+
+
+
+
+
+    </div>
+
         </Col>
-
-
-
 
       </Container>
     );
