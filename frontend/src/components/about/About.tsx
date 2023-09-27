@@ -152,6 +152,57 @@ const About: React.FC<{}> = () => {
             </ div>
             </ div>
           </Row>
+
+          <Col>
+          <div className= {styles['heading1Type']}>
+          LA Homeless Helper Sources
+          </div>
+            
+            
+          <div className="d-flex position-relative">
+  
+  <div className="position-relative">
+  <div className= {styles['linkSpaceType']}>
+    
+    
+    <a href="https://geohub.lacity.org/datasets/lacounty::homeless-counts-2020/explore?location=33.759300%2C-117.328488%2C8.29&showTable=true" className="stretched-link" >City Data</a>
+    </ div>
+  </div>
+  
+  <div className="position-relative">
+  <div className= {styles['linkSpaceType']}>
+    
+   
+    <a href="https://geohub.lacity.org/datasets/lacounty::homeless-shelters-and-services/api" className="stretched-link" >Resource Data</a>
+    </ div>
+  </div>
+
+  <div className="position-relative">
+  <div className= {styles['linkSpaceType']}>
+    
+   
+    <a href="https://geohub.lacity.org/datasets/lacounty::medicare-and-medicaid-offices/api" className="stretched-link" >Medical Data</a>
+    </ div>
+  </div>
+  
+    
+  
+
+
+
+
+  
+</div>
+
+
+
+            
+            
+        </Col>
+
+
+
+
       </Container>
     );
     

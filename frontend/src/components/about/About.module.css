@@ -10,3 +10,20 @@
     margin-bottom: 60px;
     margin-top: 60px;
 }
+
+.heading1Type {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size:30px;
+    font-weight: bold;
+    margin-bottom: 0px;
+    margin-top: 30px;
+}
+
+.linkSpaceType {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 80px;
+    margin-top: 30px;
+    font-size:25px;
+}
