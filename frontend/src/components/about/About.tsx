@@ -1,14 +1,11 @@
 import React from "react";
 import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
 import jamie from '../../assets/jamie.jpeg'
 import pavan from '../../assets/pavan.jpg'
 import sydney from '../../assets/sydney.jpeg'
 import john from '../../assets/john.jpg'
 import zach from '../../assets/zach.jpg'
-import citiesPic from '../../assets/cities-image.jpg'
-import resourcesPic from '../../assets/resources-image.jpeg'
 import styles from './About.module.css'
   
 const About: React.FC<{}> = () => {
@@ -17,6 +14,15 @@ const About: React.FC<{}> = () => {
         <Container>
         <Col>
             <h1>About LA Homeless Helper</h1>
+            <div className= {styles['textType']}>
+            California has the largest amount of homless in the United States, the majority being in LA County. 
+            This website is a tool designed for people wanting to help the homeless of LA County and also a tool 
+            for homeless people to see what resources are available for them.
+            </div>
+            
+
+            
+            
         </Col>
         <Row>
         <div className="card mx-auto">
