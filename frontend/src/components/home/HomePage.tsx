@@ -26,26 +26,6 @@ function Home() {
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>Medical</b>
-              </Card.Title>
-              <img
-                src={medicarePic}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '100%',
-                }}
-              ></img>
-              <Card.Body>
-                <Button name='href' href='/medical' className='card-link'>
-                  Explore Medical Options
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card style={{ alignItems: 'center' }}>
-              <Card.Title className='header-1'>
                 <b>Cities</b>
               </Card.Title>
               <img
@@ -79,6 +59,26 @@ function Home() {
               <Card.Body>
                 <Button name='href' href='/resources' className='card-link'>
                   Explore Resources
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{ alignItems: 'center' }}>
+              <Card.Title className='header-1'>
+                <b>Medical</b>
+              </Card.Title>
+              <img
+                src={medicarePic}
+                alt=""
+                className='card-image-top'
+                style={{
+                  width: '100%',
+                }}
+              ></img>
+              <Card.Body>
+                <Button name='href' href='/medical' className='card-link'>
+                  Explore Medical Options
                 </Button>
               </Card.Body>
             </Card>

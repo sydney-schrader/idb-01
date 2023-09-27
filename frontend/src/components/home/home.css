@@ -36,5 +36,7 @@
 }
 .header-1 {
     text-align: center;
+    margin: auto;
+    padding-top: 2%;
     color: black;
 }

@@ -18,7 +18,7 @@ const Resources: React.FC<{}> = () => {
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>shelter 1</b>
+                <b>Shelter 1</b>
               </Card.Title>
               <img
                 src={medicarePic}
@@ -36,13 +36,16 @@ const Resources: React.FC<{}> = () => {
                     Zip code<br/>
                     Phone Number
                 </p>
+                <Button name='href' href='/resources/shelter1' className='card-link'>
+                  View Shelter 1
+                </Button>
               </Card.Body>
             </Card>
           </Col>
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>shelter 2</b>
+                <b>Shelter 2</b>
               </Card.Title>
               <img
                 src={citiesPic}
@@ -60,13 +63,16 @@ const Resources: React.FC<{}> = () => {
                     Zip code<br/>
                     Phone Number
                 </p>
+                <Button name='href' href='/resources/shelter2' className='card-link'>
+                  View Shelter 2
+                </Button>
               </Card.Body>
             </Card>
           </Col>
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>shelter 3</b>
+                <b>Shelter 3</b>
               </Card.Title>
               <img
                 src={resourcesPic}
@@ -84,6 +90,9 @@ const Resources: React.FC<{}> = () => {
                     Zip code<br/>
                     Phone Number
                 </p>
+                <Button name='href' href='/resources/shelter3' className='card-link'>
+                  View Shelter 3
+                </Button>
               </Card.Body>
             </Card>
           </Col>

@@ -113,11 +113,7 @@ const About: React.FC<{}> = () => {
               <div className= {styles['devType']}>
                         Frontend Developer
                 </div>
-                Name <br/>
-                Address <br/>
-                Hours <br/>
-                Phone number <br/>
-                URL for their website
+                I'm a Junior from Austin, TX. I like to go to Barton Springs and read in my free time.
                 </p>
               </Card.Body>
             </Card>

@@ -17,7 +17,7 @@ const Cities: React.FC<{}> = () => {
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>city 1</b>
+                <b>City 1</b>
               </Card.Title>
               <img
                 src={medicarePic}
@@ -35,13 +35,16 @@ const Cities: React.FC<{}> = () => {
                 Square miles of city <br/>
                 Density of total homeless population 
                 </p>
+                <Button name='href' href='/cities/city1' className='card-link'>
+                  View City 1
+                </Button>
               </Card.Body>
             </Card>
           </Col>
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>city 2</b>
+                <b>City 2</b>
               </Card.Title>
               <img
                 src={citiesPic}
@@ -59,13 +62,16 @@ const Cities: React.FC<{}> = () => {
                 Square miles of city <br/>
                 Density of total homeless population 
                 </p>
+                <Button name='href' href='/cities/city2' className='card-link'>
+                  View City 2
+                </Button>
               </Card.Body>
             </Card>
           </Col>
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>city 3</b>
+                <b>City 3</b>
               </Card.Title>
               <img
                 src={resourcesPic}
@@ -83,6 +89,9 @@ const Cities: React.FC<{}> = () => {
                 Square miles of city <br/>
                 Density of total homeless population 
                 </p>
+                <Button name='href' href='/cities/city3' className='card-link'>
+                  View City 3
+                </Button>
               </Card.Body>
             </Card>
           </Col>

@@ -17,7 +17,7 @@ const Medical: React.FC<{}> = () => {
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>office 1</b>
+                <b>Office 1</b>
               </Card.Title>
               <img
                 src={medicarePic}
@@ -35,13 +35,16 @@ const Medical: React.FC<{}> = () => {
                 Phone number <br/>
                 URL for their website
                 </p>
+                <Button name='href' href='/medical/office1' className='card-link'>
+                  View Office 1
+                </Button>
               </Card.Body>
             </Card>
           </Col>
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>office 2</b>
+                <b>Office 2</b>
               </Card.Title>
               <img
                 src={citiesPic}
@@ -59,13 +62,16 @@ const Medical: React.FC<{}> = () => {
                 Phone number <br/>
                 URL for their website
                 </p>
+                <Button name='href' href='/medical/office2' className='card-link'>
+                  View Office 2
+                </Button>
               </Card.Body>
             </Card>
           </Col>
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>office 3</b>
+                <b>Office 3</b>
               </Card.Title>
               <img
                 src={resourcesPic}
@@ -83,6 +89,9 @@ const Medical: React.FC<{}> = () => {
                 Phone number <br/>
                 URL for their website
                 </p>
+                <Button name='href' href='/medical/office3' className='card-link'>
+                  View Office 3
+                </Button>
               </Card.Body>
             </Card>
           </Col>
