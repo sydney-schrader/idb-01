@@ -2,9 +2,9 @@ import React from "react";
 import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import medicarePic from '../../assets/medicare-image.jpeg'
-import citiesPic from '../../assets/cities-image.jpg'
-import resourcesPic from '../../assets/resources-image.jpeg'
+import ssg from '../../assets/ssg.jpeg'
+import family from '../../assets/familycrisiscenter.png'
+import santaanita from '../../assets/santaanita.jpeg'
 
   
 const Resources: React.FC<{}> = () => {
@@ -18,10 +18,10 @@ const Resources: React.FC<{}> = () => {
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>Shelter 1</b>
+                <b>Special Service For Groups - Project 180</b>
               </Card.Title>
               <img
-                src={medicarePic}
+                src={ssg}
                 alt=""
                 className='card-image-top'
                 style={{
@@ -30,14 +30,14 @@ const Resources: React.FC<{}> = () => {
               ></img>
               <Card.Body>
                 <p>
-                    Name <br/>
-                    City<br/>
-                    Hours<br/>
-                    Zip code<br/>
-                    Phone Number
+                    Name: Special Service For Groups - Project 180<br/>
+                    City: Los Angeles<br/>
+                    Hours: SITE HOURS: Monday through Friday, 8:30am to 4:30pm.<br/>
+                    Zip code: 90013<br/>
+                    Phone Number: FAX (213) 621-4155, Service/Intake (213) 620-5712
                 </p>
                 <Button name='href' href='/resources/shelter1' className='card-link'>
-                  View Shelter 1
+                  View Special Service For Groups - Project 180
                 </Button>
               </Card.Body>
             </Card>
@@ -45,26 +45,26 @@ const Resources: React.FC<{}> = () => {
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>Shelter 2</b>
+                <b>1736 Family Crisis Center</b>
               </Card.Title>
               <img
-                src={citiesPic}
+                src={family}
                 alt=""
                 className='card-image-top'
                 style={{
-                  width: '100%',
+                  width: '80%',
                 }}
               ></img>
               <Card.Body>
               <p>
-              Name <br/>
-                    City<br/>
-                    Hours<br/>
-                    Zip code<br/>
-                    Phone Number
+              Name: 1736 Family Crisis Center<br/>
+                    City: Los Angeles<br/>
+                    Hours: Monday through Friday, 8:30am to 5:30pm. Evenings and Saturdays by appointment<br/>
+                    Zip code: 90018<br/>
+                    Phone Number: 24 Hrs-Crisis Hotline Service/Intake and Hotline (213) 222-1237, 24 Hrs-Youth Crisis/Shelter Hotline Service/Intake and Hotline (310) 379-3620, 24 Hrs-DV Shelter Hotline Service/Intake and Hotline (310) 370-5902, Community Service Center Service/Intake an
                 </p>
                 <Button name='href' href='/resources/shelter2' className='card-link'>
-                  View Shelter 2
+                  View 1736 Family Crisis Center
                 </Button>
               </Card.Body>
             </Card>
@@ -72,10 +72,10 @@ const Resources: React.FC<{}> = () => {
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>Shelter 3</b>
+                <b>Santa Anita Family Service</b>
               </Card.Title>
               <img
-                src={resourcesPic}
+                src={santaanita}
                 alt=""
                 className='card-image-top'
                 style={{
@@ -84,14 +84,14 @@ const Resources: React.FC<{}> = () => {
               ></img>
               <Card.Body>
               <p>
-              Name <br/>
-                    City<br/>
-                    Hours<br/>
-                    Zip code<br/>
-                    Phone Number
+              Name: Santa Anita Family Service <br/>
+                    City: Monrovia<br/>
+                    Hours: None<br/>
+                    Zip code: 91016<br/>
+                    Phone Number: Service/Intake and Administration (626) 359-9358, FAX (626) 358-7647
                 </p>
                 <Button name='href' href='/resources/shelter3' className='card-link'>
-                  View Shelter 3
+                  View Santa Anita Family Service
                 </Button>
               </Card.Body>
             </Card>
