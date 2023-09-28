@@ -79,12 +79,17 @@ an int number of commits.
 """
 def query_commits():
     commit_map = {}
-    response = requests.get(apis["commits"])
-    for commit in response.json():
-        author = commit["author_name"]
-        commit_map[author] = commit_map.get(author, 0) + 1
-    return commit_map
+    for name in authors:
+        author = name.replace("%20", " ")
+        response = requests.get(apis["commits"] + "&author=" + name)
+        i = 2
+        while (len(response.json()) == 20):
+            commit_map[author] = commit_map.get(author, 0) + 20
+            response = requests.get(apis["commits"] + "&author=" + name + f"&page={i}")
+            i += 1
+        commit_map[author] = commit_map.get(author, 0) + len(response.json())
 
+    return commit_map
 """
 Queries Gitlab for all issues, returns a dictionary mapping a string name to
 an int number of commits.
