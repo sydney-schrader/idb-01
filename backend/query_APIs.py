@@ -43,6 +43,8 @@ apis = {"shelters" : "https://public.gis.lacounty.gov/public/rest/services/LACou
         "commits" : "https://gitlab.com/api/v4/projects/sydneyschrader%2Fcs373-idb-01/repository/commits?ref_name=main",
         "issues" : "https://gitlab.com/api/v4/projects/sydneyschrader%2Fcs373-idb-01/issues?state=closed"}
 
+authors = ["Zachary%20Voltz", "Jamie%20Wong", "John%20Park", "Pavan%20Marathi", "Sydney%20Schrader"]
+
 """
 Takes in a string api_name which can take 1 of 3 values: "shelters", "cities",
 or "medicare". This will return a list of the attributes dictionaries of the
