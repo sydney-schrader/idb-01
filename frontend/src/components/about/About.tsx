@@ -23,11 +23,12 @@ const About: React.FC<{}> = () => {
   
     useEffect(() => {
         // Get issues and commits from gitlab api
-        axios.get(`https://gitlab.com/api/v4/projects/50431924/repository/commits`)
-        .then((response) => { setCommitData(response.data); });
+        axios.get(`https://gitlab.com/api/v4/projects/50431924/repository/commits?per_page=500`)
+        .then((response) => { 
+            console.log(response.data);
+            setCommitData(response.data); });
     
-        
-        axios.get(`https://gitlab.com/api/v4/projects/50431924/issues`)
+        axios.get(`https://gitlab.com/api/v4/projects/50431924/issues?per_page=500`)
         .then((response) => {setIssueData(response.data); });
         
     }, []);
