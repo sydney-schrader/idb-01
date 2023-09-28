@@ -10,6 +10,7 @@ install:
 	(cd $(FRONTEND_DIR) && npm install)
 	(cd $(FRONTEND_DIR) && npm i react-router-dom)
 	(cd $(FRONTEND_DIR) && npm install @mui/material @emotion/react @emotion/styled)
+	(cd $(FRONTEND_DIR) && npm install axios)
 start:
 	(cd $(FRONTEND_DIR) && npm start)
 
