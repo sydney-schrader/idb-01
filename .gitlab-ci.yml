@@ -2,4 +2,4 @@ image: node:latest
 # Only calls make all for the pipeline
 job:
   script:
-    - make run
+    - make all
