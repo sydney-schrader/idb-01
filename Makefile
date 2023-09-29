@@ -5,7 +5,7 @@ FRONTEND_DIR = frontend
 BACKEND_DIR = backend
 
 all:
-
+	make test_backend
 install:
 	(cd $(FRONTEND_DIR) && npm install)
 	(cd $(FRONTEND_DIR) && npm i react-router-dom)
@@ -14,7 +14,6 @@ install:
 start:
 	(cd $(FRONTEND_DIR) && npm start)
 
-run:
-	$(MAKE) install
-	$(MAKE) start
+test_backend:
+	(cd $(BACKEND_DIR) && python3 test_backend.py)
 
