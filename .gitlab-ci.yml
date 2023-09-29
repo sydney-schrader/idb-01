@@ -1,4 +1,4 @@
-image: python:3.11-alpine
+image: pmarathi/idb-backend
 # Only calls make all for the pipeline
 job:
   script:
