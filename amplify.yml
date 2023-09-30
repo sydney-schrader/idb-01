@@ -1,5 +1,9 @@
 version: 1
 frontend:
+  - appRoot: frontend
+    env :
+      variables:
+        key: value 
   phases:
     preBuild: 
       commands: 
