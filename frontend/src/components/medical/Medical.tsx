@@ -14,6 +14,7 @@ const Medical: React.FC<{}> = () => {
             <h1>Medicare and Medicaid Offices in Los Angeles</h1>
         </Col>
         <Row>
+        <div> 3 Medical Offices</div>
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>

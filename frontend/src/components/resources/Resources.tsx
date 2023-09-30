@@ -15,6 +15,7 @@ const Resources: React.FC<{}> = () => {
             <h1>Shelters and Services in Los Angeles</h1>
         </Col>
         <Row>
+        <div> 3 Resources</div>
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>

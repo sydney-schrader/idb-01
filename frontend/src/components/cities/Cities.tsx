@@ -17,6 +17,7 @@ const Cities: React.FC<{}> = () => {
             <h1>Cities in Los Angeles</h1>
         </Col>
         <Row>
+        <div> 3 Cities</div>
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
