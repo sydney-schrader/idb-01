@@ -9,7 +9,7 @@ import zach from '../../assets/zach.jpg'
 import bootstrapPic from '../../assets/bootstrapPic.jpeg'
 import gitlabPic from '../../assets/gitlabPic.png'
 import styles from './About.module.css'
-import { Typography } from "@mui/material";
+// import { Typography } from "@mui/material";
 import axios from "axios";
 
 
