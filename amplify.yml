@@ -1,12 +1,12 @@
 version: 1
 frontend:
   - appRoot: frontend
-    env :
+    env:
       variables:
-        key: value 
+        key: value
   phases:
-    preBuild: 
-      commands: 
+    preBuild:
+      commands:
         - cd frontend
         - npm ci
         - npm install
@@ -15,7 +15,7 @@ frontend:
         - npm install axios
     # IMPORTANT - Please verify your build commands
     build:
-      commands: 
+      commands:
         - npm run build
   artifacts:
     # IMPORTANT - Please verify your build output directory
@@ -24,7 +24,7 @@ frontend:
       - '**/*'
   cache:
     paths:
-        - frontend/node_modules/**/* # Cache `node_modules` for faster `yarn` or `npm i`
-        - frontend/.next/cache/**/* # Cache Next.js for faster application rebuilds
+      - frontend/node_modules/**/* # Cache `node_modules` for faster `yarn` or `npm i`
+      - frontend/.next/cache/**/* # Cache Next.js for faster application rebuilds
 
 backend:
