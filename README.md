@@ -6,7 +6,7 @@
 
 **link**
 
-http://lahomelesshelper.me/
+http://lacountyhomelesshelper.me/
 
 **the proposed project:** Los Angeles has the largest homeless population in the United States. We propose a website that is a tool for both  people wanting to help homeless people around them and also a tool for homeless people to see what resources are available for them   
 
