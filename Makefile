@@ -8,6 +8,7 @@ all:
 	make install
 	make build
 	make test_backend
+	make start
 install:
 	(cd $(FRONTEND_DIR) && npm install)
 	(cd $(FRONTEND_DIR) && npm i react-router-dom)
