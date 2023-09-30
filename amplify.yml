@@ -5,6 +5,10 @@ frontend:
       commands: 
         - cd frontend
         - npm ci
+        - npm install
+        - npm i react-router-dom
+	      - npm install @mui/material @emotion/react @emotion/styled
+	      - npm install axios
     # IMPORTANT - Please verify your build commands
     build:
       commands: 
