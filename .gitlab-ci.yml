@@ -1,5 +1,14 @@
-image: pmarathi/idb-backend
+stages:
+  - build
 # Only calls make all for the pipeline
-job:
+job_frontend:
+  stage: build
+  image: node:latest
   script:
-    - make all
+    - make install
+    - make build
+job_backend:
+  stage: build
+  image: pmarathi/idb-backend
+  script:
+  - make test_backend
