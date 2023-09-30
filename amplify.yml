@@ -1,0 +1,22 @@
+version: 1
+frontend:
+  phases:
+    preBuild: 
+      commands: 
+        - cd frontend
+        - npm ci
+    # IMPORTANT - Please verify your build commands
+    build:
+      commands: 
+        - npm run build
+  artifacts:
+    # IMPORTANT - Please verify your build output directory
+    baseDirectory: frontend/.next/
+    files:
+      - '**/*'
+  cache:
+    paths:
+        - frontend/node_modules/**/* # Cache `node_modules` for faster `yarn` or `npm i`
+        - frontend/.next/cache/**/* # Cache Next.js for faster application rebuilds
+
+backend:
