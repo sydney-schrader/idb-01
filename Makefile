@@ -9,6 +9,7 @@ all:
 	make build
 	make test_backend
 	make start
+	(cd $(BACKEND_DIR) && python3 main.py)
 install:
 	(cd $(FRONTEND_DIR) && npm install)
 	(cd $(FRONTEND_DIR) && npm i react-router-dom)
