@@ -1,24 +1,20 @@
 version: 1
 applications:
-  - appRoot: frontend/
   - frontend:
       phases:
         preBuild:
           commands:
-            - cd frontend
             - npm ci
-            - npm install
-            - npm i react-router-dom
-            - npm install @mui/material @emotion/react @emotion/styled
-            - npm install axios
+            # - npm i react-router-dom
+            # - npm install @mui/material @emotion/react @emotion/styled
+            # - npm install axios
         build:
           commands:
             - npm run build
       artifacts:
-        baseDirectory: frontend/
+        baseDirectory: build
         files:
           - '**/*'
       cache:
         paths:
-          - frontend/node_modules/**/*
-          - frontend/.next/cache/**/*
+          - node_modules/**/*
