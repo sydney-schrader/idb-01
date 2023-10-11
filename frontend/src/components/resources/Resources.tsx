@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import ssg from '../../assets/ssg.jpeg'
 import family from '../../assets/familycrisiscenter.png'
 import santaanita from '../../assets/santaanita.jpeg'
+import arcadia_thrift from '../../assets/arcadia-thrift.jpeg'
 
   
 const Resources: React.FC<{}> = () => {
@@ -93,6 +94,33 @@ const Resources: React.FC<{}> = () => {
                 </p>
                 <Button name='href' href='/resources/shelter3' className='card-link'>
                   View Santa Anita Family Service
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{ alignItems: 'center' }}>
+              <Card.Title className='header-1'>
+                <b>Arcadia Welfare And Thrift Shop</b>
+              </Card.Title>
+              <img
+                src={arcadia_thrift}
+                alt=""
+                className='card-image-top'
+                style={{
+                  width: '90%',
+                }}
+              ></img>
+              <Card.Body>
+              <p>
+              Name: Arcadia Welfare And Thrift Shop <br/>
+                    City: Arcadia<br/>
+                    Hours: Monday through Friday, 9:00am to 4:30pm<br/>
+                    Zip code: 91006<br/>
+                    Phone Number: Thrift Shop Service/Intake (626) 447-2881,  Service/Intake (626) 447-6864
+                </p>
+                <Button name='href' href='/resources/shelter4' className='card-link'>
+                  View Arcadia Welfare And Thrift Shop
                 </Button>
               </Card.Body>
             </Card>

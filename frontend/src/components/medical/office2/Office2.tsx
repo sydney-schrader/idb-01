@@ -6,7 +6,7 @@ import elmonte from '../../../assets/elmonta.jpeg'
 const Office2: React.FC<{}> = () => {
     return (
         <>
-        <div>
+        <div className = "text-center">
              <h1>El Monte Office - Social Security Administration</h1>
              <img
                 src={elmonte}

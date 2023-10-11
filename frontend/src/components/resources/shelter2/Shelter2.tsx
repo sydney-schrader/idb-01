@@ -6,7 +6,7 @@ import family from '../../../assets/familycrisiscenter.png'
 const Shelter2: React.FC<{}> = () => {
     return (
         <>
-        <div>
+        <div className = "text-center">
              <h1>1736 Family Crisis Center</h1>
              <img
                 src={family}

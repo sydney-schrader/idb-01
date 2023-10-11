@@ -6,7 +6,7 @@ import ssg from '../../../assets/ssg.jpeg'
 const Shelter1: React.FC<{}> = () => {
     return (
         <>
-        <div>
+        <div className = "text-center">
              <h1>Special Service For Groups - Project 180</h1>
              <img
                 src={ssg}

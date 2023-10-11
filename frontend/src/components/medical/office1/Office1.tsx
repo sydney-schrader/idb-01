@@ -6,7 +6,7 @@ import ssa from '../../../assets/ssa.jpeg'
 const Office1: React.FC<{}> = () => {
     return (
         <>
-        <div>
+        <div className = "text-center">
              <h1>Watts Office - Social Security Administration</h1>
              <img
                 src={ssa}

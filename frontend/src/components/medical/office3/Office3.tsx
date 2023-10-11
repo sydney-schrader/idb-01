@@ -5,7 +5,7 @@ import westwood from '../../../assets/westwood.jpeg'
 const Office3: React.FC<{}> = () => {
     return (
         <>
-        <div>
+        <div className = "text-center">
              <h1>Westwood Office - Social Security Administration</h1>
              <img
                 src={westwood}

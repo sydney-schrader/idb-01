@@ -6,7 +6,7 @@ import agourahills from '../../../assets/agoura-hills.jpeg'
 const City1: React.FC<{}> = () => {
     return (
         <>
-        <div>
+        <div className = "text-center">
              <h1>City of Agoura Hills</h1>
              <img 
              src = {agourahills}

@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import ssa from '../../assets/ssa.jpeg'
 import elmonte from '../../assets/elmonta.jpeg'
 import westwood from '../../assets/westwood.jpeg'
+import alhambra_ssa from '../../assets/alhambra-ssa.jpeg'
   
 const Medical: React.FC<{}> = () => {
     
@@ -92,6 +93,33 @@ const Medical: React.FC<{}> = () => {
                 </p>
                 <Button name='href' href='/medical/office3' className='card-link'>
                   Westwood Office - Social Security Administration
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{ alignItems: 'center' }}>
+              <Card.Title className='header-1'>
+                <b>Alhambra Office - Social Security Administration</b>
+              </Card.Title>
+              <img
+                src={alhambra_ssa}
+                alt=""
+                className='card-image-top'
+                style={{
+                  width: '90%',
+                }}
+              ></img>
+              <Card.Body>
+              <p>
+                Name: Alhambra Office - Social Security Administration <br/>
+                Address: 900 S. Garfield Ave. Alhambra, CA 91801 <br/>
+                Hours: null <br/>
+                Phone number: TDD (800) 325-0778,  Service/Intake (866) 227-6561, National Toll Free Number Service/Intake (800) 772-1213, Not for referrals Administrative (626) 570-1158 <br/>
+                <a href = "http://egis3.lacounty.gov/lms/?p=56627">URL for their website</a>
+                </p>
+                <Button name='href' href='/medical/office4' className='card-link'>
+                  Alhambra Office - Social Security Administration
                 </Button>
               </Card.Body>
             </Card>

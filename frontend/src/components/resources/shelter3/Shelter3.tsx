@@ -6,7 +6,7 @@ import santaanita from '../../../assets/santaanita.jpeg'
 const Shelter3: React.FC<{}> = () => {
     return (
         <>
-        <div>
+        <div className = "text-center">
              <h1>Santa Anita Family Service</h1>
              <img
                 src={santaanita}
