@@ -74,33 +74,6 @@ const Resources: React.FC<{}> = () => {
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>Santa Anita Family Service</b>
-              </Card.Title>
-              <img
-                src={santaanita}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '90%',
-                }}
-              ></img>
-              <Card.Body>
-              <p>
-              Name: Santa Anita Family Service <br/>
-                    City: Monrovia<br/>
-                    Hours: None<br/>
-                    Zip code: 91016<br/>
-                    Phone Number: Service/Intake and Administration (626) 359-9358, FAX (626) 358-7647
-                </p>
-                <Button name='href' href='/resources/shelter3' className='card-link'>
-                  View Santa Anita Family Service
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card style={{ alignItems: 'center' }}>
-              <Card.Title className='header-1'>
                 <b>Arcadia Welfare And Thrift Shop</b>
               </Card.Title>
               <img

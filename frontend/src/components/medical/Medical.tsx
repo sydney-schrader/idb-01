@@ -46,33 +46,6 @@ const Medical: React.FC<{}> = () => {
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>El Monte Office - Social Security Administration</b>
-              </Card.Title>
-              <img
-                src={elmonte}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '100%',
-                }}
-              ></img>
-              <Card.Body>
-              <p>
-                Name: El Monte Office - Social Security Administration <br/>
-                Address: 9351 Telstar Ave. El Monte, CA 91731 <br/>
-                Hours: Monday through Friday, 9:00am to 3:30pm. <br/>
-                Phone number  Service/Intake (866) 931-0340, National Toll Free Number Service/Intake (800) 772-1213, Not for referral Administrative (866) 643-3453<br/>
-                <a href = "http://egis3.lacounty.gov/lms/?p=56600">URL for their website</a>
-                </p>
-                <Button name='href' href='/medical/office2' className='card-link'>
-                  View El Monte Office - Social Security Administration
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card style={{ alignItems: 'center' }}>
-              <Card.Title className='header-1'>
                 <b>Westwood Office - Social Security Administration</b>
               </Card.Title>
               <img
