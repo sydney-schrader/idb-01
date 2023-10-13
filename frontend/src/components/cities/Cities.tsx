@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
@@ -8,9 +8,24 @@ import Button from 'react-bootstrap/Button'
 import agourahills from '../../assets/agoura-hills.jpeg'
 import alhambra from '../../assets/alhambra.jpeg'
 import arcadia from '../../assets/arcadia.jpeg'
-  
+import axios from "axios";  
+
 const Cities: React.FC<{}> = () => {
-    
+  
+
+  const [cityData, setCityData] = useState<any[]>([])
+
+  // gets the city data from the api when it is running locally 
+  useEffect(() => {
+      // Get issues and commits from gitlab api
+      axios.get(`http://127.0.0.1:5000/cities`)
+      .then((response) => { 
+          console.log(response.data);
+          setCityData(response.data); });
+  
+     
+      
+  }, []);
     return (
         <Container>
         <Col>
