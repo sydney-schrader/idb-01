@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
-import jamie from '../../assets/jamie.jpeg'
+import jamie from '../../assets/jamie.jpg'
 import pavan from '../../assets/pavan.jpg'
-import sydney from '../../assets/sydney.jpeg'
+import sydney from '../../assets/sydney.jpg'
 import john from '../../assets/john.jpg'
 import zach from '../../assets/zach.jpg'
 import bootstrapPic from '../../assets/bootstrapPic.jpeg'
