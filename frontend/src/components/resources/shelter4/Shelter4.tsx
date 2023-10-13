@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
-import arcadia_thrift from '../../../assets/arcadia-thrift.jpeg'
-import arcadia from '../../../assets/arcadia.jpeg'
-import westwood from '../../../assets/westwood.jpeg'
+import arcadia_thrift from '../../../assets/arcadia-thrift.jpg'
+import arcadia from '../../../assets/arcadia.jpg'
+import westwood from '../../../assets/westwood.jpg'
 
 const Shelter4: React.FC<{}> = () => {
     return (

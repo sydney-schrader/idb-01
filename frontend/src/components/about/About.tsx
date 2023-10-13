@@ -6,7 +6,7 @@ import pavan from '../../assets/pavan.jpg'
 import sydney from '../../assets/sydney.jpg'
 import john from '../../assets/john.jpg'
 import zach from '../../assets/zach.jpg'
-import bootstrapPic from '../../assets/bootstrapPic.jpeg'
+import bootstrapPic from '../../assets/bootstrapPic.jpg'
 import gitlabPic from '../../assets/gitlabPic.png'
 import styles from './About.module.css'
 // import { Typography } from "@mui/material";

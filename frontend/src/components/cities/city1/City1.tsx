@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
-import agourahills from '../../../assets/agoura-hills.jpeg'
-import ssg from '../../../assets/ssg.jpeg'
-import ssa from '../../../assets/ssa.jpeg'
+import agourahills from '../../../assets/agoura-hills.jpg'
+import ssg from '../../../assets/ssg.jpg'
+import ssa from '../../../assets/ssa.jpg'
 
 const City1: React.FC<{}> = () => {
     return (

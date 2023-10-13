@@ -1,8 +1,8 @@
 import React from "react";
-import ssa from '../../../assets/ssa.jpeg'
+import ssa from '../../../assets/ssa.jpg'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
-import agourahills from '../../../assets/agoura-hills.jpeg'
-import ssg from '../../../assets/ssg.jpeg'
+import agourahills from '../../../assets/agoura-hills.jpg'
+import ssg from '../../../assets/ssg.jpg'
 
 
 const Office1: React.FC<{}> = () => {

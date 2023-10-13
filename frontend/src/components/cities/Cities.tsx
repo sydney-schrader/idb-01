@@ -5,9 +5,9 @@ import Button from 'react-bootstrap/Button'
 // import medicarePic from '../../assets/medicare-image.jpeg'
 // import citiesPic from '../../assets/cities-image.jpg'
 // import resourcesPic from '../../assets/resources-image.jpeg'
-import agourahills from '../../assets/agoura-hills.jpeg'
-import alhambra from '../../assets/alhambra.jpeg'
-import arcadia from '../../assets/arcadia.jpeg'
+import agourahills from '../../assets/agoura-hills.jpg'
+import alhambra from '../../assets/alhambra.jpg'
+import arcadia from '../../assets/arcadia.jpg'
   
 const Cities: React.FC<{}> = () => {
     

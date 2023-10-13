@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
-import alhambra_ssa from '../../../assets/alhambra-ssa.jpeg'
-import alhambra from '../../../assets/alhambra.jpeg'
+import alhambra_ssa from '../../../assets/alhambra-ssa.jpg'
+import alhambra from '../../../assets/alhambra.jpg'
 import family from '../../../assets/familycrisiscenter.png'
 
 const Office4: React.FC<{}> = () => {
