@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-// import medicarePic from '../../assets/medicare-image.jpeg'
-// import citiesPic from '../../assets/cities-image.jpg'
-// import resourcesPic from '../../assets/resources-image.jpeg'
 import agourahills from '../../assets/agoura-hills.jpeg'
 import alhambra from '../../assets/alhambra.jpeg'
 import arcadia from '../../assets/arcadia.jpeg'
@@ -12,6 +9,8 @@ import axios from "axios";
 
 const Cities: React.FC<{}> = () => {
   
+  // making a city object that we can use for an array later
+
 
   const [cityData, setCityData] = useState<any[]>([])
 
@@ -21,18 +20,23 @@ const Cities: React.FC<{}> = () => {
       axios.get(`http://127.0.0.1:5000/cities`)
       .then((response) => { 
           console.log(response.data);
-          setCityData(response.data); });
-  
-     
-      
+          setCityData(response.data);
+          console.log(cityData[0].CSA_Label) });
+   
   }, []);
+
+  const renderCard = (card: any, index: any) => {
+
+  }
+
+
     return (
         <Container>
         <Col>
             <h1>Cities in Los Angeles</h1>
         </Col>
         <Row>
-        <div> 3 Cities</div>
+        <div> {cityData.length} Cities </div>
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
