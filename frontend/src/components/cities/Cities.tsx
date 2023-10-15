@@ -31,7 +31,7 @@ const Cities: React.FC<{}> = () => {
   // notes: idk how the img works yet, want it to come from google api
   const renderCard = (card: any, index: any) => {
     return(
-      <Card style={{ alignItems: 'center'}} key={index}>
+      <Card style={{ alignItems: 'center', width: '18rem'}} key={index} className="box">
               <Card.Title className='header-1'>
                 <b>
                   {card.CSA_Label}
@@ -69,8 +69,10 @@ const Cities: React.FC<{}> = () => {
             <h1>Cities in Los Angeles</h1>
         </Col>
         <div> {cityData.length} Cities </div>
-        
+        <div className="row row-cols-1 row-cols-md-2 g-4">
           {cityData.map(renderCard)}
+        </div>
+        
         
         
       </Container>
