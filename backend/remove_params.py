@@ -1,19 +1,17 @@
 import json
 from query_APIs import query_API
 
-def filter_json(json_data, allowed_parameters):
-    data = json_data
-    # Iterate through each object (dictionary) in the list
+# filters out unwanted parameters from json so they can be put in database
+def filter_json(data, allowed_parameters):
     for item in data:
         # Create a list of keys to remove
         keys_to_remove = [key for key in item if key not in allowed_parameters]
         # Remove the unwanted keys
         for key in keys_to_remove:
             del item[key]
-    new_json_data = recursive_convert_keys(data)
-    return new_json_data
+    return recursive_convert_keys(data)
 
-# make all keys lowercase
+# make all keys lowercase to make putting them into tables easier
 def recursive_convert_keys(obj):
         if isinstance(obj, dict):
             return {key.lower(): recursive_convert_keys(value) for key, value in obj.items()}

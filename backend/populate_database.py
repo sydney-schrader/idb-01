@@ -11,13 +11,16 @@ from models import Base, City, Shelter, Medicare
 
 load_dotenv("../.env")
 user = os.getenv("db_username")
-passwd = os.getenv("db_password")
+password = os.getenv("db_password")
 url = os.getenv("db_url")
+port = os.getenv("db_port")
+database = os.getenv("db_database")
 # Define the MySQL connection URL
-mysql_url = f"mysql+mysqlconnector://{user}:{passwd}@{url}:3306/idbdatabase"
+mysql_url = f"mysql+mysqlconnector://{user}:{password}@{url}:{port}/{database}"
 
 # Create a SQLAlchemy engine
 engine = create_engine(mysql_url)
+
 # Create a dummy session to test connection
 with Session(engine) as session:
     print("successfully connected!")
@@ -34,7 +37,6 @@ Base.metadata.create_all(engine)
 print("adding cities")
 cities = filter_json(query_APIs.query_API("cities"), ["CSA_Label", "Total_Unsheltered_Pop", 
     "Total_Sheltered_Pop", "Total_Pop", "Square_Miles", "Density_Unsheltered", " Density_Sheltered", "Density_Total"])
-
 with Session(engine) as session:
     for city_info in cities:
         city = City(**city_info)
@@ -43,20 +45,18 @@ with Session(engine) as session:
 
 # Add to shelter table
 print("adding shelters")
-shelters = filter_json(query_APIs.query_API("shelters"), ["name", "addrln1", "city", "hours", 
+shelters = filter_json(query_APIs.query_API("shelters"), ["Name", "addrln1", "city", "hours", 
     "phone", "url", "post_id", "description", "zip", "link", "latitude", "longitude", "date_updated"])
-
 with Session(engine) as session:
     for shelter_info in shelters:
         shelter = Shelter(**shelter_info)
-        session.add(city)
+        session.add(shelter)
     session.commit()
 
 #Add to medicare table
 print("adding medicare")
 medicares = filter_json(query_APIs.query_API("medicare"), ["Name", "addrln1", "addrln2", "city", 
     "hours", "phones", "post_id", "description", "zip", "latitude", "longitude", "date_updated"])
-
 with Session(engine) as session:
     for medicare_info in medicares:
         medicare = Medicare(**medicare_info)
