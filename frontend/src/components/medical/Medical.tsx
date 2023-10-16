@@ -1,24 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import ssa from '../../assets/ssa.jpeg'
-import elmonte from '../../assets/elmonta.jpeg'
-import westwood from '../../assets/westwood.jpeg'
+
+import axios from "axios"; 
   
 const Medical: React.FC<{}> = () => {
     
-    return (
-        <Container>
-        <Col>
-            <h1>Medicare and Medicaid Offices in Los Angeles</h1>
-        </Col>
-        <Row>
-        <div> 3 Medical Offices</div>
-          <Col>
-            <Card style={{ alignItems: 'center' }}>
+  const [medData, setMedData] = useState<any[]>([])
+
+  // gets the city data from the api when it is running locally 
+  useEffect(() => {
+      // Get issues and commits from gitlab api
+      axios.get(`http://127.0.0.1:5000/medicare`)
+      .then((response) => { 
+          console.log(response.data);
+          setMedData(response.data);
+          //console.log(cityData[0]["CSA_Label"]) 
+        });
+   
+  }, []);
+  
+  // notes: idk how the img works yet, want it to come from google api
+  const renderCard = (card: any, index: any) => {
+    return(
+      <Card style={{ alignItems: 'center', width: '18rem'}} key={index} className="box">
               <Card.Title className='header-1'>
-                <b>Watts Office - Social Security Administration</b>
+                <b>
+                  {card.Name}
+                </b>
               </Card.Title>
               <img
                 src={ssa}
@@ -29,78 +40,38 @@ const Medical: React.FC<{}> = () => {
                 }}
               ></img>
               <Card.Body>
-                <p>
-                Name: Watts Office - Social Security Administration <br/>
-                Address: 12429 S. Avalon Blvd. Los Angeles, CA 90061<br/>
-                Hours: Monday, Tuesday, Thursday, Friday, 9:00am to 3:00pm; Wednesday, 9:00am to 12:00pm. <br/>
-                Phone number: TDD (800) 325-0778, National Toll Free Number Service/Intake (800) 772-1213, Not for Referrals Administrative (323) 754-1404, General Information Service/Intake (877) 836-1558 <br/>
-                <a href = "http://egis3.lacounty.gov/lms/?p=56598">URL for their website</a>
-                </p>
-                <Button name='href' href='/medical/office1' className='card-link'>
-                  View Watts Office - Social Security Administ
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card style={{ alignItems: 'center' }}>
-              <Card.Title className='header-1'>
-                <b>El Monte Office - Social Security Administration</b>
-              </Card.Title>
-              <img
-                src={elmonte}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '100%',
-                }}
-              ></img>
-              <Card.Body>
+              
               <p>
-                Name: El Monte Office - Social Security Administration <br/>
-                Address: 9351 Telstar Ave. El Monte, CA 91731 <br/>
-                Hours: Monday through Friday, 9:00am to 3:30pm. <br/>
-                Phone number  Service/Intake (866) 931-0340, National Toll Free Number Service/Intake (800) 772-1213, Not for referral Administrative (866) 643-3453<br/>
-                <a href = "http://egis3.lacounty.gov/lms/?p=56600">URL for their website</a>
-                </p>
-                <Button name='href' href='/medical/office2' className='card-link'>
-                  View El Monte Office - Social Security Administration
+                Name: {card.Name} <br/>
+                Address: {card.addrln1} <br/>
+                Hours: {card.hours} <br/>
+                Phone number: {card.phones}<br/>
+                <a href = {card.url}>URL for their website</a>
+              </p> 
+            
+                <Button name='href' href='/cities/city3' className='card-link'>
+                  View {card.CSA_Label}
                 </Button>
               </Card.Body>
             </Card>
-          </Col>
-          <Col>
-            <Card style={{ alignItems: 'center' }}>
-              <Card.Title className='header-1'>
-                <b>Westwood Office - Social Security Administration</b>
-              </Card.Title>
-              <img
-                src={westwood}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '90%',
-                }}
-              ></img>
-              <Card.Body>
-              <p>
-                Name: Westwood Office - Social Security Administration <br/>
-                Address: 11500 W Olympic Blvd. Los Angeles, CA 90064 <br/>
-                Hours: Monday through Friday, 9:00am to 3:30pm. <br/>
-                Phone number: TDD (800) 325-0778, National Toll Free Number Service/Intake (800) 772-1213, Not for referrals Administrative (310) 575-9464, Service/Intake (866) 964-4779 <br/>
-                <a href = "http://egis3.lacounty.gov/lms/?p=56601">URL for their website</a>
-                </p>
-                <Button name='href' href='/medical/office3' className='card-link'>
-                  Westwood Office - Social Security Administration
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+    )
+  }
+
+    return (
+      <Container>
+        <Col>
+            <h1>Medicare and Medicaid locations in Los Angeles</h1>
+        </Col>
+        <div> {medData.length} Medical Centers </div>
+        <div className="row row-cols-1 row-cols-md-2 g-4">
+          {medData.map(renderCard)}
+        </div>
+        
+        
+        
       </Container>
     );
     
-   
 };
  
 export default Medical;
