@@ -14,7 +14,7 @@ class City(Base):
     total_pop: Mapped[int]
     square_miles: Mapped[float]
     density_unsheltered: Mapped[float]
-    density_sheltered: Mapped[float]
+    density_sheltered: Mapped[float] = mapped_column(nullable=True)
     density_total: Mapped[float]
     # Will later want to add a one to many relationship with shelters and 
     # medicare offices
@@ -25,13 +25,13 @@ class City(Base):
 class Shelter(Base):
     __tablename__ = "shelters"
     name: Mapped[str] = mapped_column(String(200), primary_key=True)
-    addrln1: Mapped[str] = mapped_column(String(100))
+    addrln1: Mapped[str] = mapped_column(String(100), nullable=True)
     addrln2: Mapped[str] = mapped_column(String(100), nullable=True)
     # Will later want to change this to a relationship to the specific city
     city: Mapped[str] = mapped_column(String(100))
-    hours: Mapped[str] = mapped_column(String(100))
+    hours: Mapped[str] = mapped_column(String(400), nullable=True)
     phones: Mapped[str] = mapped_column(String(100), nullable=True)
-    url: Mapped[str] = mapped_column(String(100))
+    url: Mapped[str] = mapped_column(String(100), nullable=True)
     post_id: Mapped[float]
     description: Mapped[str] = mapped_column(String(550))
     zip: Mapped[str] = mapped_column(String(100))
@@ -50,8 +50,8 @@ class Medicare(Base):
     addrln2: Mapped[str] = mapped_column(String(100), nullable=True)
     # Will later want to change this to a relationship to the specific city
     city: Mapped[str] = mapped_column(String(100))
-    hours: Mapped[str] = mapped_column(String(100))
-    phones: Mapped[str] = mapped_column(String(100), nullable=True)
+    hours: Mapped[str] = mapped_column(String(175), nullable=True)
+    phones: Mapped[str] = mapped_column(String(250), nullable=True)
     post_id: Mapped[float]
     description: Mapped[str] = mapped_column(String(550))
     zip: Mapped[str] = mapped_column(String(100))
