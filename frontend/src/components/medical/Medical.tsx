@@ -3,7 +3,6 @@ import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import ssa from '../../assets/ssa.jpg'
-import elmonte from '../../assets/elmonta.jpg'
 import westwood from '../../assets/westwood.jpg'
 import alhambra_ssa from '../../assets/alhambra-ssa.jpg'
   
