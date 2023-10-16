@@ -1,28 +1,39 @@
-import React from "react";
-import { Container, Row, Col } from 'react-bootstrap'
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
 import ssg from '../../assets/ssg.jpeg'
 import family from '../../assets/familycrisiscenter.png'
 import santaanita from '../../assets/santaanita.jpeg'
-
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col } from 'react-bootstrap'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+import axios from "axios"; 
   
 const Resources: React.FC<{}> = () => {
     
-    return (
-        <Container>
-        <Col>
-            <h1>Shelters and Services in Los Angeles</h1>
-        </Col>
-        <Row>
-        <div> 3 Resources</div>
-          <Col>
-            <Card style={{ alignItems: 'center' }}>
+  const [shelterData, setShelterData] = useState<any[]>([])
+
+  // gets the city data from the api when it is running locally 
+  useEffect(() => {
+      // Get issues and commits from gitlab api
+      axios.get(`http://127.0.0.1:5000/shelters`)
+      .then((response) => { 
+          console.log(response.data);
+          setShelterData(response.data);
+          //console.log(cityData[0]["CSA_Label"]) 
+        });
+   
+  }, []);
+  
+  // notes: idk how the img works yet, want it to come from google api
+  const renderCard = (card: any, index: any) => {
+    return(
+      <Card style={{ alignItems: 'center', width: '18rem'}} key={index} className="box">
               <Card.Title className='header-1'>
-                <b>Special Service For Groups - Project 180</b>
+                <b>
+                  {card.Name}
+                </b>
               </Card.Title>
               <img
-                src={ssg}
+                src={family}
                 alt=""
                 className='card-image-top'
                 style={{
@@ -30,76 +41,37 @@ const Resources: React.FC<{}> = () => {
                 }}
               ></img>
               <Card.Body>
-                <p>
-                    Name: Special Service For Groups - Project 180<br/>
-                    City: Los Angeles<br/>
-                    Hours: SITE HOURS: Monday through Friday, 8:30am to 4:30pm.<br/>
-                    Zip code: 90013<br/>
-                    Phone Number: FAX (213) 621-4155, Service/Intake (213) 620-5712
-                </p>
-                <Button name='href' href='/resources/shelter1' className='card-link'>
-                  View Special Service For Groups - Project 180
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card style={{ alignItems: 'center' }}>
-              <Card.Title className='header-1'>
-                <b>1736 Family Crisis Center</b>
-              </Card.Title>
-              <img
-                src={family}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '80%',
-                }}
-              ></img>
-              <Card.Body>
+              
               <p>
-              Name: 1736 Family Crisis Center<br/>
-                    City: Los Angeles<br/>
-                    Hours: Monday through Friday, 8:30am to 5:30pm. Evenings and Saturdays by appointment<br/>
-                    Zip code: 90018<br/>
-                    Phone Number: 24 Hrs-Crisis Hotline Service/Intake and Hotline (213) 222-1237, 24 Hrs-Youth Crisis/Shelter Hotline Service/Intake and Hotline (310) 379-3620, 24 Hrs-DV Shelter Hotline Service/Intake and Hotline (310) 370-5902, Community Service Center Service/Intake an
-                </p>
-                <Button name='href' href='/resources/shelter2' className='card-link'>
-                  View 1736 Family Crisis Center
+                Name: {card.Name} <br/>
+                Address: {card.addrln1} <br/>
+                Hours: {card.hours} <br/>
+                Zip Code: {card.zip}<br/>
+                <a href = {card.url}>URL for their website</a>
+            </p>
+                <Button name='href' href='/cities/city3' className='card-link'>
+                  View {card.CSA_Label}
                 </Button>
               </Card.Body>
             </Card>
-          </Col>
-          <Col>
-            <Card style={{ alignItems: 'center' }}>
-              <Card.Title className='header-1'>
-                <b>Santa Anita Family Service</b>
-              </Card.Title>
-              <img
-                src={santaanita}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '90%',
-                }}
-              ></img>
-              <Card.Body>
-              <p>
-              Name: Santa Anita Family Service <br/>
-                    City: Monrovia<br/>
-                    Hours: None<br/>
-                    Zip code: 91016<br/>
-                    Phone Number: Service/Intake and Administration (626) 359-9358, FAX (626) 358-7647
-                </p>
-                <Button name='href' href='/resources/shelter3' className='card-link'>
-                  View Santa Anita Family Service
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+    )
+  }
+
+    return (
+      <Container>
+        <Col>
+            <h1>Shelters and Services in Los Angeles</h1>
+        </Col>
+        <div> {shelterData.length} Resources </div>
+        <div className="row row-cols-1 row-cols-md-2 g-4">
+          {shelterData.map(renderCard)}
+        </div>
+        
+        
+        
       </Container>
     );
+    
     
    
 };
