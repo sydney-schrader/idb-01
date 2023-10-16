@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import agourahills from '../../assets/agoura-hills.jpeg'
-import alhambra from '../../assets/alhambra.jpeg'
+// import agourahills from '../../assets/agoura-hills.jpeg'
+// import alhambra from '../../assets/alhambra.jpeg'
 import arcadia from '../../assets/arcadia.jpeg'
 import axios from "axios"; 
-import styles from './Cities.module.css' 
-import { Box } from "@mui/material";
+// import styles from './Cities.module.css' 
+// import { Box } from "@mui/material";
 
 const Cities: React.FC<{}> = () => {
   

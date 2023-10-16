@@ -1,6 +1,6 @@
-import ssg from '../../assets/ssg.jpeg'
+// import ssg from '../../assets/ssg.jpeg'
 import family from '../../assets/familycrisiscenter.png'
-import santaanita from '../../assets/santaanita.jpeg'
+// import santaanita from '../../assets/santaanita.jpeg'
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
