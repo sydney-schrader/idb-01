@@ -29,6 +29,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/cities" element={<Cities />} />
+        {/* <Route path="/cities/:cityName" component={CityDetail} /> */}
         <Route path="/cities/city1" element={<City1 />} />
         <Route path="/cities/city2" element={<City2 />} />
         <Route path="/cities/city3" element={<City3 />} />

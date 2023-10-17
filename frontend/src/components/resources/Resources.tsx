@@ -1,28 +1,46 @@
-import ssg from '../../assets/ssg.jpeg'
 import family from '../../assets/familycrisiscenter.png'
-import santaanita from '../../assets/santaanita.jpeg'
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from 'react-bootstrap'
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
+import { Container, Col, Card, Button} from 'react-bootstrap'
 import axios from "axios"; 
   
 const Resources: React.FC<{}> = () => {
     
   const [shelterData, setShelterData] = useState<any[]>([])
 
-  // gets the city data from the api when it is running locally 
-  useEffect(() => {
-      // Get issues and commits from gitlab api
-      axios.get(`http://127.0.0.1:5000/shelters`)
-      .then((response) => { 
-          console.log(response.data);
-          setShelterData(response.data);
-          //console.log(cityData[0]["CSA_Label"]) 
-        });
+  // // gets the city data from the api when it is running locally 
+  // useEffect(() => {
+  //     // Get issues and commits from gitlab api
+  //     axios.get(`http://127.0.0.1:5000/shelters`)
+  //     .then((response) => { 
+  //         console.log(response.data);
+  //         setShelterData(response.data);
+  //         //console.log(cityData[0]["CSA_Label"]) 
+  //       });
    
-  }, []);
-  
+  // }, []);
+  useEffect(() => {
+    axios.get(`http://127.0.0.1:5000/shelters`)
+    .then(async (response) => { 
+        const updatedData = await Promise.all(response.data.map(async (shelter: any) => {
+          shelter.imageURL = await fetchShelterImage(shelter.Name);
+          return shelter;
+        }));
+        setShelterData(updatedData);
+    });
+}, []);
+
+const fetchShelterImage = async (shelterName: string) => {
+  try {
+    const response = await axios.get(`https://pixabay.com/api/?key=40111269-fa085807d2390f3428b52a50e&q=${encodeURIComponent(shelterName)}&image_type=photo`);
+    if (response.data.results && response.data.results.length > 0) {
+      return response.data.results[0].urls.regular;
+    }
+  } catch (error) {
+    console.error("Error fetching image:", error);
+  }
+  return family; // default to family image if no image is found or an error occurs
+}
+
   // notes: idk how the img works yet, want it to come from google api
   const renderCard = (card: any, index: any) => {
     return(
@@ -33,13 +51,11 @@ const Resources: React.FC<{}> = () => {
                 </b>
               </Card.Title>
               <img
-                src={family}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '100%',
-                }}
-              ></img>
+              src={card.imageURL}
+              alt={card.CSA_Label}
+              className='card-image-top'
+              style={{ width: '100%' }}
+              />
               <Card.Body>
               
               <p>
