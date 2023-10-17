@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Container, Col } from 'react-bootstrap'
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
-// import agourahills from '../../assets/agoura-hills.jpeg'
-// import alhambra from '../../assets/alhambra.jpeg'
+import { Container, Col, Card, Button } from 'react-bootstrap'
 import arcadia from '../../assets/arcadia.jpeg'
 import axios from "axios"; 
-// import styles from './Cities.module.css' 
-// import { Box } from "@mui/material";
 
 const Cities: React.FC<{}> = () => {
   
@@ -16,19 +10,46 @@ const Cities: React.FC<{}> = () => {
 
   const [cityData, setCityData] = useState<any[]>([])
 
-  // gets the city data from the api when it is running locally 
-  useEffect(() => {
-      // Get issues and commits from gitlab api
-      axios.get(`http://127.0.0.1:5000/cities`)
-      .then((response) => { 
-          console.log(response.data);
-          setCityData(response.data);
-          //console.log(cityData[0]["CSA_Label"]) 
-        });
+  // // gets the city data from the api when it is running locally 
+  // useEffect(() => {
+  //     // Get cities from backend API
+  //     axios.get(`http://127.0.0.1:5000/cities`)
+  //     .then(async (response) => { 
+  //         console.log(response.data);
+  //         setCityData(response.data);
+  //         //console.log(cityData[0]["CSA_Label"]) 
+  //       });
    
-  }, []);
+  // }, []);
+  useEffect(() => {
+    axios.get(`http://127.0.0.1:5000/cities`)
+    .then(async (response) => { 
+        const updatedData = await Promise.all(response.data.map(async (city: any) => {
+          city.imageURL = await fetchCityImage(city.CSA_Label);
+          return city;
+        }));
+        setCityData(updatedData);
+    });
+}, []);
+
+
+const fetchCityImage = async (cityName: string) => {
+  try {
+      const response = await axios.get(`https://pixabay.com/api/?key=40111269-fa085807d2390f3428b52a50e&q=${encodeURIComponent(cityName)}&image_type=photo`);
+      if (response.data.hits && response.data.hits.length > 0) {
+          return response.data.hits[0].largeImageURL;
+      }
+  } catch (error) {
+      console.error("Error fetching image:", error);
+  }
+  return arcadia; // default to arcadia image if no image is found or an error occurs
+}
+
+  
   
   // notes: idk how the img works yet, want it to come from google api
+  // * syd update - using unsplash API, notes: Be aware that making a new API call for each city can quickly use up your 
+  //Unsplash API limits and slow down your page. Consider caching the images or using a lazy loading mechanism
   const renderCard = (card: any, index: any) => {
     return(
       <Card style={{ alignItems: 'center', width: '18rem'}} key={index} className="box">
@@ -38,13 +59,11 @@ const Cities: React.FC<{}> = () => {
                 </b>
               </Card.Title>
               <img
-                src={arcadia}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '100%',
-                }}
-              ></img>
+              src={card.imageURL}
+              alt={card.CSA_Label}
+              className='card-image-top'
+              style={{ width: '100%' }}
+              />
               <Card.Body>
               
               <p>
@@ -55,7 +74,7 @@ const Cities: React.FC<{}> = () => {
                 Density of total homeless population: {card.Density_Total} 
             </p>
                 <Button name='href' href='/cities/city3' className='card-link'>
-                  View City of Arcadia
+                  View {card.CSA_Label} *pages not implemented
                 </Button>
               </Card.Body>
             </Card>
