@@ -1,12 +1,12 @@
 import os
 import query_APIs
 from remove_params import filter_json
-
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 # from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import Session
 from models import Base, City, Shelter, Medicare
+from geopy.distance import geodesic
     
 
 load_dotenv("../.env")
@@ -20,10 +20,6 @@ mysql_url = f"mysql+mysqlconnector://{user}:{password}@{url}:{port}/{database}"
 
 # Create a SQLAlchemy engine
 engine = create_engine(mysql_url)
-
-# Create a dummy session to test connection
-with Session(engine) as session:
-    print("successfully connected!")
 
 # Drop all existing tables so we can make new ones
 print("dropping tables")
@@ -53,7 +49,7 @@ with Session(engine) as session:
         session.add(shelter)
     session.commit()
 
-#Add to medicare table
+# Add to medicare table
 print("adding medicare")
 medicares = filter_json(query_APIs.query_API("medicare"), ["Name", "addrln1", "addrln2", "city", 
     "hours", "phones", "post_id", "description", "zip", "latitude", "longitude", "date_updated"])
@@ -62,19 +58,30 @@ with Session(engine) as session:
         medicare = Medicare(**medicare_info)
         session.add(medicare)
     session.commit()
-# Checking that everything is in database
-print("Checking database for cities, shelters, and medicare locations")
-with Session(engine) as session:
-    cities = session.query(City).all()
-    for city in cities:
-        print(city)
-        
+
+def dist(x1, y1, x2, y2):
+    return ((x1-x2)**2 + (y1-y2)**2)**.5
+
+# Establish Relationships for medicare to shelter and vice versa:
 with Session(engine) as session:
     shelters = session.query(Shelter).all()
-    for shelter in shelters:
-        print(shelter)
-
-with Session(engine) as session:
     medicares = session.query(Medicare).all()
-    for medicare in medicares:
-        print(medicare)
+
+    for shelter in shelters:
+        closest_medicare = None
+        closest_distance = float("inf")
+        shelter_location = (shelter.latitude, shelter.longitude)
+        
+        for medicare in medicares:
+            medicare_location = (medicare.latitude, medicare.longitude)
+            distance = geodesic(shelter_location, medicare_location).miles
+            if distance < closest_distance:
+                closest_distance = distance
+                closest_medicare = medicare
+        
+        shelter.medicare_name = closest_medicare.name
+        shelter.medicare_addrln1 = closest_medicare.addrln1
+        shelter.medicare_addrln2 = closest_medicare.addrln2
+        shelter.medicare_hours = closest_medicare.hours
+        
+    session.commit()
