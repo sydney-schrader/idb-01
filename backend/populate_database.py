@@ -59,9 +59,6 @@ with Session(engine) as session:
         session.add(medicare)
     session.commit()
 
-def dist(x1, y1, x2, y2):
-    return ((x1-x2)**2 + (y1-y2)**2)**.5
-
 def find_closest(location, all_locations):
     closest_location = None
     closest_distance = float("inf")
