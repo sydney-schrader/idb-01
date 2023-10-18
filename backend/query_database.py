@@ -20,7 +20,7 @@ def query_city(name):
         # session.execute returns a ChunkedIteratorResult, call next to get
         # the first result. Each result is a tuple. We only want 1 city, so get
         # the 1st value of the 1st tuple.
-        city = next(res)[0]
+        city = next(res)[0].to_dict()
     return city
 
 def query_cities():
@@ -29,7 +29,7 @@ def query_cities():
         res = session.execute(select_statement)
         # session.execute returns an iterator of single value tuples. Get the
         # first value of each single value tuple to make a 1 dimensional list
-        cities = [row[0] for row in res]
+        cities = [row[0].to_dict() for row in res]
     return cities
 
 def query_shelter(name):
@@ -39,7 +39,7 @@ def query_shelter(name):
         # session.execute returns a ChunkedIteratorResult, call next to get
         # the first result. Each result is a tuple. We only want 1 shelter, so 
         # get the 1st value of the 1st tuple.
-        shelter = next(res)[0]
+        shelter = next(res)[0].to_dict()
     return shelter
 
 def query_shelters():
@@ -48,7 +48,7 @@ def query_shelters():
         res = session.execute(select_statement)
         # session.execute returns an iterator of single value tuples. Get the
         # first value of each single value tuple to make a 1 dimensional list
-        shelters = [row[0] for row in res]
+        shelters = [row[0].to_dict() for row in res]
     return shelters
 
 def query_medicare(name):
@@ -58,7 +58,7 @@ def query_medicare(name):
         # session.execute returns a ChunkedIteratorResult, call next to get
         # the first result. Each result is a tuple. We only want 1 office, so 
         # get the 1st value of the 1st tuple.
-        office = next(res)[0]
+        office = next(res)[0].to_dict()
     return office
 
 def query_medicares():
@@ -67,12 +67,12 @@ def query_medicares():
         res = session.execute(select_statement)
         # session.execute returns an iterator of single value tuples. Get the
         # first value of each single value tuple to make a 1 dimensional list
-        offices = [row[0] for row in res]
+        offices = [row[0].to_dict() for row in res]
     return offices
 
 if __name__ == "__main__":
     # print(query_city('Unincorporated - Wiseburn'))
-    assert(len(query_cities()) == 304)
+    assert(len(query_cities()) == 286)
     # print(query_shelter('Zoe Christian Fellowship - Sfv Rescue Mission'))
     assert(len(query_shelters()) == 182)
     # print(query_medicare('Whittier Office - Social Security Administration'))

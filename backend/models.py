@@ -1,5 +1,5 @@
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import String
+from sqlalchemy import String, ForeignKey
 
 class Base(DeclarativeBase):
     pass
@@ -14,8 +14,8 @@ class City(Base):
     density_unsheltered: Mapped[float]
     density_sheltered: Mapped[float] = mapped_column(nullable=True)
     density_total: Mapped[float]
-    # Will later want to add a one to many relationship with shelters and 
-    # medicare offices
+    shelter: Mapped[str] = mapped_column(String(200), nullable=True)
+    medicare: Mapped[str] = mapped_column(String(200), nullable=True)
 
     def __repr__(self) -> str:
         return f"City(CSA_Label={self.csa_label!r})"
@@ -28,15 +28,16 @@ class City(Base):
                 "square_miles" : self.square_miles,
                 "density_unsheltered" : self.density_unsheltered,
                 "density_sheltered" : self.density_sheltered,
-                "density_total" : self.density_total}
+                "density_total" : self.density_total,
+                "shelters" : self.shelter,
+                "medicares" : self.medicare}
 
 class Shelter(Base):
     __tablename__ = "shelters"
     name: Mapped[str] = mapped_column(String(200), primary_key=True)
     addrln1: Mapped[str] = mapped_column(String(100), nullable=True)
     addrln2: Mapped[str] = mapped_column(String(100), nullable=True)
-    # Will later want to change this to a relationship to the specific city
-    city: Mapped[str] = mapped_column(String(100))
+    city: Mapped[str] = mapped_column(String(100), ForeignKey("cities.csa_label"), nullable=True)
     hours: Mapped[str] = mapped_column(String(400), nullable=True)
     phones: Mapped[str] = mapped_column(String(100), nullable=True)
     url: Mapped[str] = mapped_column(String(100), nullable=True)
@@ -76,8 +77,7 @@ class Medicare(Base):
     name: Mapped[str] = mapped_column(String(200), primary_key=True)
     addrln1: Mapped[str] = mapped_column(String(100))
     addrln2: Mapped[str] = mapped_column(String(100), nullable=True)
-    # Will later want to change this to a relationship to the specific city
-    city: Mapped[str] = mapped_column(String(100))
+    city: Mapped[str] = mapped_column(String(100), ForeignKey("cities.csa_label"), nullable=True)
     hours: Mapped[str] = mapped_column(String(175), nullable=True)
     phones: Mapped[str] = mapped_column(String(250), nullable=True)
     post_id: Mapped[float]

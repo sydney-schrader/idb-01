@@ -1,4 +1,5 @@
 import os
+import json
 import query_APIs
 from remove_params import filter_json
 from dotenv import load_dotenv
@@ -7,7 +8,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from models import Base, City, Shelter, Medicare
 from geopy.distance import geodesic
-    
+from tqdm import tqdm
 
 load_dotenv("../.env")
 user = os.getenv("db_username")
@@ -29,19 +30,25 @@ Base.metadata.drop_all(engine)
 print("creating new tables")
 Base.metadata.create_all(engine)
 
+with open("coords.json") as city_coords:
+    city_longitude_latitudes = json.load(city_coords)
+
 # Add to city table
 print("adding cities")
 cities = filter_json(query_APIs.query_API("cities"), ["CSA_Label", "Total_Unsheltered_Pop", 
     "Total_Sheltered_Pop", "Total_Pop", "Square_Miles", "Density_Unsheltered", " Density_Sheltered", "Density_Total"])
 with Session(engine) as session:
     for city_info in cities:
+        if city_info["csa_label"] not in city_longitude_latitudes:
+            print("Skipping city", city_info["csa_label"])
+            continue
         city = City(**city_info)
         session.add(city)
     session.commit()
 
 # Add to shelter table
 print("adding shelters")
-shelters = filter_json(query_APIs.query_API("shelters"), ["Name", "addrln1", "city", "hours", 
+shelters = filter_json(query_APIs.query_API("shelters"), ["Name", "addrln1", "hours", 
     "phone", "url", "post_id", "description", "zip", "link", "latitude", "longitude", "date_updated"])
 with Session(engine) as session:
     for shelter_info in shelters:
@@ -51,7 +58,7 @@ with Session(engine) as session:
 
 # Add to medicare table
 print("adding medicare")
-medicares = filter_json(query_APIs.query_API("medicare"), ["Name", "addrln1", "addrln2", "city", 
+medicares = filter_json(query_APIs.query_API("medicare"), ["Name", "addrln1", "addrln2", 
     "hours", "phones", "post_id", "description", "zip", "latitude", "longitude", "date_updated"])
 with Session(engine) as session:
     for medicare_info in medicares:
@@ -62,10 +69,18 @@ with Session(engine) as session:
 def find_closest(location, all_locations):
     closest_location = None
     closest_distance = float("inf")
-    target_location = (location.latitude, location.longitude)
+    # Shelters and Medicare offices have a latitude and longitude, city objects
+    # do not, so we need to read them from the city longitude latitude json
+    if hasattr(location, "latitude"):
+        target_location = (location.latitude, location.longitude)
+    else:
+        target_location = city_longitude_latitudes[location.csa_label]
     
     for place in all_locations:
-        curr_location = (place.latitude, place.longitude)
+        if hasattr(place, "latitude"):
+            curr_location = (place.latitude, place.longitude)
+        else:
+            curr_location = city_longitude_latitudes[place.csa_label]
         distance = geodesic(target_location, curr_location).miles
         if distance < closest_distance:
             closest_distance = distance
@@ -77,16 +92,21 @@ def find_closest(location, all_locations):
 with Session(engine) as session:
     shelters = session.query(Shelter).all()
     medicares = session.query(Medicare).all()
+    cities = session.query(City).all()
 
-    for shelter in shelters:
+    print("adding closest medicare and city to shelters")
+    for shelter in tqdm(shelters):
         closest_medicare = find_closest(shelter, medicares)
         
         shelter.medicare_name = closest_medicare.name
         shelter.medicare_addrln1 = closest_medicare.addrln1
         shelter.medicare_addrln2 = closest_medicare.addrln2
         shelter.medicare_hours = closest_medicare.hours
+
+        shelter.city = find_closest(shelter, cities).csa_label
     
-    for medicare in medicares:
+    print("adding closest shelter and city to medicares")
+    for medicare in tqdm(medicares):
         closest_shelter = find_closest(medicare, shelters)
 
         medicare.shelter_name = closest_shelter.name
@@ -94,5 +114,12 @@ with Session(engine) as session:
         medicare.shelter_addrln2 = closest_shelter.addrln2
         medicare.shelter_hours = closest_shelter.hours
 
+        medicare.city = find_closest(medicare, cities).csa_label
+
+    print("adding closest shelter and medicare to cities")
+    for city in tqdm(cities):
+        city.shelter = find_closest(city, shelters).name
+        city.medicare = find_closest(city, medicares).name
 
     session.commit()
+
