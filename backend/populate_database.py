@@ -62,26 +62,40 @@ with Session(engine) as session:
 def dist(x1, y1, x2, y2):
     return ((x1-x2)**2 + (y1-y2)**2)**.5
 
+def find_closest(location, all_locations):
+    closest_location = None
+    closest_distance = float("inf")
+    target_location = (location.latitude, location.longitude)
+    
+    for place in all_locations:
+        curr_location = (place.latitude, place.longitude)
+        distance = geodesic(target_location, curr_location).miles
+        if distance < closest_distance:
+            closest_distance = distance
+            closest_location = place
+
+    return closest_location
+
 # Establish Relationships for medicare to shelter and vice versa:
 with Session(engine) as session:
     shelters = session.query(Shelter).all()
     medicares = session.query(Medicare).all()
 
     for shelter in shelters:
-        closest_medicare = None
-        closest_distance = float("inf")
-        shelter_location = (shelter.latitude, shelter.longitude)
-        
-        for medicare in medicares:
-            medicare_location = (medicare.latitude, medicare.longitude)
-            distance = geodesic(shelter_location, medicare_location).miles
-            if distance < closest_distance:
-                closest_distance = distance
-                closest_medicare = medicare
+        closest_medicare = find_closest(shelter, medicares)
         
         shelter.medicare_name = closest_medicare.name
         shelter.medicare_addrln1 = closest_medicare.addrln1
         shelter.medicare_addrln2 = closest_medicare.addrln2
         shelter.medicare_hours = closest_medicare.hours
-        
+    
+    for medicare in medicares:
+        closest_shelter = find_closest(medicare, shelters)
+
+        medicare.shelter_name = closest_shelter.name
+        medicare.shelter_addrln1 = closest_shelter.addrln1
+        medicare.shelter_addrln2 = closest_shelter.addrln2
+        medicare.shelter_hours = closest_shelter.hours
+
+
     session.commit()

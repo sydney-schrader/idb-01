@@ -1,64 +1,47 @@
 from flask import *
 from flask_cors import CORS
-# import json
 import query_APIs
+import query_database
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/")
-def home():
-    return render_template("tmp_home.html")
-
-@app.route("/shelters")
+@app.route("/api/shelters")
 def shelters():
-    shelters = query_APIs.query_API("shelters")
-    #return render_template("shelters.html", data=shelters)
-    return jsonify(shelters)
+    shelters = query_database.query_shelters()
+    shelters = [shelter.to_dict() for shelter in shelters]
+    return shelters
 
-@app.route("/shelters/<name>")
+@app.route("/api/shelters/<name>")
 def specific_shelter(name):
-    shelters = query_APIs.query_API("shelters")
-    for shelter in shelters:
-        if shelter["Name"] == name:
-            # return render_template("specific_shelter.html", data=shelter)
-            return jsonify(shelter)
-    return "<h1>Error 404 Not Found</h1>"
+    shelter = query_database.query_shelter(name)
+    return shelter.to_dict()
 
-@app.route("/cities")
+@app.route("/api/cities")
 def cities():
-    cities = query_APIs.query_API("cities")
-    # return render_template("cities.html", data=cities)
-    return jsonify(cities)
+    cities = query_database.query_cities()
+    cities = [city.to_dict() for city in cities]
+    return cities
 
-@app.route("/cities/<name>")
+@app.route("/api/cities/<name>")
 def specific_city(name):
-    cities = query_APIs.query_API("cities")
-    for city in cities:
-        if city["CSA_Label"] == name:
-            # return render_template("specific_city.html", data=city)
-            return jsonify(city)
-    return "<h1>Error 404 Not Found</h1>"
+    city = query_database.query_city(name)
+    return city.to_dict()
 
-@app.route("/medicare")
+@app.route("/api/medicare")
 def medicare():
-    medicare = query_APIs.query_API("medicare")
-    # return render_template("medicare.html", data=medicare)
-    return jsonify(medicare)
+    medicares = query_database.query_medicares()
+    medicares = [medicare.to_dict() for medicare in medicares]
+    return medicares
 
-@app.route("/medicare/<name>")
+@app.route("/api/medicare/<name>")
 def specific_medicare(name):
-    medicares = query_APIs.query_API("medicare")
-    for medicare in medicares:
-        if medicare["Name"] == name:
-            # return render_template("specific_medicare.html", data=medicare)
-            return jsonify(medicare)
-    return "<h1>Error 404 Not Found</h1>"
+    medicare = query_database.query_medicare(name)
+    return medicare.to_dict()
 
-@app.route("/about")
+@app.route("/api/about")
 def about():
     author_map = query_APIs.query_gitlab()
-    # return render_template("about.html", data=author_map)
     return jsonify(author_map)
 
 if __name__ == "__main__":

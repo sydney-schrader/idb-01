@@ -19,6 +19,16 @@ class City(Base):
 
     def __repr__(self) -> str:
         return f"City(CSA_Label={self.csa_label!r})"
+    
+    def to_dict(self):
+        return {"csa_label" : self.csa_label, 
+                "total_unsheltered_pop" : self.total_unsheltered_pop,
+                "total_sheltered_pop" : self.total_sheltered_pop,
+                "total_pop" : self.total_pop,
+                "square_miles" : self.square_miles,
+                "density_unsheltered" : self.density_unsheltered,
+                "density_sheltered" : self.density_sheltered,
+                "density_total" : self.density_total}
 
 class Shelter(Base):
     __tablename__ = "shelters"
@@ -76,7 +86,25 @@ class Medicare(Base):
     latitude: Mapped[float]
     longitude: Mapped[float]
     date_updated: Mapped[str] = mapped_column(String(100))
-    
+    # Rather than dealing with relationships, since we have plenty of space
+    # available for the database, we can just copy the data
+    shelter_name: Mapped["String"] = mapped_column(String(200), nullable=True)
+    shelter_addrln1: Mapped["String"] = mapped_column(String(100), nullable=True)
+    shelter_addrln2: Mapped["String"] = mapped_column(String(100), nullable=True)
+    shelter_hours: Mapped["String"] = mapped_column(String(175), nullable=True)
 
     def __repr__(self) -> str:
         return f"Medicare(name={self.name!r}, description={self.description!r})"
+    
+    def to_dict(self):
+        return {"name" : self.name, "addrln1" : self.addrln1, 
+                "addrln2" : self.addrln2, "city" : self.city, 
+                "hours" : self.hours, "phones" : self.phones,
+                "post_id" : self.post_id, "description" : self.description, 
+                "zip" : self.zip, "latitude" : self.latitude, 
+                "longitude" : self.longitude, 
+                "date_updated" : self.date_updated,
+                "shelter_name" : self.shelter_name, 
+                "shelter_addrln1" : self.shelter_addrln1,
+                "shelter_addrln2" : self.shelter_addrln2,
+                "shelter_hours" : self.shelter_hours}
