@@ -19,6 +19,16 @@ class City(Base):
 
     def __repr__(self) -> str:
         return f"City(CSA_Label={self.csa_label!r})"
+    
+    def to_dict(self):
+        return {"csa_label" : self.csa_label, 
+                "total_unsheltered_pop" : self.total_unsheltered_pop,
+                "total_sheltered_pop" : self.total_sheltered_pop,
+                "total_pop" : self.total_pop,
+                "square_miles" : self.square_miles,
+                "density_unsheltered" : self.density_unsheltered,
+                "density_sheltered" : self.density_sheltered,
+                "density_total" : self.density_total}
 
 class Shelter(Base):
     __tablename__ = "shelters"
