@@ -17,6 +17,7 @@ import Office1 from './components/medical/office1/Office1';
 import Office2 from './components/medical/office2/Office2';
 import Office3 from './components/medical/office3/Office3';
 import Home from './components/home/HomePage';
+import CityInstancePage from './components/cities/CityInstancePage';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
         <Route path="/medical/office1" element={<Office1 />} />
         <Route path="/medical/office2" element={<Office2 />} />
         <Route path="/medical/office3" element={<Office3 />} />
+        <Route path='/cities/:cityName' element={<CityInstancePage/> } />
         </Routes>
        </BrowserRouter>
        </>
