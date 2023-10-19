@@ -40,6 +40,7 @@ const fetchOfficeImage = async (officeName: string) => {
             <h1>Medicare and Medicaid locations in Los Angeles</h1>
         </Col>
         <div> {medData.length} Medical Centers </div>
+        <div>Attributes: Name, Address, Hours, Phone number, URL for their website</div>
         <div className="row row-cols-1 row-cols-md-2 g-4">
           {medData.map(Medical)}
         </div>
