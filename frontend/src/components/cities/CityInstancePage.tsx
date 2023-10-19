@@ -12,7 +12,7 @@ const CityInstancePage: React.FC<{}> = () => {
     
    
     type cityItem = {
-        CSA_Label: string;
+        csa_label: string;
     };
 
     const { cityName } = useParams<CityParams>();
@@ -22,7 +22,7 @@ const CityInstancePage: React.FC<{}> = () => {
 		const handleCityList = () => {
 			const options = {
 				method: 'GET',
-				url: `http://127.0.0.1:5000/cities/${encodeURIComponent(cityName!)}`,
+				url: `http://127.0.0.1:5000/api/city/${encodeURIComponent(cityName!)}`,
                 params: {id: cityName},
 			};
 			axios.request(options).then(function(response){
@@ -38,7 +38,7 @@ const CityInstancePage: React.FC<{}> = () => {
       
     return (
         <h1>
-            {citypageData.CSA_Label}
+            {citypageData.csa_label}
         </h1>
     )
 }

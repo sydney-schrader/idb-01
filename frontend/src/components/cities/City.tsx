@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { Container, Col, Card, Button } from 'react-bootstrap'
-import arcadia from '../../assets/arcadia.jpeg'
-import axios from "axios"; 
+
 
 const City: React.FC<{}> = (card: any, index:any) => {
+  //console.log(card.csa_label)
     return(
         <Card style={{ alignItems: 'center', width: '18rem'}} key={index} className="box">
                 <Card.Title className='header-1'>
                   <b>
-                    {card.CSA_Label}
+                    {card.csa_label}
                   </b>
                 </Card.Title>
                 <img
                 src={card.imageURL}
-                alt={card.CSA_Label}
+                alt={card.csa_label}
                 className='card-image-top'
                 style={{ width: '100%' }}
                 />
                 <Card.Body>
                 
                 <p>
-                  Unsheltered population: {card.Total_Unsheltered_Pop} <br/>
-                  Sheltered population: {card.Total_Sheltered_Pop} <br/>
-                  Total homeless population: {card.Total_Pop} <br/>
-                  Square miles of city: {card.Square_Miles}<br/>
-                  Density of total homeless population: {card.Density_Total} 
+                  Unsheltered population: {card.total_unsheltered_pop} <br/>
+                  Sheltered population: {card.total_sheltered_pop} <br/>
+                  Total homeless population: {card.total_pop} <br/>
+                  Square miles of city: {card.square_miles}<br/>
+                  Density of total homeless population: {card.density_total} 
               </p>
-                  <Button name='href' href={`/cities/${card.CSA_Label}`} className='card-link'>
-                    View {card.CSA_Label} *pages not implemented
+                  <Button name='href' href={`/cities/${card.csa_label}`} className='card-link'>
+                    View {card.csa_label} *pages not implemented
                   </Button>
                 </Card.Body>
               </Card>

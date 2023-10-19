@@ -2,32 +2,25 @@ import family from '../../assets/familycrisiscenter.png'
 import React, { useState, useEffect } from "react";
 import { Container, Col, Card, Button} from 'react-bootstrap'
 import axios from "axios"; 
+import Resource from "./Resource";
   
 const Resources: React.FC<{}> = () => {
     
   const [shelterData, setShelterData] = useState<any[]>([])
 
-  // // gets the city data from the api when it is running locally 
-  // useEffect(() => {
-  //     // Get issues and commits from gitlab api
-  //     axios.get(`http://127.0.0.1:5000/shelters`)
-  //     .then((response) => { 
-  //         console.log(response.data);
-  //         setShelterData(response.data);
-  //         //console.log(cityData[0]["CSA_Label"]) 
-  //       });
-   
-  // }, []);
+
   useEffect(() => {
-    axios.get(`http://127.0.0.1:5000/shelters`)
+    axios.get(`http://127.0.0.1:5000/api/shelters`)
     .then(async (response) => { 
         const updatedData = await Promise.all(response.data.map(async (shelter: any) => {
-          shelter.imageURL = await fetchShelterImage(shelter.Name);
+          shelter.imageURL = await fetchShelterImage(shelter.name);
           return shelter;
         }));
         setShelterData(updatedData);
     });
 }, []);
+
+  console.log(shelterData)
 
 const fetchShelterImage = async (shelterName: string) => {
   try {
@@ -40,39 +33,7 @@ const fetchShelterImage = async (shelterName: string) => {
   }
   return family; // default to family image if no image is found or an error occurs
 }
-
-  // notes: idk how the img works yet, want it to come from google api
-  const renderCard = (card: any, index: any) => {
-    return(
-      <Card style={{ alignItems: 'center', width: '18rem'}} key={index} className="box">
-              <Card.Title className='header-1'>
-                <b>
-                  {card.Name}
-                </b>
-              </Card.Title>
-              <img
-              src={card.imageURL}
-              alt={card.CSA_Label}
-              className='card-image-top'
-              style={{ width: '100%' }}
-              />
-              <Card.Body>
-              
-              <p>
-                Name: {card.Name} <br/>
-                Address: {card.addrln1} <br/>
-                Hours: {card.hours} <br/>
-                Zip Code: {card.zip}<br/>
-                <a href = {card.url}>URL for their website</a>
-            </p>
-                <Button name='href' href='/cities/city3' className='card-link'>
-                  View {card.CSA_Label}
-                </Button>
-              </Card.Body>
-            </Card>
-    )
-  }
-
+    // create Resource cards
     return (
       <Container>
         <Col>
@@ -80,14 +41,10 @@ const fetchShelterImage = async (shelterName: string) => {
         </Col>
         <div> {shelterData.length} Resources </div>
         <div className="row row-cols-1 row-cols-md-2 g-4">
-          {shelterData.map(renderCard)}
+          {shelterData.map(Resource)}
         </div>
-        
-        
-        
       </Container>
     );
-    
     
    
 };

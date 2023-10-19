@@ -5,15 +5,12 @@ import axios from "axios";
 import City from "./City";
 
 const Cities: React.FC<{}> = () => {
-  
-  // making a city object that we can use for an array later
-
 
   const [cityData, setCityData] = useState<any[]>([])
 
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:5000/cities`)
+    axios.get(`http://127.0.0.1:5000/api/cities`)
     .then(async (response) => { 
         const updatedData = await Promise.all(response.data.map(async (city: any) => {
           city.imageURL = await fetchCityImage(city.CSA_Label);
