@@ -40,6 +40,7 @@ const fetchCityImage = async (cityName: string) => {
             <h1>Cities in Los Angeles</h1>
         </Col>
         <div> {cityData.length} Cities </div>
+        <div> Attributes: Unsheltered population, Sheltered population, Total homeless population, Square miles of city, Density of total homeless population</div>
         <div className="row row-cols-1 row-cols-md-2 g-4">
           {cityData.map(City)}
         </div>
