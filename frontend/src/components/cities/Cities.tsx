@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Col, Card, Button } from 'react-bootstrap'
+import { Container, Col } from 'react-bootstrap'
 import arcadia from '../../assets/arcadia.jpeg'
 import axios from "axios"; 
 import City from "./City";
@@ -13,7 +13,7 @@ const Cities: React.FC<{}> = () => {
     axios.get(`http://127.0.0.1:5000/api/cities`)
     .then(async (response) => { 
         const updatedData = await Promise.all(response.data.map(async (city: any) => {
-          city.imageURL = await fetchCityImage(city.CSA_Label);
+          city.imageURL = await fetchCityImage(city.csa_label);
           return city;
         }));
         setCityData(updatedData);
@@ -24,8 +24,8 @@ const Cities: React.FC<{}> = () => {
 
 const fetchCityImage = async (cityName: string) => {
   try {
-      const response = await axios.get(`https://pixabay.com/api/?key=40111269-fa085807d2390f3428b52a50e&q=${encodeURIComponent(cityName)}&image_type=photo`);
-      if (response.data.hits && response.data.hits.length > 0) {
+    const response = await axios.get(`https://pixabay.com/api/?key=40111269-fa085807d2390f3428b52a50e&q=${encodeURIComponent(cityName)}&image_type=all`);
+    if (response.data.hits && response.data.hits.length > 0) {
           return response.data.hits[0].largeImageURL;
       }
   } catch (error) {

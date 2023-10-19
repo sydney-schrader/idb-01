@@ -1,4 +1,4 @@
-import family from '../../assets/familycrisiscenter.png'
+import volunteer from '../../assets/volunteer.jpg'
 import React, { useState, useEffect } from "react";
 import { Container, Col, Card, Button} from 'react-bootstrap'
 import axios from "axios"; 
@@ -22,17 +22,17 @@ const Resources: React.FC<{}> = () => {
 
   console.log(shelterData)
 
-const fetchShelterImage = async (shelterName: string) => {
-  try {
-    const response = await axios.get(`https://pixabay.com/api/?key=40111269-fa085807d2390f3428b52a50e&q=${encodeURIComponent(shelterName)}&image_type=photo`);
-    if (response.data.results && response.data.results.length > 0) {
-      return response.data.results[0].urls.regular;
+  const fetchShelterImage = async (shelterName: string) => {
+    try {
+      const response = await axios.get(`https://pixabay.com/api/?key=40111269-fa085807d2390f3428b52a50e&q=${encodeURIComponent(shelterName)}&image_type=all`);
+      if (response.data.hits && response.data.hits.length > 0) {
+            return response.data.hits[0].largeImageURL;
+        }
+    } catch (error) {
+        console.error("Error fetching image:", error);
     }
-  } catch (error) {
-    console.error("Error fetching image:", error);
+    return volunteer; // default to arcadia image if no image is found or an error occurs
   }
-  return family; // default to family image if no image is found or an error occurs
-}
     // create Resource cards
     return (
       <Container>

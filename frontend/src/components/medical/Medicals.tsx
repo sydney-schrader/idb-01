@@ -13,7 +13,7 @@ const Medicals: React.FC<{}> = () => {
     axios.get(`http://127.0.0.1:5000/api/medicares`)
     .then(async (response) => { 
         const updatedData = await Promise.all(response.data.map(async (office: any) => {
-          office.imageURL = await fetchOfficeImage(office.Name);
+          office.imageURL = await fetchOfficeImage(office.city);
           return office;
         }));
         setMedData(updatedData);
@@ -24,14 +24,14 @@ console.log(medData)
 
 const fetchOfficeImage = async (officeName: string) => {
   try {
-    const response = await axios.get(`https://pixabay.com/api/?key=40111269-fa085807d2390f3428b52a50e&q=${encodeURIComponent(officeName)}&image_type=photo`);
-    if (response.data.results && response.data.results.length > 0) {
-      return response.data.results[0].urls.regular;
-    }
+    const response = await axios.get(`https://pixabay.com/api/?key=40111269-fa085807d2390f3428b52a50e&q=${encodeURIComponent(officeName)}&image_type=all`);
+    if (response.data.hits && response.data.hits.length > 0) {
+          return response.data.hits[0].largeImageURL;
+      }
   } catch (error) {
-    console.error("Error fetching image:", error);
+      console.error("Error fetching image:", error);
   }
-  return ssa; // default to ssa image if no image is found or an error occurs
+  return ssa; // default to arcadia image if no image is found or an error occurs
 }
     // create medical cards
     return (
