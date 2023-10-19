@@ -20,7 +20,7 @@ def shelters(page=None):
     start = ITEMS_PER_PAGE*page
     return [num_pages] + shelters[start:start+ITEMS_PER_PAGE]
 
-@app.route("/api/shelters/<name>")
+@app.route("/api/shelter/<name>")
 def specific_shelter(name):
     shelter = query_database.query_shelter(name)
     return shelter
