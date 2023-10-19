@@ -40,6 +40,7 @@ const fetchShelterImage = async (shelterName: string) => {
             <h1>Shelters and Services in Los Angeles</h1>
         </Col>
         <div> {shelterData.length} Resources </div>
+        <div> Attributes: Name, Address, Hours, Zipcode, Link to their website</div>
         <div className="row row-cols-1 row-cols-md-2 g-4">
           {shelterData.map(Resource)}
         </div>
