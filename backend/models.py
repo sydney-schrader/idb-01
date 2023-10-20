@@ -1,8 +1,15 @@
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import String, ForeignKey
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+from sqlalchemy import String, ForeignKey, Table, Column
 
 class Base(DeclarativeBase):
     pass
+
+association_table = Table(
+    "association_table",
+    Base.metadata,
+    Column("shelter_name", ForeignKey("shelters.name")),
+    Column("medicare_name", ForeignKey("medicare.name")),
+)
 
 class City(Base):
     __tablename__ = "cities"
@@ -48,12 +55,7 @@ class Shelter(Base):
     latitude: Mapped[float]
     longitude: Mapped[float]
     date_updated: Mapped[str] = mapped_column(String(100))
-    # Rather than dealing with relationships, since we have plenty of space
-    # available for the database, we can just copy the data
-    medicare_name: Mapped["String"] = mapped_column(String(200), nullable=True)
-    medicare_addrln1: Mapped["String"] = mapped_column(String(100), nullable=True)
-    medicare_addrln2: Mapped["String"] = mapped_column(String(100), nullable=True)
-    medicare_hours: Mapped["String"] = mapped_column(String(175), nullable=True)
+    closest_medicares: Mapped[list["Medicare"]] = relationship("Medicare", secondary="association_table", back_populates="closest_shelters")
 
     def __repr__(self) -> str:
         return f"Shelter(name={self.name!r}, description={self.description!r})"
@@ -67,10 +69,10 @@ class Shelter(Base):
                 "link" : self.link, "latitude" : self.latitude, 
                 "longitude" : self.longitude, 
                 "date_updated" : self.date_updated,
-                "medicare_name" : self.medicare_name, 
-                "medicare_addrln1" : self.medicare_addrln1,
-                "medicare_addrln2" : self.medicare_addrln2,
-                "medicare_hours" : self.medicare_hours}
+                "medicare_name" : self.closest_medicares[0].name,
+                "medicare_addrln1" : self.closest_medicares[0].addrln1,
+                "medicare_addrln2" : self.closest_medicares[0].addrln2,
+                "medicare_hours" : self.closest_medicares[0].hours}
     
 class Medicare(Base):
     __tablename__ = "medicare"
@@ -86,12 +88,7 @@ class Medicare(Base):
     latitude: Mapped[float]
     longitude: Mapped[float]
     date_updated: Mapped[str] = mapped_column(String(100))
-    # Rather than dealing with relationships, since we have plenty of space
-    # available for the database, we can just copy the data
-    shelter_name: Mapped["String"] = mapped_column(String(200), nullable=True)
-    shelter_addrln1: Mapped["String"] = mapped_column(String(100), nullable=True)
-    shelter_addrln2: Mapped["String"] = mapped_column(String(100), nullable=True)
-    shelter_hours: Mapped["String"] = mapped_column(String(175), nullable=True)
+    closest_shelters: Mapped[list["Shelter"]] = relationship("Shelter", secondary="association_table", back_populates="closest_medicares")
 
     def __repr__(self) -> str:
         return f"Medicare(name={self.name!r}, description={self.description!r})"
@@ -104,7 +101,7 @@ class Medicare(Base):
                 "zip" : self.zip, "latitude" : self.latitude, 
                 "longitude" : self.longitude, 
                 "date_updated" : self.date_updated,
-                "shelter_name" : self.shelter_name, 
-                "shelter_addrln1" : self.shelter_addrln1,
-                "shelter_addrln2" : self.shelter_addrln2,
-                "shelter_hours" : self.shelter_hours}
+                "shelter_name" : self.closest_shelters[0].name, 
+                "shelter_addrln1" : self.closest_shelters[0].addrln1,
+                "shelter_addrln2" : self.closest_shelters[0].addrln2,
+                "shelter_hours" : self.closest_shelters[0].hours}
