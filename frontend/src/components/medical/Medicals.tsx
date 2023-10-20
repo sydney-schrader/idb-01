@@ -4,6 +4,7 @@ import ssa from '../../assets/ssa.jpeg'
 import axios from "axios"; 
 import Medical from "./Medical";
 import { useImages } from '../ImageContext';
+import CardPagination from "../CardPagination";
 //ZACH
 const SEARCH_ENGINE_ID = '226027a2f9e54422b';
 const GOOGLE_API_KEY = 'AIzaSyAiNi5igRxIAvxcuZ1TRL7ii-Eu3sWLaWE';
@@ -13,7 +14,8 @@ const Medicals: React.FC<{}> = () => {
     
   const [medData, setMedData] = useState<any[]>([])
   const { images, setImage } = useImages();
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [medsPerPage] = useState(8);
 
   const fetchOfficeImage = useCallback(async (officeName: string) => {
     // First, check if the image URL is already in the context
@@ -47,7 +49,11 @@ const Medicals: React.FC<{}> = () => {
 }, [fetchOfficeImage]);
 
 console.log(medData)
-
+const indexOfLastPost = currentPage * medsPerPage;
+const indexOfFirstPost = indexOfLastPost - medsPerPage;
+const currentMedicals = medData.slice(indexOfFirstPost, indexOfLastPost);
+// Change page
+const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
 
     // create medical cards
     return (
@@ -58,8 +64,13 @@ console.log(medData)
         <div> {medData.length} Medical Centers </div>
         <div>Attributes: Name, Address, Hours, Phone number, URL for their website</div>
         <div className="row row-cols-1 row-cols-md-2 g-4">
-          {medData.map(Medical)}
+          {currentMedicals.map(Medical)}
         </div>
+        <CardPagination
+        itemsPerPage={medsPerPage}
+        totalItems={medData.length}
+        paginate={paginate}
+        />
       </Container>
     );
 

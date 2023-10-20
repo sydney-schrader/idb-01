@@ -4,7 +4,9 @@ import { Container, Col} from 'react-bootstrap';
 import { useImages } from '../ImageContext';
 import axios from "axios"; 
 import Resource from "./Resource";
-//pavan
+import CardPagination from "../CardPagination";
+
+
 const SEARCH_ENGINE_ID = '553cf4cb73ceb44f9';
 const GOOGLE_API_KEY = 'AIzaSyBKgsK1qxLNrUTRUmjmEUCWlQxxEgH__j8';
   
@@ -12,6 +14,8 @@ const Resources: React.FC<{}> = () => {
     
   const [shelterData, setShelterData] = useState<any[]>([])
   const { images, setImage } = useImages();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sheltersPerPage] = useState(16);
 
   const fetchShelterImage = useCallback(async (shelterName: string) => {
     if (images[shelterName]) {
@@ -42,9 +46,13 @@ const Resources: React.FC<{}> = () => {
     });
 }, [fetchShelterImage]);
 
-  console.log(shelterData)
+    // get the current model cards
+  const indexOfLastPost = currentPage * sheltersPerPage;
+  const indexOfFirstPost = indexOfLastPost - sheltersPerPage;
+  const currentShelters = shelterData.slice(indexOfFirstPost, indexOfLastPost);
 
-  
+  const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
+
     // create Resource cards
     return (
       <Container>
@@ -54,8 +62,13 @@ const Resources: React.FC<{}> = () => {
         <div> {shelterData.length} Resources </div>
         <div> Attributes: Name, Address, Hours, Zipcode, Link to their website</div>
         <div className="row row-cols-1 row-cols-md-2 g-4">
-          {shelterData.map(Resource)}
+        {currentShelters.map(Resource)}
         </div>
+        <CardPagination
+        itemsPerPage={sheltersPerPage}
+        totalItems={shelterData.length}
+        paginate={paginate}
+        />
       </Container>
     );
     

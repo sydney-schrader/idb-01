@@ -4,6 +4,7 @@ import { useImages } from '../ImageContext';
 import arcadia from '../../assets/arcadia.jpeg'
 import axios from "axios"; 
 import City from "./City";
+import CardPagination from "../CardPagination";
 //jamie
 const SEARCH_ENGINE_ID = '129c571c4e1a84a03';
 const GOOGLE_API_KEY = 'AIzaSyAwozhLVzasZOIiW387q1P0NMtJTrhvD20';
@@ -12,6 +13,8 @@ const Cities: React.FC<{}> = () => {
 
   const [cityData, setCityData] = useState<any[]>([])
   const { images, setImage } = useImages();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [citiesPerPage] = useState(16);
 
 
   const fetchCityImage = useCallback(async (cityName: string) => {
@@ -42,6 +45,14 @@ const Cities: React.FC<{}> = () => {
         setCityData(updatedData);
     });
   }, [fetchCityImage]);
+
+  // get the current model cards
+  const indexOfLastPost = currentPage * citiesPerPage;
+  const indexOfFirstPost = indexOfLastPost - citiesPerPage;
+  const currentCities = cityData.slice(indexOfFirstPost, indexOfLastPost);
+  // Change page
+  const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
+
     // create City cards 
     return (
       <Container>
@@ -51,8 +62,13 @@ const Cities: React.FC<{}> = () => {
         <div> {cityData.length} Cities </div>
         <div> Attributes: Unsheltered population, Sheltered population, Total homeless population, Square miles of city, Density of total homeless population</div>
         <div className="row row-cols-1 row-cols-md-2 g-4">
-          {cityData.map(City)}
+          {currentCities.map(City)}
         </div>
+        <CardPagination
+        itemsPerPage={citiesPerPage}
+        totalItems={cityData.length}
+        paginate={paginate}
+        />
       </Container>
     );
     
