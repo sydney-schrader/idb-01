@@ -23,7 +23,7 @@ const Medical: React.FC<{}> = (card: any, index:any) => {
               Address: {card.addrln1} <br/>
               Hours: {card.hours} <br/>
               Phone number: {card.phones}<br/>
-              <a href = {card.url}>URL for their website</a>
+              City: {card.city}
             </p> 
               <Button name='href' href={`/medical/${card.name}`} className='card-link'>
                 View {card.name}

@@ -1,0 +1,238 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Init City 1`] = `
+<div
+  className="box card"
+  style={
+    Object {
+      "alignItems": "center",
+      "padding": "0 20px",
+      "width": "18rem",
+    }
+  }
+>
+  <div
+    className="header-1 card-title h5"
+  >
+    <b />
+  </div>
+  <img
+    className="card-image-top"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  />
+  <div
+    className="text-center card-body"
+  >
+    <p>
+      Unsheltered population: 
+       
+      <br />
+      Sheltered population: 
+       
+      <br />
+      Total homeless population: 
+       
+      <br />
+      Square miles of city: 
+      <br />
+      Density of total homeless population: 
+    </p>
+    <a
+      className="card-link  btn btn-primary"
+      disabled={false}
+      href="/cities/undefined"
+      name="href"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      View 
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Init Medicare 1`] = `
+<div
+  className="box card"
+  style={
+    Object {
+      "alignItems": "center",
+      "width": "18rem",
+    }
+  }
+>
+  <div
+    className="header-1 card-title h5"
+  >
+    <b />
+  </div>
+  <img
+    className="card-image-top"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  />
+  <div
+    className="card-body"
+  >
+    <p>
+      Name: 
+       
+      <br />
+      Address: 
+       
+      <br />
+      Hours: 
+       
+      <br />
+      Zip Code: 
+      <br />
+      <a
+        href="#"
+      >
+        Website not available
+      </a>
+    </p>
+    <a
+      className="card-link btn btn-primary"
+      disabled={false}
+      href="/resources/undefined"
+      name="href"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      View 
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Init Resource 1`] = `
+<div
+  className="box card"
+  style={
+    Object {
+      "alignItems": "center",
+      "width": "18rem",
+    }
+  }
+>
+  <div
+    className="header-1 card-title h5"
+  >
+    <b />
+  </div>
+  <img
+    className="card-image-top"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  />
+  <div
+    className="card-body"
+  >
+    <p>
+      Name: 
+       
+      <br />
+      Address: 
+       
+      <br />
+      Hours: 
+       
+      <br />
+      Zip Code: 
+      <br />
+      <a
+        href="#"
+      >
+        Website not available
+      </a>
+    </p>
+    <a
+      className="card-link btn btn-primary"
+      disabled={false}
+      href="/resources/undefined"
+      name="href"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      View 
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Init Resource 2`] = `
+<div
+  className="box card"
+  style={
+    Object {
+      "alignItems": "center",
+      "width": "18rem",
+    }
+  }
+>
+  <div
+    className="header-1 card-title h5"
+  >
+    <b />
+  </div>
+  <img
+    className="card-image-top"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  />
+  <div
+    className="card-body"
+  >
+    <p>
+      Name: 
+       
+      <br />
+      Address: 
+       
+      <br />
+      Hours: 
+       
+      <br />
+      Zip Code: 
+      <br />
+      <a
+        href="#"
+      >
+        Website not available
+      </a>
+    </p>
+    <a
+      className="card-link btn btn-primary"
+      disabled={false}
+      href="/resources/undefined"
+      name="href"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      View 
+    </a>
+  </div>
+</div>
+`;

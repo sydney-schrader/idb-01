@@ -22,6 +22,7 @@ type medicalItem = {
     name: string;
     imageURL?: string;
     shelterimageURL?: string;
+    link?: string;
     addrln1: string;
     addrln2?: string;
     city?: string;
@@ -149,6 +150,7 @@ const MedicalInstancePage: React.FC<{}> = () => {
                     <h2>Information About The {medicalpageData.name}</h2>
                 Address: {medicalpageData.addrln1} <br/>
                 Zip: {medicalpageData.zip}<br/>
+                City: {medicalpageData.city} <br />
                 Hours: {medicalpageData.hours} <br/>
                 Phone: {medicalpageData.phones || 'Unavailable'} <br/>
                 {medicalpageData.description} <br/>
