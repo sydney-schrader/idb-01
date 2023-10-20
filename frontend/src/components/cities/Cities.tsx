@@ -11,10 +11,11 @@ const GOOGLE_API_KEY = 'AIzaSyAwozhLVzasZOIiW387q1P0NMtJTrhvD20';
 
 const Cities: React.FC<{}> = () => {
 
+  const perPage:number = 16
   const [cityData, setCityData] = useState<any[]>([])
   const { images, setImage } = useImages();
   const [currentPage, setCurrentPage] = useState(1);
-  const [citiesPerPage] = useState(16);
+  const [citiesPerPage] = useState(perPage);
 
 
   const fetchCityImage = useCallback(async (cityName: string) => {
@@ -61,9 +62,12 @@ const Cities: React.FC<{}> = () => {
         </Col>
         <div> {cityData.length} Cities </div>
         <div> Attributes: Unsheltered population, Sheltered population, Total homeless population, Square miles of city, Density of total homeless population</div>
+        <div>Instances per page: {perPage}</div>
         <div className="row row-cols-1 row-cols-md-2 g-4">
           {currentCities.map(City)}
         </div>
+        <div>Total Pages: {Math.ceil(cityData.length / citiesPerPage)}</div>
+        <div>Current Page: {currentPage}</div>
         <CardPagination
         itemsPerPage={citiesPerPage}
         totalItems={cityData.length}

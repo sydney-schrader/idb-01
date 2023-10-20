@@ -11,11 +11,12 @@ const GOOGLE_API_KEY = 'AIzaSyAiNi5igRxIAvxcuZ1TRL7ii-Eu3sWLaWE';
 
 
 const Medicals: React.FC<{}> = () => {
-    
+  
+  const perPage:number = 8
   const [medData, setMedData] = useState<any[]>([])
   const { images, setImage } = useImages();
   const [currentPage, setCurrentPage] = useState(1);
-  const [medsPerPage] = useState(8);
+  const [medsPerPage] = useState(perPage);
 
   const fetchOfficeImage = useCallback(async (officeName: string) => {
     // First, check if the image URL is already in the context
@@ -63,9 +64,12 @@ const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
         </Col>
         <div> {medData.length} Medical Centers </div>
         <div>Attributes: Name, Address, Hours, Phone number, URL for their website</div>
+        <div>Instances per page: {perPage}</div>
         <div className="row row-cols-1 row-cols-md-2 g-4">
           {currentMedicals.map(Medical)}
         </div>
+        <div>Total Pages: {Math.ceil(medData.length / medsPerPage)}</div>
+        <div>Current Page: {currentPage}</div>
         <CardPagination
         itemsPerPage={medsPerPage}
         totalItems={medData.length}

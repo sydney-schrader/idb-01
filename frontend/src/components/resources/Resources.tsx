@@ -12,10 +12,11 @@ const GOOGLE_API_KEY = 'AIzaSyBKgsK1qxLNrUTRUmjmEUCWlQxxEgH__j8';
   
 const Resources: React.FC<{}> = () => {
     
+  const perPage:number = 16
   const [shelterData, setShelterData] = useState<any[]>([])
   const { images, setImage } = useImages();
   const [currentPage, setCurrentPage] = useState(1);
-  const [sheltersPerPage] = useState(16);
+  const [sheltersPerPage] = useState(perPage);
 
   const fetchShelterImage = useCallback(async (shelterName: string) => {
     if (images[shelterName]) {
@@ -61,9 +62,12 @@ const Resources: React.FC<{}> = () => {
         </Col>
         <div> {shelterData.length} Resources </div>
         <div> Attributes: Name, Address, Hours, Zipcode, Link to their website</div>
+        <div>Instances per page: {perPage}</div>
         <div className="row row-cols-1 row-cols-md-2 g-4">
         {currentShelters.map(Resource)}
         </div>
+        <div>Total Pages: {Math.ceil(shelterData.length / sheltersPerPage)}</div>
+        <div>Current Page: {currentPage}</div>
         <CardPagination
         itemsPerPage={sheltersPerPage}
         totalItems={shelterData.length}
