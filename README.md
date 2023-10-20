@@ -6,7 +6,8 @@
 
 **link**
 
-http://lacountyhomelesshelper.me/
+website: https://www.lacountyhomelesshelper.me/
+backend: https://api.lacountyhomelesshelper.me/
 
 **the proposed project:** Los Angeles has the largest homeless population in the United States. We propose a website that is a tool for both  people wanting to help homeless people around them and also a tool for homeless people to see what resources are available for them   
 
@@ -20,7 +21,7 @@ https://geohub.lacity.org/datasets/lacounty::medicare-and-medicaid-offices/api
 
 **at least three models and an estimate for the number of instances of each model:**
 
-Cities in LA County - 63
+Cities in LA County - 286
 
 Shelters and Services - 182
 
@@ -74,7 +75,8 @@ How can people access these services?
 
 **Documentation for API**
 
-https://www.postman.com/pmarathi/workspace/cs373-idb-la-homeless-helper/documentation/28474521-c2680f7e-715c-41eb-9829-8d39392a2939
+https://documenter.getpostman.com/view/28474521/2s9YJZ3jad
+
 
 **Estimated work time**
 
@@ -82,4 +84,4 @@ https://www.postman.com/pmarathi/workspace/cs373-idb-la-homeless-helper/document
 
 **Actual work time**
 
-TBD
+120 hours
