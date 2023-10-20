@@ -2,3 +2,6 @@ node_modules
 *.pyc
 tmp.py
 .env
+tmp/
+fake_app/
+not_found.txt
