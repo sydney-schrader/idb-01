@@ -96,23 +96,13 @@ with Session(engine) as session:
 
     print("adding closest medicare and city to shelters")
     for shelter in tqdm(shelters):
-        closest_medicare = find_closest(shelter, medicares)
-        
-        shelter.medicare_name = closest_medicare.name
-        shelter.medicare_addrln1 = closest_medicare.addrln1
-        shelter.medicare_addrln2 = closest_medicare.addrln2
-        shelter.medicare_hours = closest_medicare.hours
+        shelter.closest_medicares.insert(0, find_closest(shelter, medicares))
 
         shelter.city = find_closest(shelter, cities).csa_label
     
     print("adding closest shelter and city to medicares")
     for medicare in tqdm(medicares):
-        closest_shelter = find_closest(medicare, shelters)
-
-        medicare.shelter_name = closest_shelter.name
-        medicare.shelter_addrln1 = closest_shelter.addrln1
-        medicare.shelter_addrln2 = closest_shelter.addrln2
-        medicare.shelter_hours = closest_shelter.hours
+        medicare.closest_shelters.insert(0, find_closest(medicare, shelters))
 
         medicare.city = find_closest(medicare, cities).csa_label
 
