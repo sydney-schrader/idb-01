@@ -3,10 +3,13 @@ import { Button, Container, Row, Col, Card } from 'react-bootstrap'
 import { useImages } from "../ImageContext";
 import volunteer from '../../assets/volunteer.jpg'
 import axios from "axios"; 
+import ssa from '../../assets/ssa.jpeg'
 import { useParams } from "react-router-dom";
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+const GOOGLE_API_KEY_MAP = 'AIzaSyDLa1azh_pIsTMJnhcgNuqobgRfoh9wsgY';
 //pavan
 const SEARCH_ENGINE_ID = '553cf4cb73ceb44f9';
-const GOOGLE_API_KEY = 'AIzaSyBKgsK1qxLNrUTRUmjmEUCWlQxxEgH__j8';
+const GOOGLE_API_KEY = 'AIzaSyDeJ_BEmpE0WOX92_Q3iWNdnnUcXpH3yeg';
 
 type ResourceParams = {
     resourceName: string;
@@ -15,6 +18,7 @@ type ResourceParams = {
 
 type resourceItem = {
     imageURL?: string;
+    medimageURL?: string;
     name: string;
     addrln1?: string;
     addrln2?: string;
@@ -55,6 +59,15 @@ const ResourceInstancePage: React.FC<{}> = () => {
     const [cityData, setCityData] = useState({} as cityItem);
     const { images, setImage } = useImages();
     const { resourceName } = useParams<ResourceParams>();
+    const mapContainerStyle = {
+      width: '600px',
+      height: '400px'
+    };
+  
+    const center = {
+      lat: resourcepageData.latitude,
+      lng: resourcepageData.longitude
+    };
 
     const fetchShelterImage = useCallback(async (shelterName: string) => {
         if (images[shelterName]) {
@@ -98,10 +111,12 @@ const ResourceInstancePage: React.FC<{}> = () => {
                 };
                 const imageURL = await fetchShelterImage(resourceName!);
                 setResourcepageData({ ...resourceData, imageURL }); // Merging the cityData with the imageURL
+                resourceData.medimageURL = await fetchShelterImage(resourceData.medicare_name!);
                 if (resourceData.city) {
                     const cityData = await fetchCityDetails(resourceData.city);
                     // Store the shelter details in the state if needed.
                     setCityData(cityData);
+                    cityData.imageURL = await fetchShelterImage(resourceData.city!);
                 }
             } catch (error) {
                 console.error("Error fetching city data:", error);
@@ -124,10 +139,13 @@ const ResourceInstancePage: React.FC<{}> = () => {
                 alt=""
                 className='card-image-top'
                 style={{
-                  width: '70%',
+                  width: '50%',
                 }} />
                 </div>
-                <div style = {{ padding: '0 400px' }}>
+                <Container>
+                  <Row>
+                    <Col>
+                <div style = {{ padding: '40px' }}>
                 <p className="p-3 text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-3">
                     <h2>Information About The {resourcepageData.name}</h2>
                 Address: {resourcepageData.addrln1} <br/>
@@ -138,6 +156,21 @@ const ResourceInstancePage: React.FC<{}> = () => {
                 {resourcepageData.description} <br/>
             </p>
             </div>
+            </Col>
+            <Col>
+            <div style = {{ padding: '40px' }}>
+            <LoadScript googleMapsApiKey={GOOGLE_API_KEY_MAP}>
+              <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                zoom={15}
+                center={center}>
+                <Marker position={center}/>
+              </GoogleMap>
+            </LoadScript>
+            </div>
+            </Col>
+            </Row>
+            </Container>
             <Button name='href' href='../resources' className='card-link text-warning-emphasis bg-warning border border-warning-subtle rounded-3'>
                 Back to Resources
             </Button>
@@ -153,7 +186,7 @@ const ResourceInstancePage: React.FC<{}> = () => {
                 <b>{cityData.csa_label}</b>
               </Card.Title>
               <img
-                src={volunteer}
+                src={cityData.imageURL}
                 alt=""
                 className='card-image-top'
                 style={{
@@ -180,7 +213,7 @@ const ResourceInstancePage: React.FC<{}> = () => {
                 <b>{resourcepageData.medicare_name}</b>
               </Card.Title>
               <img
-                src={volunteer}
+                src={resourcepageData.medimageURL || ssa}
                 alt=""
                 className='card-image-top'
                 style={{

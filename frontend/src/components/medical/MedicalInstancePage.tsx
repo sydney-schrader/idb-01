@@ -4,6 +4,10 @@ import ssa from '../../assets/ssa.jpeg'
 import { Button, Container, Row, Col, Card} from 'react-bootstrap'
 import { useParams } from "react-router-dom";
 import { useImages } from '../ImageContext';
+import arcadia from '../../assets/arcadia.jpeg'
+import volunteer from '../../assets/volunteer.jpg'
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+const GOOGLE_API_KEY_MAP = 'AIzaSyDLa1azh_pIsTMJnhcgNuqobgRfoh9wsgY';
 //ZACH
 const SEARCH_ENGINE_ID = '226027a2f9e54422b';
 const GOOGLE_API_KEY = 'AIzaSyAiNi5igRxIAvxcuZ1TRL7ii-Eu3sWLaWE';
@@ -17,6 +21,7 @@ type MedicalParams = {
 type medicalItem = {
     name: string;
     imageURL?: string;
+    shelterimageURL?: string;
     addrln1: string;
     addrln2?: string;
     city?: string;
@@ -54,6 +59,15 @@ const MedicalInstancePage: React.FC<{}> = () => {
     const [cityData, setCityData] = useState({} as cityItem)
     const { medicalName } = useParams<MedicalParams>();
     const { images, setImage } = useImages();
+    const mapContainerStyle = {
+      width: '600px',
+      height: '400px'
+    };
+  
+    const center = {
+      lat: medicalpageData.latitude,
+      lng: medicalpageData.longitude
+    };
 
     const fetchCityDetails = async (cityName: string) => {
         try {
@@ -98,10 +112,12 @@ const MedicalInstancePage: React.FC<{}> = () => {
                 };
                 const imageURL = await fetchOfficeImage(medicalName!);
                 setMedicalpageData({ ...medicalData, imageURL }); // Merging the cityData with the imageURL
+                medicalData.shelterimageURL = await fetchOfficeImage(medicalData.shelter_name!);
                 if (medicalData.city) {
                     const cityData = await fetchCityDetails(medicalData.city);
                     // Store the shelter details in the state if needed.
                     setCityData(cityData);
+                    cityData.imageURL = await fetchOfficeImage(medicalData.city!);
                 }
             } catch (error) {
                 console.error("Error fetching city data:", error);
@@ -122,10 +138,13 @@ const MedicalInstancePage: React.FC<{}> = () => {
                 alt=""
                 className='card-image-top'
                 style={{
-                  width: '70%',
+                  width: '50%',
                 }} />
                 </div>
-                <div style = {{ padding: '0 400px' }}>
+                <Container>
+                  <Row>
+                    <Col>
+                <div style = {{ padding: '0 40px' }}>
                 <p className="p-3 text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-3">
                     <h2>Information About The {medicalpageData.name}</h2>
                 Address: {medicalpageData.addrln1} <br/>
@@ -135,6 +154,21 @@ const MedicalInstancePage: React.FC<{}> = () => {
                 {medicalpageData.description} <br/>
             </p>
             </div>
+            </Col>
+            <Col>
+            <div style = {{ padding: '40px' }}>
+            <LoadScript googleMapsApiKey={GOOGLE_API_KEY_MAP}>
+              <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                zoom={15}
+                center={center}>
+                <Marker position={center}/>
+              </GoogleMap>
+            </LoadScript>
+            </div>
+            </Col>
+            </Row>
+            </Container>
             <Button name='href' href='../medical' className='card-link text-warning-emphasis bg-warning border border-warning-subtle rounded-3'>
                 Back to Medical
             </Button>
@@ -150,7 +184,7 @@ const MedicalInstancePage: React.FC<{}> = () => {
                 <b>{cityData.csa_label}</b>
               </Card.Title>
               <img
-                src={ssa}
+                src={cityData.imageURL || arcadia}
                 alt=""
                 className='card-image-top'
                 style={{
@@ -177,7 +211,7 @@ const MedicalInstancePage: React.FC<{}> = () => {
                 <b>{medicalpageData.shelter_name}</b>
               </Card.Title>
               <img
-                src={ssa}
+                src={medicalpageData.shelterimageURL || volunteer}
                 alt=""
                 className='card-image-top'
                 style={{

@@ -5,10 +5,9 @@ import { useImages } from '../ImageContext';
 import axios from "axios"; 
 import Resource from "./Resource";
 import CardPagination from "../CardPagination";
-
-
-const SEARCH_ENGINE_ID = '553cf4cb73ceb44f9';
-const GOOGLE_API_KEY = 'AIzaSyBKgsK1qxLNrUTRUmjmEUCWlQxxEgH__j8';
+//fletcher
+const SEARCH_ENGINE_ID = '504ff824e28724d77';
+const GOOGLE_API_KEY = 'AIzaSyDqw5EwUP5HT6F5CiGTulm2qQRbNEGSluY';
   
 const Resources: React.FC<{}> = () => {
     
@@ -35,6 +34,7 @@ const Resources: React.FC<{}> = () => {
     }
     return volunteer;
 }, [images, setImage]);
+
 
   useEffect(() => {
     axios.get(`https://api.lacountyhomelesshelper.me/shelters/`)

@@ -15,6 +15,7 @@ install:
 	(cd $(FRONTEND_DIR) && npm i react-router-dom)
 	(cd $(FRONTEND_DIR) && npm install @mui/material @emotion/react @emotion/styled)
 	(cd $(FRONTEND_DIR) && npm install axios)
+	(cd $(FRONTEND_DIR) && npm install @react-google-maps/api)
 
 build:
 	(cd $(FRONTEND_DIR) && npm run build)

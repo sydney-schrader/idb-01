@@ -4,6 +4,10 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useImages } from "../ImageContext";
 import arcadia from '../../assets/arcadia.jpeg'
+import ssa from '../../assets/ssa.jpeg'
+import volunteer from '../../assets/volunteer.jpg'
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+const GOOGLE_API_KEY_MAP = 'AIzaSyDLa1azh_pIsTMJnhcgNuqobgRfoh9wsgY';
 //jamie
 const SEARCH_ENGINE_ID = '129c571c4e1a84a03';
 const GOOGLE_API_KEY = 'AIzaSyAwozhLVzasZOIiW387q1P0NMtJTrhvD20';
@@ -23,8 +27,10 @@ type cityItem = {
     density_unsheltered: number;
     density_sheltered?: number; // This is nullable
     density_total: number;
-    shelter?: string; // This is nullable
-    medicare?: string; // This is nullable
+    shelters?: string; // This is nullable
+    medicares?: string; // This is nullable
+    lat: number;
+    lng: number;
 };
 
 type resourceItem = {
@@ -76,6 +82,30 @@ const CityInstancePage: React.FC<{}> = () => {
     const [medicareData, setMedicareData] = useState({} as medicalItem);
     const { cityName } = useParams<CityParams>();
     const { images, setImage } = useImages();
+    const mapContainerStyle = {
+        width: '600px',
+        height: '400px'
+      };
+      const center = {
+        lat: citypageData.lat,
+        lng: citypageData.lng
+      };
+    
+    async function getLatLngForCity(city: string) {
+        const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(city)}&key=${GOOGLE_API_KEY_MAP}`;
+        const response = await axios.get(endpoint);
+        
+        if (response.data.results && response.data.results[0]) {
+          const location = response.data.results[0].geometry.location;
+          return {
+            lat: location.lat,
+            lng: location.lng
+          };
+        }
+      
+        throw new Error("Unable to get location for city");
+    }
+
 
     const fetchCityImage = useCallback(async (cityName: string) => {
         if (images[cityName]) {
@@ -128,18 +158,22 @@ const CityInstancePage: React.FC<{}> = () => {
                 };
                 const imageURL = await fetchCityImage(cityName!);
                 setCitypageData({ ...cityData, imageURL }); // Merging the cityData with the imageURL
-
+                const { lat, lng } = await getLatLngForCity(cityName!);
+                cityData.lat = lat;
+                cityData.lng = lng;
                 // Fetch shelter details if shelter_id is present in the city data
-                if (cityData.shelter) {
-                    const shelterData = await fetchShelterDetails(cityData.shelter);
+                if (cityData.shelters) {
+                    const shelterData = await fetchShelterDetails(cityData.shelters);
                     // Store the shelter details in the state if needed.
                     setShelterData(shelterData);
+                    shelterData.imageURL = await fetchCityImage(cityData.shelters);
                 }
                 // Fetch medicare details if medicare is present in the city data
-                if (cityData.medicare) {
-                    const medicareData = await fetchMedicalDetails(cityData.medicare);
+                if (cityData.medicares) {
+                    const medicareData = await fetchMedicalDetails(cityData.medicares);
                     // Store the shelter details in the state if needed.
                     setMedicareData(medicareData);
+                    medicareData.imageURL = await fetchCityImage(cityData.medicares);
                 }
             } catch (error) {
                 console.error("Error fetching city data:", error);
@@ -147,7 +181,7 @@ const CityInstancePage: React.FC<{}> = () => {
         }
     
         handleCityList();
-    }, [cityName, fetchCityImage]); 
+    }, [cityName, fetchCityImage, shelterData]); 
 
     return (
         <>
@@ -164,7 +198,10 @@ const CityInstancePage: React.FC<{}> = () => {
                   width: '70%',
                 }} />
                 </div>
-                <div style = {{ padding: '0 400px' }}>
+                <Container>
+                    <Row>
+                        <Col>
+                <div style = {{ padding: '40px' }}>
                 <p className="p-3 text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-3">
                     <h2>Information About The {citypageData.csa_label}</h2>
                 Unsheltered population: {citypageData.total_unsheltered_pop}<br/>
@@ -176,6 +213,21 @@ const CityInstancePage: React.FC<{}> = () => {
                 Density of total homeless population: {citypageData.density_total} <br/>
             </p>
             </div>
+            </Col>
+            <Col>
+            <div style = {{ padding: '40px' }}>
+            <LoadScript googleMapsApiKey={GOOGLE_API_KEY_MAP}>
+              <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                zoom={15}
+                center={center}>
+                <Marker position={center}/>
+              </GoogleMap>
+            </LoadScript>
+            </div>
+            </Col>
+            </Row>
+            </Container>
             <Button name='href' href='../cities' className='card-link text-warning-emphasis bg-warning border border-warning-subtle rounded-3'>
                 Back to Cities
             </Button>
@@ -191,7 +243,7 @@ const CityInstancePage: React.FC<{}> = () => {
                 <b>{shelterData.name}</b>
               </Card.Title>
               <img
-                src={arcadia}
+                src={shelterData.imageURL || volunteer}
                 alt=""
                 className='card-image-top'
                 style={{
@@ -218,7 +270,7 @@ const CityInstancePage: React.FC<{}> = () => {
                 <b>{medicareData.name}</b>
               </Card.Title>
               <img
-                src={arcadia}
+                src={medicareData.imageURL || ssa}
                 alt=""
                 className='card-image-top'
                 style={{
