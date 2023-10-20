@@ -12,3 +12,9 @@ job_backend:
   image: pmarathi/idb-backend
   script:
   - make test_backend
+job_postman:
+  stage: build
+  image: node:latest
+  script:
+    - npm install -g newman
+    - newman run "LA Homeless Helper API.postman_collection.json" 
