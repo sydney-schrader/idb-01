@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Button } from 'react-bootstrap'
+import { Button, Container, Row, Col, Card } from 'react-bootstrap'
 import { useImages } from "../ImageContext";
 import volunteer from '../../assets/volunteer.jpg'
 import axios from "axios"; 
@@ -35,9 +35,24 @@ type resourceItem = {
     medicare_hours?: string;
 };
 
+type cityItem = {
+    csa_label: string;
+    imageURL?: string;
+    total_unsheltered_pop: number;
+    total_sheltered_pop: number;
+    total_pop: number;
+    square_miles: number;
+    density_unsheltered: number;
+    density_sheltered?: number; // This is nullable
+    density_total: number;
+    shelter?: string; // This is nullable
+    medicare?: string; // This is nullable
+};
+
 const ResourceInstancePage: React.FC<{}> = () => {
 
-    const [resourcepageData, setResourcepageData] = useState({} as resourceItem)
+    const [resourcepageData, setResourcepageData] = useState({} as resourceItem);
+    const [cityData, setCityData] = useState({} as cityItem);
     const { images, setImage } = useImages();
     const { resourceName } = useParams<ResourceParams>();
 
@@ -61,6 +76,15 @@ const ResourceInstancePage: React.FC<{}> = () => {
 
     
     useEffect(() => {
+        const fetchCityDetails = async (cityName: string) => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:5000/api/city/${encodeURIComponent(cityName!)}`);
+                return response.data;
+            } catch (error) {
+                console.error("Error fetching shelter data:", error);
+            }
+            return null; // or some default data if needed
+        }
 		const handleResourceList = async() => {
 			const options = {
 				method: 'GET',
@@ -74,6 +98,11 @@ const ResourceInstancePage: React.FC<{}> = () => {
                 };
                 const imageURL = await fetchShelterImage(resourceName!);
                 setResourcepageData({ ...resourceData, imageURL }); // Merging the cityData with the imageURL
+                if (resourceData.city) {
+                    const cityData = await fetchCityDetails(resourceData.city);
+                    // Store the shelter details in the state if needed.
+                    setCityData(cityData);
+                }
             } catch (error) {
                 console.error("Error fetching city data:", error);
             }
@@ -113,6 +142,65 @@ const ResourceInstancePage: React.FC<{}> = () => {
                 Back to Resources
             </Button>
             </div>
+            <Container>
+        <Col>
+            <h1 className="text-center">Other Resources</h1>
+        </Col>
+        <Row>
+        <Col>
+            <Card style={{ alignItems: 'center' }}>
+              <Card.Title className='header-1'>
+                <b>{cityData.csa_label}</b>
+              </Card.Title>
+              <img
+                src={volunteer}
+                alt=""
+                className='card-image-top'
+                style={{
+                  width: '50%',
+                }}
+              ></img>
+              <Card.Body>
+              <p>
+              Unsheltered population: {cityData.total_unsheltered_pop} <br/>
+                  Sheltered population: {cityData.total_sheltered_pop} <br/>
+                  Total homeless population: {cityData.total_pop} <br/>
+                  Square miles of city: {cityData.square_miles}<br/>
+                  Density of total homeless population: {cityData.density_total} 
+                </p>
+                <Button name='href' href={`/cities/${cityData.csa_label}`} className='card-link'>
+                  View {cityData.csa_label}
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{ alignItems: 'center' }}>
+              <Card.Title className='header-1'>
+                <b>{resourcepageData.medicare_name}</b>
+              </Card.Title>
+              <img
+                src={volunteer}
+                alt=""
+                className='card-image-top'
+                style={{
+                  width: '50%',
+                }}
+              ></img>
+              <Card.Body>
+              <p>
+                Name: {resourcepageData.medicare_name} <br/>
+                Address: {resourcepageData.medicare_addrln1}<br/>
+                Hours: {resourcepageData.medicare_hours} <br/>
+                </p>
+                <Button name='href' href={`/medical/${resourcepageData.medicare_name}`} className='card-link'>
+                  View {resourcepageData.medicare_name}
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+        </Container>
         </>
     )
 }
