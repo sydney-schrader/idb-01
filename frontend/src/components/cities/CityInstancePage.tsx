@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Button } from 'react-bootstrap'
+import { Button, Container, Row, Col, Card} from 'react-bootstrap'
 import axios from "axios"; 
 import { useParams } from "react-router-dom";
 import { useImages } from "../ImageContext";
@@ -27,10 +27,53 @@ type cityItem = {
     medicare?: string; // This is nullable
 };
 
+type resourceItem = {
+    imageURL?: string;
+    name: string;
+    addrln1?: string;
+    addrln2?: string;
+    city?:string;
+    hours?: string;
+    phones?: string;
+    url?: string;
+    post_id: number;
+    description: string;
+    zip:string;
+    link: string;
+    latitude: number;
+    longitude: number;
+    date_updated: string;
+    medicare_name?: string;
+    medicare_addrln1?: string;
+    medicare_addrln2?: string;
+    medicare_hours?: string;
+};
+
+type medicalItem = {
+    name: string;
+    imageURL?: string;
+    addrln1: string;
+    addrln2?: string;
+    city?: string;
+    hours?: string;
+    phones?: string;
+    post_id: number;
+    description: string;
+    zip: string;
+    latitude: number;
+    longitude: number;
+    date_updated: string;
+    shelter_name?: string;
+    shelter_addrln1?: string;
+    shelter_addrln2?: string;
+    shelter_hours?: string;
+};
 
 const CityInstancePage: React.FC<{}> = () => {
 
-    const [citypageData, setCitypageData] = useState({} as cityItem)
+    const [citypageData, setCitypageData] = useState({} as cityItem);
+    const [shelterData, setShelterData] = useState({} as resourceItem);
+    const [medicareData, setMedicareData] = useState({} as medicalItem);
     const { cityName } = useParams<CityParams>();
     const { images, setImage } = useImages();
 
@@ -53,6 +96,24 @@ const CityInstancePage: React.FC<{}> = () => {
     }, [images, setImage]);
 
     useEffect(() => {
+        const fetchShelterDetails = async (shelterId: string) => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:5000/api/shelter/${encodeURIComponent(shelterId!)}`);
+                return response.data;
+            } catch (error) {
+                console.error("Error fetching shelter data:", error);
+            }
+            return null; // or some default data if needed
+        }
+        const fetchMedicalDetails = async (medicalID: string) => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:5000/api/medicare/${encodeURIComponent(medicalID!)}`);
+                return response.data;
+            } catch (error) {
+                console.error("Error fetching shelter data:", error);
+            }
+            return null; // or some default data if needed
+        }
         const handleCityList = async () => {
             const options = {
                 method: 'GET',
@@ -67,6 +128,19 @@ const CityInstancePage: React.FC<{}> = () => {
                 };
                 const imageURL = await fetchCityImage(cityName!);
                 setCitypageData({ ...cityData, imageURL }); // Merging the cityData with the imageURL
+
+                // Fetch shelter details if shelter_id is present in the city data
+                if (cityData.shelter) {
+                    const shelterData = await fetchShelterDetails(cityData.shelter);
+                    // Store the shelter details in the state if needed.
+                    setShelterData(shelterData);
+                }
+                // Fetch medicare details if medicare is present in the city data
+                if (cityData.medicare) {
+                    const medicareData = await fetchMedicalDetails(cityData.medicare);
+                    // Store the shelter details in the state if needed.
+                    setMedicareData(medicareData);
+                }
             } catch (error) {
                 console.error("Error fetching city data:", error);
             }
@@ -75,9 +149,6 @@ const CityInstancePage: React.FC<{}> = () => {
         handleCityList();
     }, [cityName, fetchCityImage]); 
 
-
-
-      
     return (
         <>
             <div className="text-center mb-3">
@@ -109,8 +180,66 @@ const CityInstancePage: React.FC<{}> = () => {
                 Back to Cities
             </Button>
             </div>
+        <Container>
+        <Col>
+            <h1 className="text-center">Other Resources</h1>
+        </Col>
+        <Row>
+        <Col>
+            <Card style={{ alignItems: 'center' }}>
+              <Card.Title className='header-1'>
+                <b>{shelterData.name}</b>
+              </Card.Title>
+              <img
+                src={arcadia}
+                alt=""
+                className='card-image-top'
+                style={{
+                  width: '50%',
+                }}
+              ></img>
+              <Card.Body>
+              <p>
+              Name: {shelterData.name} <br/>
+                    City: {shelterData.city}<br/>
+                    Hours: {shelterData.hours}<br/>
+                    Zip code: {shelterData.zip}<br/>
+                    Phone Number: {shelterData.phones}
+                </p>
+                <Button name='href' href={`/resources/${shelterData.name}`} className='card-link'>
+                  View {shelterData.name}
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{ alignItems: 'center' }}>
+              <Card.Title className='header-1'>
+                <b>{medicareData.name}</b>
+              </Card.Title>
+              <img
+                src={arcadia}
+                alt=""
+                className='card-image-top'
+                style={{
+                  width: '50%',
+                }}
+              ></img>
+              <Card.Body>
+              <p>
+                Name: {medicareData.name} <br/>
+                Address: {medicareData.addrln1}<br/>
+                Hours: {medicareData.hours} <br/>
+                </p>
+                <Button name='href' href={`/medical/${medicareData.name}`} className='card-link'>
+                  View {medicareData.name}
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+        </Container>
         </>
-        
     )
 }
 export default CityInstancePage;

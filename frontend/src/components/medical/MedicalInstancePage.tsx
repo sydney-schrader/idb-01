@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios"; 
 import ssa from '../../assets/ssa.jpeg'
-import { Button } from 'react-bootstrap'
+import { Button, Container, Row, Col, Card} from 'react-bootstrap'
 import { useParams } from "react-router-dom";
 import { useImages } from '../ImageContext';
 //ZACH
@@ -34,13 +34,36 @@ type medicalItem = {
     shelter_hours?: string;
 };
 
+type cityItem = {
+    csa_label: string;
+    imageURL?: string;
+    total_unsheltered_pop: number;
+    total_sheltered_pop: number;
+    total_pop: number;
+    square_miles: number;
+    density_unsheltered: number;
+    density_sheltered?: number; // This is nullable
+    density_total: number;
+    shelter?: string; // This is nullable
+    medicare?: string; // This is nullable
+};
+
 const MedicalInstancePage: React.FC<{}> = () => {
 
     const [medicalpageData, setMedicalpageData] = useState({} as medicalItem)
-
+    const [cityData, setCityData] = useState({} as cityItem)
     const { medicalName } = useParams<MedicalParams>();
     const { images, setImage } = useImages();
 
+    const fetchCityDetails = async (cityName: string) => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:5000/api/city/${encodeURIComponent(cityName!)}`);
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching shelter data:", error);
+        }
+        return null; // or some default data if needed
+    }
 
     const fetchOfficeImage = useCallback(async (officeName: string) => {
       // First, check if the image URL is already in the context
@@ -75,6 +98,11 @@ const MedicalInstancePage: React.FC<{}> = () => {
                 };
                 const imageURL = await fetchOfficeImage(medicalName!);
                 setMedicalpageData({ ...medicalData, imageURL }); // Merging the cityData with the imageURL
+                if (medicalData.city) {
+                    const cityData = await fetchCityDetails(medicalData.city);
+                    // Store the shelter details in the state if needed.
+                    setCityData(cityData);
+                }
             } catch (error) {
                 console.error("Error fetching city data:", error);
             }
@@ -111,6 +139,65 @@ const MedicalInstancePage: React.FC<{}> = () => {
                 Back to Medical
             </Button>
             </div>
+            <Container>
+        <Col>
+            <h1 className="text-center">Other Resources</h1>
+        </Col>
+        <Row>
+        <Col>
+            <Card style={{ alignItems: 'center' }}>
+              <Card.Title className='header-1'>
+                <b>{cityData.csa_label}</b>
+              </Card.Title>
+              <img
+                src={ssa}
+                alt=""
+                className='card-image-top'
+                style={{
+                  width: '50%',
+                }}
+              ></img>
+              <Card.Body>
+              <p>
+              Unsheltered population: {cityData.total_unsheltered_pop} <br/>
+                  Sheltered population: {cityData.total_sheltered_pop} <br/>
+                  Total homeless population: {cityData.total_pop} <br/>
+                  Square miles of city: {cityData.square_miles}<br/>
+                  Density of total homeless population: {cityData.density_total} 
+                </p>
+                <Button name='href' href={`/cities/${cityData.csa_label}`} className='card-link'>
+                  View {cityData.csa_label}
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{ alignItems: 'center' }}>
+              <Card.Title className='header-1'>
+                <b>{medicalpageData.shelter_name}</b>
+              </Card.Title>
+              <img
+                src={ssa}
+                alt=""
+                className='card-image-top'
+                style={{
+                  width: '50%',
+                }}
+              ></img>
+              <Card.Body>
+              <p>
+                Name: {medicalpageData.shelter_name} <br/>
+                Address: {medicalpageData.shelter_addrln1}<br/>
+                Hours: {medicalpageData.shelter_hours} <br/>
+                </p>
+                <Button name='href' href={`/resources/${medicalpageData.shelter_name}`} className='card-link'>
+                  View {medicalpageData.shelter_name}
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+        </Container>
         </>
     )
 }
