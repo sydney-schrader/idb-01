@@ -98,7 +98,7 @@ const CityInstancePage: React.FC<{}> = () => {
     useEffect(() => {
         const fetchShelterDetails = async (shelterId: string) => {
             try {
-                const response = await axios.get(`http://127.0.0.1:5000/api/shelter/${encodeURIComponent(shelterId!)}`);
+                const response = await axios.get(`https://api.lacountyhomelesshelper.me/shelter/${encodeURIComponent(shelterId!)}`);
                 return response.data;
             } catch (error) {
                 console.error("Error fetching shelter data:", error);
@@ -107,7 +107,7 @@ const CityInstancePage: React.FC<{}> = () => {
         }
         const fetchMedicalDetails = async (medicalID: string) => {
             try {
-                const response = await axios.get(`http://127.0.0.1:5000/api/medicare/${encodeURIComponent(medicalID!)}`);
+                const response = await axios.get(`https://api.lacountyhomelesshelper.me/medicare/${encodeURIComponent(medicalID!)}`);
                 return response.data;
             } catch (error) {
                 console.error("Error fetching shelter data:", error);
@@ -117,7 +117,7 @@ const CityInstancePage: React.FC<{}> = () => {
         const handleCityList = async () => {
             const options = {
                 method: 'GET',
-                url: `http://127.0.0.1:5000/api/city/${encodeURIComponent(cityName!)}`,
+                url: `https://api.lacountyhomelesshelper.me/city/${encodeURIComponent(cityName!)}`,
                 params: { id: cityName },
             };
             

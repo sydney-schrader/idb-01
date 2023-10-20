@@ -57,7 +57,7 @@ const MedicalInstancePage: React.FC<{}> = () => {
 
     const fetchCityDetails = async (cityName: string) => {
         try {
-            const response = await axios.get(`http://127.0.0.1:5000/api/city/${encodeURIComponent(cityName!)}`);
+            const response = await axios.get(`https://api.lacountyhomelesshelper.me/city/${encodeURIComponent(cityName!)}`);
             return response.data;
         } catch (error) {
             console.error("Error fetching shelter data:", error);
@@ -88,7 +88,7 @@ const MedicalInstancePage: React.FC<{}> = () => {
 		const handleMedicalList = async() => {
 			const options = {
 				method: 'GET',
-				url: `http://127.0.0.1:5000/api/medicare/${encodeURIComponent(medicalName!)}`,
+				url: `https://api.lacountyhomelesshelper.me/medicare/${encodeURIComponent(medicalName!)}`,
                 params: {id: medicalName},
 			};
 			try {

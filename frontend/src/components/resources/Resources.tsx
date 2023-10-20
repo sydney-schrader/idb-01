@@ -37,7 +37,7 @@ const Resources: React.FC<{}> = () => {
 }, [images, setImage]);
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:5000/api/shelters`)
+    axios.get(`https://api.lacountyhomelesshelper.me/shelters/`)
     .then(async (response) => { 
         const updatedData = await Promise.all(response.data.map(async (shelter: any) => {
           shelter.imageURL = await fetchShelterImage(shelter.name);

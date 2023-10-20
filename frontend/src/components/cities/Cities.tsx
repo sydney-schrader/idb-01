@@ -37,7 +37,7 @@ const Cities: React.FC<{}> = () => {
   }, [images, setImage]);
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:5000/api/cities`)
+    axios.get(`https://api.lacountyhomelesshelper.me/cities`)
     .then(async (response) => { 
         const updatedData = await Promise.all(response.data.map(async (city: any) => {
           city.imageURL = await fetchCityImage(city.csa_label);

@@ -39,7 +39,7 @@ const Medicals: React.FC<{}> = () => {
   }, [images, setImage]); 
   
   useEffect(() => {
-    axios.get(`http://127.0.0.1:5000/api/medicares`)
+    axios.get(`https://api.lacountyhomelesshelper.me/medicares`)
     .then(async (response) => { 
         const updatedData = await Promise.all(response.data.map(async (office: any) => {
           office.imageURL = await fetchOfficeImage(office.name);
