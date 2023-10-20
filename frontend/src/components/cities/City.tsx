@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Container, Col, Card, Button } from 'react-bootstrap'
+import React from "react";
+import {  Card, Button } from 'react-bootstrap'
 
 
 const City: React.FC<{}> = (card: any, index:any) => {
-  //console.log(card.csa_label)
     return(
         <Card style={{ alignItems: 'center', width: '18rem', padding: "0 20px"}} key={index} className="box">
                 <Card.Title className='header-1'>

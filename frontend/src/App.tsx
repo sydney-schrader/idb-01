@@ -2,7 +2,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from './components/Nav/Nav';
-
+import { ImageProvider } from './components/ImageContext';
 import About from './components/about/About';
 import Cities from './components/cities/Cities';
 import City1 from './components/cities/city1/City1';
@@ -24,6 +24,7 @@ import MedicalInstancePage from './components/medical/MedicalInstancePage';
 function App() {
     return (
       <>
+      <ImageProvider>
       <BrowserRouter>
         <Nav />
         <Routes>
@@ -48,6 +49,7 @@ function App() {
         <Route path='/medical/:medicalName' element={<MedicalInstancePage/> } />
         </Routes>
        </BrowserRouter>
+       </ImageProvider>
        </>
     );
 }

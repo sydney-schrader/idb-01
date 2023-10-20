@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Button } from 'react-bootstrap'
+import { useImages } from "../ImageContext";
 import volunteer from '../../assets/volunteer.jpg'
 import axios from "axios"; 
 import { useParams } from "react-router-dom";
+//pavan
+const SEARCH_ENGINE_ID = '553cf4cb73ceb44f9';
+const GOOGLE_API_KEY = 'AIzaSyBKgsK1qxLNrUTRUmjmEUCWlQxxEgH__j8';
 
 type ResourceParams = {
     resourceName: string;
@@ -34,23 +38,29 @@ type resourceItem = {
 const ResourceInstancePage: React.FC<{}> = () => {
 
     const [resourcepageData, setResourcepageData] = useState({} as resourceItem)
-
+    const { images, setImage } = useImages();
     const { resourceName } = useParams<ResourceParams>();
+
+    const fetchShelterImage = useCallback(async (shelterName: string) => {
+        if (images[shelterName]) {
+            return images[shelterName];
+        }
+    
+        const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(shelterName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
+        try {
+            const response = await axios.get(endpoint);
+            if (response.data.items && response.data.items.length > 0) {
+                setImage(shelterName, response.data.items[0].link);
+                return response.data.items[0].link;
+            }
+        } catch (error) {
+            console.error("Error fetching image:", error);
+        }
+        return volunteer;
+    }, [images, setImage]);
 
     
     useEffect(() => {
-        const fetchShelterImage = async (shelterName: string) => {
-            try {
-              const response = await axios.get(`https://pixabay.com/api/?key=40111269-fa085807d2390f3428b52a50e&q=${encodeURIComponent(shelterName)}&image_type=all`);
-              if (response.data.hits && response.data.hits.length > 0) {
-                    return response.data.hits[0].largeImageURL;
-                }
-            } catch (error) {
-                console.error("Error fetching image:", error);
-            }
-            return volunteer; // default to arcadia image if no image is found or an error occurs
-          };
-
 		const handleResourceList = async() => {
 			const options = {
 				method: 'GET',
@@ -69,7 +79,7 @@ const ResourceInstancePage: React.FC<{}> = () => {
             }
 		}
 		handleResourceList();
-	}, [ resourceName])
+	}, [ resourceName, fetchShelterImage])
 
 
       

@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios"; 
 import ssa from '../../assets/ssa.jpeg'
 import { Button } from 'react-bootstrap'
 import { useParams } from "react-router-dom";
+import { useImages } from '../ImageContext';
+//ZACH
+const SEARCH_ENGINE_ID = '226027a2f9e54422b';
+const GOOGLE_API_KEY = 'AIzaSyAiNi5igRxIAvxcuZ1TRL7ii-Eu3sWLaWE';
+
 
 type MedicalParams = {
     medicalName: string;
@@ -34,21 +39,29 @@ const MedicalInstancePage: React.FC<{}> = () => {
     const [medicalpageData, setMedicalpageData] = useState({} as medicalItem)
 
     const { medicalName } = useParams<MedicalParams>();
+    const { images, setImage } = useImages();
 
+
+    const fetchOfficeImage = useCallback(async (officeName: string) => {
+      // First, check if the image URL is already in the context
+      if (images[officeName]) {
+        return images[officeName];
+      }
     
-    useEffect(() => {
-        const fetchOfficeImage = async (officeName: string) => {
-            try {
-              const response = await axios.get(`https://pixabay.com/api/?key=40111269-fa085807d2390f3428b52a50e&q=${encodeURIComponent(officeName)}&image_type=all`);
-              if (response.data.hits && response.data.hits.length > 0) {
-                    return response.data.hits[0].largeImageURL;
-                }
-            } catch (error) {
-                console.error("Error fetching image:", error);
-            }
-            return ssa; // default to arcadia image if no image is found or an error occurs
+      const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(officeName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
+      try {
+          const response = await axios.get(endpoint);
+          if (response.data.items && response.data.items.length > 0) {
+              const imageURL = response.data.items[0].link;
+              setImage(officeName, imageURL);
+              return imageURL;
           }
-
+      } catch (error) {
+          console.error("Error fetching image:", error);
+      }
+      return ssa; // default to ssa image if no image is found or an error occurs
+    }, [images, setImage]); 
+    useEffect(() => {
 		const handleMedicalList = async() => {
 			const options = {
 				method: 'GET',
@@ -65,12 +78,10 @@ const MedicalInstancePage: React.FC<{}> = () => {
             } catch (error) {
                 console.error("Error fetching city data:", error);
             }
-		}
+        }
 		handleMedicalList();
-	}, [ medicalName])
+    }, [medicalName, fetchOfficeImage]);
 
-
-      
     return (
         <>
             <div className="text-center mb-3">
@@ -96,8 +107,8 @@ const MedicalInstancePage: React.FC<{}> = () => {
                 {medicalpageData.description} <br/>
             </p>
             </div>
-            <Button name='href' href='../resources' className='card-link text-warning-emphasis bg-warning border border-warning-subtle rounded-3'>
-                Back to Resources
+            <Button name='href' href='../medical' className='card-link text-warning-emphasis bg-warning border border-warning-subtle rounded-3'>
+                Back to Medical
             </Button>
             </div>
         </>

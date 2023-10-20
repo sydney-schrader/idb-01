@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Container, Col, Card, Button } from 'react-bootstrap'
+import React from "react";
+import {Card, Button } from 'react-bootstrap'
 
 const Resource: React.FC<{}> = (card: any, index:any) => {
     return(

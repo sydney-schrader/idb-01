@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Button } from 'react-bootstrap'
 import axios from "axios"; 
 import { useParams } from "react-router-dom";
+import { useImages } from "../ImageContext";
 import arcadia from '../../assets/arcadia.jpeg'
-
+//jamie
+const SEARCH_ENGINE_ID = '129c571c4e1a84a03';
+const GOOGLE_API_KEY = 'AIzaSyAwozhLVzasZOIiW387q1P0NMtJTrhvD20';
 
 type CityParams = {
     cityName: string;
@@ -28,22 +31,28 @@ type cityItem = {
 const CityInstancePage: React.FC<{}> = () => {
 
     const [citypageData, setCitypageData] = useState({} as cityItem)
-
     const { cityName } = useParams<CityParams>();
+    const { images, setImage } = useImages();
+
+    const fetchCityImage = useCallback(async (cityName: string) => {
+        if (images[cityName]) {
+            return images[cityName];
+        }
+    
+        const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(cityName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
+        try {
+            const response = await axios.get(endpoint);
+            if (response.data.items && response.data.items.length > 0) {
+                setImage(cityName, response.data.items[0].link);
+                return response.data.items[0].link;
+            }
+        } catch (error) {
+            console.error("Error fetching image:", error);
+        }
+        return arcadia;
+    }, [images, setImage]);
 
     useEffect(() => {
-        const fetchCityImage = async (cityName: string) => {
-            try {
-                const response = await axios.get(`https://pixabay.com/api/?key=40111269-fa085807d2390f3428b52a50e&q=${encodeURIComponent(cityName)}&image_type=all`);
-                if (response.data.hits && response.data.hits.length > 0) {
-                    return response.data.hits[0].largeImageURL;
-                }
-            } catch (error) {
-                console.error("Error fetching image:", error);
-            }
-            return arcadia; // default to arcadia image if no image is found or an error occurs
-        };
-    
         const handleCityList = async () => {
             const options = {
                 method: 'GET',
@@ -64,7 +73,7 @@ const CityInstancePage: React.FC<{}> = () => {
         }
     
         handleCityList();
-    }, [cityName]);
+    }, [cityName, fetchCityImage]); 
 
 
 

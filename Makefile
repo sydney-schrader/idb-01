@@ -7,7 +7,7 @@ BACKEND_DIR = backend
 all:
 	make install
 	make build
-	
+	make test_backend
 	make start
 	(cd $(BACKEND_DIR) && python3 main.py)
 install:

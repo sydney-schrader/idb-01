@@ -1,38 +1,54 @@
-import React, { useState, useEffect } from "react";
-import { Container, Col, Card, Button } from 'react-bootstrap'
+import React, { useState, useEffect, useCallback } from "react";
+import { Container, Col} from 'react-bootstrap'
 import ssa from '../../assets/ssa.jpeg'
 import axios from "axios"; 
 import Medical from "./Medical";
+import { useImages } from '../ImageContext';
+//ZACH
+const SEARCH_ENGINE_ID = '226027a2f9e54422b';
+const GOOGLE_API_KEY = 'AIzaSyAiNi5igRxIAvxcuZ1TRL7ii-Eu3sWLaWE';
+
 
 const Medicals: React.FC<{}> = () => {
     
   const [medData, setMedData] = useState<any[]>([])
+  const { images, setImage } = useImages();
 
 
+  const fetchOfficeImage = useCallback(async (officeName: string) => {
+    // First, check if the image URL is already in the context
+    if (images[officeName]) {
+      return images[officeName];
+    }
+  
+    const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(officeName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
+    try {
+        const response = await axios.get(endpoint);
+        if (response.data.items && response.data.items.length > 0) {
+            const imageURL = response.data.items[0].link;
+            setImage(officeName, imageURL);
+            return imageURL;
+        }
+    } catch (error) {
+        console.error("Error fetching image:", error);
+    }
+    return ssa; // default to ssa image if no image is found or an error occurs
+  }, [images, setImage]); 
+  
   useEffect(() => {
     axios.get(`http://127.0.0.1:5000/api/medicares`)
     .then(async (response) => { 
         const updatedData = await Promise.all(response.data.map(async (office: any) => {
-          office.imageURL = await fetchOfficeImage(office.city);
+          office.imageURL = await fetchOfficeImage(office.name);
           return office;
         }));
         setMedData(updatedData);
     });
-}, []);
+}, [fetchOfficeImage]);
 
 console.log(medData)
 
-const fetchOfficeImage = async (officeName: string) => {
-  try {
-    const response = await axios.get(`https://pixabay.com/api/?key=40111269-fa085807d2390f3428b52a50e&q=${encodeURIComponent(officeName)}&image_type=all`);
-    if (response.data.hits && response.data.hits.length > 0) {
-          return response.data.hits[0].largeImageURL;
-      }
-  } catch (error) {
-      console.error("Error fetching image:", error);
-  }
-  return ssa; // default to arcadia image if no image is found or an error occurs
-}
+
     // create medical cards
     return (
       <Container>
