@@ -27,7 +27,8 @@ class LosAngelesHomelessHelperTest(unittest.TestCase):
 
 
         # Start a new instance of the Chrome browser using the local chromedriver
-        cls.driver = webdriver.Chrome(options=chrome_options)
+        #cls.driver = webdriver.Chrome(options=chrome_options)
+        cls.driver = webdriver.Chrome(executable_path='./chromedriver', options=chrome_options)
         cls.driver.implicitly_wait(10)
 
 
