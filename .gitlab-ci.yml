@@ -30,8 +30,8 @@ acceptance_test:
   stage: test
   image: node:latest
     script:
-    - cd frontend
-    - cd src
-    - cd __tests__
-    - python3 -m unittest acceptance_tests.py
+      - cd frontend
+      - cd src
+      - cd __tests__
+      - python3 -m unittest acceptance_tests.py
 
