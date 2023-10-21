@@ -29,9 +29,9 @@ jest_tests:
 acceptance_test:
   stage: test
   image: node:latest
-    script:
-      - cd frontend
-      - cd src
-      - cd __tests__
-      - python3 -m unittest acceptance_tests.py
+  script:
+    - cd frontend
+    - cd src
+    - cd __tests__
+    - python3 -m unittest acceptance_tests.py
 
