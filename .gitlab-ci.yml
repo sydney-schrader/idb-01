@@ -21,6 +21,7 @@ job_postman:
     - newman run "LA Homeless Helper API.postman_collection.json" 
 jest_tests:
   stage: test
+  image: node:latest
   script:
     - cd frontend
     - npm install
