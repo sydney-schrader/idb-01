@@ -1,6 +1,0 @@
-# Use an official Python runtime as a parent image
-FROM gpdowning/python:latest
-
-RUN pip install selenium
-
-CMD bash
