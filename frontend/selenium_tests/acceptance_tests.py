@@ -49,19 +49,19 @@ class LosAngelesHomelessHelperTest(unittest.TestCase):
         self.assertTrue(lower_title.is_displayed())
 
     def test_explore_cities_link(self):
-        explore_cities_button = self.driver.find_element(By.CSS_SELECTOR, "button a[href = '/cities']")
+        explore_cities_button = self.driver.find_element(By.CSS_SELECTOR, "a[role='button'][href='/cities']")
         self.assertIsNotNone(explore_cities_button)
         self.driver.execute_script("arguments[0].click();", explore_cities_button)
         self.assertIn('/cities', self.driver.current_url)
 
     def test_explore_resources_link(self):
-        explore_resources_button = self.driver.find_element(By.CSS_SELECTOR, "button a[href = '/resources']")
+        explore_resources_button = self.driver.find_element(By.CSS_SELECTOR, "a[role='button'][href='/resources']")
         self.assertIsNotNone(explore_resources_button)
         self.driver.execute_script("arguments[0].click();", explore_resources_button)
         self.assertIn('/resources', self.driver.current_url)
 
     def test_explore_medical_options_link(self):
-        explore_medical_button = self.driver.find_element(By.CSS_SELECTOR, "button a[href = '/medical']")
+        explore_medical_button = self.driver.find_element(By.CSS_SELECTOR, "a[role='button'][href='/medical']")
         self.assertIsNotNone(explore_medical_button)
         self.driver.execute_script("arguments[0].click();", explore_medical_button)
         self.assertIn('/medical', self.driver.current_url)
