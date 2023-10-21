@@ -1,4 +1,3 @@
-from main import app, about
 import unittest
 import requests
 import json
