@@ -20,15 +20,14 @@ class LosAngelesHomelessHelperTest(unittest.TestCase):
 
         # Set Chrome Options
         chrome_options = webdriver.ChromeOptions()
-        chrome_options.binary_location = chromedriver_path
+        chrome_options.binary_location = "./chromedriver"
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
 
 
         # Start a new instance of the Chrome browser using the local chromedriver
-        #cls.driver = webdriver.Chrome(options=chrome_options)
-        cls.driver = webdriver.Chrome(executable_path='./chromedriver', options=chrome_options)
+        cls.driver = webdriver.Chrome(options=chrome_options)
         cls.driver.implicitly_wait(10)
 
 
