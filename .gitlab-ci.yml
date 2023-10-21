@@ -30,7 +30,7 @@ acceptance_test:
   stage: test
   image: python:3.10.6
   services:
-    - selenium/standalone-chrome
+    - selenium/standalone-chrome:latest
   before_script:
     - pip3 install selenium
   script:

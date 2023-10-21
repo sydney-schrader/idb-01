@@ -7,28 +7,28 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from selenium import webdriver
+
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 class LosAngelesHomelessHelperTest(unittest.TestCase):
-    
+
     @classmethod
     def setUpClass(cls):
-        # Get the current directory
-        current_directory = os.path.dirname(os.path.abspath(__file__))
-
-        # Build the path to chromedriver located in the current directory
-        chromedriver_path = os.path.join(current_directory, 'chromedriver')
-
         # Set Chrome Options
         chrome_options = webdriver.ChromeOptions()
-        chrome_options.binary_location = "./chromedriver"
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
 
-
-        # Start a new instance of the Chrome browser using the local chromedriver
-        cls.driver = webdriver.Chrome(options=chrome_options)
+        # Connect to the Selenium standalone Chrome service
+        cls.driver = webdriver.Remote(
+            command_executor="http://selenium__standalone-chrome:4444/wd/hub",
+            desired_capabilities=DesiredCapabilities.CHROME,
+            options=chrome_options
+        )
         cls.driver.implicitly_wait(10)
+
 
 
     @classmethod
