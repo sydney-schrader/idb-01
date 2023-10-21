@@ -25,6 +25,7 @@ jest_tests:
   script:
     - cd frontend
     - npm install
+    - npm i react-test-renderer
     - npm test
 acceptance_test:
   stage: test
