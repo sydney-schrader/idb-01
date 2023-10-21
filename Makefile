@@ -15,7 +15,7 @@ install:
 	(cd $(FRONTEND_DIR) && npm install @mui/material @emotion/react @emotion/styled)
 	(cd $(FRONTEND_DIR) && npm install axios)
 	(cd $(FRONTEND_DIR) && npm install @react-google-maps/api)
-	(cd $(FRONTEND_DIR) && pip3 install selenium)
+	(cd $(FRONTEND_DIR) && pip install selenium)
 	(cd $(FRONTEND_DIR) && npm install selenium-webdriver)
 	(cd $(FRONTEND_DIR) && npm i --save-dev @types/node)
 
