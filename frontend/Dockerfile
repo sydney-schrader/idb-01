@@ -7,8 +7,10 @@ COPY package.json ./
 COPY package-lock.json ./
 RUN npm install
 
-# Update and install dependencies for Selenium and Google Chrome
+# Install Python, pip and required dependencies
 RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
     wget \
     unzip \
     apt-transport-https \
@@ -16,6 +18,9 @@ RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
     --no-install-recommends
+
+# Install Selenium
+RUN pip3 install selenium
 
 # Add Chrome to sources list
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
