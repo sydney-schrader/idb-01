@@ -26,4 +26,12 @@ jest_tests:
     - cd frontend
     - npm install
     - npm test
+acceptance_test:
+  stage: test
+  image: node:latest
+    script:
+    - cd frontend
+    - cd src
+    - cd __tests__
+    - python3 -m unittest acceptance_tests.py
 
