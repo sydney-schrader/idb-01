@@ -3,7 +3,9 @@ interface CardPaginationProps {
     totalItems: number, 
     paginate:(pageNumber: any)=> void
   }
-  
+
+ 
+
 
   function CardPagination (props: CardPaginationProps) {
   const pageNumbers = [];
@@ -17,7 +19,7 @@ interface CardPaginationProps {
       <ul className='pagination'>
         {pageNumbers.map(number => (
           <li key={number} className='page-item'>
-            <a onClick={() => props.paginate(number)} className='page-link'>
+            <a onClick={() => props.paginate(number)} href='javascript:void(0)' className='page-link'>
               {number}
             </a>
           </li>
