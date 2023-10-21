@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
 import jamie from '../../assets/jamie.jpeg'
@@ -9,8 +10,7 @@ import zach from '../../assets/zach.jpg'
 import bootstrapPic from '../../assets/bootstrapPic.jpeg'
 import gitlabPic from '../../assets/gitlabPic.png'
 import styles from './About.module.css'
-// import { Typography } from "@mui/material";
-import axios from "axios";
+
 
 
 
@@ -356,18 +356,8 @@ const About: React.FC<{}> = () => {
               </Card.Body>
             </Card>
 
-
-
-
         </ div>  
         
-
-
-
-
-
-
-
 
     </div>
 

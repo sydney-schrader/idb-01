@@ -1,11 +1,14 @@
 import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-
-
+import { render, screen } from '@testing-library/react';
 
 import City from '../components/cities/City';
 import Resource from '../components/resources/Resource';
-
+import Medical from '../components/medical/Medical';
+import HomePage from '../components/home/HomePage';
+import About from '../components/about/About';
+import Nav from '../components/Nav/Nav';
+import App from  '../App'
 
 
 it('Init City', () => {
@@ -65,13 +68,66 @@ it('Init Medicare', () => {
     };
     const component = renderer.create(
         <BrowserRouter>
-          <Resource card={medical} />
+          <Medical card={medical} />
         </BrowserRouter>,
       );
     
       let tree = component.toJSON();
       expect(tree).toMatchSnapshot();
 });
-    
+
+it('renders Los Angeles Homeless Helper Home page', () => {
+    render(<HomePage />);
+    expect(screen.getByText('Los Angeles Homeless Helper')).toBeInTheDocument();
+});
+
+it('renders Instances on the Home page', () => {
+    render(<HomePage />);
+    expect(screen.getByText('Instances')).toBeInTheDocument();
+});
+
+it('renders about page', () => {
+    render(<About />);
+    expect(screen.getByText('About LA Homeless Helper')).toBeInTheDocument();
+});
+
+it('renders about page tools', () => {
+    render(<About />);
+    expect(screen.getByText("LA Homeless Helper Sources")).toBeInTheDocument();
+});
+
+it('Init About', () => {
+    const component = renderer.create(
+      <BrowserRouter>
+        <About />
+      </BrowserRouter>,
+    );
+  
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+});
+
+  
+
+it('Init NavBar', () => {
+    const component = renderer.create(
+      <BrowserRouter>
+        <Nav />
+      </BrowserRouter>,
+    );
+  
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+});
+
+
+  
+it('Init App', () => {
+    const component = renderer.create(<App />);
+  
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+});
+  
   
   
