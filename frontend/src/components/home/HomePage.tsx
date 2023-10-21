@@ -37,7 +37,7 @@ function Home() {
                 }}
               ></img>
               <Card.Body>
-                <Button name='href' href='/cities' className='card-link'>
+                <Button name='homeCities' href='/cities' className='card-link'>
                   Explore Cities in LA
                 </Button>
               </Card.Body>
@@ -57,7 +57,7 @@ function Home() {
                 }}
               ></img>
               <Card.Body>
-                <Button name='href' href='/resources' className='card-link'>
+                <Button name='homeResources' href='/resources' className='card-link'>
                   Explore Resources
                 </Button>
               </Card.Body>
@@ -77,7 +77,7 @@ function Home() {
                 }}
               ></img>
               <Card.Body>
-                <Button name='href' href='/medical' className='card-link'>
+                <Button name='homeMedical' href='/medical' className='card-link'>
                   Explore Medical Options
                 </Button>
               </Card.Body>

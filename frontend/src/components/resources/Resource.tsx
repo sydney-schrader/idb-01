@@ -25,7 +25,7 @@ const Resource: React.FC<{}> = (card: any, index:any) => {
                   <a href={card.url || "#"}>{card.url ? "URL for their website" : "Website not available"}</a>
 
               </p>
-                  <Button name='href' href={`/resources/${card.name}`} className='card-link'>
+                  <Button name={card.name} href={`/resources/${card.name}`} className='card-link'>
                     View {card.name}
                   </Button>
                 </Card.Body>

@@ -171,7 +171,7 @@ const ResourceInstancePage: React.FC<{}> = () => {
             </Col>
             </Row>
             </Container>
-            <Button name='href' href='../resources' className='card-link text-warning-emphasis bg-warning border border-warning-subtle rounded-3'>
+            <Button name='backResources' href='../resources' className='card-link text-warning-emphasis bg-warning border border-warning-subtle rounded-3'>
                 Back to Resources
             </Button>
             </div>

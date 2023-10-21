@@ -3,7 +3,9 @@ interface CardPaginationProps {
     totalItems: number, 
     paginate:(pageNumber: any)=> void
   }
-  
+
+ 
+
 
   function CardPagination (props: CardPaginationProps) {
   const pageNumbers = [];
