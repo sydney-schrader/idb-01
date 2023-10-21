@@ -28,8 +28,8 @@ jest_tests:
     - npm test
 acceptance_test:
   stage: test
-  image: node:latest
-  script:
+  image: sydneyschrader/frontend-testing
+    script:
     - cd frontend
     - cd src
     - cd __tests__
