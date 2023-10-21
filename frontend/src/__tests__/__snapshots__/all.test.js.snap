@@ -45,7 +45,7 @@ exports[`Init About 1`] = `
           <img
             alt=""
             className="card-image-top"
-            src="jamie.jpeg"
+            src="jamie.jpg"
             style={
               Object {
                 "width": "100%",
@@ -197,7 +197,7 @@ exports[`Init About 1`] = `
           <img
             alt=""
             className="card-image-top"
-            src="sydney.jpeg"
+            src="sydney.jpg"
             style={
               Object {
                 "width": "90%",
@@ -414,7 +414,7 @@ exports[`Init About 1`] = `
           <img
             alt=""
             className="card-image-top"
-            src="bootstrapPic.jpeg"
+            src="bootstrapPic.jpg"
             style={
               Object {
                 "width": "20%",
@@ -595,7 +595,7 @@ Array [
           <img
             alt=""
             className="card-image-top"
-            src="resources-image.jpeg"
+            src="resources-image.jpg"
             style={
               Object {
                 "width": "90%",
@@ -641,7 +641,7 @@ Array [
           <img
             alt=""
             className="card-image-top"
-            src="medicare-image.jpeg"
+            src="medicare-image.jpg"
             style={
               Object {
                 "width": "100%",

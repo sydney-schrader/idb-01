@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
 # Only calls make all for the pipeline
 job_frontend:
   stage: build
@@ -18,3 +19,10 @@ job_postman:
   script:
     - npm install -g newman
     - newman run "LA Homeless Helper API.postman_collection.json" 
+jest_tests:
+  stage: test
+  script:
+    - cd frontend
+    - npm install
+    - npm test
+
