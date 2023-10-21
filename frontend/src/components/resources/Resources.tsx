@@ -6,8 +6,8 @@ import axios from "axios";
 import Resource from "./Resource";
 import CardPagination from "../CardPagination";
 //fletcher
-const SEARCH_ENGINE_ID = '504ff824e28724d77';
-const GOOGLE_API_KEY = 'AIzaSyDqw5EwUP5HT6F5CiGTulm2qQRbNEGSluY';
+// const SEARCH_ENGINE_ID = '504ff824e28724d77';
+// const GOOGLE_API_KEY = 'AIzaSyDqw5EwUP5HT6F5CiGTulm2qQRbNEGSluY';
 const PIXABAY_API_KEY = '40177514-186bacba2f6bc1c6665874688'; 
 
   
