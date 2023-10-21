@@ -1,62 +1,67 @@
 from flask import *
-# import json
+from flask_cors import CORS
 import query_APIs
+import query_database
+import math
 
 app = Flask(__name__)
+CORS(app)
+ITEMS_PER_PAGE = 9
 
-@app.route("/")
-def home():
-    return render_template("tmp_home.html")
+@app.route("/api/shelters")
+@app.route("/api/shelters/")
+@app.route("/api/shelters/<page>")
+def shelters(page=None):
+    shelters = query_database.query_shelters()
+    if page is None:
+        return shelters
+    num_pages = math.ceil(len(shelters) / ITEMS_PER_PAGE)
+    page = int(page) % num_pages
+    start = ITEMS_PER_PAGE*page
+    return [num_pages] + shelters[start:start+ITEMS_PER_PAGE]
 
-@app.route("/shelters")
-def shelters():
-    shelters = query_APIs.query_API("shelters")
-    return render_template("shelters.html", data=shelters)
-    # return jsonify(shelters)
-
-@app.route("/shelters/<name>")
+@app.route("/api/shelter/<name>")
 def specific_shelter(name):
-    shelters = query_APIs.query_API("shelters")
-    for shelter in shelters:
-        if shelter["Name"] == name:
-            return render_template("specific_shelter.html", data=shelter)
-            # return jsonify(shelter)
-    return "<h1>Error 404 Not Found</h1>"
+    shelter = query_database.query_shelter(name)
+    return shelter
 
-@app.route("/cities")
-def cities():
-    cities = query_APIs.query_API("cities")
-    return render_template("cities.html", data=cities)
-    # return jsonify(cities)
+@app.route("/api/cities")
+@app.route("/api/cities/")
+@app.route("/api/cities/<page>")
+def cities(page=None):
+    cities = query_database.query_cities()
+    if page is None:
+        return cities
+    num_pages = math.ceil(len(cities) / ITEMS_PER_PAGE)
+    page = int(page) % num_pages
+    start = ITEMS_PER_PAGE*page
+    return [num_pages] + cities[start:start+ITEMS_PER_PAGE]
 
-@app.route("/cities/<name>")
+@app.route("/api/city/<name>")
 def specific_city(name):
-    cities = query_APIs.query_API("cities")
-    for city in cities:
-        if city["CSA_Label"] == name:
-            return render_template("specific_city.html", data=city)
-            # return jsonify(city)
-    return "<h1>Error 404 Not Found</h1>"
+    city = query_database.query_city(name)
+    return city
 
-@app.route("/medicare")
-def medicare():
-    medicare = query_APIs.query_API("medicare")
-    return render_template("medicare.html", data=medicare)
-    # return jsonify(medicare)
+@app.route("/api/medicares")
+@app.route("/api/medicares/")
+@app.route("/api/medicares/<page>")
+def medicare(page=None):
+    medicares = query_database.query_medicares()
+    if page is None:
+        return medicares
+    num_pages = math.ceil(len(medicares) / ITEMS_PER_PAGE)
+    page = int(page) % (num_pages+1)
+    start = ITEMS_PER_PAGE*page
+    return [num_pages] + medicares[start:start+ITEMS_PER_PAGE]
 
-@app.route("/medicare/<name>")
+@app.route("/api/medicare/<name>")
 def specific_medicare(name):
-    medicares = query_APIs.query_API("medicare")
-    for medicare in medicares:
-        if medicare["Name"] == name:
-            return render_template("specific_medicare.html", data=medicare)
-            # return jsonify(medicare)
-    return "<h1>Error 404 Not Found</h1>"
+    medicare = query_database.query_medicare(name)
+    return medicare
 
-@app.route("/about")
+@app.route("/api/about")
 def about():
     author_map = query_APIs.query_gitlab()
-    # return render_template("about.html", data=author_map)
     return jsonify(author_map)
 
 if __name__ == "__main__":
