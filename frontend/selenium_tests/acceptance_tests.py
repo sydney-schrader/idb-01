@@ -15,19 +15,20 @@ class LosAngelesHomelessHelperTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        # Set Chrome Options
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
+            # Set Chrome Options
+            chrome_options = webdriver.ChromeOptions()
+            chrome_options.add_argument('--headless')
+            chrome_options.add_argument('--no-sandbox')
+            chrome_options.add_argument('--disable-dev-shm-usage')
 
-        # Connect to the Selenium standalone Chrome service
-        cls.driver = webdriver.Remote(
-            command_executor="http://selenium__standalone-chrome:4444/wd/hub",
-            desired_capabilities=DesiredCapabilities.CHROME,
-            options=chrome_options
-        )
-        cls.driver.implicitly_wait(10)
+                # Connect to the Selenium standalone Chrome service (for CI)
+            cls.driver = webdriver.Remote(
+                    command_executor="http://selenium__standalone-chrome:4444/wd/hub",
+                    options=chrome_options
+                )
+            
+            cls.driver.implicitly_wait(10)
+
 
 
 
