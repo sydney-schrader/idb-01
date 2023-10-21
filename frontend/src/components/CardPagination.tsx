@@ -19,10 +19,9 @@ interface CardPaginationProps {
       <ul className='pagination'>
         {pageNumbers.map(number => (
           <li key={number} className='page-item'>
-            <a onClick={() => props.paginate(number)} href='javascript:void(0)' className='page-link'>
-              {number}
-            </a>
-          </li>
+          <button onClick={() => props.paginate(number)}>{number} </button>
+          
+        </li>
         ))}
       </ul>
     </nav>

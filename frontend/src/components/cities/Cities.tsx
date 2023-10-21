@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Container, Col } from 'react-bootstrap'
 import { useImages } from '../ImageContext';
-import arcadia from '../../assets/arcadia.jpeg'
+import arcadia from '../../assets/arcadia.jpg'
 import axios from "axios"; 
 import City from "./City";
 import CardPagination from "../CardPagination";

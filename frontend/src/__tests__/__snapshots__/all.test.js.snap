@@ -13,7 +13,7 @@ exports[`Init About 1`] = `
     <div
       className="textType"
     >
-      California has the largest amount of homless in the United States, the majority being in LA County. This website is a tool designed for people wanting to help the homeless of LA County and also a tool for homeless people to see what resources are available for them.
+      California has the largest amount of homless in the United States, the majority being in LA County. This website links together city homeless data, homeless resource data, and medicare/medicaid data. This disparate data can be used to analyze what locations have what services, and could be used to see what locations could use more help based on homless population density. This tool is designed for people wanting to help the homeless of LA County and also a tool for homeless people to see what resources are available for them.
     </div>
   </div>
   <div
@@ -45,7 +45,7 @@ exports[`Init About 1`] = `
           <img
             alt=""
             className="card-image-top"
-            src="jamie.jpeg"
+            src="jamie.jpg"
             style={
               Object {
                 "width": "100%",
@@ -197,7 +197,7 @@ exports[`Init About 1`] = `
           <img
             alt=""
             className="card-image-top"
-            src="sydney.jpeg"
+            src="sydney.jpg"
             style={
               Object {
                 "width": "90%",
@@ -414,7 +414,7 @@ exports[`Init About 1`] = `
           <img
             alt=""
             className="card-image-top"
-            src="bootstrapPic.jpeg"
+            src="bootstrapPic.jpg"
             style={
               Object {
                 "width": "20%",
@@ -595,7 +595,7 @@ Array [
           <img
             alt=""
             className="card-image-top"
-            src="resources-image.jpeg"
+            src="resources-image.jpg"
             style={
               Object {
                 "width": "90%",
@@ -641,7 +641,7 @@ Array [
           <img
             alt=""
             className="card-image-top"
-            src="medicare-image.jpeg"
+            src="medicare-image.jpg"
             style={
               Object {
                 "width": "100%",

@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
-import jamie from '../../assets/jamie.jpeg'
+import jamie from '../../assets/jamie.jpg'
 import pavan from '../../assets/pavan.jpg'
-import sydney from '../../assets/sydney.jpeg'
+import sydney from '../../assets/sydney.jpg'
 import john from '../../assets/john.jpg'
 import zach from '../../assets/zach.jpg'
-import bootstrapPic from '../../assets/bootstrapPic.jpeg'
+import bootstrapPic from '../../assets/bootstrapPic.jpg'
 import gitlabPic from '../../assets/gitlabPic.png'
 import styles from './About.module.css'
 
@@ -41,7 +41,10 @@ const About: React.FC<{}> = () => {
             <h1>About LA Homeless Helper</h1>
             <div className= {styles['textType']}>
             California has the largest amount of homless in the United States, the majority being in LA County. 
-            This website is a tool designed for people wanting to help the homeless of LA County and also a tool 
+            This website links together city homeless data, homeless resource data, and medicare/medicaid data. 
+            This disparate data can be used to analyze what locations have what services, and could be used to see what
+            locations could use more help based on homless population density. This tool is designed
+            for people wanting to help the homeless of LA County and also a tool 
             for homeless people to see what resources are available for them.
             </div>
 

@@ -3,9 +3,9 @@ import './home.css'
 import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import medicarePic from '../../assets/medicare-image.jpeg'
+import medicarePic from '../../assets/medicare-image.jpg'
 import citiesPic from '../../assets/cities-image.jpg'
-import resourcesPic from '../../assets/resources-image.jpeg'
+import resourcesPic from '../../assets/resources-image.jpg'
 
 
 function Home() {
