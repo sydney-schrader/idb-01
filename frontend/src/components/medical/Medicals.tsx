@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Container, Col} from 'react-bootstrap'
-import ssa from '../../assets/ssa.jpeg'
+import ssa from '../../assets/ssa.jpg'
 import axios from "axios"; 
 import Medical from "./Medical";
 import { useImages } from '../ImageContext';

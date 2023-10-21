@@ -3,8 +3,8 @@ import { Button, Container, Row, Col, Card} from 'react-bootstrap'
 import axios from "axios"; 
 import { useParams } from "react-router-dom";
 import { useImages } from "../ImageContext";
-import arcadia from '../../assets/arcadia.jpeg'
-import ssa from '../../assets/ssa.jpeg'
+import arcadia from '../../assets/arcadia.jpg'
+import ssa from '../../assets/ssa.jpg'
 import volunteer from '../../assets/volunteer.jpg'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 const GOOGLE_API_KEY_MAP = 'AIzaSyDLa1azh_pIsTMJnhcgNuqobgRfoh9wsgY';
