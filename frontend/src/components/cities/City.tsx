@@ -25,7 +25,7 @@ const City: React.FC<{}> = (card: any, index:any) => {
                   Square miles of city: {card.square_miles}<br/>
                   Density of total homeless population: {card.density_total} 
               </p>
-                  <Button name='href' href={`/cities/${card.csa_label}`} className='card-link '>
+                  <Button name={card.csa_label} href={`/cities/${card.csa_label}`} className='card-link '>
                     View {card.csa_label}
                   </Button>
                 </Card.Body>

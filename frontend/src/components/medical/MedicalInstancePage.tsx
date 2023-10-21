@@ -171,7 +171,7 @@ const MedicalInstancePage: React.FC<{}> = () => {
             </Col>
             </Row>
             </Container>
-            <Button name='href' href='../medical' className='card-link text-warning-emphasis bg-warning border border-warning-subtle rounded-3'>
+            <Button name='backMedical' href='../medical' className='card-link text-warning-emphasis bg-warning border border-warning-subtle rounded-3'>
                 Back to Medical
             </Button>
             </div>

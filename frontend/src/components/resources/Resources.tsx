@@ -8,6 +8,8 @@ import CardPagination from "../CardPagination";
 //fletcher
 const SEARCH_ENGINE_ID = '504ff824e28724d77';
 const GOOGLE_API_KEY = 'AIzaSyDqw5EwUP5HT6F5CiGTulm2qQRbNEGSluY';
+const PIXABAY_API_KEY = '40177514-186bacba2f6bc1c6665874688'; 
+
   
 const Resources: React.FC<{}> = () => {
     
@@ -22,17 +24,19 @@ const Resources: React.FC<{}> = () => {
         return images[shelterName];
     }
 
-    const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(shelterName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
+    const endpoint = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(shelterName)}&image_type=photo&per_page=1`;
+
     try {
         const response = await axios.get(endpoint);
-        if (response.data.items && response.data.items.length > 0) {
-            setImage(shelterName, response.data.items[0].link);
-            return response.data.items[0].link;
+        if (response.data.hits && response.data.hits.length > 0) {
+            const imageUrl = response.data.hits[0].webformatURL; // Using 'webformatURL' as an example. Pixabay provides multiple image sizes.
+            setImage(shelterName, imageUrl);
+            return imageUrl;
         }
     } catch (error) {
-        console.error("Error fetching image:", error);
+        console.error("Error fetching image from Pixabay:", error);
     }
-    return volunteer;
+    return volunteer; // Fallback to the volunteer image if no image is found on Pixabay
 }, [images, setImage]);
 
 

@@ -181,7 +181,7 @@ const CityInstancePage: React.FC<{}> = () => {
         }
     
         handleCityList();
-    }, [cityName, fetchCityImage, shelterData]); 
+    }, [cityName, fetchCityImage]); 
 
     return (
         <>
@@ -228,7 +228,7 @@ const CityInstancePage: React.FC<{}> = () => {
             </Col>
             </Row>
             </Container>
-            <Button name='href' href='../cities' className='card-link text-warning-emphasis bg-warning border border-warning-subtle rounded-3'>
+            <Button name='backCities' href='../cities' className='card-link text-warning-emphasis bg-warning border border-warning-subtle rounded-3'>
                 Back to Cities
             </Button>
             </div>
