@@ -35,7 +35,7 @@ acceptance_test:
   before_script:
     - pip3 install selenium
   script:
-    - cd frontend/src/__tests__
+    - cd frontend/selenium_tests
     - python3 -m unittest acceptance_tests.py
 
 
