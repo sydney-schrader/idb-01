@@ -28,10 +28,18 @@ jest_tests:
     - npm test
 acceptance_test:
   stage: test
-  image: sydneyschrader/frontend-testing
-    script:
-    - cd frontend
-    - cd src
-    - cd __tests__
+  image: python:latest
+  services:
+    - selenium/standalone-chrome
+  script:
+    - cd frontend/selenium_tests
+    - pip3 install --no-cache-dir -r requirements.txt
+    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+    - sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+    - apt-get update -q -y
+    - apt-get -y install google-chrome-stable
+    - apt-get --yes install libnss3
+    - apt-get --yes install libgconf-2-4
+    - apt-get install libx11-xcb1
     - python3 -m unittest acceptance_tests.py
 
