@@ -29,7 +29,7 @@ jest_tests:
 acceptance_test:
   stage: test
   image: node:latest
-    script:
+  script:
     - cd frontend
     - cd src
     - cd __tests__
