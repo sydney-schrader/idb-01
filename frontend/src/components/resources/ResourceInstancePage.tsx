@@ -3,7 +3,6 @@ import { Button, Container, Row, Col, Card } from 'react-bootstrap'
 import { useImages } from "../ImageContext";
 import volunteer from '../../assets/volunteer.jpg'
 import axios from "axios"; 
-import fs from "fs";
 import ssa from '../../assets/ssa.jpg'
 import { useParams } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
