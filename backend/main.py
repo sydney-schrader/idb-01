@@ -1,4 +1,4 @@
-from flask import *
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import query_APIs
 import query_database
@@ -12,6 +12,9 @@ ITEMS_PER_PAGE = 9
 @app.route("/api/shelters/")
 @app.route("/api/shelters/<page>")
 def shelters(page=None):
+    query = request.args.get("q")
+    if query != None:
+        return query_database.search_shelters(query)
     shelters = query_database.query_shelters()
     if page is None:
         return shelters
@@ -29,6 +32,9 @@ def specific_shelter(name):
 @app.route("/api/cities/")
 @app.route("/api/cities/<page>")
 def cities(page=None):
+    query = request.args.get("q")
+    if query != None:
+        return query_database.search_cities(query)
     cities = query_database.query_cities()
     if page is None:
         return cities
@@ -46,6 +52,9 @@ def specific_city(name):
 @app.route("/api/medicares/")
 @app.route("/api/medicares/<page>")
 def medicare(page=None):
+    query = request.args.get("q")
+    if query != None:
+        return query_database.search_medicares(query)
     medicares = query_database.query_medicares()
     if page is None:
         return medicares

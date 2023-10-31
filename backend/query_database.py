@@ -32,6 +32,13 @@ def query_cities():
         cities = [row[0].to_dict() for row in res]
     return cities
 
+def search_cities(query):
+    with Session(engine) as session:
+        query_statement = session.query(City).filter(City.csa_label.ilike(f'%{query}%'))
+        results = list(session.execute(query_statement))
+        cities = [row[0].to_dict() for row in results]
+    return cities
+
 def query_shelter(name):
     select_statement = select(Shelter).where(Shelter.name == name)
     with Session(engine) as session:
@@ -49,6 +56,13 @@ def query_shelters():
         # session.execute returns an iterator of single value tuples. Get the
         # first value of each single value tuple to make a 1 dimensional list
         shelters = [row[0].to_dict() for row in res]
+    return shelters
+
+def search_shelters(query):
+    with Session(engine) as session:
+        query_statement = session.query(Shelter).filter(Shelter.name.ilike(f'%{query}%'))
+        results = list(session.execute(query_statement))
+        shelters = [row[0].to_dict() for row in results]
     return shelters
 
 def query_medicare(name):
@@ -69,6 +83,13 @@ def query_medicares():
         # first value of each single value tuple to make a 1 dimensional list
         offices = [row[0].to_dict() for row in res]
     return offices
+
+def search_medicares(query):
+    with Session(engine) as session:
+        query_statement = session.query(Medicare).filter(Medicare.name.ilike(f'%{query}%'))
+        results = list(session.execute(query_statement))
+        medicares = [row[0].to_dict() for row in results]
+    return medicares
 
 if __name__ == "__main__":
     # print(query_city('Unincorporated - Wiseburn'))
