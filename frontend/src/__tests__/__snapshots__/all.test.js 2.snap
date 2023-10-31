@@ -1,0 +1,901 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Init About 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="col"
+  >
+    <h1>
+      About LA Homeless Helper
+    </h1>
+    <div
+      className="textType"
+    >
+      California has the largest amount of homless in the United States, the majority being in LA County. This website is a tool designed for people wanting to help the homeless of LA County and also a tool for homeless people to see what resources are available for them.
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="card mx-auto"
+    >
+      <div
+        className="card-group"
+      >
+        <div
+          className="card"
+          style={
+            Object {
+              "alignItems": "center",
+              "height": "40rem",
+              "width": "18rem",
+            }
+          }
+        >
+          <div
+            className="header-1 card-title h5"
+          >
+            <b>
+              Jamie Wong
+            </b>
+          </div>
+          <img
+            alt=""
+            className="card-image-top"
+            src="jamie.jpeg"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          />
+          <div
+            className="card-body"
+          >
+            <p>
+              <div
+                className="devType"
+              >
+                Frontend Developer
+              </div>
+              Im a senior computer science student at UT Austin. I'm from Houston, Texas and I like to read and play poker
+              <br />
+            </p>
+            <div>
+              Number of Commits:
+               
+              0
+            </div>
+            <div>
+              Issues Solved:
+               
+              0
+            </div>
+          </div>
+        </div>
+        <div
+          className="card"
+          style={
+            Object {
+              "alignItems": "center",
+              "height": "40rem",
+              "width": "18rem",
+            }
+          }
+        >
+          <div
+            className="header-1 card-title h5"
+          >
+            <b>
+              John Park
+            </b>
+          </div>
+          <img
+            alt=""
+            className="card-image-top"
+            src="john.jpg"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          />
+          <div
+            className="card-body"
+          >
+            <p>
+              <div
+                className="devType"
+              >
+                Full Stack Developer
+              </div>
+              I’m a senior CS student from Austin, TX. My favorite hobby is training jiu jitsu.
+            </p>
+            <div>
+              Number of Commits:
+               
+              0
+            </div>
+            <div>
+              Issues Solved:
+               
+              0
+            </div>
+          </div>
+        </div>
+        <div
+          className="card"
+          style={
+            Object {
+              "alignItems": "center",
+              "height": "40rem",
+              "width": "18rem",
+            }
+          }
+        >
+          <div
+            className="header-1 card-title h5"
+          >
+            <b>
+              Pavan Marathi
+            </b>
+          </div>
+          <img
+            alt=""
+            className="card-image-top"
+            src="pavan.jpg"
+            style={
+              Object {
+                "width": "90%",
+              }
+            }
+          />
+          <div
+            className="card-body"
+          >
+            <p>
+              <div
+                className="devType"
+              >
+                Backend Developer
+              </div>
+              I'm a Junior from Houston, TX. I enjoy rock climbing and board games in my spare time. 
+              <br />
+            </p>
+            <div>
+              Number of Commits:
+               
+              0
+            </div>
+            <div>
+              Issues Solved:
+               
+              0
+            </div>
+          </div>
+        </div>
+        <div
+          className="card"
+          style={
+            Object {
+              "alignItems": "center",
+              "height": "40rem",
+              "width": "18rem",
+            }
+          }
+        >
+          <div
+            className="header-1 card-title h5"
+          >
+            <b>
+              Sydney Schrader
+            </b>
+          </div>
+          <img
+            alt=""
+            className="card-image-top"
+            src="sydney.jpeg"
+            style={
+              Object {
+                "width": "90%",
+              }
+            }
+          />
+          <div
+            className="card-body"
+          >
+            <p>
+              <div
+                className="devType"
+              >
+                Frontend Developer
+              </div>
+              I'm a Junior from Austin, TX. I like to go to Barton Springs and read in my free time.
+            </p>
+            <div>
+              Number of Commits:
+               
+              0
+            </div>
+            <div>
+              Issues Solved:
+               
+              0
+            </div>
+          </div>
+        </div>
+        <div
+          className="card"
+          style={
+            Object {
+              "alignItems": "center",
+              "height": "40rem",
+              "width": "18rem",
+            }
+          }
+        >
+          <div
+            className="header-1 card-title h5"
+          >
+            <b>
+              Zachary Voltz
+            </b>
+          </div>
+          <img
+            alt=""
+            className="card-image-top"
+            src="zach.jpg"
+            style={
+              Object {
+                "width": "90%",
+              }
+            }
+          />
+          <div
+            className="card-body"
+          >
+            <p>
+              <div
+                className="devType"
+              >
+                Backend Developer
+              </div>
+              I'm a senior CS student from Houston, Texas, and I've been programming since I was 9. Outside of programming, I like to read manga and rock climb
+            </p>
+            <div>
+              Number of Commits:
+               
+              0
+            </div>
+            <div>
+              Issues Solved:
+               
+              0
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="col"
+  >
+    <div
+      className="heading1Type"
+    >
+      LA Homeless Helper Sources
+    </div>
+    <div
+      className="d-flex position-relative"
+    >
+      <div
+        className="position-relative"
+      >
+        <div
+          className="linkSpaceType"
+        >
+          <a
+            className="stretched-link"
+            href="https://geohub.lacity.org/datasets/lacounty::homeless-counts-2020/explore?location=33.759300%2C-117.328488%2C8.29&showTable=true"
+          >
+            City Data
+          </a>
+        </div>
+      </div>
+      <div
+        className="position-relative"
+      >
+        <div
+          className="linkSpaceType"
+        >
+          <a
+            className="stretched-link"
+            href="https://geohub.lacity.org/datasets/lacounty::homeless-shelters-and-services/api"
+          >
+            Resource Data
+          </a>
+        </div>
+      </div>
+      <div
+        className="position-relative"
+      >
+        <div
+          className="linkSpaceType"
+        >
+          <a
+            className="stretched-link"
+            href="https://geohub.lacity.org/datasets/lacounty::medicare-and-medicaid-offices/api"
+          >
+            Medical Data
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      className="heading1Type"
+    >
+      Tools
+    </div>
+    <div
+      className="card mx-auto"
+    >
+      <div
+        className="card-group"
+      >
+        <div
+          className="card"
+          style={
+            Object {
+              "alignItems": "center",
+              "height": "20rem",
+              "width": "10rem",
+            }
+          }
+        >
+          <div
+            className="header-1 card-title h5"
+          >
+            <b>
+              Gitlab
+            </b>
+          </div>
+          <img
+            alt=""
+            className="card-image-top"
+            src="gitlabPic.png"
+            style={
+              Object {
+                "width": "20%",
+              }
+            }
+          />
+          <div
+            className="card-body"
+          >
+            <p>
+              <div
+                className="devType"
+              >
+                Gitlab
+              </div>
+              <div
+                className="position-relative"
+              >
+                <a
+                  className="stretched-link"
+                  href="https://gitlab.com/sydneyschrader/cs373-idb-01"
+                >
+                  Our Repository
+                </a>
+              </div>
+            </p>
+          </div>
+        </div>
+        <div
+          className="card"
+          style={
+            Object {
+              "alignItems": "center",
+              "height": "20rem",
+              "width": "10rem",
+            }
+          }
+        >
+          <div
+            className="header-1 card-title h5"
+          >
+            <b>
+              Bootstrap
+            </b>
+          </div>
+          <img
+            alt=""
+            className="card-image-top"
+            src="bootstrapPic.jpeg"
+            style={
+              Object {
+                "width": "20%",
+              }
+            }
+          />
+          <div
+            className="card-body"
+          >
+            <p>
+              <div
+                className="devType"
+              >
+                Gitlab
+              </div>
+              <div
+                className="position-relative"
+              >
+                <a
+                  className="stretched-link"
+                  href="https://getbootstrap.com/"
+                >
+                  Bootstrap Website
+                </a>
+              </div>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Init App 1`] = `
+Array [
+  <nav
+    className="navbar"
+  >
+    <div
+      className="links-container"
+    >
+      <div
+        className="link"
+      >
+        <a
+          href="/home"
+        >
+          Home
+        </a>
+      </div>
+      <div
+        className="link"
+      >
+        <a
+          href="/about"
+        >
+          About
+        </a>
+      </div>
+      <div
+        className="link"
+      >
+        <a
+          href="/cities"
+        >
+          Cities
+        </a>
+      </div>
+      <div
+        className="link"
+      >
+        <a
+          href="/resources"
+        >
+          Resources
+        </a>
+      </div>
+      <div
+        className="link"
+      >
+        <a
+          href="/medical"
+        >
+          Medical
+        </a>
+      </div>
+    </div>
+  </nav>,
+  <div
+    className="background"
+  >
+    <h1
+      className="title"
+    >
+      Los Angeles 
+      <br />
+       Homeless Helper
+    </h1>
+  </div>,
+  <div>
+    <h1
+      className="lower-title"
+    >
+      Instances
+    </h1>
+  </div>,
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col"
+      >
+        <div
+          className="card"
+          style={
+            Object {
+              "alignItems": "center",
+            }
+          }
+        >
+          <div
+            className="header-1 card-title h5"
+          >
+            <b>
+              Cities
+            </b>
+          </div>
+          <img
+            alt=""
+            className="card-image-top"
+            src="cities-image.jpg"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          />
+          <div
+            className="card-body"
+          >
+            <a
+              className="card-link btn btn-primary"
+              disabled={false}
+              href="/cities"
+              name="href"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              role="button"
+              tabIndex={0}
+            >
+              Explore Cities in LA
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        className="col"
+      >
+        <div
+          className="card"
+          style={
+            Object {
+              "alignItems": "center",
+            }
+          }
+        >
+          <div
+            className="header-1 card-title h5"
+          >
+            <b>
+              Resources
+            </b>
+          </div>
+          <img
+            alt=""
+            className="card-image-top"
+            src="resources-image.jpeg"
+            style={
+              Object {
+                "width": "90%",
+              }
+            }
+          />
+          <div
+            className="card-body"
+          >
+            <a
+              className="card-link btn btn-primary"
+              disabled={false}
+              href="/resources"
+              name="href"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              role="button"
+              tabIndex={0}
+            >
+              Explore Resources
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        className="col"
+      >
+        <div
+          className="card"
+          style={
+            Object {
+              "alignItems": "center",
+            }
+          }
+        >
+          <div
+            className="header-1 card-title h5"
+          >
+            <b>
+              Medical
+            </b>
+          </div>
+          <img
+            alt=""
+            className="card-image-top"
+            src="medicare-image.jpeg"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          />
+          <div
+            className="card-body"
+          >
+            <a
+              className="card-link btn btn-primary"
+              disabled={false}
+              href="/medical"
+              name="href"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              role="button"
+              tabIndex={0}
+            >
+              Explore Medical Options
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Init City 1`] = `
+<div
+  className="box card"
+  style={
+    Object {
+      "alignItems": "center",
+      "padding": "0 20px",
+      "width": "18rem",
+    }
+  }
+>
+  <div
+    className="header-1 card-title h5"
+  >
+    <b />
+  </div>
+  <img
+    className="card-image-top"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  />
+  <div
+    className="text-center card-body"
+  >
+    <p>
+      Unsheltered population: 
+       
+      <br />
+      Sheltered population: 
+       
+      <br />
+      Total homeless population: 
+       
+      <br />
+      Square miles of city: 
+      <br />
+      Density of total homeless population: 
+    </p>
+    <a
+      className="card-link  btn btn-primary"
+      disabled={false}
+      href="/cities/undefined"
+      name="href"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      View 
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Init Medicare 1`] = `
+<div
+  className="box card"
+  style={
+    Object {
+      "alignItems": "center",
+      "width": "18rem",
+    }
+  }
+>
+  <div
+    className="header-1 card-title h5"
+  >
+    <b />
+  </div>
+  <img
+    className="card-image-top"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  />
+  <div
+    className="card-body"
+  >
+    <p>
+      Name: 
+       
+      <br />
+      Address: 
+       
+      <br />
+      Hours: 
+       
+      <br />
+      Phone number: 
+      <br />
+      City: 
+    </p>
+    <a
+      className="card-link btn btn-primary"
+      disabled={false}
+      href="/medical/undefined"
+      name="href"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      View 
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Init NavBar 1`] = `
+<nav
+  className="navbar"
+>
+  <div
+    className="links-container"
+  >
+    <div
+      className="link"
+    >
+      <a
+        href="/home"
+      >
+        Home
+      </a>
+    </div>
+    <div
+      className="link"
+    >
+      <a
+        href="/about"
+      >
+        About
+      </a>
+    </div>
+    <div
+      className="link"
+    >
+      <a
+        href="/cities"
+      >
+        Cities
+      </a>
+    </div>
+    <div
+      className="link"
+    >
+      <a
+        href="/resources"
+      >
+        Resources
+      </a>
+    </div>
+    <div
+      className="link"
+    >
+      <a
+        href="/medical"
+      >
+        Medical
+      </a>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`Init Resource 1`] = `
+<div
+  className="box card"
+  style={
+    Object {
+      "alignItems": "center",
+      "width": "18rem",
+    }
+  }
+>
+  <div
+    className="header-1 card-title h5"
+  >
+    <b />
+  </div>
+  <img
+    className="card-image-top"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  />
+  <div
+    className="card-body"
+  >
+    <p>
+      Name: 
+       
+      <br />
+      Address: 
+       
+      <br />
+      Hours: 
+       
+      <br />
+      Zip Code: 
+      <br />
+      <a
+        href="#"
+      >
+        Website not available
+      </a>
+    </p>
+    <a
+      className="card-link btn btn-primary"
+      disabled={false}
+      href="/resources/undefined"
+      name="href"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      View 
+    </a>
+  </div>
+</div>
+`;
