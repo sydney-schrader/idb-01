@@ -14,8 +14,9 @@ ITEMS_PER_PAGE = 9
 def shelters(page=None):
     query = request.args.get("q")
     if query != None:
-        return query_database.search_shelters(query)
-    shelters = query_database.query_shelters()
+        shelters = query_database.search_shelters(query)
+    else:
+        shelters = query_database.query_shelters()
     if page is None:
         return shelters
     num_pages = math.ceil(len(shelters) / ITEMS_PER_PAGE)
@@ -34,8 +35,9 @@ def specific_shelter(name):
 def cities(page=None):
     query = request.args.get("q")
     if query != None:
-        return query_database.search_cities(query)
-    cities = query_database.query_cities()
+        cities = query_database.search_cities(query)
+    else:
+        cities = query_database.query_cities()
     if page is None:
         return cities
     num_pages = math.ceil(len(cities) / ITEMS_PER_PAGE)
@@ -54,8 +56,9 @@ def specific_city(name):
 def medicare(page=None):
     query = request.args.get("q")
     if query != None:
-        return query_database.search_medicares(query)
-    medicares = query_database.query_medicares()
+        medicares = query_database.search_medicares(query)
+    else:
+        medicares = query_database.query_medicares()
     if page is None:
         return medicares
     num_pages = math.ceil(len(medicares) / ITEMS_PER_PAGE)
