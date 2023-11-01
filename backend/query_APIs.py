@@ -43,7 +43,7 @@ apis = {"shelters" : "https://public.gis.lacounty.gov/public/rest/services/LACou
         "commits" : "https://gitlab.com/api/v4/projects/sydneyschrader%2Fcs373-idb-01/repository/commits?ref_name=main",
         "issues" : "https://gitlab.com/api/v4/projects/sydneyschrader%2Fcs373-idb-01/issues?state=closed&per_page=500"}
 
-authors = ["Zachary%20Voltz", "Jamie%20Wong", "John%20Park", "Pavan%20Marathi", "Sydney%20Schrader"]
+authors = ["Zachary%20Voltz", "Jamie%20Wong", "Pavan%20Marathi", "Sydney%20Schrader"]
 
 """
 Takes in a string api_name which can take 1 of 3 values: "shelters", "cities",
@@ -59,21 +59,22 @@ def query_API(api_name):
     return items
 
 """
-Queries Gitlab for our repository, gets every commit and issue.
-Returns a dict that maps a string name to a dict with keys "issues" and 
-"commits" that map to an int of number of issues closed or commits made. This 
-does not include coauthors yet but should do so in the future.
+Queries Gitlab for our repository and gets every commit and issue.
+Returns a list of dicts each with keys "name", "commits", and "issues" that map
+to a string of that person's name, an int of number of commits made, and an int
+of number of issues closed respectively.
 """
 def query_gitlab():
-    author_map = {}
     commit_map = query_commits()
     issue_map = query_issues()
-    for author in commit_map.keys():
-        author_map.setdefault(author, {})["commits"] = commit_map[author]
-    for author in issue_map.keys():
-        author_map.setdefault(author, {})["issues"] = issue_map[author]
     
-    return author_map
+    author_list = []
+    for author in commit_map.keys():
+        author_map = {"name" : author, "commits" : commit_map[author],
+                         "issues" : issue_map[author]}
+        author_list.append(author_map)
+
+    return author_list
 
 """
 Queries Gitlab for all commits, returns a dictionary mapping a string name to
