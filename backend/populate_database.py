@@ -33,6 +33,14 @@ Base.metadata.create_all(engine)
 with open("coords.json") as city_coords:
     city_longitude_latitudes = json.load(city_coords)
 
+with open("../mappings.json") as f:
+    mappings = json.load(f)
+    city_images = mappings["cities"]
+    shelter_images = mappings["resources"]
+    medicare_images = mappings["medical"]
+
+
+
 # Add to city table
 print("adding cities")
 cities = filter_json(query_APIs.query_API("cities"), ["CSA_Label", "Total_Unsheltered_Pop", 
@@ -42,6 +50,7 @@ with Session(engine) as session:
         if city_info["csa_label"] not in city_longitude_latitudes:
             print("Skipping city", city_info["csa_label"])
             continue
+        city_info["image_url"] = city_images[city_info["csa_label"]]
         city = City(**city_info)
         session.add(city)
     session.commit()
@@ -52,6 +61,7 @@ shelters = filter_json(query_APIs.query_API("shelters"), ["Name", "addrln1", "ho
     "phone", "url", "post_id", "description", "zip", "link", "latitude", "longitude", "date_updated"])
 with Session(engine) as session:
     for shelter_info in shelters:
+        shelter_info["image_url"] = shelter_images[shelter_info["name"]]
         shelter = Shelter(**shelter_info)
         session.add(shelter)
     session.commit()
@@ -62,6 +72,7 @@ medicares = filter_json(query_APIs.query_API("medicare"), ["Name", "addrln1", "a
     "hours", "phones", "post_id", "description", "zip", "latitude", "longitude", "date_updated"])
 with Session(engine) as session:
     for medicare_info in medicares:
+        medicare_info["image_url"] = medicare_images[medicare_info["name"]]
         medicare = Medicare(**medicare_info)
         session.add(medicare)
     session.commit()

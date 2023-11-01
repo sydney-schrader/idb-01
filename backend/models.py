@@ -21,6 +21,7 @@ class City(Base):
     density_unsheltered: Mapped[float]
     density_sheltered: Mapped[float] = mapped_column(nullable=True)
     density_total: Mapped[float]
+    image_url: Mapped[String] = mapped_column(String(400))
     shelter: Mapped[str] = mapped_column(String(200), nullable=True)
     medicare: Mapped[str] = mapped_column(String(200), nullable=True)
 
@@ -36,6 +37,7 @@ class City(Base):
                 "density_unsheltered" : self.density_unsheltered,
                 "density_sheltered" : self.density_sheltered,
                 "density_total" : self.density_total,
+                "image_url" : self.image_url,
                 "shelters" : self.shelter,
                 "medicares" : self.medicare}
 
@@ -55,6 +57,7 @@ class Shelter(Base):
     latitude: Mapped[float]
     longitude: Mapped[float]
     date_updated: Mapped[str] = mapped_column(String(100))
+    image_url: Mapped[String] = mapped_column(String(450))
     closest_medicares: Mapped[list["Medicare"]] = relationship("Medicare", secondary="association_table", back_populates="closest_shelters")
 
     def __repr__(self) -> str:
@@ -69,6 +72,7 @@ class Shelter(Base):
                 "link" : self.link, "latitude" : self.latitude, 
                 "longitude" : self.longitude, 
                 "date_updated" : self.date_updated,
+                "image_url" : self.image_url,
                 "medicare_name" : self.closest_medicares[0].name,
                 "medicare_addrln1" : self.closest_medicares[0].addrln1,
                 "medicare_addrln2" : self.closest_medicares[0].addrln2,
@@ -88,6 +92,7 @@ class Medicare(Base):
     latitude: Mapped[float]
     longitude: Mapped[float]
     date_updated: Mapped[str] = mapped_column(String(100))
+    image_url: Mapped[String] = mapped_column(String(250))
     closest_shelters: Mapped[list["Shelter"]] = relationship("Shelter", secondary="association_table", back_populates="closest_medicares")
 
     def __repr__(self) -> str:
@@ -101,6 +106,7 @@ class Medicare(Base):
                 "zip" : self.zip, "latitude" : self.latitude, 
                 "longitude" : self.longitude, 
                 "date_updated" : self.date_updated,
+                "image_url" : self.image_url,
                 "shelter_name" : self.closest_shelters[0].name, 
                 "shelter_addrln1" : self.closest_shelters[0].addrln1,
                 "shelter_addrln2" : self.closest_shelters[0].addrln2,
