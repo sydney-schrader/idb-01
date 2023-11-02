@@ -15,6 +15,7 @@ import Tool from "./Tool";
 import arcadia from '../../assets/arcadia.jpg'
 import volunteer from '../../assets/volunteer.jpg'
 import ssa from '../../assets/ssa.jpg'
+import reactPic from '../../assets/React-icon.jpg'
 
 import {
   CardContent,
@@ -26,6 +27,7 @@ import {
   Tooltip,
   Skeleton,
 } from "@mui/material";
+import ApiTool from "./ApiTool";
 
 
 // Developer card info
@@ -92,6 +94,17 @@ const apiTools: ToolInfo[] = [
     url: "https://geohub.lacity.org/datasets/lacounty::medicare-and-medicaid-offices/api" 
   }
 ];
+
+const devTools: ToolInfo[] = [
+  { name: "Gitlab", imagePath: gitlabPic, description: "Development Platform", 
+    url: "https://gitlab.com/sydneyschrader/cs373-idb-01"
+  }, 
+  { name: "React", imagePath: reactPic, description: "Web UI Library", 
+    url: "https://react.dev/"
+  }, 
+
+];
+
 
 const About: React.FC<{}> = () => {
 
@@ -182,78 +195,31 @@ const About: React.FC<{}> = () => {
         justifyContent="center"
         sx={{ padding: "36px" }}
         >
-          {apiTools.map(Tool)}
+          {apiTools.map(ApiTool)}
         </ Stack>
   
-    
+
+        <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ padding: "20px" }}
+        >
+          <Typography gutterBottom variant="h4" component="div" align='center'>
+            Tools
+          </Typography>
+        </Stack>
+
+        <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ padding: "36px" }}
+        >
+          {devTools.map(Tool)}
+        </ Stack>
 
 
-        
-
-        
-    
-   
-
-    <div className= {styles['heading1Type']}>
-        Tools
-    </div>
-    <div className="card mx-auto">
-            
-        <div className="card-group">
-        <Card style={{ alignItems: 'center', width: '10rem', height: '20rem'  }}>
-              <Card.Title className='header-1'>
-                <b>Gitlab</b>
-              </Card.Title>
-              <img
-                src={gitlabPic}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '20%',
-                }}
-              ></img>
-              <Card.Body>
-              <p>
-              <div className= {styles['devType']}>
-                        Gitlab
-                </div>
-                    <div className="position-relative">
-                    <a href="https://gitlab.com/sydneyschrader/cs373-idb-01" className="stretched-link" >Our Repository</a>
-                    </div>
-                </p>
-              </Card.Body>
-            </Card>
-            
-
-
-            <Card style={{ alignItems: 'center', width: '10rem', height: '20rem'  }}>
-              <Card.Title className='header-1'>
-                <b>Bootstrap</b>
-              </Card.Title>
-              <img
-                src={bootstrapPic}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '20%',
-                }}
-              ></img>
-              <Card.Body>
-              <p>
-              <div className= {styles['devType']}>
-                        Gitlab
-                </div>
-                    <div className="position-relative">
-                    <a href="https://getbootstrap.com/" className="stretched-link" >Bootstrap Website</a>
-                    </div>
-                </p>
-              </Card.Body>
-            </Card>
-
-        </ div>  
-        
-
-    </div>
 
         </Col>
 

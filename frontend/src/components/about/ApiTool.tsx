@@ -7,17 +7,17 @@ import Box from '@mui/material/Box';
 import CardActions from '@mui/material/CardActions';
 import Link from '@mui/material/Link';
 
-const Tool: React.FC<{}> = (card: any, index:any) => {
+const ApiTool: React.FC<{}> = (card: any, index:any) => {
     return (
-        <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: 200, height: 350 }}>
+        <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: 320, height: 320 }}>
             <CardMedia
                 component="img"
-                height="200"
-                width="100"
+                height="140"
+                width="140"
                 
                 image={card.imagePath}
             />
-            <Box > 
+            <Box sx={{ flexGrow: 1 }}> 
                 <CardContent>
                     <Typography gutterBottom variant="h4" component="div" align='center'>
                         {card.name}
@@ -37,4 +37,4 @@ const Tool: React.FC<{}> = (card: any, index:any) => {
     )
 }
 
-export default Tool;
+export default ApiTool;
