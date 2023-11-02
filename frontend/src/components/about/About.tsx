@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 //import axios from "axios";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
 import jamie from '../../assets/jamie.jpg'
@@ -11,7 +11,7 @@ import bootstrapPic from '../../assets/bootstrapPic.jpg'
 import gitlabPic from '../../assets/gitlabPic.png'
 import styles from './About.module.css'
 import Developer from "./Developer";
-import { strict } from "assert";
+
 
 
 
