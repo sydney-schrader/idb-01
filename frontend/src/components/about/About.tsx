@@ -102,6 +102,9 @@ const devTools: ToolInfo[] = [
   { name: "React", imagePath: reactPic, description: "Web UI Library", 
     url: "https://react.dev/"
   }, 
+  { name: "Bootstrap", imagePath: bootstrapPic, description: "CSS Framework", 
+    url: "https://getbootstrap.com/"
+  },
 
 ];
 
@@ -119,7 +122,7 @@ const About: React.FC<{}> = () => {
       const fetchContributors = async () => {
         try {
           const response = await axios.get('https://api.lacountyhomelesshelper.me/about');
-          //console.log(response.data);
+          console.log(response.data);
           setGitData(response.data);
         } catch (error) {
           console.error('Error fetching contributors:', error);
@@ -148,6 +151,7 @@ const About: React.FC<{}> = () => {
       }
 
     }, [gitData]);
+   
    
 
     return (
