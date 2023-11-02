@@ -1,38 +1,106 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+//import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
 import jamie from '../../assets/jamie.jpg'
 import pavan from '../../assets/pavan.jpg'
 import sydney from '../../assets/sydney.jpg'
-import john from '../../assets/john.jpg'
 import zach from '../../assets/zach.jpg'
 import bootstrapPic from '../../assets/bootstrapPic.jpg'
 import gitlabPic from '../../assets/gitlabPic.png'
 import styles from './About.module.css'
+import Developer from "./Developer";
+import { strict } from "assert";
 
 
 
+interface DevInfo {
+  name: string, 
+  imagePath: string, 
+  devType:string,
+  description:string,
+  commits:number,
+  issues: number,
+}
 
+const people: DevInfo[] = [
+  { name: "Jamie Wong", imagePath: jamie, devType: "Frontend Developer", description: 
+    "Im a senior computer science student at UT Austin. I'm from Houston, Texas and I like to read and play poker",
+    commits: 0, 
+    issues: 0,
+  },
+  { name: "Sydney Schrader", imagePath: sydney, devType: "Frontend Developer", description:
+    "I'm a Junior from Austin, TX. I like to go to Barton Springs and read in my free time.",
+    commits: 0, 
+    issues:0, 
+  },
+  { name: "Zachary Voltz", imagePath: zach, devType: "Backend Developer", description:
+    "I'm a senior CS student from Houston, Texas, and I've been programming since I was 9. Outside of programming, I like to read manga and rock climb",
+    commits: 0,
+    issues:0,
+  },
+  { name: "Pavan Marathi", imagePath: pavan, devType: "Backend Developer", description:
+    "I'm a Junior from Houston, TX. I enjoy rock climbing and board games in my spare time.",
+    commits: 0, 
+    issues:0, 
+  }
+];
+//let data: ApiData = {};
+//const [gitData, setGitData] = useState<any[]>([])
+
+type ContributorDetails = {
+  commits: number;
+  issues: number; // The '?' denotes that the 'issues' property is optional because not all contributors might have issues.
+};
+
+type ContributorsDictionary = {
+  [key: string]: ContributorDetails;
+};
 
 const About: React.FC<{}> = () => {
-    const [commitData, setCommitData] = useState<any[]>([])
-
-    const [issueData, setIssueData] = useState<any[]>([])
 
   
+
+    //const [gitData, setGitData] = useState<any[]>([])
+    const [gitData, setGitData] = useState<ContributorsDictionary>({});
+
+
+
     useEffect(() => {
-        // Get issues and commits from gitlab api
-        axios.get(`https://gitlab.com/api/v4/projects/50431924/repository/commits?per_page=500`)
-        .then((response) => { 
-            console.log(response.data);
-            setCommitData(response.data); });
-    
-        axios.get(`https://gitlab.com/api/v4/projects/50431924/issues?per_page=500`)
-        .then((response) => {setIssueData(response.data); });
-        
+      const fetchContributors = async () => {
+        try {
+          const response = await axios.get('https://api.lacountyhomelesshelper.me/about');
+          //console.log(response.data);
+          setGitData(response.data);
+        } catch (error) {
+          console.error('Error fetching contributors:', error);
+        }
+      };
+  
+      fetchContributors();
     }, []);
-    
+
+    useEffect(() => {
+      if (gitData["Jamie Wong"]) {
+        people[0].commits = gitData["Jamie Wong"].commits
+        people[0].issues = gitData["Jamie Wong"].issues
+      }
+      if (gitData["Sydney Schrader"]) {
+        people[1].commits = gitData["Sydney Schrader"].commits
+        people[1].issues = gitData["Sydney Schrader"].issues
+      }
+      if (gitData["Zachary Voltz"]) {
+        people[2].commits = gitData["Zachary Voltz"].commits
+        people[2].issues = gitData["Zachary Voltz"].issues
+      }
+      if (gitData["Pavan Marathi"]) {
+        people[3].commits = gitData["Pavan Marathi"].commits
+        people[3].issues = gitData["Pavan Marathi"].issues
+      }
+
+    }, [gitData]);
+   
 
     return (
         <Container>
@@ -47,230 +115,16 @@ const About: React.FC<{}> = () => {
             for people wanting to help the homeless of LA County and also a tool 
             for homeless people to see what resources are available for them.
             </div>
-
-
-            
-
-
-            
-            
+ 
         </Col>
+
         <Row>
-        <div className="card mx-auto">
-            
-        <div className="card-group">
-            <Card style={{ alignItems: 'center', width: '18rem', height: '40rem'  }}>
-              <Card.Title className='header-1'>
-                <b>Jamie Wong</b>
-              </Card.Title>
-              <img
-                src={jamie}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '100%',
-                }}
-              ></img>
-              <Card.Body>
-                <p>
-                    <div className= {styles['devType']}>
-                        Frontend Developer
-                    </div>
-                 
-                Im a senior computer science student at UT Austin. I'm from Houston, 
-                Texas and I like to read and play poker<br/>
-               
-                </p>
-            <div>
-              Number of Commits:{" "}
-              {
-                commitData.filter(
-                  (commit) => commit.author_name === "Jamie Wong"
-                ).length 
-              }
-              </div>
-              <div>
-              Issues Solved:{" "}
-              {
-                issueData.filter(
-                  (issue: any) => issue.closed_by != null
-                  ).filter(((issue) => issue.closed_by.name === "Jamie Wong")).length
-              }
-            </div>
-              </Card.Body>
-            </Card>
-          
-          
-            <Card style={{ alignItems: 'center', width: '18rem', height: '40rem'  }}>
-              <Card.Title className='header-1'>
-                <b>John Park</b>
-              </Card.Title>
-              <img
-                src={john}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '100%',
-                }}
-              ></img>
-              <Card.Body>
-              <p>
-              <div className= {styles['devType']}>
-                        Full Stack Developer
-                    </div>
-                    I’m a senior CS student from Austin, TX. 
-                    My favorite hobby is training jiu jitsu.
-                </p>
+          <div className="card-group">
+            {people.map(Developer)}
+          </ div>
+        </Row>
 
-                <div>
-              Number of Commits:{" "}
-              {
-                commitData.filter(
-                  (commit) => commit.author_name === "John Park"
-                ).length 
-              }
-              </div>
-              <div>
-              Issues Solved:{" "}
-              {
-                issueData.filter(
-                  (issue: any) => issue.closed_by != null
-                  ).filter(((issue) => issue.closed_by.name === "John Park")).length
-              }
-            </div>
-
-              </Card.Body>
-            </Card>
-          
-          
-            <Card style={{ alignItems: 'center', width: '18rem', height: '40rem'  }}>
-              <Card.Title className='header-1'>
-                <b>Pavan Marathi</b>
-              </Card.Title>
-              <img
-                src={pavan}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '90%',
-                }}
-              ></img>
-              <Card.Body>
-              <p>
-              <div className= {styles['devType']}>
-                        Backend Developer
-                </div>
-                 
-                 I'm a Junior from Houston, TX. I enjoy rock climbing and board games in my spare time. <br/>
-               
-                </p>
-                <div>
-              Number of Commits:{" "}
-              {
-                commitData.filter(
-                  (commit) => commit.author_name === "Pavan Marathi"
-                ).length 
-              }
-              </div>
-              <div>
-              Issues Solved:{" "}
-              {
-                issueData.filter(
-                  (issue: any) => issue.closed_by != null
-                  ).filter(((issue) => issue.closed_by.name === "Pavan Marathi")).length
-              }
-            </div>
-              </Card.Body>
-            </Card>
-          
-
-        
-            <Card style={{ alignItems: 'center', width: '18rem', height: '40rem'  }}>
-              <Card.Title className='header-1'>
-                <b>Sydney Schrader</b>
-              </Card.Title>
-              <img
-                src={sydney}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '90%',
-                }}
-              ></img>
-              <Card.Body>
-              <p>
-              <div className= {styles['devType']}>
-                        Frontend Developer
-                </div>
-                I'm a Junior from Austin, TX. I like to go to Barton Springs and read in my free time.
-                </p>
-
-                <div>
-              Number of Commits:{" "}
-              {
-                commitData.filter(
-                  (commit) => commit.author_name === "Sydney Schrader"
-                ).length 
-              }
-              </div>
-              <div>
-              Issues Solved:{" "}
-              {
-                issueData.filter(
-                  (issue: any) => issue.closed_by != null
-                  ).filter(((issue) => issue.closed_by.name === "Sydney Schrader")).length
-              }
-            </div>
-
-              </Card.Body>
-            </Card>
-          
-            <Card style={{ alignItems: 'center', width: '18rem', height: '40rem' }}>
-              <Card.Title className='header-1'>
-                <b>Zachary Voltz</b>
-              </Card.Title>
-              <img
-                src={zach}
-                alt=""
-                className='card-image-top'
-                style={{
-                  width: '90%',
-                }}
-              ></img>
-              <Card.Body>
-              <p>
-              <div className= {styles['devType']}>
-                        Backend Developer
-                    </div>
-                    I'm a senior CS student from Houston, 
-                    Texas, and I've been programming since I was 9. Outside of programming, 
-                    I like to read manga and rock climb
-                </p>
-
-                <div>
-              Number of Commits:{" "}
-              {
-                commitData.filter(
-                  (commit) => commit.author_name === "Zachary Voltz"
-                ).length 
-              }
-              </div>
-              <div>
-              Issues Solved:{" "}
-              {
-                issueData.filter(
-                  (issue: any) => issue.closed_by != null
-                  ).filter(((issue) => issue.closed_by.name === "Zachary Voltz")).length
-              }
-            </div>
-
-              </Card.Body>
-            </Card>
-            </ div>
-            </ div>
-          </Row>
-
-          <Col>
+        <Col>
 
         <div className= {styles['heading1Type']}>
         LA Homeless Helper Sources
