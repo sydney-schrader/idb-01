@@ -11,9 +11,24 @@ import bootstrapPic from '../../assets/bootstrapPic.jpg'
 import gitlabPic from '../../assets/gitlabPic.png'
 import styles from './About.module.css'
 import Developer from "./Developer";
+import Tool from "./Tool";
+import arcadia from '../../assets/arcadia.jpg'
+import volunteer from '../../assets/volunteer.jpg'
+import ssa from '../../assets/ssa.jpg'
+
+import {
+  CardContent,
+  Typography,
+  Divider,
+  Stack,
+  Box,
+  Button,
+  Tooltip,
+  Skeleton,
+} from "@mui/material";
 
 
-
+// Developer card info
 
 interface DevInfo {
   name: string, 
@@ -46,17 +61,37 @@ const people: DevInfo[] = [
     issues:0, 
   }
 ];
-//let data: ApiData = {};
-//const [gitData, setGitData] = useState<any[]>([])
+
 
 type ContributorDetails = {
   commits: number;
-  issues: number; // The '?' denotes that the 'issues' property is optional because not all contributors might have issues.
+  issues: number; 
 };
 
 type ContributorsDictionary = {
   [key: string]: ContributorDetails;
 };
+
+
+// Tool card info
+interface ToolInfo {
+  name: string, 
+  imagePath: string, 
+  description:string,
+  url:string,
+}
+
+const apiTools: ToolInfo[] = [
+  { name: "City Data", imagePath: arcadia, description: "Api we used to get city data", 
+    url: "https://geohub.lacity.org/datasets/lacounty::homeless-counts-2020/explore?location=33.759300%2C-117.328488%2C8.29&showTable=true"
+  }, 
+  { name: "Resource Data", imagePath: volunteer, description: "Api we used to get resource data", 
+    url: "https://geohub.lacity.org/datasets/lacounty::homeless-shelters-and-services/api"
+  }, 
+  { name: "Medical Data", imagePath: ssa, description: "Api we used to get medical locations", 
+    url: "https://geohub.lacity.org/datasets/lacounty::medicare-and-medicaid-offices/api" 
+  }
+];
 
 const About: React.FC<{}> = () => {
 
@@ -118,44 +153,46 @@ const About: React.FC<{}> = () => {
  
         </Col>
 
-        <Row>
+        <Stack
+        direction="row"
+        justifyContent="center"
+        >
           <div className="card-group">
             {people.map(Developer)}
           </ div>
-        </Row>
+        </Stack>
+
 
         <Col>
 
-        <div className= {styles['heading1Type']}>
-        LA Homeless Helper Sources
-        </div>
-            
-        <div className="d-flex position-relative">
-  
-        <div className="position-relative">
-            <div className= {styles['linkSpaceType']}>
-    
-    
-            <a href="https://geohub.lacity.org/datasets/lacounty::homeless-counts-2020/explore?location=33.759300%2C-117.328488%2C8.29&showTable=true" className="stretched-link" >City Data</a>
-            </ div>
-        </div>
-  
-        <div className="position-relative">
-        <div className= {styles['linkSpaceType']}>
-            <a href="https://geohub.lacity.org/datasets/lacounty::homeless-shelters-and-services/api" className="stretched-link" >Resource Data</a>
-            </ div>
-        </div>
+        <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ padding: "20px" }}
+        >
+          <Typography gutterBottom variant="h4" component="div" align='center'>
+            LA Homeless Helper API Sources
+          </Typography>
+        </Stack>
 
-        <div className="position-relative">
-        <div className= {styles['linkSpaceType']}>
-            <a href="https://geohub.lacity.org/datasets/lacounty::medicare-and-medicaid-offices/api" className="stretched-link" >Medical Data</a>
-            </ div>
-        </div>
+        <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ padding: "36px" }}
+        >
+          {apiTools.map(Tool)}
+        </ Stack>
+  
+    
+
+
         
 
         
     
-    </div>
+   
 
     <div className= {styles['heading1Type']}>
         Tools
