@@ -19,7 +19,7 @@ const Tool: React.FC<{}> = (card: any, index:any) => {
             />
             <Box > 
                 <CardContent>
-                    <Typography gutterBottom variant="h4" component="div" align='center'>
+                    <Typography gutterBottom variant="h5" component="div" align='center'>
                         {card.name}
                     </Typography>
 

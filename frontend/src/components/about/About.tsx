@@ -16,6 +16,9 @@ import arcadia from '../../assets/arcadia.jpg'
 import volunteer from '../../assets/volunteer.jpg'
 import ssa from '../../assets/ssa.jpg'
 import reactPic from '../../assets/React-icon.jpg'
+import flaskPic from '../../assets/flaskPic.jpg'
+import sqlAlchPic from '../../assets/sqlAlchPic.jpg'
+import postmanPic from '../../assets/postmanPic.jpg'
 
 import {
   CardContent,
@@ -105,7 +108,15 @@ const devTools: ToolInfo[] = [
   { name: "Bootstrap", imagePath: bootstrapPic, description: "CSS Framework", 
     url: "https://getbootstrap.com/"
   },
-
+  { name: "Flask", imagePath: flaskPic, description: "Micro Web Framework", 
+    url: "https://flask.palletsprojects.com/en/3.0.x/"
+  },
+  { name: "SQLAlchemy", imagePath: sqlAlchPic, description: "SQL Toolkit", 
+    url: "https://www.sqlalchemy.org/"
+  },
+  { name: "Postman", imagePath: postmanPic, description: "API documentation", 
+    url: "https://documenter.getpostman.com/view/28474521/2s9YJZ3jad"
+  },
 ];
 
 
@@ -220,7 +231,10 @@ const About: React.FC<{}> = () => {
         justifyContent="center"
         sx={{ padding: "36px" }}
         >
+          <div className="card-group">
           {devTools.map(Tool)}
+          </div>
+          
         </ Stack>
 
 
