@@ -1,6 +1,6 @@
 // import React, { useState, useEffect, useCallback } from "react";
 
-
+// `https://api.lacountyhomelesshelper.me/?search=${query}`
 // const SearchPage: React.FC<{}> = () => {
 //     console.log("search page")
 //     return (
@@ -9,6 +9,16 @@
 // };
 // export default SearchPage;
 import React, { useState, useEffect } from 'react';
+import { 
+  Container, 
+  Typography, 
+  TextField, 
+  CircularProgress, 
+  List, 
+  ListItem, 
+  ListItemText, 
+  Alert 
+} from '@mui/material';
 
 type SearchResult = {
   id: string;
@@ -51,26 +61,43 @@ const SearchPage: React.FC = () => {
   }, [query]);
 
   return (
-    <div>
-      <input
+    <Container>
+      <Typography variant="h4" component="h1" gutterBottom>
+        Search
+      </Typography>
+
+      <TextField
         type="search"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search..."
+        variant="outlined"
+        fullWidth
+        margin="normal"
       />
 
-      {isLoading && <div>Loading...</div>}
-
-      {error && <div>{error}</div>}
-
-      {!isLoading && !error && results.length === 0 && (
-        <div>No results found.</div>
+      {isLoading && (
+        <CircularProgress />
       )}
 
-      {!isLoading && !error && results.map((result) => (
-        <div key={result.id}>{result.name}</div>
-      ))}
-    </div>
+      {error && (
+        <Alert severity="error">{error}</Alert>
+      )}
+
+      {!isLoading && !error && results.length === 0 && query && (
+        <Alert severity="info">No results found.</Alert>
+      )}
+
+      {!isLoading && !error && (
+        <List>
+          {results.map((result) => (
+            <ListItem key={result.id}>
+              <ListItemText primary={result.name} />
+            </ListItem>
+          ))}
+        </List>
+      )}
+    </Container>
   );
 };
 
