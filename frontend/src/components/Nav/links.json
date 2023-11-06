@@ -9,6 +9,10 @@
             "href": "/about"
         },
         {
+            "label": "Search",
+            "href": "/search"
+        },
+        {
             "label": "Cities",
             "href": "/cities"
         },

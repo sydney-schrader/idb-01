@@ -11,6 +11,7 @@ import Home from './components/home/HomePage';
 import CityInstancePage from './components/cities/CityInstancePage';
 import ResourceInstancePage from './components/resources/ResourceInstancePage';
 import MedicalInstancePage from './components/medical/MedicalInstancePage';
+import SearchPage from './components/search/SearchPage';
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/cities" element={<Cities />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/medical" element={<Medicals />} />
