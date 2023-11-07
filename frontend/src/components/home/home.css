@@ -1,8 +1,62 @@
 .background {
+  background-image: url("../../assets/LAbackground.jpg");
+  background-size: cover;
+  min-height: 110vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+.title-container {
+  z-index: 2;
+  position: relative;
+}
+
+.card-container {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.title {
+  font-weight: bold;
+  color: #fff;
+  font-size: 36px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Add any additional styles for your card components */
+
+
+.background {
     background-image: url("../../assets/LAbackground.jpg");
     background-size: contain;
     min-height: 110vh;
     display: flex;
+    align-items: center;
+  }
+
+  .overlay-container {
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the background color and opacity as needed */
+    padding: 20px; /* Add padding to the overlay container */
+    border-radius: 10px; /* Add rounded corners if desired */
+    text-align: center;
+    color: white; /* Adjust text color as needed */
+    margin-top: auto;
+    align-items: center;
+    position: relative;
   }
   
   .title {
@@ -13,6 +67,8 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin: auto;
     margin-top: 5%;
+    align-items: center;
+    position: relative;
   }
   
   .lower-title {

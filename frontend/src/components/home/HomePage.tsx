@@ -1,4 +1,3 @@
-import React from 'react';
 import './home.css'
 import { Container, Row, Col } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
@@ -7,21 +6,15 @@ import medicarePic from '../../assets/medicare-image.jpg'
 import citiesPic from '../../assets/cities-image.jpg'
 import resourcesPic from '../../assets/resources-image.jpg'
 
-
 function Home() {
-    return (
-        <>
-        <div className='background'>
-            <h1 className='title'>
-                Los Angeles <br/> Homeless Helper
-            </h1>
-        </div>
-        <div>
-           <h1 className='lower-title'>
-           Instances
-           </h1>
-        </div>
-        <Container>
+  return (
+    <div className='background'>
+      <div className='title-container'>
+        <h1 className='title'>
+          Los Angeles <br /> Homeless Helper
+        </h1>
+      </div>
+      <Container className='card-container'>
         <Row>
           <Col>
             <Card style={{ alignItems: 'center' }}>
@@ -85,10 +78,8 @@ function Home() {
           </Col>
         </Row>
       </Container>
-      </>
-    );
-    
-   
+    </div>
+  );
 };
- 
+
 export default Home;

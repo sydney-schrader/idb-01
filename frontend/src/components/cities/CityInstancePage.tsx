@@ -7,7 +7,7 @@ import arcadia from '../../assets/arcadia.jpg'
 import ssa from '../../assets/ssa.jpg'
 import volunteer from '../../assets/volunteer.jpg'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-const GOOGLE_API_KEY_MAP = 'AIzaSyDLa1azh_pIsTMJnhcgNuqobgRfoh9wsgY';
+const GOOGLE_API_KEY_MAP = 'AIzaSyCq_KF4dp6lbPfh1S1efiL08TDurg21QS4';
 //jamie
 const SEARCH_ENGINE_ID = '129c571c4e1a84a03';
 const GOOGLE_API_KEY = 'AIzaSyAwozhLVzasZOIiW387q1P0NMtJTrhvD20';
