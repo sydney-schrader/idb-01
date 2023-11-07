@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Button } from 'react-bootstrap'
+import ssa from '../../assets/ssa.jpg'
 
 
 const Medical: React.FC<{}> = (card: any, index:any) => {
@@ -11,7 +12,7 @@ const Medical: React.FC<{}> = (card: any, index:any) => {
               </b>
             </Card.Title>
             <img
-            src={card.imageURL}
+            src={card.imageURL || ssa}
             alt={card.csa_label}
             className='card-image-top'
             style={{ width: '100%' }}

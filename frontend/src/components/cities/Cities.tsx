@@ -5,9 +5,7 @@ import arcadia from '../../assets/arcadia.jpg'
 import axios from "axios"; 
 import City from "./City";
 import CardPagination from "../CardPagination";
-//jamie
-const SEARCH_ENGINE_ID = '129c571c4e1a84a03';
-const GOOGLE_API_KEY = 'AIzaSyAwozhLVzasZOIiW387q1P0NMtJTrhvD20';
+import {Grid} from "@mui/material";
 
 const Cities: React.FC<{}> = () => {
 
@@ -18,34 +16,34 @@ const Cities: React.FC<{}> = () => {
   const [citiesPerPage] = useState(perPage);
 
 
-  const fetchCityImage = useCallback(async (cityName: string) => {
-      if (images[cityName]) {
-          return images[cityName];
-      }
+  // const fetchCityImage = useCallback(async (cityName: string) => {
+  //     if (images[cityName]) {
+  //         return images[cityName];
+  //     }
   
-      const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(cityName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
-      try {
-          const response = await axios.get(endpoint);
-          if (response.data.items && response.data.items.length > 0) {
-              setImage(cityName, response.data.items[0].link);
-              return response.data.items[0].link;
-          }
-      } catch (error) {
-          console.error("Error fetching image:", error);
-      }
-      return arcadia;
-  }, [images, setImage]);
+  //     const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(cityName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
+  //     try {
+  //         const response = await axios.get(endpoint);
+  //         if (response.data.items && response.data.items.length > 0) {
+  //             setImage(cityName, response.data.items[0].link);
+  //             return response.data.items[0].link;
+  //         }
+  //     } catch (error) {
+  //         console.error("Error fetching image:", error);
+  //     }
+  //     return arcadia;
+  // }, [images, setImage]);
 
   useEffect(() => {
     axios.get(`https://api.lacountyhomelesshelper.me/cities`)
     .then(async (response) => { 
         const updatedData = await Promise.all(response.data.map(async (city: any) => {
-          city.imageURL = await fetchCityImage(city.csa_label);
+          //city.imageURL = await fetchCityImage(city.csa_label);
           return city;
         }));
         setCityData(updatedData);
     });
-  }, [fetchCityImage]);
+  });
 
   // get the current model cards
   const indexOfLastPost = currentPage * citiesPerPage;
@@ -63,9 +61,20 @@ const Cities: React.FC<{}> = () => {
         <div> {cityData.length} Cities </div>
         <div> Attributes: Unsheltered population, Sheltered population, Total homeless population, Square miles of city, Density of total homeless population</div>
         <div>Instances per page: {perPage}</div>
-        <div className="row row-cols-1 row-cols-md-2 g-4">
-          {currentCities.map(City)}
-        </div>
+        <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        wrap="wrap"
+        spacing={2} // Add spacing to control the gap between items
+        >
+        {currentCities.map((city) => (
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            {City(city)}
+          </Grid>
+        ))}
+        </Grid>
         <div>Total Pages: {Math.ceil(cityData.length / citiesPerPage)}</div>
         <div>Current Page: {currentPage}</div>
         <CardPagination

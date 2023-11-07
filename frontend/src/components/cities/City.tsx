@@ -1,17 +1,18 @@
 import React from "react";
 import {  Card, Button } from 'react-bootstrap'
+import arcadia from '../../assets/arcadia.jpg'
 
 
 const City: React.FC<{}> = (card: any, index:any) => {
     return(
-        <Card style={{ alignItems: 'center', width: '18rem', padding: "0 20px"}} key={index} className="box">
+        <Card style={{ alignItems: 'center', width: '18rem', padding: "0 10px"}} key={index} className="box">
                 <Card.Title className='header-1'>
                   <b>
                     {card.csa_label}
                   </b>
                 </Card.Title>
                 <img
-                src={card.imageURL}
+                src={card.imageURL || arcadia}
                 alt={card.csa_label}
                 className='card-image-top'
                 style={{ width: '100%' }}

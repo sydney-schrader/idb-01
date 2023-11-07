@@ -3,6 +3,7 @@ import { Button, Container, Row, Col, Card } from 'react-bootstrap'
 import { useImages } from "../ImageContext";
 import volunteer from '../../assets/volunteer.jpg'
 import axios from "axios"; 
+import arcadia from '../../assets/arcadia.jpg'
 import ssa from '../../assets/ssa.jpg'
 import { useParams } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
@@ -57,7 +58,7 @@ const ResourceInstancePage: React.FC<{}> = () => {
 
     const [resourcepageData, setResourcepageData] = useState({} as resourceItem);
     const [cityData, setCityData] = useState({} as cityItem);
-    const { images, setImage } = useImages();
+    //const { images, setImage } = useImages();
     const { resourceName } = useParams<ResourceParams>();
     const mapContainerStyle = {
       width: '600px',
@@ -69,23 +70,23 @@ const ResourceInstancePage: React.FC<{}> = () => {
       lng: resourcepageData.longitude
     };
 
-    const fetchShelterImage = useCallback(async (shelterName: string) => {
-        if (images[shelterName]) {
-            return images[shelterName];
-        }
+    // const fetchShelterImage = useCallback(async (shelterName: string) => {
+    //     if (images[shelterName]) {
+    //         return images[shelterName];
+    //     }
     
-        const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(shelterName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
-        try {
-            const response = await axios.get(endpoint);
-            if (response.data.items && response.data.items.length > 0) {
-                setImage(shelterName, response.data.items[0].link);
-                return response.data.items[0].link;
-            }
-        } catch (error) {
-            console.error("Error fetching image:", error);
-        }
-        return volunteer;
-    }, [images, setImage]);
+    //     const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(shelterName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
+    //     try {
+    //         const response = await axios.get(endpoint);
+    //         if (response.data.items && response.data.items.length > 0) {
+    //             setImage(shelterName, response.data.items[0].link);
+    //             return response.data.items[0].link;
+    //         }
+    //     } catch (error) {
+    //         console.error("Error fetching image:", error);
+    //     }
+    //     return volunteer;
+    // }, [images, setImage]);
 
     
     useEffect(() => {
@@ -109,21 +110,21 @@ const ResourceInstancePage: React.FC<{}> = () => {
                 const resourceData: resourceItem = {
                     ...response.data,
                 };
-                const imageURL = await fetchShelterImage(resourceName!);
-                setResourcepageData({ ...resourceData, imageURL }); // Merging the cityData with the imageURL
-                resourceData.medimageURL = await fetchShelterImage(resourceData.medicare_name!);
+                //const imageURL = await fetchShelterImage(resourceName!);
+                setResourcepageData({ ...resourceData/*, imageURL */}); // Merging the cityData with the imageURL
+                //resourceData.medimageURL = await fetchShelterImage(resourceData.medicare_name!);
                 if (resourceData.city) {
                     const cityData = await fetchCityDetails(resourceData.city);
                     // Store the shelter details in the state if needed.
                     setCityData(cityData);
-                    cityData.imageURL = await fetchShelterImage(resourceData.city!);
+                    //cityData.imageURL = await fetchShelterImage(resourceData.city!);
                 }
             } catch (error) {
                 console.error("Error fetching city data:", error);
             }
 		}
 		handleResourceList();
-	}, [ resourceName, fetchShelterImage])
+	}, [ resourceName/*, fetchShelterImage*/])
 
 
       
@@ -135,7 +136,7 @@ const ResourceInstancePage: React.FC<{}> = () => {
                     {resourcepageData.name}
                 </h1>
                 <img 
-             src = {resourcepageData.imageURL}
+             src = {resourcepageData.imageURL || volunteer}
                 alt=""
                 className='card-image-top'
                 style={{
@@ -186,7 +187,7 @@ const ResourceInstancePage: React.FC<{}> = () => {
                 <b>{cityData.csa_label}</b>
               </Card.Title>
               <img
-                src={cityData.imageURL}
+                src={cityData.imageURL || arcadia}
                 alt=""
                 className='card-image-top'
                 style={{

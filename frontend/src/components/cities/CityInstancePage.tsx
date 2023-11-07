@@ -107,23 +107,23 @@ const CityInstancePage: React.FC<{}> = () => {
     }
 
 
-    const fetchCityImage = useCallback(async (cityName: string) => {
-        if (images[cityName]) {
-            return images[cityName];
-        }
+    // const fetchCityImage = useCallback(async (cityName: string) => {
+    //     if (images[cityName]) {
+    //         return images[cityName];
+    //     }
     
-        const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(cityName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
-        try {
-            const response = await axios.get(endpoint);
-            if (response.data.items && response.data.items.length > 0) {
-                setImage(cityName, response.data.items[0].link);
-                return response.data.items[0].link;
-            }
-        } catch (error) {
-            console.error("Error fetching image:", error);
-        }
-        return arcadia;
-    }, [images, setImage]);
+    //     const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(cityName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
+    //     try {
+    //         const response = await axios.get(endpoint);
+    //         if (response.data.items && response.data.items.length > 0) {
+    //             setImage(cityName, response.data.items[0].link);
+    //             return response.data.items[0].link;
+    //         }
+    //     } catch (error) {
+    //         console.error("Error fetching image:", error);
+    //     }
+    //     return arcadia;
+    // }, [images, setImage]);
 
     useEffect(() => {
         const fetchShelterDetails = async (shelterId: string) => {
@@ -156,8 +156,8 @@ const CityInstancePage: React.FC<{}> = () => {
                 const cityData: cityItem = {
                     ...response.data,
                 };
-                const imageURL = await fetchCityImage(cityName!);
-                setCitypageData({ ...cityData, imageURL }); // Merging the cityData with the imageURL
+                //const imageURL = await fetchCityImage(cityName!);
+                setCitypageData({ ...cityData}); // Merging the cityData with the imageURL
                 const { lat, lng } = await getLatLngForCity(cityName!);
                 cityData.lat = lat;
                 cityData.lng = lng;
@@ -166,14 +166,14 @@ const CityInstancePage: React.FC<{}> = () => {
                     const shelterData = await fetchShelterDetails(cityData.shelters);
                     // Store the shelter details in the state if needed.
                     setShelterData(shelterData);
-                    shelterData.imageURL = await fetchCityImage(cityData.shelters);
+                    //shelterData.imageURL = await fetchCityImage(cityData.shelters);
                 }
                 // Fetch medicare details if medicare is present in the city data
                 if (cityData.medicares) {
                     const medicareData = await fetchMedicalDetails(cityData.medicares);
                     // Store the shelter details in the state if needed.
                     setMedicareData(medicareData);
-                    medicareData.imageURL = await fetchCityImage(cityData.medicares);
+                    //medicareData.imageURL = await fetchCityImage(cityData.medicares);
                 }
             } catch (error) {
                 console.error("Error fetching city data:", error);
@@ -181,7 +181,7 @@ const CityInstancePage: React.FC<{}> = () => {
         }
     
         handleCityList();
-    }, [cityName, fetchCityImage]); 
+    }, [cityName]); 
 
     return (
         <>
@@ -191,7 +191,7 @@ const CityInstancePage: React.FC<{}> = () => {
                     {citypageData.csa_label}
                 </h1>
                 <img 
-             src = {citypageData.imageURL}
+             src = {citypageData.imageURL || arcadia}
                 alt=""
                 className='card-image-top'
                 style={{

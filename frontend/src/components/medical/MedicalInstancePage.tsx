@@ -80,25 +80,25 @@ const MedicalInstancePage: React.FC<{}> = () => {
         return null; // or some default data if needed
     }
 
-    const fetchOfficeImage = useCallback(async (officeName: string) => {
-      // First, check if the image URL is already in the context
-      if (images[officeName]) {
-        return images[officeName];
-      }
+    // const fetchOfficeImage = useCallback(async (officeName: string) => {
+    //   // First, check if the image URL is already in the context
+    //   if (images[officeName]) {
+    //     return images[officeName];
+    //   }
     
-      const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(officeName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
-      try {
-          const response = await axios.get(endpoint);
-          if (response.data.items && response.data.items.length > 0) {
-              const imageURL = response.data.items[0].link;
-              setImage(officeName, imageURL);
-              return imageURL;
-          }
-      } catch (error) {
-          console.error("Error fetching image:", error);
-      }
-      return ssa; // default to ssa image if no image is found or an error occurs
-    }, [images, setImage]); 
+    //   const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(officeName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
+    //   try {
+    //       const response = await axios.get(endpoint);
+    //       if (response.data.items && response.data.items.length > 0) {
+    //           const imageURL = response.data.items[0].link;
+    //           setImage(officeName, imageURL);
+    //           return imageURL;
+    //       }
+    //   } catch (error) {
+    //       console.error("Error fetching image:", error);
+    //   }
+    //   return ssa; // default to ssa image if no image is found or an error occurs
+    // }, [images, setImage]); 
     useEffect(() => {
 		const handleMedicalList = async() => {
 			const options = {
@@ -111,21 +111,21 @@ const MedicalInstancePage: React.FC<{}> = () => {
                 const medicalData: medicalItem = {
                     ...response.data,
                 };
-                const imageURL = await fetchOfficeImage(medicalName!);
-                setMedicalpageData({ ...medicalData, imageURL }); // Merging the cityData with the imageURL
-                medicalData.shelterimageURL = await fetchOfficeImage(medicalData.shelter_name!);
+                //const imageURL = await fetchOfficeImage(medicalName!);
+                setMedicalpageData({ ...medicalData}); // Merging the cityData with the imageURL
+                //medicalData.shelterimageURL = await fetchOfficeImage(medicalData.shelter_name!);
                 if (medicalData.city) {
                     const cityData = await fetchCityDetails(medicalData.city);
                     // Store the shelter details in the state if needed.
                     setCityData(cityData);
-                    cityData.imageURL = await fetchOfficeImage(medicalData.city!);
+                    //cityData.imageURL = await fetchOfficeImage(medicalData.city!);
                 }
             } catch (error) {
                 console.error("Error fetching city data:", error);
             }
         }
 		handleMedicalList();
-    }, [medicalName, fetchOfficeImage]);
+    }, [medicalName]);
 
     return (
         <>
@@ -135,7 +135,7 @@ const MedicalInstancePage: React.FC<{}> = () => {
                     {medicalpageData.name}
                 </h1>
                 <img 
-             src = {medicalpageData.imageURL}
+             src = {medicalpageData.imageURL || ssa}
                 alt=""
                 className='card-image-top'
                 style={{

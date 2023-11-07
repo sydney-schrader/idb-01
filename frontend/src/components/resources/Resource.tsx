@@ -1,5 +1,7 @@
 import React from "react";
 import {Card, Button } from 'react-bootstrap'
+import volunteer from '../../assets/volunteer.jpg'
+
 
 const Resource: React.FC<{}> = (card: any, index:any) => {
     return(
@@ -10,7 +12,7 @@ const Resource: React.FC<{}> = (card: any, index:any) => {
                   </b>
                 </Card.Title>
                 <img
-                src={card.imageURL}
+                src={card.imageURL || volunteer}
                 alt={card.name}
                 className='card-image-top'
                 style={{ width: '100%' }}
