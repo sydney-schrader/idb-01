@@ -6,6 +6,8 @@ import axios from "axios";
 import City from "./City";
 import CardPagination from "../CardPagination";
 import {Grid} from "@mui/material";
+import SearchPage from '../search/SearchPage'; // Import the SearchPage component
+
 
 const Cities: React.FC<{}> = () => {
 
@@ -61,6 +63,7 @@ const Cities: React.FC<{}> = () => {
         <div> {cityData.length} Cities </div>
         <div> Attributes: Unsheltered population, Sheltered population, Total homeless population, Square miles of city, Density of total homeless population</div>
         <div>Instances per page: {perPage}</div>
+        <SearchPage page = {"cities"}/>
         <Grid
         container
         direction="row"

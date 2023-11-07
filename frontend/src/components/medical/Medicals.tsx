@@ -6,6 +6,7 @@ import Medical from "./Medical";
 import { Grid } from "@mui/material";
 import { useImages } from '../ImageContext';
 import CardPagination from "../CardPagination";
+import SearchPage from "../search/SearchPage";
 //ZACH
 const SEARCH_ENGINE_ID = '226027a2f9e54422b';
 const GOOGLE_API_KEY = 'AIzaSyAiNi5igRxIAvxcuZ1TRL7ii-Eu3sWLaWE';
@@ -66,6 +67,7 @@ const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
         <div> {medData.length} Medical Centers </div>
         <div>Attributes: Name, Address, Hours, Phone number, URL for their website</div>
         <div>Instances per page: {perPage}</div>
+        <SearchPage page = {"medicares"}/>
         <Grid
         container
         direction="row"

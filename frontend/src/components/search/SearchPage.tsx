@@ -26,7 +26,11 @@ type SearchResult = {
   // ... other properties
 };
 
-const SearchPage: React.FC = () => {
+type PageType = {
+  page: string;
+}
+
+const SearchPage: React.FC<PageType> = ({ page }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +47,7 @@ const SearchPage: React.FC = () => {
       setError('');
 
       try {
-        const response = await fetch(`https://api.lacountyhomelesshelper.me/?search=${query}`);
+        const response = await fetch(`https://api.lacountyhomelesshelper.me/${page}?search=${query}`);
         const data: SearchResult[] = await response.json();
         setResults(data);
       } catch (err) {
@@ -62,9 +66,9 @@ const SearchPage: React.FC = () => {
 
   return (
     <Container>
-      <Typography variant="h4" component="h1" gutterBottom>
+      {/* <Typography variant="h4" component="h1" gutterBottom>
         Search
-      </Typography>
+      </Typography> */}
 
       <TextField
         type="search"
