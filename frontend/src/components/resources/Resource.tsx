@@ -12,10 +12,14 @@ const Resource: React.FC<{}> = (card: any, index:any) => {
                   </b>
                 </Card.Title>
                 <img
-                src={card.imageURL || volunteer}
+                src={card.image_url || volunteer}
                 alt={card.name}
                 className='card-image-top'
                 style={{ width: '100%' }}
+                onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = volunteer; // Set the fallback image when an error occurs
+                }}
                 />
                 <Card.Body>
                 

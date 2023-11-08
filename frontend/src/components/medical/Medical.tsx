@@ -12,10 +12,14 @@ const Medical: React.FC<{}> = (card: any, index:any) => {
               </b>
             </Card.Title>
             <img
-            src={card.imageURL || ssa}
+            src={card.image_url || ssa}
             alt={card.csa_label}
             className='card-image-top'
             style={{ width: '100%' }}
+            onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+              const target = e.target as HTMLImageElement;
+              target.src = ssa; // Set the fallback image when an error occurs
+            }}
             />
             <Card.Body>
             
