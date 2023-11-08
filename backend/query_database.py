@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 from models import City, Shelter, Medicare
+from geopy.distance import geodesic
 
 load_dotenv("../.env")
 user = os.getenv("db_username")
@@ -37,6 +38,14 @@ def search_cities(query):
         query_statement = session.query(City).filter(City.csa_label.ilike(f'%{query}%'))
         results = list(session.execute(query_statement))
         cities = [row[0].to_dict() for row in results]
+        # If there's only 1 city, they likely looked up a specific city, so 
+        # in order to return relevant results, return nearby cities:
+        if len(cities) == 1:
+            searched_location = (cities[0]["latitude"], cities[0]["longitude"])
+            all_cities = [row[0].to_dict() for row in session.execute(select(City))]
+            all_cities.sort(key=lambda city : geodesic(searched_location, (city["latitude"], city["longitude"])).miles)
+            return all_cities
+
     return cities
 
 def query_shelter(name):
@@ -63,6 +72,13 @@ def search_shelters(query):
         query_statement = session.query(Shelter).filter(Shelter.name.ilike(f'%{query}%'))
         results = list(session.execute(query_statement))
         shelters = [row[0].to_dict() for row in results]
+        # If there's only 1 shelter, they likely looked up a specific one, so 
+        # in order to return relevant results, return nearby shelters:
+        if len(shelters) == 1:
+            searched_location = (shelters[0]["latitude"], shelters[0]["longitude"])
+            all_shelters = [row[0].to_dict() for row in session.execute(select(Shelter))]
+            all_shelters.sort(key=lambda shelter : geodesic(searched_location, (shelter["latitude"], shelter["longitude"])).miles)
+            return all_shelters
     return shelters
 
 def query_medicare(name):
@@ -89,6 +105,13 @@ def search_medicares(query):
         query_statement = session.query(Medicare).filter(Medicare.name.ilike(f'%{query}%'))
         results = list(session.execute(query_statement))
         medicares = [row[0].to_dict() for row in results]
+        # If there's only 1 office, they likely looked up a specific one, so 
+        # in order to return relevant results, return nearby offices:
+        if len(medicares) == 1:
+            searched_location = (medicares[0]["latitude"], medicares[0]["longitude"])
+            all_medicares = [row[0].to_dict() for row in session.execute(select(Medicare))]
+            all_medicares.sort(key=lambda medicare : geodesic(searched_location, (medicare["latitude"], medicare["longitude"])).miles)
+            return all_medicares
     return medicares
 
 if __name__ == "__main__":
