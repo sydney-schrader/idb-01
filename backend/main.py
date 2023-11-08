@@ -20,6 +20,8 @@ def shelters(page=None):
     if page is None:
         return shelters
     num_pages = math.ceil(len(shelters) / ITEMS_PER_PAGE)
+    if num_pages == 0:
+        return [0]
     page = int(page) % num_pages
     start = ITEMS_PER_PAGE*page
     return [num_pages] + shelters[start:start+ITEMS_PER_PAGE]
@@ -41,6 +43,8 @@ def cities(page=None):
     if page is None:
         return cities
     num_pages = math.ceil(len(cities) / ITEMS_PER_PAGE)
+    if num_pages == 0:
+        return [0]
     page = int(page) % num_pages
     start = ITEMS_PER_PAGE*page
     return [num_pages] + cities[start:start+ITEMS_PER_PAGE]
@@ -62,7 +66,9 @@ def medicare(page=None):
     if page is None:
         return medicares
     num_pages = math.ceil(len(medicares) / ITEMS_PER_PAGE)
-    page = int(page) % (num_pages+1)
+    if num_pages == 0:
+        return [0]
+    page = int(page) % num_pages
     start = ITEMS_PER_PAGE*page
     return [num_pages] + medicares[start:start+ITEMS_PER_PAGE]
 
