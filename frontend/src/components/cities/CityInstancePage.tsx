@@ -19,7 +19,7 @@ type CityParams = {
 
 type cityItem = {
     csa_label: string;
-    imageURL?: string;
+    image_url?: string;
     total_unsheltered_pop: number;
     total_sheltered_pop: number;
     total_pop: number;
@@ -29,12 +29,12 @@ type cityItem = {
     density_total: number;
     shelters?: string; // This is nullable
     medicares?: string; // This is nullable
-    lat: number;
-    lng: number;
+    latitude: number;
+    longitude: number;
 };
 
 type resourceItem = {
-    imageURL?: string;
+    image_url?: string;
     name: string;
     addrln1?: string;
     addrln2?: string;
@@ -57,7 +57,7 @@ type resourceItem = {
 
 type medicalItem = {
     name: string;
-    imageURL?: string;
+    image_url?: string;
     addrln1: string;
     addrln2?: string;
     city?: string;
@@ -81,49 +81,14 @@ const CityInstancePage: React.FC<{}> = () => {
     const [shelterData, setShelterData] = useState({} as resourceItem);
     const [medicareData, setMedicareData] = useState({} as medicalItem);
     const { cityName } = useParams<CityParams>();
-    const { images, setImage } = useImages();
     const mapContainerStyle = {
         width: '600px',
         height: '400px'
       };
       const center = {
-        lat: citypageData.lat,
-        lng: citypageData.lng
+        lat: citypageData.latitude,
+        lng: citypageData.longitude
       };
-    
-    async function getLatLngForCity(city: string) {
-        const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(city)}&key=${GOOGLE_API_KEY_MAP}`;
-        const response = await axios.get(endpoint);
-        
-        if (response.data.results && response.data.results[0]) {
-          const location = response.data.results[0].geometry.location;
-          return {
-            lat: location.lat,
-            lng: location.lng
-          };
-        }
-      
-        throw new Error("Unable to get location for city");
-    }
-
-
-    // const fetchCityImage = useCallback(async (cityName: string) => {
-    //     if (images[cityName]) {
-    //         return images[cityName];
-    //     }
-    
-    //     const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(cityName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
-    //     try {
-    //         const response = await axios.get(endpoint);
-    //         if (response.data.items && response.data.items.length > 0) {
-    //             setImage(cityName, response.data.items[0].link);
-    //             return response.data.items[0].link;
-    //         }
-    //     } catch (error) {
-    //         console.error("Error fetching image:", error);
-    //     }
-    //     return arcadia;
-    // }, [images, setImage]);
 
     useEffect(() => {
         const fetchShelterDetails = async (shelterId: string) => {
@@ -156,17 +121,10 @@ const CityInstancePage: React.FC<{}> = () => {
                 const cityData: cityItem = {
                     ...response.data,
                 };
-                //const imageURL = await fetchCityImage(cityName!);
-                setCitypageData({ ...cityData}); // Merging the cityData with the imageURL
-                const { lat, lng } = await getLatLngForCity(cityName!);
-                cityData.lat = lat;
-                cityData.lng = lng;
-                // Fetch shelter details if shelter_id is present in the city data
-                if (cityData.shelters) {
+                setCitypageData({ ...cityData}); if (cityData.shelters) {
                     const shelterData = await fetchShelterDetails(cityData.shelters);
                     // Store the shelter details in the state if needed.
                     setShelterData(shelterData);
-                    //shelterData.imageURL = await fetchCityImage(cityData.shelters);
                 }
                 // Fetch medicare details if medicare is present in the city data
                 if (cityData.medicares) {
@@ -191,11 +149,15 @@ const CityInstancePage: React.FC<{}> = () => {
                     {citypageData.csa_label}
                 </h1>
                 <img 
-             src = {citypageData.imageURL || arcadia}
+             src = {citypageData.image_url || arcadia}
                 alt=""
                 className='card-image-top'
                 style={{
                   width: '70%',
+                }}
+                onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = arcadia; // Set the fallback image when an error occurs
                 }} />
                 </div>
                 <Container>
@@ -243,11 +205,15 @@ const CityInstancePage: React.FC<{}> = () => {
                 <b>{shelterData.name}</b>
               </Card.Title>
               <img
-                src={shelterData.imageURL || volunteer}
+                src={shelterData.image_url || volunteer}
                 alt=""
                 className='card-image-top'
                 style={{
                   width: '50%',
+                }}
+                onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = volunteer; // Set the fallback image when an error occurs
                 }}
               ></img>
               <Card.Body>
@@ -270,11 +236,15 @@ const CityInstancePage: React.FC<{}> = () => {
                 <b>{medicareData.name}</b>
               </Card.Title>
               <img
-                src={medicareData.imageURL || ssa}
+                src={medicareData.image_url || ssa}
                 alt=""
                 className='card-image-top'
                 style={{
                   width: '50%',
+                }}
+                onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = ssa; // Set the fallback image when an error occurs
                 }}
               ></img>
               <Card.Body>
