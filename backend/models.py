@@ -18,6 +18,8 @@ class City(Base):
     total_sheltered_pop: Mapped[int]
     total_pop: Mapped[int]
     square_miles: Mapped[float]
+    latitude: Mapped[float]
+    longitude: Mapped[float]
     density_unsheltered: Mapped[float]
     density_sheltered: Mapped[float] = mapped_column(nullable=True)
     density_total: Mapped[float]
@@ -37,6 +39,8 @@ class City(Base):
                 "density_unsheltered" : self.density_unsheltered,
                 "density_sheltered" : self.density_sheltered,
                 "density_total" : self.density_total,
+                "latitude" : self.latitude,
+                "longitude" : self.longitude,
                 "image_url" : self.image_url,
                 "shelters" : self.shelter,
                 "medicares" : self.medicare}

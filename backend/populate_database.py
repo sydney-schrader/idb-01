@@ -51,6 +51,9 @@ with Session(engine) as session:
             print("Skipping city", city_info["csa_label"])
             continue
         city_info["image_url"] = city_images[city_info["csa_label"]]
+        latitude, longitude = city_longitude_latitudes[city_info["csa_label"]]
+        city_info["latitude"] = latitude
+        city_info["longitude"] = longitude
         city = City(**city_info)
         session.add(city)
     session.commit()
