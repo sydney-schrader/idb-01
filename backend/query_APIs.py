@@ -104,3 +104,6 @@ def query_issues():
         author = issue["closed_by"]["name"]
         issue_map[author] = issue_map.get(author, 0) + 1
     return issue_map
+
+if __name__ == "__main__":
+    print(filter_cities("csa_label", "City of Agoura Hills"))
