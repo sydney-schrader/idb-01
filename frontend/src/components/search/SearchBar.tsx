@@ -1,13 +1,3 @@
-// import React, { useState, useEffect, useCallback } from "react";
-
-// `https://api.lacountyhomelesshelper.me/?search=${query}`
-// const SearchPage: React.FC<{}> = () => {
-//     console.log("search page")
-//     return (
-//         <h1>Search</h1>
-//     );
-// };
-// export default SearchPage;
 import React, { useState, useEffect } from 'react';
 import Search from './Search';
 import City from '../cities/City';
@@ -16,9 +6,6 @@ import {
   Typography, 
   TextField, 
   CircularProgress, 
-  List, 
-  ListItem, 
-  ListItemText, 
   Alert ,
   Grid,
   Stack
@@ -34,7 +21,7 @@ type PageType = {
   page: string;
 }
 
-const SearchPage: React.FC<PageType> = ({ page }) => {
+const SearchBar: React.FC<PageType> = ({ page }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -135,4 +122,4 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
   );
 };
 
-export default SearchPage;
+export default SearchBar;

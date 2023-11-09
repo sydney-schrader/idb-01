@@ -6,11 +6,7 @@ import axios from "axios";
 import Resource from "./Resource";
 import CardPagination from "../CardPagination";
 import { Grid } from '@mui/material';
-import SearchPage from '../search/SearchPage';
-//fletcher
-// const SEARCH_ENGINE_ID = '504ff824e28724d77';
-// const GOOGLE_API_KEY = 'AIzaSyDqw5EwUP5HT6F5CiGTulm2qQRbNEGSluY';
-const PIXABAY_API_KEY = '40177514-186bacba2f6bc1c6665874688'; 
+import SearchBar from '../search/SearchBar';
 
   
 const Resources: React.FC<{}> = () => {
@@ -69,7 +65,7 @@ const Resources: React.FC<{}> = () => {
         <div> {shelterData.length} Resources </div>
         <div> Attributes: Name, Address, Hours, Zipcode, Link to their website</div>
         <div>Instances per page: {perPage}</div>
-        <SearchPage page = {"shelters"}/>
+        <SearchBar page = {"shelters"}/>
         <Grid
         container
         direction="row"

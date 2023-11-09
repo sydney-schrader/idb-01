@@ -4,8 +4,7 @@ import axios from "axios";
 import Medical from "./Medical";
 import { Grid } from "@mui/material";
 import CardPagination from "../CardPagination";
-import SearchPage from "../search/SearchPage";
-
+import SearchBar from '../search/SearchBar';
 
 const Medicals: React.FC<{}> = () => {
   
@@ -41,7 +40,7 @@ const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
         <div> {medData.length} Medical Centers </div>
         <div>Attributes: Name, Address, Hours, Phone number, URL for their website</div>
         <div>Instances per page: {perPage}</div>
-        <SearchPage page = {"medicares"}/>
+        <SearchBar page = {"medicares"}/>
         <Grid
         container
         direction="row"
