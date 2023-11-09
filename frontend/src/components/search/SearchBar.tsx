@@ -23,17 +23,14 @@ const SearchBar: React.FC<PageType> = ({ page, onSearchResults }) => {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [searchActive, setSearchActive] = useState(false);
 
 
   useEffect(() => {
     if (query.length === 0) {
-      setSearchActive(false);
       setResults([]);
       return;
     }
     
-    setSearchActive(true);
 
     const fetchData = async () => {
       setIsLoading(true);
