@@ -1,5 +1,4 @@
-import volunteer from '../../assets/volunteer.jpg'
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Col} from 'react-bootstrap';
 import { useImages } from '../ImageContext';
 import axios from "axios"; 
@@ -8,35 +7,24 @@ import CardPagination from "../CardPagination";
 import { Grid } from '@mui/material';
 import SearchBar from '../search/SearchBar';
 
-  
+type SearchResult = {
+  csa_label: string;
+  name: string;
+  // ... other properties
+};
+
 const Resources: React.FC<{}> = () => {
     
   const perPage:number = 16
   const [shelterData, setShelterData] = useState<any[]>([])
-  const { images, setImage } = useImages();
   const [currentPage, setCurrentPage] = useState(1);
   const [sheltersPerPage] = useState(perPage);
+  const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null); // Store search results
 
-//   const fetchShelterImage = useCallback(async (shelterName: string) => {
-//     if (images[shelterName]) {
-//         return images[shelterName];
-//     }
-
-//     const endpoint = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${encodeURIComponent(shelterName)}&image_type=photo&per_page=1`;
-
-//     try {
-//         const response = await axios.get(endpoint);
-//         if (response.data.hits && response.data.hits.length > 0) {
-//             const imageUrl = response.data.hits[0].webformatURL; // Using 'webformatURL' as an example. Pixabay provides multiple image sizes.
-//             setImage(shelterName, imageUrl);
-//             return imageUrl;
-//         }
-//     } catch (error) {
-//         console.error("Error fetching image from Pixabay:", error);
-//     }
-//     return volunteer; // Fallback to the volunteer image if no image is found on Pixabay
-// }, [images, setImage]);
-
+  const handleSearchResults = (results: SearchResult[]) => {
+    // Callback function to receive search results from SearchBar
+    setSearchResults(results);
+  };
 
   useEffect(() => {
     axios.get(`https://api.lacountyhomelesshelper.me/shelters/`)
@@ -65,24 +53,43 @@ const Resources: React.FC<{}> = () => {
         <div> {shelterData.length} Resources </div>
         <div> Attributes: Name, Address, Hours, Zipcode, Link to their website</div>
         <div>Instances per page: {perPage}</div>
-        <SearchBar page = {"shelters"}/>
+        <SearchBar page="shelters" onSearchResults={handleSearchResults} /> {/* Pass the callback function */}
+        {searchResults ? (
+        // Render search results
+        <>
+        <h5>Search Results:</h5>
         <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        wrap="wrap"
-        spacing={2} // Add spacing to control the gap between items
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          wrap="wrap"
+          spacing={2}
         >
-        {currentShelters.map((resource) => (
+          {searchResults.map((resource) => (
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+              {Resource(resource)}
+            </Grid>
+          ))}
+        </Grid>
+        </>
+      ) : (
+        // Render default data here
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          wrap="wrap"
+          spacing={2}
+        >
+          {currentShelters.map((resource) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
             {Resource(resource)}
-          </Grid>
-        ))}
+            </Grid>
+          ))}
         </Grid>
-        <div className="row row-cols-1 row-cols-md-2 g-4">
-        {currentShelters.map(Resource)}
-        </div>
+      )}
         <div>Total Pages: {Math.ceil(shelterData.length / sheltersPerPage)}</div>
         <div>Current Page: {currentPage}</div>
         <CardPagination

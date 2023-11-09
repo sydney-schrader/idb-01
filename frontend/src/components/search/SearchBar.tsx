@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Search from './Search';
 import City from '../cities/City';
+import '../home/home.css'
 import { 
   Container, 
   Typography, 
@@ -12,26 +13,32 @@ import {
 } from '@mui/material';
 
 type SearchResult = {
-  csa_label: string;
-  name: string;
-  // ... other properties
-};
-
-type PageType = {
-  page: string;
-}
-
-const SearchBar: React.FC<PageType> = ({ page }) => {
+    csa_label: string;
+    name: string;
+    // ... other properties
+  };
+  
+  type PageType = {
+    page: string;
+    onSearchResults: (results: SearchResult[]) => void; // Add a callback prop
+  }
+  
+const SearchBar: React.FC<PageType> = ({ page, onSearchResults }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [searchActive, setSearchActive] = useState(false);
+
 
   useEffect(() => {
     if (query.length === 0) {
+      setSearchActive(false);
       setResults([]);
       return;
     }
+    
+    setSearchActive(true);
 
     const fetchData = async () => {
       setIsLoading(true);
@@ -41,10 +48,11 @@ const SearchBar: React.FC<PageType> = ({ page }) => {
         const response = await fetch(`https://api.lacountyhomelesshelper.me/${page}?q=${query}`);
         const data: SearchResult[] = await response.json();
         const updatedData = await Promise.all(data.map(async (city: any) => {
-          //city.imageURL = await fetchCityImage(city.csa_label);
           return city;
         }));
         setResults(updatedData);
+        // Pass the search results to the callback function
+        onSearchResults(updatedData);
       } catch (err) {
         setError('Failed to fetch results');
       } finally {
@@ -93,31 +101,33 @@ const SearchBar: React.FC<PageType> = ({ page }) => {
         justifyContent="center"
         sx={{ padding: "20px" }}
         >
-          <Typography gutterBottom variant="h4" component="div" align='center'>
+          {/* <Typography gutterBottom variant="h4" component="div" align='center'>
             {page}
-          </Typography>
+          </Typography> */}
         </Stack>
 
-      {!isLoading && !error && (
-        <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        wrap="wrap"
-        spacing={2} // Add spacing to control the gap between items
-        >
-        {results.map((result) => (
-          <Grid item xs={12} sm={6} md={4} lg={3}>
-            {page == "cities" ? (
-              City(result)
-            ) : (
-              Search(result)
-            )}
-          </Grid>
-        ))}
-        </Grid>
-      )}
+      {/* {!isLoading && !error && (
+        <h4>you mom</h4>
+        // <Grid
+        // className='card-container'
+        // container
+        // direction="row"
+        // justifyContent="center"
+        // alignItems="center"
+        // wrap="wrap"
+        // spacing={2} // Add spacing to control the gap between items
+        // >
+        // {results.map((result) => (
+        //   <Grid item xs={12} sm={6} md={4} lg={3}>
+        //     {page == "cities" ? (
+        //       City(result)
+        //     ) : (
+        //       Search(result)
+        //     )}
+        //   </Grid>
+        // ))}
+        // </Grid>
+      )} */}
     </Container>
   );
 };
