@@ -1,16 +1,14 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect} from "react";
 import { Button, Container, Row, Col, Card} from 'react-bootstrap'
 import axios from "axios"; 
 import { useParams } from "react-router-dom";
-import { useImages } from "../ImageContext";
 import arcadia from '../../assets/arcadia.jpg'
 import ssa from '../../assets/ssa.jpg'
 import volunteer from '../../assets/volunteer.jpg'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 const GOOGLE_API_KEY_MAP = 'AIzaSyCq_KF4dp6lbPfh1S1efiL08TDurg21QS4';
 //jamie
-const SEARCH_ENGINE_ID = '129c571c4e1a84a03';
-const GOOGLE_API_KEY = 'AIzaSyAwozhLVzasZOIiW387q1P0NMtJTrhvD20';
+
 
 type CityParams = {
     cityName: string;

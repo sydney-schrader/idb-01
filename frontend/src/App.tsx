@@ -14,8 +14,6 @@ import MedicalInstancePage from './components/medical/MedicalInstancePage';
 import SearchPage from './components/search/SearchPage';
 
 function App() {
-    const searchActive = true; // Set the searchActive value based on your logic
-
     return (
       <>
       <ImageProvider>

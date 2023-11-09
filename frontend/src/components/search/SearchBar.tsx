@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import Search from './Search';
-import City from '../cities/City';
 import '../home/home.css'
 import { 
   Container, 
-  Typography, 
   TextField, 
   CircularProgress, 
   Alert ,
-  Grid,
   Stack
 } from '@mui/material';
 
 type SearchResult = {
     csa_label: string;
     name: string;
-    // ... other properties
   };
   
   type PageType = {
@@ -28,17 +23,14 @@ const SearchBar: React.FC<PageType> = ({ page, onSearchResults }) => {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [searchActive, setSearchActive] = useState(false);
 
 
   useEffect(() => {
     if (query.length === 0) {
-      setSearchActive(false);
       setResults([]);
       return;
     }
     
-    setSearchActive(true);
 
     const fetchData = async () => {
       setIsLoading(true);

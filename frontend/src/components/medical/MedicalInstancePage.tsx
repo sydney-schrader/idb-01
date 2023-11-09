@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect} from "react";
 import axios from "axios"; 
 import ssa from '../../assets/ssa.jpg'
 import { Button, Container, Row, Col, Card} from 'react-bootstrap'
 import { useParams } from "react-router-dom";
-import { useImages } from '../ImageContext';
 import arcadia from '../../assets/arcadia.jpg'
 import volunteer from '../../assets/volunteer.jpg'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';

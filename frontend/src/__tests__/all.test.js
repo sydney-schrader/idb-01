@@ -83,7 +83,7 @@ it('renders Los Angeles Homeless Helper Home page', () => {
 
 it('renders Instances on the Home page', () => {
     render(<HomePage />);
-    expect(screen.getByText('Instances')).toBeInTheDocument();
+    expect(screen.getByText('Cities')).toBeInTheDocument();
 });
 
 it('renders about page', () => {
@@ -93,7 +93,7 @@ it('renders about page', () => {
 
 it('renders about page tools', () => {
     render(<About />);
-    expect(screen.getByText("LA Homeless Helper Sources")).toBeInTheDocument();
+    expect(screen.getByText("Tools")).toBeInTheDocument();
 });
 
 it('Init About', () => {

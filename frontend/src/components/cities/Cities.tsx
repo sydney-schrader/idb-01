@@ -9,7 +9,6 @@ import SearchBar from '../search/SearchBar'; // Import the SearchPage component
 type SearchResult = {
   csa_label: string;
   name: string;
-  // ... other properties
 };
 
 const Cities: React.FC<{}> = () => {
