@@ -19,10 +19,11 @@ import {
   List, 
   ListItem, 
   ListItemText, 
+  Stack,
   Alert ,
   Grid
 } from '@mui/material';
-import City from "../cities/City";
+
 
 type SearchResult = {
   csa_label: string;
@@ -39,6 +40,14 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  var pageName = ""
+  if(page == "cities") {
+    pageName = "Cities"
+  } else if(page == "resources") {
+    pageName = "Resources"
+  } else if(page == "medicares") {
+    pageName = "Medical"
+  }
 
   useEffect(() => {
     if (query.length === 0) {
@@ -104,10 +113,10 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
         direction="row"
         spacing={2}
         justifyContent="center"
-        sx={{ padding: "20px" }}
+        sx={{ padding: "30px" }}
         >
           <Typography gutterBottom variant="h4" component="div" align='center'>
-            Cities
+            {pageName}
           </Typography>
         </Stack>
 
