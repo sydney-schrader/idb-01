@@ -11,6 +11,7 @@
 import React, { useState, useEffect } from 'react';
 import Search from './Search';
 import City from '../cities/City';
+import Medical from '../medical/Medical'
 import { 
   Container, 
   Typography, 
@@ -32,23 +33,17 @@ type PageType = {
   page: string;
 }
 
-const SearchPage: React.FC<PageType> = ({ page }) => {
+const SearchPage: React.FC<{}> = () => {
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<SearchResult[]>([]);
+  const [cityResults, setCityResults] = useState<SearchResult[]>([]);
+  const [medicalResults, setMedicalResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  var pageName = ""
-  if(page == "cities") {
-    pageName = "Cities"
-  } else if(page == "resources") {
-    pageName = "Resources"
-  } else if(page == "medicares") {
-    pageName = "Medical"
-  }
+ 
 
   useEffect(() => {
     if (query.length === 0) {
-      setResults([]);
+      setCityResults([]);
       return;
     }
 
@@ -57,13 +52,22 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
       setError('');
 
       try {
-        const response = await fetch(`https://api.lacountyhomelesshelper.me/${page}?q=${query}`);
-        const data: SearchResult[] = await response.json();
-        const updatedData = await Promise.all(data.map(async (city: any) => {
-          //city.imageURL = await fetchCityImage(city.csa_label);
+        // cities
+        const cityResponse = await fetch(`https://api.lacountyhomelesshelper.me/cities?q=${query}`);
+        const cityData: SearchResult[] = await cityResponse.json();
+        const updatedCityData = await Promise.all(cityData.map(async (city: any) => {
           return city;
         }));
-        setResults(updatedData);
+        setCityResults(updatedCityData);
+        // medicals
+        const medicalResponse = await fetch(`https://api.lacountyhomelesshelper.me/medicares?q=${query}`);
+        const medicalData: SearchResult[] = await medicalResponse.json();
+        const updatedMedicalData = await Promise.all(medicalData.map(async (medical: any) => {
+          return medical;
+        }));
+        setMedicalResults(updatedMedicalData);
+
+
       } catch (err) {
         setError('Failed to fetch results');
       } finally {
@@ -102,7 +106,7 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
         <Alert severity="error">{error}</Alert>
       )}
 
-      {!isLoading && !error && results.length === 0 && query && (
+      {!isLoading && !error && cityResults.length === 0 && query && (
         <Alert severity="info">No results found.</Alert>
       )}
 
@@ -113,7 +117,7 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
         sx={{ padding: "30px" }}
         >
           <Typography gutterBottom variant="h4" component="div" align='center'>
-            help
+            Cities
           </Typography>
         </Stack>
 
@@ -126,19 +130,47 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
         wrap="wrap"
         spacing={2} // Add spacing to control the gap between items
         >
-        {results.map((result) => (
+        {cityResults.map((result) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            {page == "cities" ? (
-              City(result)
-            ) : (
-              Search(result)
-            )}
+            {City(result)}
           </Grid>
         ))}
         </Grid>
       )}
+
+      <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ padding: "30px" }}
+        >
+          <Typography gutterBottom variant="h4" component="div" align='center'>
+            Medical
+          </Typography>
+        </Stack>
+
+      {!isLoading && !error && (
+        <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        wrap="wrap"
+        spacing={2} // Add spacing to control the gap between items
+        >
+        {medicalResults.map((result) => (
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            {Medical(result)}
+          </Grid>
+        ))}
+        </Grid>
+      )}
+
     </Container>
   );
 };
 
 export default SearchPage;
+
+
+
