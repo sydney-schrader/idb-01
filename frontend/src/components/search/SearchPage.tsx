@@ -16,12 +16,15 @@ import {
   CircularProgress, 
   List, 
   ListItem, 
-  ListItemText, 
+  ListItemText,
+  Stack,
+  Grid, 
   Alert 
 } from '@mui/material';
+import City from "../cities/City";
 
 type SearchResult = {
-  id: string;
+  csa_label: string;
   name: string;
   // ... other properties
 };
@@ -47,9 +50,13 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
       setError('');
 
       try {
-        const response = await fetch(`https://api.lacountyhomelesshelper.me/${page}?search=${query}`);
+        const response = await fetch(`https://api.lacountyhomelesshelper.me/cities?q=${query}`);
         const data: SearchResult[] = await response.json();
-        setResults(data);
+        const updatedData = await Promise.all(data.map(async (city: any) => {
+          //city.imageURL = await fetchCityImage(city.csa_label);
+          return city;
+        }));
+        setResults(updatedData);
       } catch (err) {
         setError('Failed to fetch results');
       } finally {
@@ -92,15 +99,35 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
         <Alert severity="info">No results found.</Alert>
       )}
 
+<Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ padding: "20px" }}
+        >
+          <Typography gutterBottom variant="h4" component="div" align='center'>
+            Cities
+          </Typography>
+        </Stack>
+
       {!isLoading && !error && (
-        <List>
-          {results.map((result) => (
-            <ListItem key={result.id}>
-              <ListItemText primary={result.name} />
-            </ListItem>
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          wrap="wrap"
+          spacing={2} 
+        >
+          {results.map((city) => (
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+              {City(city)}
+            </Grid>
           ))}
-        </List>
-      )}
+        </Grid>
+     
+      
+          )}
     </Container>
   );
 };
