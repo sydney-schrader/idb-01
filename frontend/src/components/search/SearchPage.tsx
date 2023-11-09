@@ -12,6 +12,7 @@ import React, { useState, useEffect } from 'react';
 import Search from './Search';
 import City from '../cities/City';
 import Medical from '../medical/Medical'
+import Resource from '../resources/Resource'
 import { 
   Container, 
   Typography, 
@@ -37,6 +38,7 @@ const SearchPage: React.FC<{}> = () => {
   const [query, setQuery] = useState('');
   const [cityResults, setCityResults] = useState<SearchResult[]>([]);
   const [medicalResults, setMedicalResults] = useState<SearchResult[]>([]);
+  const [shelterResults, setShelterResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
  
@@ -66,6 +68,13 @@ const SearchPage: React.FC<{}> = () => {
           return medical;
         }));
         setMedicalResults(updatedMedicalData);
+        // shelters
+        const shelterResponse = await fetch(`https://api.lacountyhomelesshelper.me/shelters?q=${query}`);
+        const shelterData: SearchResult[] = await shelterResponse.json();
+        const updatedShelterData = await Promise.all(shelterData.map(async (shelter: any) => {
+          return shelter;
+        }));
+        setShelterResults(updatedShelterData);       
 
 
       } catch (err) {
@@ -165,6 +174,37 @@ const SearchPage: React.FC<{}> = () => {
         ))}
         </Grid>
       )}
+
+
+      <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ padding: "30px" }}
+        >
+          <Typography gutterBottom variant="h4" component="div" align='center'>
+            Resource
+          </Typography>
+        </Stack>
+
+      {!isLoading && !error && (
+        <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        wrap="wrap"
+        spacing={2} // Add spacing to control the gap between items
+        >
+        {shelterResults.map((result) => (
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            {Resource(result)}
+          </Grid>
+        ))}
+        </Grid>
+      )}
+
+
 
     </Container>
   );
