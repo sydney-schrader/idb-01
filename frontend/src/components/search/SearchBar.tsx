@@ -38,7 +38,7 @@ const SearchBar: React.FC<PageType> = ({ page }) => {
       setError('');
 
       try {
-        const response = await fetch(`https://api.lacountyhomelesshelper.me/${page}?search=${query}`);
+        const response = await fetch(`https://api.lacountyhomelesshelper.me/${page}?q=${query}`);
         const data: SearchResult[] = await response.json();
         const updatedData = await Promise.all(data.map(async (city: any) => {
           //city.imageURL = await fetchCityImage(city.csa_label);
@@ -94,7 +94,7 @@ const SearchBar: React.FC<PageType> = ({ page }) => {
         sx={{ padding: "20px" }}
         >
           <Typography gutterBottom variant="h4" component="div" align='center'>
-            Cities
+            {page}
           </Typography>
         </Stack>
 

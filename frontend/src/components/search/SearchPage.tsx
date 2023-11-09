@@ -16,15 +16,11 @@ import {
   Typography, 
   TextField, 
   CircularProgress, 
-  List, 
-  ListItem, 
-  ListItemText, 
-  Stack,
   Alert ,
   Grid,
   Stack
 } from '@mui/material';
-import City from "../cities/City";
+
 
 type SearchResult = {
   csa_label: string;
@@ -61,7 +57,7 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
       setError('');
 
       try {
-        const response = await fetch(`https://api.lacountyhomelesshelper.me/${page}?search=${query}`);
+        const response = await fetch(`https://api.lacountyhomelesshelper.me/${page}?q=${query}`);
         const data: SearchResult[] = await response.json();
         const updatedData = await Promise.all(data.map(async (city: any) => {
           //city.imageURL = await fetchCityImage(city.csa_label);
@@ -117,7 +113,7 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
         sx={{ padding: "30px" }}
         >
           <Typography gutterBottom variant="h4" component="div" align='center'>
-            {pageName}
+            help
           </Typography>
         </Stack>
 
