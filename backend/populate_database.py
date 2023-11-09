@@ -3,7 +3,7 @@ import json
 import query_APIs
 from remove_params import filter_json
 from dotenv import load_dotenv
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 # from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import Session
 from models import Base, City, Shelter, Medicare
@@ -127,3 +127,9 @@ with Session(engine) as session:
 
     session.commit()
 
+# Add fulltext indices
+print("Adding fulltext indices")
+with Session(engine) as session:
+    session.execute(text("ALTER TABLE shelters ADD FULLTEXT INDEX FTEXT(name, description, addrln1)"))
+    session.execute(text("ALTER TABLE medicare ADD FULLTEXT INDEX FTEXT(name, description, addrln1)"))
+    session.commit()
