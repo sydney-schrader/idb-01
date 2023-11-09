@@ -22,9 +22,10 @@ import {
   Alert ,
   Grid
 } from '@mui/material';
+import City from "../cities/City";
 
 type SearchResult = {
-  id: string;
+  csa_label: string;
   name: string;
   // ... other properties
 };
@@ -50,9 +51,13 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
       setError('');
 
       try {
-        const response = await fetch(`https://api.lacountyhomelesshelper.me/${page}?q=${query}`);
+        const response = await fetch(`https://api.lacountyhomelesshelper.me/${page}?search=${query}`);
         const data: SearchResult[] = await response.json();
-        setResults(data);
+        const updatedData = await Promise.all(data.map(async (city: any) => {
+          //city.imageURL = await fetchCityImage(city.csa_label);
+          return city;
+        }));
+        setResults(updatedData);
       } catch (err) {
         setError('Failed to fetch results');
       } finally {
@@ -94,6 +99,17 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
       {!isLoading && !error && results.length === 0 && query && (
         <Alert severity="info">No results found.</Alert>
       )}
+
+<Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ padding: "20px" }}
+        >
+          <Typography gutterBottom variant="h4" component="div" align='center'>
+            Cities
+          </Typography>
+        </Stack>
 
       {!isLoading && !error && (
         <Grid
