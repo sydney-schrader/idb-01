@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from sqlalchemy import create_engine, select
+from sqlalchemy import create_engine, select, text
 from sqlalchemy.orm import Session
 # from model_maps import City, Shelter, Medicare
 from models import City, Shelter, Medicare
@@ -101,14 +101,19 @@ def search_shelters(query, filters):
         query_statement = session.query(Shelter).filter(Shelter.name.ilike(f'%{query}%'))
         query_statement = apply_filters(query_statement, filters, shelter_attr)
         results = list(session.execute(query_statement))
-        shelters = [row[0].to_dict() for row in results]
         # If there's only 1 shelter, they likely looked up a specific one, so 
         # in order to return relevant results, return nearby shelters:
-        if len(shelters) == 1:
-            searched_location = (shelters[0]["latitude"], shelters[0]["longitude"])
+        if len(results) == 1:
+            shelter = results[0][0].to_dict()
+            searched_location = (shelter["latitude"], shelter["longitude"])
             all_shelters = [row[0].to_dict() for row in session.execute(select(Shelter))]
-            all_shelters.sort(key=lambda shelter : geodesic(searched_location, (shelter["latitude"], shelter["longitude"])).miles)
+            all_shelters.sort(key=lambda curr_shelter : geodesic(searched_location, (curr_shelter["latitude"], curr_shelter["longitude"])).miles)
             return all_shelters
+        # If they didn't look up a specific shelter, fuzzy match it:
+        query_statement = text("MATCH (name, description, addrln1) AGAINST (:prompt)").bindparams(prompt=query)
+        results = session.query(Shelter).filter(query_statement).all()
+        shelters = [row.to_dict() for row in results]
+
     return shelters
 
 def query_medicare(name):
@@ -138,14 +143,19 @@ def search_medicares(query, filters):
         query_statement = session.query(Medicare).filter(Medicare.name.ilike(f'%{query}%'))
         query_statement = apply_filters(query_statement, filters, medicare_attr)
         results = list(session.execute(query_statement))
-        medicares = [row[0].to_dict() for row in results]
         # If there's only 1 office, they likely looked up a specific one, so 
         # in order to return relevant results, return nearby offices:
-        if len(medicares) == 1:
-            searched_location = (medicares[0]["latitude"], medicares[0]["longitude"])
+        if len(results) == 1:
+            medicare = results[0][0].to_dict()
+            searched_location = (medicare["latitude"], medicare["longitude"])
             all_medicares = [row[0].to_dict() for row in session.execute(select(Medicare))]
-            all_medicares.sort(key=lambda medicare : geodesic(searched_location, (medicare["latitude"], medicare["longitude"])).miles)
+            all_medicares.sort(key=lambda curr_medicare : geodesic(searched_location, (curr_medicare["latitude"], curr_medicare["longitude"])).miles)
             return all_medicares
+        # If they didn't look up a specific medicare office, fuzzy match it:
+        query_statement = text("MATCH (name, addrln1, description) AGAINST (:prompt)").bindparams(prompt=query)
+        results = session.query(Medicare).filter(query_statement).all()
+        medicares = [row.to_dict() for row in results]
+
     return medicares
 
 # request.args

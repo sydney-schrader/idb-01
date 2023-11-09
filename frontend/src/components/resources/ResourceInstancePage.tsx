@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Container, Row, Col, Card } from 'react-bootstrap'
-import { useImages } from "../ImageContext";
 import volunteer from '../../assets/volunteer.jpg'
 import axios from "axios"; 
 import arcadia from '../../assets/arcadia.jpg'
@@ -8,57 +7,74 @@ import ssa from '../../assets/ssa.jpg'
 import { useParams } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 const GOOGLE_API_KEY_MAP = 'AIzaSyDLa1azh_pIsTMJnhcgNuqobgRfoh9wsgY';
-//pavan
-const SEARCH_ENGINE_ID = '553cf4cb73ceb44f9';
-const GOOGLE_API_KEY = 'AIzaSyDeJ_BEmpE0WOX92_Q3iWNdnnUcXpH3yeg';
 
 type ResourceParams = {
     resourceName: string;
 };
 
-
-type resourceItem = {
-    imageURL?: string;
-    medimageURL?: string;
-    name: string;
-    addrln1?: string;
-    addrln2?: string;
-    city?:string;
-    hours?: string;
-    phones?: string;
-    url?: string;
-    post_id: number;
-    description: string;
-    zip:string;
-    link: string;
-    latitude: number;
-    longitude: number;
-    date_updated: string;
-    medicare_name?: string;
-    medicare_addrln1?: string;
-    medicare_addrln2?: string;
-    medicare_hours?: string;
+type cityItem = {
+  csa_label: string;
+  image_url?: string;
+  total_unsheltered_pop: number;
+  total_sheltered_pop: number;
+  total_pop: number;
+  square_miles: number;
+  density_unsheltered: number;
+  density_sheltered?: number; // This is nullable
+  density_total: number;
+  shelters?: string; // This is nullable
+  medicares?: string; // This is nullable
+  latitude: number;
+  longitude: number;
 };
 
-type cityItem = {
-    csa_label: string;
-    imageURL?: string;
-    total_unsheltered_pop: number;
-    total_sheltered_pop: number;
-    total_pop: number;
-    square_miles: number;
-    density_unsheltered: number;
-    density_sheltered?: number; // This is nullable
-    density_total: number;
-    shelter?: string; // This is nullable
-    medicare?: string; // This is nullable
+type resourceItem = {
+  image_url?: string;
+  name: string;
+  addrln1?: string;
+  addrln2?: string;
+  city?:string;
+  hours?: string;
+  phones?: string;
+  url?: string;
+  post_id: number;
+  description: string;
+  zip:string;
+  link: string;
+  latitude: number;
+  longitude: number;
+  date_updated: string;
+  medicare_name?: string;
+  medicare_addrln1?: string;
+  medicare_addrln2?: string;
+  medicare_hours?: string;
+};
+
+type medicalItem = {
+  name: string;
+  image_url?: string;
+  addrln1: string;
+  addrln2?: string;
+  city?: string;
+  hours?: string;
+  phones?: string;
+  post_id: number;
+  description: string;
+  zip: string;
+  latitude: number;
+  longitude: number;
+  date_updated: string;
+  shelter_name?: string;
+  shelter_addrln1?: string;
+  shelter_addrln2?: string;
+  shelter_hours?: string;
 };
 
 const ResourceInstancePage: React.FC<{}> = () => {
 
     const [resourcepageData, setResourcepageData] = useState({} as resourceItem);
     const [cityData, setCityData] = useState({} as cityItem);
-    //const { images, setImage } = useImages();
+    const [medicareData, setMedicareData] = useState({} as medicalItem);
     const { resourceName } = useParams<ResourceParams>();
     const mapContainerStyle = {
       width: '600px',
@@ -69,24 +85,6 @@ const ResourceInstancePage: React.FC<{}> = () => {
       lat: resourcepageData.latitude,
       lng: resourcepageData.longitude
     };
-
-    // const fetchShelterImage = useCallback(async (shelterName: string) => {
-    //     if (images[shelterName]) {
-    //         return images[shelterName];
-    //     }
-    
-    //     const endpoint = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(shelterName)}&cx=${SEARCH_ENGINE_ID}&searchType=image&key=${GOOGLE_API_KEY}`;
-    //     try {
-    //         const response = await axios.get(endpoint);
-    //         if (response.data.items && response.data.items.length > 0) {
-    //             setImage(shelterName, response.data.items[0].link);
-    //             return response.data.items[0].link;
-    //         }
-    //     } catch (error) {
-    //         console.error("Error fetching image:", error);
-    //     }
-    //     return volunteer;
-    // }, [images, setImage]);
 
     
     useEffect(() => {
@@ -99,6 +97,15 @@ const ResourceInstancePage: React.FC<{}> = () => {
             }
             return null; // or some default data if needed
         }
+        const fetchMedDetails = async (medName: string) => {
+          try {
+              const response = await axios.get(`https://api.lacountyhomelesshelper.me/medicare/${encodeURIComponent(medName!)}`);
+              return response.data;
+          } catch (error) {
+              console.error("Error fetching shelter data:", error);
+          }
+          return null; // or some default data if needed
+      }
 		const handleResourceList = async() => {
 			const options = {
 				method: 'GET',
@@ -110,21 +117,24 @@ const ResourceInstancePage: React.FC<{}> = () => {
                 const resourceData: resourceItem = {
                     ...response.data,
                 };
-                //const imageURL = await fetchShelterImage(resourceName!);
-                setResourcepageData({ ...resourceData/*, imageURL */}); // Merging the cityData with the imageURL
-                //resourceData.medimageURL = await fetchShelterImage(resourceData.medicare_name!);
+                setResourcepageData({ ...resourceData});
                 if (resourceData.city) {
                     const cityData = await fetchCityDetails(resourceData.city);
                     // Store the shelter details in the state if needed.
                     setCityData(cityData);
-                    //cityData.imageURL = await fetchShelterImage(resourceData.city!);
                 }
+                if (resourceData.medicare_name) {
+                  const medicareData = await fetchMedDetails(resourceData.medicare_name);
+                  // Store the shelter details in the state if needed.
+                  setMedicareData(medicareData);
+                  //medicareData.imageURL = await fetchCityImage(cityData.medicares);
+              }
             } catch (error) {
                 console.error("Error fetching city data:", error);
             }
 		}
 		handleResourceList();
-	}, [ resourceName/*, fetchShelterImage*/])
+	}, [ resourceName])
 
 
       
@@ -136,11 +146,15 @@ const ResourceInstancePage: React.FC<{}> = () => {
                     {resourcepageData.name}
                 </h1>
                 <img 
-             src = {resourcepageData.imageURL || volunteer}
+             src = {resourcepageData.image_url || volunteer}
                 alt=""
                 className='card-image-top'
                 style={{
                   width: '50%',
+                }}
+                onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = volunteer; // Set the fallback image when an error occurs
                 }} />
                 </div>
                 <Container>
@@ -187,11 +201,15 @@ const ResourceInstancePage: React.FC<{}> = () => {
                 <b>{cityData.csa_label}</b>
               </Card.Title>
               <img
-                src={cityData.imageURL || arcadia}
+                src={cityData.image_url || arcadia}
                 alt=""
                 className='card-image-top'
                 style={{
                   width: '50%',
+                }}
+                onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = arcadia; // Set the fallback image when an error occurs
                 }}
               ></img>
               <Card.Body>
@@ -211,24 +229,28 @@ const ResourceInstancePage: React.FC<{}> = () => {
           <Col>
             <Card style={{ alignItems: 'center' }}>
               <Card.Title className='header-1'>
-                <b>{resourcepageData.medicare_name}</b>
+                <b>{medicareData.name}</b>
               </Card.Title>
               <img
-                src={resourcepageData.medimageURL || ssa}
+                src={medicareData.image_url || ssa}
                 alt=""
                 className='card-image-top'
                 style={{
                   width: '50%',
                 }}
+                onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = ssa; // Set the fallback image when an error occurs
+                }}
               ></img>
               <Card.Body>
               <p>
-                Name: {resourcepageData.medicare_name} <br/>
-                Address: {resourcepageData.medicare_addrln1}<br/>
-                Hours: {resourcepageData.medicare_hours} <br/>
+                Name: {medicareData.name} <br/>
+                Address: {medicareData.addrln1}<br/>
+                Hours: {medicareData.hours} <br/>
                 </p>
                 <Button name='href' href={`/medical/${resourcepageData.medicare_name}`} className='card-link'>
-                  View {resourcepageData.medicare_name}
+                  View {medicareData.name}
                 </Button>
               </Card.Body>
             </Card>

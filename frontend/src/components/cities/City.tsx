@@ -12,10 +12,14 @@ const City: React.FC<{}> = (card: any, index:any) => {
                   </b>
                 </Card.Title>
                 <img
-                src={card.imageURL || arcadia}
+                src={card.image_url || arcadia}
                 alt={card.csa_label}
                 className='card-image-top'
                 style={{ width: '100%' }}
+                onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = arcadia; // Set the fallback image when an error occurs
+                }}
                 />
                 <Card.Body className="text-center">
                 

@@ -68,14 +68,7 @@ const people: DevInfo[] = [
 ];
 
 
-type ContributorDetails = {
-  commits: number;
-  issues: number; 
-};
 
-type ContributorsDictionary = {
-  [key: string]: ContributorDetails;
-};
 
 
 // Tool card info
@@ -124,44 +117,60 @@ const About: React.FC<{}> = () => {
 
   
 
-    //const [gitData, setGitData] = useState<any[]>([])
-    const [gitData, setGitData] = useState<ContributorsDictionary>({});
+  const [commitData, setCommitData] = useState<any[]>([])
+
+  const [issueData, setIssueData] = useState<any[]>([])
 
 
 
-    useEffect(() => {
-      const fetchContributors = async () => {
-        try {
-          const response = await axios.get('https://api.lacountyhomelesshelper.me/about');
-          console.log(response.data);
-          setGitData(response.data);
-        } catch (error) {
-          console.error('Error fetching contributors:', error);
-        }
-      };
+
+
+
+
+  useEffect(() => {
+    // Get issues and commits from gitlab api
+    axios.get(`https://gitlab.com/api/v4/projects/50431924/repository/commits?per_page=500`)
+    .then((response) => { 
+        console.log(response.data);
+        setCommitData(response.data); });
+
+    axios.get(`https://gitlab.com/api/v4/projects/50431924/issues?per_page=500`)
+    .then((response) => {setIssueData(response.data); });
+    
+  }, []);
   
-      fetchContributors();
-    }, []);
 
-    useEffect(() => {
-      if (gitData["Jamie Wong"]) {
-        people[0].commits = gitData["Jamie Wong"].commits
-        people[0].issues = gitData["Jamie Wong"].issues
-      }
-      if (gitData["Sydney Schrader"]) {
-        people[1].commits = gitData["Sydney Schrader"].commits
-        people[1].issues = gitData["Sydney Schrader"].issues
-      }
-      if (gitData["Zachary Voltz"]) {
-        people[2].commits = gitData["Zachary Voltz"].commits
-        people[2].issues = gitData["Zachary Voltz"].issues
-      }
-      if (gitData["Pavan Marathi"]) {
-        people[3].commits = gitData["Pavan Marathi"].commits
-        people[3].issues = gitData["Pavan Marathi"].issues
-      }
+  people[0].commits = commitData.filter(
+    (commit) => commit.author_name === "Jamie Wong"
+  ).length
 
-    }, [gitData]);
+  people[0].issues = issueData.filter(
+    (issue: any) => issue.closed_by != null
+  ).filter(((issue) => issue.closed_by.name === "Jamie Wong")).length
+
+  people[1].commits = commitData.filter(
+    (commit) => commit.author_name === "Sydney Schrader"
+  ).length
+
+  people[1].issues = issueData.filter(
+    (issue: any) => issue.closed_by != null
+  ).filter(((issue) => issue.closed_by.name === "Sydney Schrader")).length
+
+  people[2].commits = commitData.filter(
+    (commit) => commit.author_name === "Zachary Voltz"
+  ).length
+
+  people[2].issues = issueData.filter(
+    (issue: any) => issue.closed_by != null
+  ).filter(((issue) => issue.closed_by.name === "Zachary Voltz")).length
+
+  people[3].commits = commitData.filter(
+    (commit) => commit.author_name === "Pavan Marathi"
+  ).length
+
+  people[3].issues = issueData.filter(
+    (issue: any) => issue.closed_by != null
+  ).filter(((issue) => issue.closed_by.name === "Pavan Marathi")).length
    
    
 
