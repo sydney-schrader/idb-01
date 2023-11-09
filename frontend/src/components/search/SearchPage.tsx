@@ -1,15 +1,4 @@
-// import React, { useState, useEffect, useCallback } from "react";
-
-// `https://api.lacountyhomelesshelper.me/?search=${query}`
-// const SearchPage: React.FC<{}> = () => {
-//     console.log("search page")
-//     return (
-//         <h1>Search</h1>
-//     );
-// };
-// export default SearchPage;
 import React, { useState, useEffect } from 'react';
-import Search from './Search';
 import City from '../cities/City';
 import Medical from '../medical/Medical'
 import Resource from '../resources/Resource'
@@ -27,12 +16,8 @@ import {
 type SearchResult = {
   csa_label: string;
   name: string;
-  // ... other properties
 };
 
-type PageType = {
-  page: string;
-}
 
 const SearchPage: React.FC<{}> = () => {
   const [query, setQuery] = useState('');
@@ -76,7 +61,6 @@ const SearchPage: React.FC<{}> = () => {
         }));
         setShelterResults(updatedShelterData);       
 
-
       } catch (err) {
         setError('Failed to fetch results');
       } finally {
@@ -93,9 +77,6 @@ const SearchPage: React.FC<{}> = () => {
 
   return (
     <Container>
-      {/* <Typography variant="h4" component="h1" gutterBottom>
-        Search
-      </Typography> */}
 
       <TextField
         type="search"
@@ -119,7 +100,7 @@ const SearchPage: React.FC<{}> = () => {
         <Alert severity="info">No results found.</Alert>
       )}
 
-<Stack
+      <Stack
         direction="row"
         spacing={2}
         justifyContent="center"
@@ -137,7 +118,7 @@ const SearchPage: React.FC<{}> = () => {
         justifyContent="center"
         alignItems="center"
         wrap="wrap"
-        spacing={2} // Add spacing to control the gap between items
+        spacing={2} 
         >
         {cityResults.map((result) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
@@ -165,7 +146,7 @@ const SearchPage: React.FC<{}> = () => {
         justifyContent="center"
         alignItems="center"
         wrap="wrap"
-        spacing={2} // Add spacing to control the gap between items
+        spacing={2} 
         >
         {medicalResults.map((result) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
@@ -194,7 +175,7 @@ const SearchPage: React.FC<{}> = () => {
         justifyContent="center"
         alignItems="center"
         wrap="wrap"
-        spacing={2} // Add spacing to control the gap between items
+        spacing={2} 
         >
         {shelterResults.map((result) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
@@ -203,8 +184,6 @@ const SearchPage: React.FC<{}> = () => {
         ))}
         </Grid>
       )}
-
-
 
     </Container>
   );
