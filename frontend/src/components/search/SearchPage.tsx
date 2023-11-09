@@ -9,6 +9,8 @@
 // };
 // export default SearchPage;
 import React, { useState, useEffect } from 'react';
+import Search from './Search';
+import City from '../cities/City';
 import { 
   Container, 
   Typography, 
@@ -17,7 +19,8 @@ import {
   List, 
   ListItem, 
   ListItemText, 
-  Alert 
+  Alert ,
+  Grid
 } from '@mui/material';
 
 type SearchResult = {
@@ -47,7 +50,7 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
       setError('');
 
       try {
-        const response = await fetch(`https://api.lacountyhomelesshelper.me/${page}?search=${query}`);
+        const response = await fetch(`https://api.lacountyhomelesshelper.me/${page}?q=${query}`);
         const data: SearchResult[] = await response.json();
         setResults(data);
       } catch (err) {
@@ -93,13 +96,24 @@ const SearchPage: React.FC<PageType> = ({ page }) => {
       )}
 
       {!isLoading && !error && (
-        <List>
-          {results.map((result) => (
-            <ListItem key={result.id}>
-              <ListItemText primary={result.name} />
-            </ListItem>
-          ))}
-        </List>
+        <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        wrap="wrap"
+        spacing={2} // Add spacing to control the gap between items
+        >
+        {results.map((result) => (
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            {page == "cities" ? (
+              City(result)
+            ) : (
+              Search(result)
+            )}
+          </Grid>
+        ))}
+        </Grid>
       )}
     </Container>
   );
