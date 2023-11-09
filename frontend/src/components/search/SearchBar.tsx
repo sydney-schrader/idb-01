@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import Search from './Search';
-import City from '../cities/City';
 import '../home/home.css'
 import { 
   Container, 
-  Typography, 
   TextField, 
   CircularProgress, 
   Alert ,
-  Grid,
   Stack
 } from '@mui/material';
 
 type SearchResult = {
     csa_label: string;
     name: string;
-    // ... other properties
   };
   
   type PageType = {

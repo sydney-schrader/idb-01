@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 //import axios from "axios";
 import axios from "axios";
-import { Container, Row, Col } from 'react-bootstrap'
-import Card from 'react-bootstrap/Card'
+import { Container, Col } from 'react-bootstrap'
 import jamie from '../../assets/jamie.jpg'
 import pavan from '../../assets/pavan.jpg'
 import sydney from '../../assets/sydney.jpg'
@@ -21,14 +20,8 @@ import sqlAlchPic from '../../assets/sqlAlchPic.jpg'
 import postmanPic from '../../assets/postmanPic.jpg'
 
 import {
-  CardContent,
   Typography,
-  Divider,
   Stack,
-  Box,
-  Button,
-  Tooltip,
-  Skeleton,
 } from "@mui/material";
 import ApiTool from "./ApiTool";
 

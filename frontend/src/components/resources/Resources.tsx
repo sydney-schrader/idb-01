@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Container, Col} from 'react-bootstrap';
-import { useImages } from '../ImageContext';
 import axios from "axios"; 
 import Resource from "./Resource";
 import CardPagination from "../CardPagination";
