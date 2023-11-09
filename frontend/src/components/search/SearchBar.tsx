@@ -57,7 +57,7 @@ const SearchBar: React.FC<PageType> = ({ page, onSearchResults }) => {
 
     // Cleanup function to cancel the debounce if the component is unmounted
     return () => clearTimeout(timerId);
-  }, [query, onSearchResults]);
+  }, [query, onSearchResults, page]);
 
   return (
     <Container>
