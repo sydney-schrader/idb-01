@@ -64,9 +64,9 @@ const Cities: React.FC<{}> = () => {
           wrap="wrap"
           spacing={2}
         >
-          {searchResults.map((city) => (
+          {searchResults.map((result, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3}>
-              {City(city)}
+              <City card={result} index={index} highlight={""} />
             </Grid>
           ))}
         </Grid>

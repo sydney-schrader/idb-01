@@ -1,14 +1,34 @@
 import React from "react";
 import {  Card, Button } from 'react-bootstrap'
 import arcadia from '../../assets/arcadia.jpg'
+import Highlighter from "react-highlight-words";
+
+interface CityProps {
+  card: any;  // Replace 'any' with a more specific type if possible
+  index: number;
+  highlight: string;
+}
 
 
-const City: React.FC<{}> = (card: any, index:any) => {
+const City: React.FC<CityProps> = ({ card, index, highlight = null }) => {
+  const highlightStyle = {
+    padding: 0, // No padding
+    // Add other styles if necessary
+  };
+  
+
+
     return(
         <Card style={{ alignItems: 'center', width: '18rem', padding: "0 10px"}} key={index} className="box">
                 <Card.Title className='header-1'>
                   <b>
-                    {card.csa_label}
+                      <Highlighter
+                        highlightClassName="highlighter"
+                        highlightStyle={highlightStyle}
+                        searchWords={highlight?.split(" ") ?? []}
+                        autoEscape={true}
+                        textToHighlight={card.csa_label}
+                      />
                   </b>
                 </Card.Title>
                 <img
