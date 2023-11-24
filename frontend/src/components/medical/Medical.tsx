@@ -1,14 +1,30 @@
 import React from "react";
 import { Card, Button } from 'react-bootstrap'
 import ssa from '../../assets/ssa.jpg'
+import Highlighter from "react-highlight-words";
 
+interface MedicalProps {
+  card: any;  // Replace 'any' with a more specific type if possible
+  index: number;
+  highlight: string;
+}
 
-const Medical: React.FC<{}> = (card: any, index:any) => {
+const Medical: React.FC<MedicalProps> = ({ card, index, highlight = null }) => {
+  const highlightStyle = {
+    padding: 0, 
+  };
+
   return(
     <Card style={{ alignItems: 'center', width: '18rem'}} key={index} className="box">
             <Card.Title className='header-1'>
               <b>
-                {card.name}
+                <Highlighter
+                  highlightClassName="highlighter"
+                  highlightStyle={highlightStyle}
+                  searchWords={highlight?.split(" ") ?? []}
+                  autoEscape={true}
+                  textToHighlight={card.name}
+                />
               </b>
             </Card.Title>
             <img

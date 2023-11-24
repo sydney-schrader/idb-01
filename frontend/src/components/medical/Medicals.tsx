@@ -66,9 +66,9 @@ const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
           wrap="wrap"
           spacing={2}
         >
-          {searchResults.map((med) => (
+          {searchResults.map((result, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3}>
-              {Medical(med)}
+              <Medical card={result} index={index} highlight={""} />
             </Grid>
           ))}
         </Grid>

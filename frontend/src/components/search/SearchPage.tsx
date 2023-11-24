@@ -152,9 +152,9 @@ const SearchPage: React.FC<{}> = () => {
         wrap="wrap"
         spacing={2} 
         >
-        {medicalResults.map((result) => (
+        {medicalResults.map((result, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            {Medical(result)}
+            <Medical card={result} index={index} highlight={query} />
           </Grid>
         ))}
         </Grid>

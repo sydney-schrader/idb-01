@@ -12,12 +12,9 @@ interface CityProps {
 
 const City: React.FC<CityProps> = ({ card, index, highlight = null }) => {
   const highlightStyle = {
-    padding: 0, // No padding
-    // Add other styles if necessary
+    padding: 0, 
   };
   
-
-
     return(
         <Card style={{ alignItems: 'center', width: '18rem', padding: "0 10px"}} key={index} className="box">
                 <Card.Title className='header-1'>
