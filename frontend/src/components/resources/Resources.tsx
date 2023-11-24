@@ -19,6 +19,8 @@ const Resources: React.FC<{}> = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [sheltersPerPage] = useState(perPage);
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null); // Store search results
+  const [query, setQuery] = useState('');
+
 
   const handleSearchResults = (results: SearchResult[]) => {
     // Callback function to receive search results from SearchBar
@@ -52,8 +54,13 @@ const Resources: React.FC<{}> = () => {
         <div> {shelterData.length} Resources </div>
         <div> Attributes: Name, Address, Hours, Zipcode, Link to their website</div>
         <div>Instances per page: {perPage}</div>
-        <SearchBar page="shelters" onSearchResults={handleSearchResults} /> {/* Pass the callback function */}
-        {searchResults ? (
+        <SearchBar 
+        page="shelters" 
+        onSearchResults={handleSearchResults} 
+        query={query}  
+        setQuery={setQuery} 
+      />
+      {searchResults ? (
         // Render search results
         <>
         <h5>Search Results:</h5>
@@ -67,7 +74,7 @@ const Resources: React.FC<{}> = () => {
         >
           {searchResults.map((result, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3}>
-              <Resource card={result} index={index} highlight={""} />
+              <Resource card={result} index={index} highlight={query} />
             </Grid>
           ))}
         </Grid>

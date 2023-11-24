@@ -15,11 +15,13 @@ type SearchResult = {
   
   type PageType = {
     page: string;
-    onSearchResults: (results: SearchResult[]) => void; // Add a callback prop
-  }
+    onSearchResults: (results: SearchResult[]) => void;
+    query: string;
+    setQuery: (q: string) => void;
+  };
   
-const SearchBar: React.FC<PageType> = ({ page, onSearchResults }) => {
-  const [query, setQuery] = useState('');
+const SearchBar: React.FC<PageType> = ({ page, onSearchResults, query, setQuery }) => {
+  // const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');

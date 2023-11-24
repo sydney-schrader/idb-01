@@ -20,6 +20,7 @@ const Medicals: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [medsPerPage] = useState(perPage);
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null); // Store search results
+  const [query, setQuery] = useState('');
 
   const handleSearchResults = (results: SearchResult[]) => {
     // Callback function to receive search results from SearchBar
@@ -53,7 +54,12 @@ const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
         <div> {medData.length} Medical Centers </div>
         <div>Attributes: Name, Address, Hours, Phone number, URL for their website</div>
         <div>Instances per page: {perPage}</div>
-        <SearchBar page="medicares" onSearchResults={handleSearchResults} /> {/* Pass the callback function */}
+        <SearchBar 
+        page="shelters" 
+        onSearchResults={handleSearchResults} 
+        query={query}  
+        setQuery={setQuery} 
+      />
       {searchResults ? (
         // Render search results
         <>
@@ -68,7 +74,7 @@ const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
         >
           {searchResults.map((result, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3}>
-              <Medical card={result} index={index} highlight={""} />
+              <Medical card={result} index={index} highlight={query} />
             </Grid>
           ))}
         </Grid>

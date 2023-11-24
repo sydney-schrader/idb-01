@@ -18,6 +18,7 @@ const Cities: React.FC<{}> = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [citiesPerPage] = useState(perPage);
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null); // Store search results
+  const [query, setQuery] = useState('');
 
   const handleSearchResults = (results: SearchResult[]) => {
     // Callback function to receive search results from SearchBar
@@ -51,7 +52,12 @@ const Cities: React.FC<{}> = () => {
         <div> {cityData.length} Cities </div>
         <div> Attributes: Unsheltered population, Sheltered population, Total homeless population, Square miles of city, Density of total homeless population</div>
         <div>Instances per page: {perPage}</div>
-        <SearchBar page="cities" onSearchResults={handleSearchResults} /> {/* Pass the callback function */}
+        <SearchBar 
+        page="shelters" 
+        onSearchResults={handleSearchResults} 
+        query={query}  
+        setQuery={setQuery} 
+      />
       {searchResults ? (
         // Render search results
         <>
@@ -66,7 +72,7 @@ const Cities: React.FC<{}> = () => {
         >
           {searchResults.map((result, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3}>
-              <City card={result} index={index} highlight={""} />
+              <City card={result} index={index} highlight={query} />
             </Grid>
           ))}
         </Grid>
