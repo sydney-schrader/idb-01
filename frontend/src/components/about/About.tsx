@@ -1,15 +1,6 @@
-import React, { useState, useEffect } from "react";
-//import axios from "axios";
-import axios from "axios";
-import { Container, Col } from 'react-bootstrap'
-import jamie from '../../assets/jamie.jpg'
-import pavan from '../../assets/pavan.jpg'
-import sydney from '../../assets/sydney.jpg'
-import zach from '../../assets/zach.jpg'
 import bootstrapPic from '../../assets/bootstrapPic.jpg'
 import gitlabPic from '../../assets/gitlabPic.png'
 import styles from './About.module.css'
-import Developer from "./Developer";
 import Tool from "./Tool";
 import arcadia from '../../assets/arcadia.jpg'
 import volunteer from '../../assets/volunteer.jpg'
@@ -18,51 +9,314 @@ import reactPic from '../../assets/React-icon.jpg'
 import flaskPic from '../../assets/flaskPic.jpg'
 import sqlAlchPic from '../../assets/sqlAlchPic.jpg'
 import postmanPic from '../../assets/postmanPic.jpg'
+import ApiTool from "./ApiTool";
+import React from "react";
+import jamie from '../../assets/jamie.jpg'
+import pavan from '../../assets/pavan.jpg'
+import sydney from '../../assets/sydney.jpg'
+import zach from '../../assets/zach.jpg'
+import axios, { AxiosResponse } from "axios";
+import ModelCard from "./ModelCard";
+
 
 import {
+  CardContent,
   Typography,
+  Divider,
   Stack,
+  Box,
+  Container,
+  Button,
+  Tooltip,
+  Skeleton,
 } from "@mui/material";
-import ApiTool from "./ApiTool";
 
 
-// Developer card info
-
-interface DevInfo {
-  name: string, 
-  imagePath: string, 
-  devType:string,
-  description:string,
-  commits:number,
-  issues: number,
+interface AboutState {
+  people: Person[];
+  totalCommits: number;
+  totalIssues: number;
+  totalTests: number;
+  loading: boolean;
 }
 
-const people: DevInfo[] = [
-  { name: "Jamie Wong", imagePath: jamie, devType: "Frontend Developer", description: 
-    "Im a senior computer science student at UT Austin. I'm from Houston, Texas and I like to read and play poker",
-    commits: 0, 
-    issues: 0,
-  },
-  { name: "Sydney Schrader", imagePath: sydney, devType: "Frontend Developer", description:
-    "I'm a Junior from Austin, TX. I like to go to Barton Springs and read in my free time.",
-    commits: 0, 
-    issues:0, 
-  },
-  { name: "Zachary Voltz", imagePath: zach, devType: "Backend Developer", description:
-    "I'm a senior CS student from Houston, Texas, and I've been programming since I was 9. Outside of programming, I like to read manga and rock climb",
-    commits: 0,
-    issues:0,
-  },
-  { name: "Pavan Marathi", imagePath: pavan, devType: "Backend Developer", description:
-    "I'm a Junior from Houston, TX. I enjoy rock climbing and board games in my spare time.",
-    commits: 0, 
-    issues:0, 
+class About extends React.Component<{}, AboutState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      people: PEOPLE,
+      totalCommits: 0,
+      totalIssues: 0,
+      totalTests: 81,
+      loading: true,
+    };
   }
+
+  componentDidMount() {
+    this.getData();
+  }
+
+  render() {
+
+    console.log(this.state.loading);
+    return ( 
+      <Container className="page-container" sx={{ textAlign: "center" }}>
+        <Typography sx={{ margin: "20px" }} variant="h3">
+          About LA County Homeless Helper
+        </Typography>
+       <div className= {styles['textType']}>
+             California has the largest amount of homless in the United States, the majority being in LA County. 
+             This website links together city homeless data, homeless resource data, and medicare/medicaid data. 
+             This disparate data can be used to analyze what locations have what services, and could be used to see what
+             locations could use more help based on homless population density. This tool is designed
+             for people wanting to help the homeless of LA County and also a tool 
+             for homeless people to see what resources are available for them.
+       </div>
+        
+
+            <div>
+            {this.state.people.map((p) => (
+              <ModelCard
+                key={p.name}
+                fitImage={false}
+                height="560px"
+                width="270px"
+                imageHeight="270px"
+                image={p.image}
+              >
+                <CardContent>
+                  <Typography variant="h5" component="div">
+                    {p.name}
+                  </Typography>
+ 
+
+                  <Typography variant="body2" color="text.secondary">
+                    {p.bio}
+                  </Typography>
+                </CardContent>
+                <Box style={{ flexGrow: 2 }}></Box>
+                <Divider sx={{ width: "300px" }}></Divider>
+                <Stack
+                  direction="row"
+                  divider={<Divider orientation="vertical" flexItem />}
+                  spacing={1.5}
+                  sx={{
+                    alignSelf: "center",
+                    padding: "16px",
+                  }}
+                >
+                  <Stack
+                    direction="column"
+                    alignItems="center"
+                    alignSelf="center"
+                    width="60px"
+                  >
+                    
+                    <Typography variant="body2" margin="0px">
+                      Commits
+                    </Typography>
+                    <Typography variant="body1" textAlign="center">
+                      {this.state.loading ? (
+                        <Skeleton width={"36px"} />
+                      ) : (
+                        p.commits
+                      )}
+                    </Typography>
+                  </Stack>
+                  <Tooltip title={"Total issues assigned"} followCursor={true}>
+                    <Stack
+                      direction="column"
+                      alignItems="center"
+                      alignSelf="center"
+                      width="60px"
+                    >
+                      
+                      <Typography variant="body2" margin="2px">
+                        Issues
+                      </Typography>
+                      <Typography variant="body1" textAlign="center">
+                        {this.state.loading ? (
+                          <Skeleton width={"36px"} />
+                        ) : (
+                          p.issues
+                        )}
+                      </Typography>
+                    </Stack>
+                  </Tooltip>
+                  <Stack
+                    direction="column"
+                    alignItems="center"
+                    alignSelf="center"
+                    width="60px"
+                  >
+                    
+                    <Typography variant="body2" margin="2px">
+                      Tests
+                    </Typography>
+                    <Typography variant="body1" textAlign="center">
+                      {this.state.loading ? <Skeleton width={"36px"} /> : p.tests}
+                    </Typography>
+                  </Stack>
+                </Stack>
+              </ModelCard>
+            ))}
+          </div>
+
+        <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ padding: "20px" }}
+        >
+          <Typography gutterBottom variant="h4" component="div" align='center'>
+            LA Homeless Helper API Sources
+          </Typography>
+        </Stack>
+
+        <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ padding: "36px" }}
+        >
+          {apiTools.map(ApiTool)}
+        </ Stack>
+
+        <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ padding: "20px" }}
+        >
+          <Typography gutterBottom variant="h4" component="div" align='center'>
+            Tools
+          </Typography>
+        </Stack>
+
+        <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ padding: "36px" }}
+        >
+          <div className="card-group">
+          {devTools.map(Tool)}
+          </div>
+          
+        </ Stack>
+
+      </Container>
+    );
+  }
+
+
+  async getData() {
+    let totalCommits: number = 0;
+    let developerTotalCommits: number = 0;
+    let commitMap: Map<string, number> = new Map();
+    let newPeople: Person[] = this.state.people;
+    let pageSize = 500;
+    let page = 1;
+    while (totalCommits % pageSize === 0) {
+      let response: AxiosResponse<any, any> = await axios.get(
+        `https://gitlab.com/api/v4/projects/50431924/repository/commits?per_page=${pageSize}&page=${page++}`
+      );
+      if (response.data.length === 0) {
+        break;
+      }
+      for (let commit of response.data) {
+        let name = commit.author_name;
+        commitMap.set(name, (commitMap.get(name) ?? 0) + 1);
+        totalCommits++;
+      }
+    }
+    for (let person of newPeople) {
+      person.commits += commitMap.get(person.name) ?? 0;
+      developerTotalCommits += person.commits;
+    }
+    console.log(commitMap);
+    let totalIssues: number = 0;
+    let assignedTotalIssues: number = 0;
+    page = 1;
+    let issuesMap: Map<string, number> = new Map();
+    while (totalIssues % pageSize === 0) {
+      let issuesResponse: AxiosResponse<any, any> = await axios.get(
+        `https://gitlab.com/api/v4/projects/50431924/issues?per_page=${pageSize}&page=${page++}`
+      );
+      
+      console.log(issuesResponse.data.length);
+      if (issuesResponse.data.length === 0) {
+        break;
+      }
+      
+      for (let issue of issuesResponse.data) {
+        if ( issue.closed_by != null) {
+          let name =  issue.closed_by.name;
+          issuesMap.set(name, (issuesMap.get(name) ?? 0) + 1);
+        }
+        totalIssues++;
+      }
+    }
+    for (let person of newPeople) {
+      person.issues = issuesMap.get(person.name) ?? 0;
+      assignedTotalIssues += person.issues;
+    }
+
+    this.setState({
+      people: newPeople,
+      totalCommits: developerTotalCommits,
+      totalIssues: assignedTotalIssues,
+      loading: false,
+    });
+  }
+
+}
+
+
+
+interface Person {
+  name: string;
+  bio: string;
+  image: any;
+  commits: number;
+  issues: number;
+  tests: number;
+}
+
+const PEOPLE: Person[] = [
+  {
+    name: "Jamie Wong",
+    bio: "Im a senior computer science student at UT Austin. I'm from Houston, Texas and I like to read and play poker",
+    image: jamie,
+    commits: 0,
+    issues: 0,
+    tests: 0,
+  },
+  {
+    name: "Sydney Schrader",
+    bio: "I'm a Junior from Austin, TX. I like to go to Barton Springs and read in my free time.",
+    image: sydney,
+    commits: 0,
+    issues: 0,
+    tests: 0,
+  },
+  {
+    name: "Zachary Voltz",
+    bio: "I'm a senior CS student from Houston, Texas, and I've been programming since I was 9. Outside of programming, I like to read manga and rock climb",
+    image: zach,
+    commits: 0,
+    issues: 0,
+    tests: 0,
+  },
+  {
+    name: "Pavan Marathi",
+    bio: "I'm a Junior from Houston, TX. I enjoy rock climbing and board games in my spare time.",
+    image: pavan,
+    commits: 0,
+    issues: 0,
+    tests: 0,
+  },
 ];
-
-
-
-
 
 // Tool card info
 interface ToolInfo {
@@ -106,147 +360,4 @@ const devTools: ToolInfo[] = [
 ];
 
 
-const About: React.FC<{}> = () => {
-
-  
-
-  const [commitData, setCommitData] = useState<any[]>([])
-
-  const [issueData, setIssueData] = useState<any[]>([])
-
-
-
-
-
-
-
-  useEffect(() => {
-    // Get issues and commits from gitlab api
-    axios.get(`https://gitlab.com/api/v4/projects/50431924/repository/commits?per_page=500`)
-    .then((response) => { 
-        console.log(response.data);
-        setCommitData(response.data); });
-
-    axios.get(`https://gitlab.com/api/v4/projects/50431924/issues?per_page=500`)
-    .then((response) => {setIssueData(response.data); });
-    
-  }, []);
-  
-
-  people[0].commits = commitData.filter(
-    (commit) => commit.author_name === "Jamie Wong"
-  ).length
-
-  people[0].issues = issueData.filter(
-    (issue: any) => issue.closed_by != null
-  ).filter(((issue) => issue.closed_by.name === "Jamie Wong")).length
-
-  people[1].commits = commitData.filter(
-    (commit) => commit.author_name === "Sydney Schrader"
-  ).length
-
-  people[1].issues = issueData.filter(
-    (issue: any) => issue.closed_by != null
-  ).filter(((issue) => issue.closed_by.name === "Sydney Schrader")).length
-
-  people[2].commits = commitData.filter(
-    (commit) => commit.author_name === "Zachary Voltz"
-  ).length
-
-  people[2].issues = issueData.filter(
-    (issue: any) => issue.closed_by != null
-  ).filter(((issue) => issue.closed_by.name === "Zachary Voltz")).length
-
-  people[3].commits = commitData.filter(
-    (commit) => commit.author_name === "Pavan Marathi"
-  ).length
-
-  people[3].issues = issueData.filter(
-    (issue: any) => issue.closed_by != null
-  ).filter(((issue) => issue.closed_by.name === "Pavan Marathi")).length
-   
-   
-
-    return (
-        <Container>
-        
-        <Col>
-            <h1>About LA Homeless Helper</h1>
-            <div className= {styles['textType']}>
-            California has the largest amount of homless in the United States, the majority being in LA County. 
-            This website links together city homeless data, homeless resource data, and medicare/medicaid data. 
-            This disparate data can be used to analyze what locations have what services, and could be used to see what
-            locations could use more help based on homless population density. This tool is designed
-            for people wanting to help the homeless of LA County and also a tool 
-            for homeless people to see what resources are available for them.
-            </div>
- 
-        </Col>
-
-        <Stack
-        direction="row"
-        justifyContent="center"
-        >
-          <div className="card-group">
-            {people.map(Developer)}
-          </ div>
-        </Stack>
-
-
-        <Col>
-
-        <Stack
-        direction="row"
-        spacing={2}
-        justifyContent="center"
-        sx={{ padding: "20px" }}
-        >
-          <Typography gutterBottom variant="h4" component="div" align='center'>
-            LA Homeless Helper API Sources
-          </Typography>
-        </Stack>
-
-        <Stack
-        direction="row"
-        spacing={2}
-        justifyContent="center"
-        sx={{ padding: "36px" }}
-        >
-          {apiTools.map(ApiTool)}
-        </ Stack>
-  
-
-        <Stack
-        direction="row"
-        spacing={2}
-        justifyContent="center"
-        sx={{ padding: "20px" }}
-        >
-          <Typography gutterBottom variant="h4" component="div" align='center'>
-            Tools
-          </Typography>
-        </Stack>
-
-        <Stack
-        direction="row"
-        spacing={2}
-        justifyContent="center"
-        sx={{ padding: "36px" }}
-        >
-          <div className="card-group">
-          {devTools.map(Tool)}
-          </div>
-          
-        </ Stack>
-
-
-
-        </Col>
-
-      </Container>
-    );
-    
-   
-};
- 
 export default About;
