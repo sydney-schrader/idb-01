@@ -65,9 +65,9 @@ const Resources: React.FC<{}> = () => {
           wrap="wrap"
           spacing={2}
         >
-          {searchResults.map((resource) => (
+          {searchResults.map((result, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3}>
-              {Resource(resource)}
+              <Resource card={result} index={index} highlight={""} />
             </Grid>
           ))}
         </Grid>
@@ -82,9 +82,9 @@ const Resources: React.FC<{}> = () => {
           wrap="wrap"
           spacing={2}
         >
-          {currentShelters.map((resource) => (
+          {currentShelters.map((result, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            {Resource(resource)}
+             <Resource card={result} index={index} highlight={""} />
             </Grid>
           ))}
         </Grid>

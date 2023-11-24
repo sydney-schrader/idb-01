@@ -181,9 +181,9 @@ const SearchPage: React.FC<{}> = () => {
         wrap="wrap"
         spacing={2} 
         >
-        {shelterResults.map((result) => (
+        {shelterResults.map((result, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            {Resource(result)}
+            <Resource card={result} index={index} highlight={query} />
           </Grid>
         ))}
         </Grid>
