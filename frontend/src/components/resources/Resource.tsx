@@ -44,7 +44,7 @@ const Resource: React.FC<ResourceProps> = ({ card, index, highlight = null }) =>
                   Address: {card.addrln1} <br/>
                   Hours: {card.hours} <br/>
                   Zip Code: {card.zip}<br/>
-                  <a href={card.url || "#"}>{card.url ? "URL for their website" : "Website not available"}</a>
+                  <a href={`https://${card.url}`}>{card.url ? "URL for their website" : "Website not available"}</a>
 
               </p>
                   <Button name={card.name} href={`/resources/${card.name}`} className='card-link'>
