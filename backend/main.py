@@ -19,7 +19,6 @@ def shelters(page=None):
     query = request.args.get("q")
     sort = request.args.get("sort", type=str)
     filters = list(request.args.items())
-    print("checking sort", request.args["sort"], sort)
 
     if query != None:
         shelters = query_database.search_shelters(query, filters)

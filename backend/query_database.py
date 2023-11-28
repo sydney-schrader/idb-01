@@ -160,11 +160,10 @@ def search_medicares(query, filters):
 
 # request.args
 def sort_by(request, data, attr_map):
-    print("in sortby", request)
     if request in attr_map:
-        print("sort found!", request)
-        print(type(data))
-        print(data[0][request])
+        # print("sort found!", request)
+        # print(type(data))
+        # print(data[0][request])
         data.sort(key=lambda d: d[request])
     return data
 
