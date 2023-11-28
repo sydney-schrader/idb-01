@@ -159,10 +159,21 @@ def search_medicares(query, filters):
     return medicares
 
 # request.args
-def sort_by(request, data):
-    if "sort" in request:
-        data.sort(key=lambda d: d[request["sort"]])
+def sort_by(request, data, attr_map):
+    print("in sortby", request)
+    if request in attr_map:
+        print("sort found!", request)
+        print(type(data))
+        print(data[0][request])
+        data.sort(key=lambda d: d[request])
     return data
+
+def sort_shelters(request, data):
+    return sort_by(request, data, shelter_attr)
+def sort_cities(request, data):
+    return sort_by(request, data, city_attr)
+def sort_medicares(request, data):
+    return sort_by(request, data, medicare_attr)
 
 #select_statement ,request.args, (City, Shelter, or Medicare)
 def apply_filters(query, filters, model_map):

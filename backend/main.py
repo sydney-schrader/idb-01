@@ -19,13 +19,15 @@ def shelters(page=None):
     query = request.args.get("q")
     sort = request.args.get("sort", type=str)
     filters = list(request.args.items())
+    print("checking sort", request.args["sort"], sort)
+
     if query != None:
         shelters = query_database.search_shelters(query, filters)
     else:
         shelters = query_database.query_shelters(filters)
     # apply filters
     if sort != None:
-        shelters = query_database.sort_by(sort, shelters)
+        shelters = query_database.sort_shelters(sort, shelters)
     if page is None:
         return shelters
     num_pages = math.ceil(len(shelters) / ITEMS_PER_PAGE)
@@ -52,7 +54,7 @@ def cities(page=None):
     else:
         cities = query_database.query_cities(filters)
     if sort != None:
-        cities = query_database.sort_by(sort, cities)
+        cities = query_database.sort_cities(sort, cities)
     if page is None:
         return cities
     num_pages = math.ceil(len(cities) / ITEMS_PER_PAGE)
@@ -80,7 +82,7 @@ def medicare(page=None):
         medicares = query_database.query_medicares(filters)
         
     if sort != None:
-        medicares = query_database.sort_by(sort, medicares)
+        medicares = query_database.sort_medicares(sort, medicares)
     if page is None:
         return medicares
     num_pages = math.ceil(len(medicares) / ITEMS_PER_PAGE)
