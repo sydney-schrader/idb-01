@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Col } from 'react-bootstrap'
+import { Container, Col, Row, Dropdown, DropdownButton } from 'react-bootstrap'
 import axios from "axios"; 
 import City from "./City";
 import CardPagination from "../CardPagination";
@@ -23,6 +23,17 @@ const Cities: React.FC<{}> = () => {
   const handleSearchResults = (results: SearchResult[]) => {
     // Callback function to receive search results from SearchBar
     setSearchResults(results);
+  };
+
+  const handleSort = (column: string) => {
+    // Make an API request with the sorting parameter
+    axios.get(`https://api.lacountyhomelesshelper.me/cities/?sort=${column}`)
+      .then(async (response) => {
+        const updatedData = await Promise.all(response.data.map(async (shelter: any) => {
+          return shelter;
+        }));
+        setCityData(updatedData);
+      });
   };
 
   useEffect(() => {
@@ -49,9 +60,22 @@ const Cities: React.FC<{}> = () => {
         <Col>
             <h1>Cities in Los Angeles</h1>
         </Col>
+        <Row>
+        <Col className="justify-content-start">
         <div> {cityData.length} Cities </div>
         <div> Attributes: Unsheltered population, Sheltered population, Total homeless population, Square miles of city, Density of total homeless population</div>
         <div>Instances per page: {perPage}</div>
+        </Col>
+        <Col className="d-flex justify-content-end">
+        <DropdownButton  title="Sort By" id="bg-nested-dropdown">
+          <Dropdown.Item eventKey="1" onSelect={() => handleSort('unsheltered_pop')}>Unsheltered Population</Dropdown.Item>
+          <Dropdown.Item eventKey="2" onSelect={() => handleSort('sheltered_pop')}>Sheltered Population</Dropdown.Item>
+          <Dropdown.Item eventKey="3" onSelect={() => handleSort('total_pop')}>Total Population</Dropdown.Item>
+          <Dropdown.Item eventKey="4" onSelect={() => handleSort('square_miles')}>Sqaure Miles</Dropdown.Item>
+          <Dropdown.Item eventKey="5" onSelect={() => handleSort('density_total')}>Density</Dropdown.Item>
+        </DropdownButton>
+        </Col>
+        </Row>
         <SearchBar 
         page="cities" 
         onSearchResults={handleSearchResults} 

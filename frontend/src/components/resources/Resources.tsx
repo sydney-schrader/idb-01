@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Col} from 'react-bootstrap';
+import { Container, Col, Row, Dropdown, DropdownButton} from 'react-bootstrap';
 import axios from "axios"; 
 import Resource from "./Resource";
 import CardPagination from "../CardPagination";
@@ -27,6 +27,17 @@ const Resources: React.FC<{}> = () => {
     setSearchResults(results);
   };
 
+  const handleSort = (column: string) => {
+    // Make an API request with the sorting parameter
+    axios.get(`https://api.lacountyhomelesshelper.me/shelters/?sort=${column}`)
+      .then(async (response) => {
+        const updatedData = await Promise.all(response.data.map(async (shelter: any) => {
+          return shelter;
+        }));
+        setShelterData(updatedData);
+      });
+  };
+
   useEffect(() => {
     axios.get(`https://api.lacountyhomelesshelper.me/shelters/`)
     .then(async (response) => { 
@@ -51,9 +62,22 @@ const Resources: React.FC<{}> = () => {
         <Col>
             <h1>Shelters and Services in Los Angeles</h1>
         </Col>
+        <Row>
+        <Col className="justify-content-start">
         <div> {shelterData.length} Resources </div>
         <div> Attributes: Name, Address, Hours, Zipcode, Link to their website</div>
         <div>Instances per page: {perPage}</div>
+        </Col>
+        <Col className="d-flex justify-content-end">
+        <DropdownButton  title="Sort By" id="bg-nested-dropdown">
+          <Dropdown.Item eventKey="1" onSelect={() => handleSort('name')}>Name</Dropdown.Item>
+          <Dropdown.Item eventKey="2" onSelect={() => handleSort('city')}>City</Dropdown.Item>
+          <Dropdown.Item eventKey="3" onSelect={() => handleSort('hours')}>Hours</Dropdown.Item>
+          <Dropdown.Item eventKey="4" onSelect={() => handleSort('latitude')}>Latitude</Dropdown.Item>
+          <Dropdown.Item eventKey="5" onSelect={() => handleSort('longitude')}>Longitude</Dropdown.Item>
+        </DropdownButton>
+        </Col>
+        </Row>
         <SearchBar 
         page="shelters" 
         onSearchResults={handleSearchResults} 
