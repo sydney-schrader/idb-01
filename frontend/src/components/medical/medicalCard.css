@@ -5,4 +5,8 @@
     color: #0000; /* color of the title text */
     text-align: center; /* centering the title text */
 }
-
+.card-text {
+    font-size: 15px; /* size of the title text */
+    color: black; /* color of the title text */
+    font-weight: bold;
+}

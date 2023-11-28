@@ -46,8 +46,8 @@ const Medical: React.FC<MedicalProps> = ({ card, index, highlight = null }) => {
               Hours: {card.hours} <br/>
               Phone number: {card.phones}<br/>
           City: {card.city}*/}
-              
-                Name: 
+                <div className="card-text"> Name:</div>
+                
                 <Highlighter
                   highlightClassName="highlighter"
                   highlightStyle={highlightStyle}
@@ -57,7 +57,7 @@ const Medical: React.FC<MedicalProps> = ({ card, index, highlight = null }) => {
                 />
               <br/>
               
-                Address: 
+              <div className="card-text"> Address:</div> 
                 <Highlighter
                   highlightClassName="highlighter"
                   highlightStyle={highlightStyle}
@@ -67,7 +67,7 @@ const Medical: React.FC<MedicalProps> = ({ card, index, highlight = null }) => {
                 />
               <br/>
               
-                Hours: 
+              <div className="card-text"> Hours:</div>
                 <Highlighter
                   highlightClassName="highlighter"
                   highlightStyle={highlightStyle}
@@ -76,8 +76,7 @@ const Medical: React.FC<MedicalProps> = ({ card, index, highlight = null }) => {
                   textToHighlight={card.hours}
                 />
               <br/>
-              
-                Phone Number: 
+                <div className="card-text"> Phone Number:</div>
                 <Highlighter
                   highlightClassName="highlighter"
                   highlightStyle={highlightStyle}
@@ -86,8 +85,7 @@ const Medical: React.FC<MedicalProps> = ({ card, index, highlight = null }) => {
                   textToHighlight={card.phones}
                 />
               <br/>
-              
-                City:
+                <div className="card-text"> City:</div>
                 <Highlighter
                   highlightClassName="highlighter"
                   highlightStyle={highlightStyle}
