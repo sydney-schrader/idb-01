@@ -30,7 +30,7 @@ const Medical: React.FC<MedicalProps> = ({ card, index, highlight = null }) => {
             </div>
             <img
             src={card.image_url || ssa}
-            alt={card.csa_label}
+            alt={card.name}
             className='card-image-top'
             style={{ width: '100%', height: '200px' }}
             onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -38,7 +38,7 @@ const Medical: React.FC<MedicalProps> = ({ card, index, highlight = null }) => {
               target.src = ssa; // Set the fallback image when an error occurs
             }}
             />
-            <Card.Body>
+            <Card.Body >
             
             <p>
              { /*Name: {card.name} <br/>
@@ -73,7 +73,7 @@ const Medical: React.FC<MedicalProps> = ({ card, index, highlight = null }) => {
                   highlightStyle={highlightStyle}
                   searchWords={highlight?.split(" ") ?? []}
                   autoEscape={true}
-                  textToHighlight={card.hours}
+                  textToHighlight={card.hours || "Not Found"}
                 />
               <br/>
                 <div className="card-text"> Phone Number:</div>
@@ -82,7 +82,7 @@ const Medical: React.FC<MedicalProps> = ({ card, index, highlight = null }) => {
                   highlightStyle={highlightStyle}
                   searchWords={highlight?.split(" ") ?? []}
                   autoEscape={true}
-                  textToHighlight={card.phones}
+                  textToHighlight={card.phones || "Not Found"}
                 />
               <br/>
                 <div className="card-text"> City:</div>

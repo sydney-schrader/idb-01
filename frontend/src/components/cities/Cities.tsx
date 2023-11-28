@@ -53,7 +53,7 @@ const Cities: React.FC<{}> = () => {
         <div> Attributes: Unsheltered population, Sheltered population, Total homeless population, Square miles of city, Density of total homeless population</div>
         <div>Instances per page: {perPage}</div>
         <SearchBar 
-        page="shelters" 
+        page="cities" 
         onSearchResults={handleSearchResults} 
         query={query}  
         setQuery={setQuery} 
