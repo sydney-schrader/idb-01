@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Col} from 'react-bootstrap'
+import { Container, Col, Row, Dropdown, DropdownButton} from 'react-bootstrap'
 import axios from "axios"; 
 import Medical from "./Medical";
 import { Grid } from "@mui/material";
@@ -20,21 +20,39 @@ const Medicals: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [medsPerPage] = useState(perPage);
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null); // Store search results
+  const [query, setQuery] = useState('');
+  const [sorted, isSorted] = useState(false);
 
   const handleSearchResults = (results: SearchResult[]) => {
     // Callback function to receive search results from SearchBar
     setSearchResults(results);
   };
+
+  const handleSort = (column: string) => {
+    // Make an API request with the sorting parameter
+    axios.get(`https://api.lacountyhomelesshelper.me/medicares/?sort=${column}`)
+      .then(async (response) => {
+        const updatedData = await Promise.all(response.data.map(async (shelter: any) => {
+          return shelter;
+        }));
+        setMedData(updatedData);
+        isSorted(true);
+      });
+  };
+
   
   useEffect(() => {
-    axios.get(`https://api.lacountyhomelesshelper.me/medicares`)
+    if(!sorted) {
+      axios.get(`https://api.lacountyhomelesshelper.me/medicares`)
       .then(async (response) => {
         const updatedData = await Promise.all(response.data.map(async (office: any) => {
           return office;
         }));
         setMedData(updatedData);
       });
-  }, []);
+    }
+    
+  }, [sorted]);
   
 
 console.log(medData)
@@ -47,13 +65,32 @@ const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
     // create medical cards
     return (
       <Container>
+        
         <Col>
             <h1>Medicare and Medicaid locations in Los Angeles</h1>
         </Col>
+        <Row>
+        <Col className="justify-content-start">
         <div> {medData.length} Medical Centers </div>
         <div>Attributes: Name, Address, Hours, Phone number, URL for their website</div>
         <div>Instances per page: {perPage}</div>
-        <SearchBar page="medicares" onSearchResults={handleSearchResults} /> {/* Pass the callback function */}
+        </Col>
+        <Col className="d-flex justify-content-end">
+        <DropdownButton  title="Sort By" id="bg-nested-dropdown">
+          <Dropdown.Item eventKey="1" onClick={() => handleSort('name')}>Name</Dropdown.Item>
+          <Dropdown.Item eventKey="2" onClick={() => handleSort('city')}>City</Dropdown.Item>
+          {/* <Dropdown.Item eventKey="3" onClick={() => handleSort('hours')}>Hours</Dropdown.Item> */}
+          <Dropdown.Item eventKey="4" onClick={() => handleSort('latitude')}>Latitude</Dropdown.Item>
+          <Dropdown.Item eventKey="5" onClick={() => handleSort('longitude')}>Longitude</Dropdown.Item>
+        </DropdownButton>
+        </Col>
+        </Row>
+        <SearchBar 
+        page="shelters" 
+        onSearchResults={handleSearchResults} 
+        query={query}  
+        setQuery={setQuery} 
+      />
       {searchResults ? (
         // Render search results
         <>
@@ -66,9 +103,9 @@ const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
           wrap="wrap"
           spacing={2}
         >
-          {searchResults.map((med) => (
+          {searchResults.map((result, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3}>
-              {Medical(med)}
+              <Medical card={result} index={index} highlight={query} />
             </Grid>
           ))}
         </Grid>
@@ -83,9 +120,9 @@ const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
           wrap="wrap"
           spacing={2}
         >
-          {currentMedicals.map((med) => (
+          {currentMedicals.map((result, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3}>
-              {Medical(med)}
+              <Medical card={result} index={index} highlight={""} />
             </Grid>
           ))}
         </Grid>

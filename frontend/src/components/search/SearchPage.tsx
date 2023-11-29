@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import City from '../cities/City';
+
 import Medical from '../medical/Medical'
 import Resource from '../resources/Resource'
+
 import { 
   Container, 
   Typography, 
@@ -14,6 +16,8 @@ import {
 
 
 type SearchResult = {
+  highlight: any;
+  card: any;
   csa_label: string;
   name: string;
 };
@@ -120,9 +124,9 @@ const SearchPage: React.FC<{}> = () => {
         wrap="wrap"
         spacing={2} 
         >
-        {cityResults.map((result) => (
+        {cityResults.map((result, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            {City(result)}
+            <City card={result} index={index} highlight={query} />
           </Grid>
         ))}
         </Grid>
@@ -148,9 +152,9 @@ const SearchPage: React.FC<{}> = () => {
         wrap="wrap"
         spacing={2} 
         >
-        {medicalResults.map((result) => (
+        {medicalResults.map((result, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            {Medical(result)}
+            <Medical card={result} index={index} highlight={query} />
           </Grid>
         ))}
         </Grid>
@@ -177,9 +181,9 @@ const SearchPage: React.FC<{}> = () => {
         wrap="wrap"
         spacing={2} 
         >
-        {shelterResults.map((result) => (
+        {shelterResults.map((result, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            {Resource(result)}
+            <Resource card={result} index={index} highlight={query} />
           </Grid>
         ))}
         </Grid>

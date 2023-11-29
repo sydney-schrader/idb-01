@@ -1,0 +1,22 @@
+.modelCard {
+    margin: 8px;
+    display: inline-block;
+    border-radius: 16px !important;
+  }
+  
+  .actionArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .modelImageFit {
+    padding-left: 36px;
+    padding-right: 36px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain !important;
+  }
+  

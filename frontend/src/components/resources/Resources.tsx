@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Col} from 'react-bootstrap';
+import { Container, Col, Row, Dropdown, DropdownButton} from 'react-bootstrap';
 import axios from "axios"; 
 import Resource from "./Resource";
 import CardPagination from "../CardPagination";
@@ -19,22 +19,40 @@ const Resources: React.FC<{}> = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [sheltersPerPage] = useState(perPage);
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null); // Store search results
+  const [query, setQuery] = useState('');
+  const [sorted, isSorted] = useState(false);
+
 
   const handleSearchResults = (results: SearchResult[]) => {
     // Callback function to receive search results from SearchBar
     setSearchResults(results);
   };
 
-  useEffect(() => {
-    axios.get(`https://api.lacountyhomelesshelper.me/shelters/`)
-    .then(async (response) => { 
+  const handleSort = (column: string) => {
+    // Make an API request with the sorting parameter
+    axios.get(`https://api.lacountyhomelesshelper.me/shelters/?sort=${column}`)
+      .then(async (response) => {
         const updatedData = await Promise.all(response.data.map(async (shelter: any) => {
-          //shelter.imageURL = await fetchShelterImage(shelter.name);
           return shelter;
         }));
         setShelterData(updatedData);
-    });
-}, /*[fetchShelterImage]*/);
+        isSorted(true);
+      });
+  };
+
+  useEffect(() => {
+    // Fetch data only if it's not already sorted
+    if (!sorted) {
+      axios.get(`https://api.lacountyhomelesshelper.me/shelters/`)
+        .then(async (response) => { 
+          const updatedData = await Promise.all(response.data.map(async (shelter: any) => {
+            return shelter;
+          }));
+          setShelterData(updatedData);
+        });
+    }
+  }, [sorted]);
+  
 
     // get the current model cards
   const indexOfLastPost = currentPage * sheltersPerPage;
@@ -49,11 +67,29 @@ const Resources: React.FC<{}> = () => {
         <Col>
             <h1>Shelters and Services in Los Angeles</h1>
         </Col>
+        <Row>
+        <Col className="justify-content-start">
         <div> {shelterData.length} Resources </div>
         <div> Attributes: Name, Address, Hours, Zipcode, Link to their website</div>
         <div>Instances per page: {perPage}</div>
-        <SearchBar page="shelters" onSearchResults={handleSearchResults} /> {/* Pass the callback function */}
-        {searchResults ? (
+        </Col>
+        <Col className="d-flex justify-content-end">
+        <DropdownButton  title="Sort By" id="bg-nested-dropdown">
+          <Dropdown.Item eventKey="1" onClick={() => handleSort('name')}>Name</Dropdown.Item>
+          <Dropdown.Item eventKey="2" onClick={() => handleSort('city')}>City</Dropdown.Item>
+          <Dropdown.Item eventKey="3" onClick={() => handleSort('hours')}>Hours</Dropdown.Item>
+          <Dropdown.Item eventKey="4" onClick={() => handleSort('latitude')}>Latitude</Dropdown.Item>
+          <Dropdown.Item eventKey="5" onClick={() => handleSort('longitude')}>Longitude</Dropdown.Item>
+        </DropdownButton>
+        </Col>
+        </Row>
+        <SearchBar 
+        page="shelters" 
+        onSearchResults={handleSearchResults} 
+        query={query}  
+        setQuery={setQuery} 
+      />
+      {searchResults ? (
         // Render search results
         <>
         <h5>Search Results:</h5>
@@ -65,9 +101,9 @@ const Resources: React.FC<{}> = () => {
           wrap="wrap"
           spacing={2}
         >
-          {searchResults.map((resource) => (
+          {searchResults.map((result, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3}>
-              {Resource(resource)}
+              <Resource card={result} index={index} highlight={query} />
             </Grid>
           ))}
         </Grid>
@@ -82,9 +118,9 @@ const Resources: React.FC<{}> = () => {
           wrap="wrap"
           spacing={2}
         >
-          {currentShelters.map((resource) => (
+          {currentShelters.map((result, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            {Resource(resource)}
+             <Resource card={result} index={index} highlight={""} />
             </Grid>
           ))}
         </Grid>

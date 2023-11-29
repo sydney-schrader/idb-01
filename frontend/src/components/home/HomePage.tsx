@@ -17,8 +17,8 @@ function Home() {
       <Container className='card-container'>
         <Row>
           <Col>
-            <Card style={{ alignItems: 'center' }}>
-              <Card.Title className='header-1'>
+            <Card style={{ alignItems: 'center', backgroundColor: "#ffb091", height: "27rem" }}>
+              <Card.Title className='header-1' style={{ color: "white" }}>
                 <b>Cities</b>
               </Card.Title>
               <img
@@ -27,6 +27,7 @@ function Home() {
                 className='card-image-top'
                 style={{
                   width: '100%',
+                  height: '100%'
                 }}
               ></img>
               <Card.Body>
@@ -37,8 +38,8 @@ function Home() {
             </Card>
           </Col>
           <Col>
-            <Card style={{ alignItems: 'center' }}>
-              <Card.Title className='header-1'>
+          <Card style={{ alignItems: 'center', backgroundColor: "#ffb091" , height: "27rem"}}>
+              <Card.Title className='header-1' style={{ color: "white" }}>
                 <b>Resources</b>
               </Card.Title>
               <img
@@ -46,7 +47,8 @@ function Home() {
                 alt=""
                 className='card-image-top'
                 style={{
-                  width: '90%',
+                  width: '100%',
+                  height : '100%'
                 }}
               ></img>
               <Card.Body>
@@ -57,8 +59,8 @@ function Home() {
             </Card>
           </Col>
           <Col>
-            <Card style={{ alignItems: 'center' }}>
-              <Card.Title className='header-1'>
+          <Card style={{ alignItems: 'center', backgroundColor: "#ffb091", height: "27rem"}}>
+              <Card.Title className='header-1' style={{ color: "white" }}>
                 <b>Medical</b>
               </Card.Title>
               <img
@@ -67,6 +69,7 @@ function Home() {
                 className='card-image-top'
                 style={{
                   width: '100%',
+                  height: '100%'
                 }}
               ></img>
               <Card.Body>

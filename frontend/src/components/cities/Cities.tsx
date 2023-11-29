@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Col } from 'react-bootstrap'
+import { Container, Col, Row, Dropdown, DropdownButton } from 'react-bootstrap'
 import axios from "axios"; 
 import City from "./City";
 import CardPagination from "../CardPagination";
@@ -18,14 +18,30 @@ const Cities: React.FC<{}> = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [citiesPerPage] = useState(perPage);
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null); // Store search results
+  const [query, setQuery] = useState('');
+  const [sorted, isSorted] = useState(false);
+
 
   const handleSearchResults = (results: SearchResult[]) => {
     // Callback function to receive search results from SearchBar
     setSearchResults(results);
   };
 
+  const handleSort = (column: string) => {
+    // Make an API request with the sorting parameter
+    axios.get(`https://api.lacountyhomelesshelper.me/cities/?sort=${column}`)
+      .then(async (response) => {
+        const updatedData = await Promise.all(response.data.map(async (shelter: any) => {
+          return shelter;
+        }));
+        setCityData(updatedData);
+        isSorted(true);
+      });
+  };
+
   useEffect(() => {
-    axios.get(`https://api.lacountyhomelesshelper.me/cities`)
+    if(!sorted){
+      axios.get(`https://api.lacountyhomelesshelper.me/cities`)
     .then(async (response) => { 
         const updatedData = await Promise.all(response.data.map(async (city: any) => {
           //city.imageURL = await fetchCityImage(city.csa_label);
@@ -33,7 +49,9 @@ const Cities: React.FC<{}> = () => {
         }));
         setCityData(updatedData);
     });
-  });
+    }
+    
+  }, [sorted]);
 
   // get the current model cards
   const indexOfLastPost = currentPage * citiesPerPage;
@@ -48,10 +66,29 @@ const Cities: React.FC<{}> = () => {
         <Col>
             <h1>Cities in Los Angeles</h1>
         </Col>
+        <Row>
+        <Col className="justify-content-start">
         <div> {cityData.length} Cities </div>
         <div> Attributes: Unsheltered population, Sheltered population, Total homeless population, Square miles of city, Density of total homeless population</div>
         <div>Instances per page: {perPage}</div>
-        <SearchBar page="cities" onSearchResults={handleSearchResults} /> {/* Pass the callback function */}
+        </Col>
+        <Col className="d-flex justify-content-end">
+        <DropdownButton  title="Sort By" id="bg-nested-dropdown">
+          {/* <Dropdown.Item eventKey="1" onClick={() => handleSort('unsheltered_pop')}>Unsheltered Population</Dropdown.Item>
+          <Dropdown.Item eventKey="2" onClick={() => handleSort('sheltered_pop')}>Sheltered Population</Dropdown.Item> */}
+          <Dropdown.Item eventKey="3" onClick={() => handleSort('csa_label')}>Name</Dropdown.Item>
+          <Dropdown.Item eventKey="3" onClick={() => handleSort('total_pop')}>Total Population</Dropdown.Item>
+          <Dropdown.Item eventKey="4" onClick={() => handleSort('square_miles')}>Sqaure Miles</Dropdown.Item>
+          <Dropdown.Item eventKey="5" onClick={() => handleSort('density_total')}>Density</Dropdown.Item>
+        </DropdownButton>
+        </Col>
+        </Row>
+        <SearchBar 
+        page="cities" 
+        onSearchResults={handleSearchResults} 
+        query={query}  
+        setQuery={setQuery} 
+      />
       {searchResults ? (
         // Render search results
         <>
@@ -64,9 +101,9 @@ const Cities: React.FC<{}> = () => {
           wrap="wrap"
           spacing={2}
         >
-          {searchResults.map((city) => (
+          {searchResults.map((result, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3}>
-              {City(city)}
+              <City card={result} index={index} highlight={query} />
             </Grid>
           ))}
         </Grid>
@@ -81,9 +118,9 @@ const Cities: React.FC<{}> = () => {
           wrap="wrap"
           spacing={2}
         >
-          {currentCities.map((city) => (
+          {currentCities.map((result, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            {City(city)}
+            <City card={result} index={index} highlight={""} />
             </Grid>
           ))}
         </Grid>
