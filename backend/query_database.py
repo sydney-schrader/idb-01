@@ -74,6 +74,10 @@ def search_cities(query, filters):
             all_cities.sort(key=lambda city : geodesic(searched_location, (city["latitude"], city["longitude"])).miles)
             return all_cities
 
+        query_statement = text("MATCH (csa_label) AGAINST (:prompt)").bindparams(prompt=query)
+        results = session.query(City).filter(query_statement).all()
+        cities = [row.to_dict() for row in results]
+
     return cities
 
 def query_shelter(name):
@@ -110,7 +114,8 @@ def search_shelters(query, filters):
             all_shelters.sort(key=lambda curr_shelter : geodesic(searched_location, (curr_shelter["latitude"], curr_shelter["longitude"])).miles)
             return all_shelters
         # If they didn't look up a specific shelter, fuzzy match it:
-        query_statement = text("MATCH (name, description, addrln1) AGAINST (:prompt)").bindparams(prompt=query)
+        # TODO: add additional matches here
+        query_statement = text("MATCH (name, addrln1, addrln2, city, hours, phones, url, description, zip, link, date_updated) AGAINST (:prompt)").bindparams(prompt=query)
         results = session.query(Shelter).filter(query_statement).all()
         shelters = [row.to_dict() for row in results]
 
@@ -152,7 +157,7 @@ def search_medicares(query, filters):
             all_medicares.sort(key=lambda curr_medicare : geodesic(searched_location, (curr_medicare["latitude"], curr_medicare["longitude"])).miles)
             return all_medicares
         # If they didn't look up a specific medicare office, fuzzy match it:
-        query_statement = text("MATCH (name, addrln1, description) AGAINST (:prompt)").bindparams(prompt=query)
+        query_statement = text("MATCH (name, addrln1, addrln2, city, hours, phones, description, zip, date_updated) AGAINST (:prompt)").bindparams(prompt=query)
         results = session.query(Medicare).filter(query_statement).all()
         medicares = [row.to_dict() for row in results]
 

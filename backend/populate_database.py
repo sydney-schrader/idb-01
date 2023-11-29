@@ -130,6 +130,13 @@ with Session(engine) as session:
 # Add fulltext indices
 print("Adding fulltext indices")
 with Session(engine) as session:
-    session.execute(text("ALTER TABLE shelters ADD FULLTEXT INDEX FTEXT(name, description, addrln1)"))
-    session.execute(text("ALTER TABLE medicare ADD FULLTEXT INDEX FTEXT(name, description, addrln1)"))
+    # TODO: add full text searching for each model!
+    # old full text
+    #session.execute(text("ALTER TABLE shelters ADD FULLTEXT INDEX FTEXT(name, description, addrln1)"))
+    #session.execute(text("ALTER TABLE medicare ADD FULLTEXT INDEX FTEXT(name, description, addrln1)"))
+    # new full text
+    session.execute(text("ALTER TABLE shelters ADD FULLTEXT INDEX FTEXT(name, addrln1, addrln2, city, hours, phones, url, description, zip, link, date_updated)"))
+    session.execute(text("ALTER TABLE medicare ADD FULLTEXT INDEX FTEXT(name, addrln1, addrln2, city, hours, phones, description, zip, date_updated)"))
+    session.execute(text("ALTER TABLE cities ADD FULLTEXT INDEX FTEXT(csa_label)"))
+    print("added full text")
     session.commit()
