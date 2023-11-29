@@ -20,6 +20,7 @@ const Resources: React.FC<{}> = () => {
   const [sheltersPerPage] = useState(perPage);
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null); // Store search results
   const [query, setQuery] = useState('');
+  const [sorted, isSorted] = useState(false);
 
 
   const handleSearchResults = (results: SearchResult[]) => {
@@ -35,19 +36,23 @@ const Resources: React.FC<{}> = () => {
           return shelter;
         }));
         setShelterData(updatedData);
+        isSorted(true);
       });
   };
 
   useEffect(() => {
-    axios.get(`https://api.lacountyhomelesshelper.me/shelters/`)
-    .then(async (response) => { 
-        const updatedData = await Promise.all(response.data.map(async (shelter: any) => {
-          //shelter.imageURL = await fetchShelterImage(shelter.name);
-          return shelter;
-        }));
-        setShelterData(updatedData);
-    });
-}, /*[fetchShelterImage]*/);
+    // Fetch data only if it's not already sorted
+    if (!sorted) {
+      axios.get(`https://api.lacountyhomelesshelper.me/shelters/`)
+        .then(async (response) => { 
+          const updatedData = await Promise.all(response.data.map(async (shelter: any) => {
+            return shelter;
+          }));
+          setShelterData(updatedData);
+        });
+    }
+  }, [sorted]);
+  
 
     // get the current model cards
   const indexOfLastPost = currentPage * sheltersPerPage;
@@ -70,11 +75,11 @@ const Resources: React.FC<{}> = () => {
         </Col>
         <Col className="d-flex justify-content-end">
         <DropdownButton  title="Sort By" id="bg-nested-dropdown">
-          <Dropdown.Item eventKey="1" onSelect={() => handleSort('name')}>Name</Dropdown.Item>
-          <Dropdown.Item eventKey="2" onSelect={() => handleSort('city')}>City</Dropdown.Item>
-          <Dropdown.Item eventKey="3" onSelect={() => handleSort('hours')}>Hours</Dropdown.Item>
-          <Dropdown.Item eventKey="4" onSelect={() => handleSort('latitude')}>Latitude</Dropdown.Item>
-          <Dropdown.Item eventKey="5" onSelect={() => handleSort('longitude')}>Longitude</Dropdown.Item>
+          <Dropdown.Item eventKey="1" onClick={() => handleSort('name')}>Name</Dropdown.Item>
+          <Dropdown.Item eventKey="2" onClick={() => handleSort('city')}>City</Dropdown.Item>
+          <Dropdown.Item eventKey="3" onClick={() => handleSort('hours')}>Hours</Dropdown.Item>
+          <Dropdown.Item eventKey="4" onClick={() => handleSort('latitude')}>Latitude</Dropdown.Item>
+          <Dropdown.Item eventKey="5" onClick={() => handleSort('longitude')}>Longitude</Dropdown.Item>
         </DropdownButton>
         </Col>
         </Row>

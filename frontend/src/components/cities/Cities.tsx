@@ -19,6 +19,8 @@ const Cities: React.FC<{}> = () => {
   const [citiesPerPage] = useState(perPage);
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null); // Store search results
   const [query, setQuery] = useState('');
+  const [sorted, isSorted] = useState(false);
+
 
   const handleSearchResults = (results: SearchResult[]) => {
     // Callback function to receive search results from SearchBar
@@ -33,11 +35,13 @@ const Cities: React.FC<{}> = () => {
           return shelter;
         }));
         setCityData(updatedData);
+        isSorted(true);
       });
   };
 
   useEffect(() => {
-    axios.get(`https://api.lacountyhomelesshelper.me/cities`)
+    if(!sorted){
+      axios.get(`https://api.lacountyhomelesshelper.me/cities`)
     .then(async (response) => { 
         const updatedData = await Promise.all(response.data.map(async (city: any) => {
           //city.imageURL = await fetchCityImage(city.csa_label);
@@ -45,7 +49,9 @@ const Cities: React.FC<{}> = () => {
         }));
         setCityData(updatedData);
     });
-  });
+    }
+    
+  }, [sorted]);
 
   // get the current model cards
   const indexOfLastPost = currentPage * citiesPerPage;
@@ -68,11 +74,12 @@ const Cities: React.FC<{}> = () => {
         </Col>
         <Col className="d-flex justify-content-end">
         <DropdownButton  title="Sort By" id="bg-nested-dropdown">
-          <Dropdown.Item eventKey="1" onSelect={() => handleSort('unsheltered_pop')}>Unsheltered Population</Dropdown.Item>
-          <Dropdown.Item eventKey="2" onSelect={() => handleSort('sheltered_pop')}>Sheltered Population</Dropdown.Item>
-          <Dropdown.Item eventKey="3" onSelect={() => handleSort('total_pop')}>Total Population</Dropdown.Item>
-          <Dropdown.Item eventKey="4" onSelect={() => handleSort('square_miles')}>Sqaure Miles</Dropdown.Item>
-          <Dropdown.Item eventKey="5" onSelect={() => handleSort('density_total')}>Density</Dropdown.Item>
+          {/* <Dropdown.Item eventKey="1" onClick={() => handleSort('unsheltered_pop')}>Unsheltered Population</Dropdown.Item>
+          <Dropdown.Item eventKey="2" onClick={() => handleSort('sheltered_pop')}>Sheltered Population</Dropdown.Item> */}
+          <Dropdown.Item eventKey="3" onClick={() => handleSort('csa_label')}>Name</Dropdown.Item>
+          <Dropdown.Item eventKey="3" onClick={() => handleSort('total_pop')}>Total Population</Dropdown.Item>
+          <Dropdown.Item eventKey="4" onClick={() => handleSort('square_miles')}>Sqaure Miles</Dropdown.Item>
+          <Dropdown.Item eventKey="5" onClick={() => handleSort('density_total')}>Density</Dropdown.Item>
         </DropdownButton>
         </Col>
         </Row>

@@ -21,6 +21,7 @@ const Medicals: React.FC = () => {
   const [medsPerPage] = useState(perPage);
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null); // Store search results
   const [query, setQuery] = useState('');
+  const [sorted, isSorted] = useState(false);
 
   const handleSearchResults = (results: SearchResult[]) => {
     // Callback function to receive search results from SearchBar
@@ -35,19 +36,23 @@ const Medicals: React.FC = () => {
           return shelter;
         }));
         setMedData(updatedData);
+        isSorted(true);
       });
   };
 
   
   useEffect(() => {
-    axios.get(`https://api.lacountyhomelesshelper.me/medicares`)
+    if(!sorted) {
+      axios.get(`https://api.lacountyhomelesshelper.me/medicares`)
       .then(async (response) => {
         const updatedData = await Promise.all(response.data.map(async (office: any) => {
           return office;
         }));
         setMedData(updatedData);
       });
-  }, []);
+    }
+    
+  }, [sorted]);
   
 
 console.log(medData)
@@ -72,11 +77,11 @@ const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
         </Col>
         <Col className="d-flex justify-content-end">
         <DropdownButton  title="Sort By" id="bg-nested-dropdown">
-          <Dropdown.Item eventKey="1" onSelect={() => handleSort('name')}>Name</Dropdown.Item>
-          <Dropdown.Item eventKey="2" onSelect={() => handleSort('city')}>City</Dropdown.Item>
-          <Dropdown.Item eventKey="3" onSelect={() => handleSort('hours')}>Hours</Dropdown.Item>
-          <Dropdown.Item eventKey="4" onSelect={() => handleSort('latitude')}>Latitude</Dropdown.Item>
-          <Dropdown.Item eventKey="5" onSelect={() => handleSort('longitude')}>Longitude</Dropdown.Item>
+          <Dropdown.Item eventKey="1" onClick={() => handleSort('name')}>Name</Dropdown.Item>
+          <Dropdown.Item eventKey="2" onClick={() => handleSort('city')}>City</Dropdown.Item>
+          {/* <Dropdown.Item eventKey="3" onClick={() => handleSort('hours')}>Hours</Dropdown.Item> */}
+          <Dropdown.Item eventKey="4" onClick={() => handleSort('latitude')}>Latitude</Dropdown.Item>
+          <Dropdown.Item eventKey="5" onClick={() => handleSort('longitude')}>Longitude</Dropdown.Item>
         </DropdownButton>
         </Col>
         </Row>
