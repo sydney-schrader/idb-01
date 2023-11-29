@@ -14,6 +14,15 @@ const Resource: React.FC<ResourceProps> = ({ card, index, highlight = null }) =>
     padding: 0, 
   };  
   
+  function handleHours(){
+    if(card.hours != null) {
+      if(card.hours.length > 120) {
+        card.hours = card.hours.substr(0, 120) + "\u2026";
+      }
+    }
+    return card.hours
+  }
+
   return(
         <Card style={{ alignItems: 'center', width: '18rem', height: '50rem'}} key={index} className="box">
                 <Card.Title className='header-1' style={{ width: '100%', height: '10%'}}>
@@ -72,7 +81,7 @@ const Resource: React.FC<ResourceProps> = ({ card, index, highlight = null }) =>
                   highlightStyle={highlightStyle}
                   searchWords={highlight?.split(" ") ?? []}
                   autoEscape={true}
-                  textToHighlight={card.hours || "Not Found"}
+                  textToHighlight={handleHours() || "Not Found"}
                 />
               <br/>
                 <div className="card-text"> Phone Number:</div>
