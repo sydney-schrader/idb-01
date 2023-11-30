@@ -122,6 +122,7 @@ const Cities: React.FC<{}> = () => {
         </>
       ) : (
         // Render default data here
+        <>
         <Grid
           container
           direction="row"
@@ -136,7 +137,7 @@ const Cities: React.FC<{}> = () => {
             </Grid>
           ))}
         </Grid>
-      )}
+
         <div>Total Pages: {Math.ceil(cityData.length / citiesPerPage)}</div>
         <div>Current Page: {currentPage}</div>
         <CardPagination
@@ -144,6 +145,9 @@ const Cities: React.FC<{}> = () => {
         totalItems={cityData.length}
         paginate={paginate}
         />
+        </>
+      )}
+        
       </Container>
     );
     

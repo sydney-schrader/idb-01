@@ -124,6 +124,7 @@ const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
         </>
       ) : (
         // Render default data here
+        <>
         <Grid
           container
           direction="row"
@@ -138,7 +139,6 @@ const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
             </Grid>
           ))}
         </Grid>
-      )}
         <div>Total Pages: {Math.ceil(medData.length / medsPerPage)}</div>
         <div>Current Page: {currentPage}</div>
         <CardPagination
@@ -146,6 +146,9 @@ const paginate = (pageNumber: any)=> setCurrentPage(pageNumber);
         totalItems={medData.length}
         paginate={paginate}
         />
+        </>
+      )}
+        
       </Container>
     );
 

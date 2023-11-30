@@ -1,8 +1,8 @@
 **Canvas / Ed Discussion group number:** 01  
 
-**names of the team members** Sydney Schrader, John Park, Pavan Marathi, Zachary Voltz, Jamie-Lynn Wong  
+**Team member information** Sydney Schrader sks3882, Pavan Marathi, Zachary Voltz, Jamie-Lynn Wong  
 
-**name of the project (alphanumeric, no spaces, max 32 chars; this will also be your URL):** LAHomelessHelper
+**name of the project (alphanumeric, no spaces, max 32 chars; this will also be your URL):** LACountyHomelessHelper
 
 **link**
 

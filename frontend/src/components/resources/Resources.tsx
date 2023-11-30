@@ -120,6 +120,7 @@ const Resources: React.FC<{}> = () => {
         </>
       ) : (
         // Render default data here
+        <>
         <Grid
           container
           direction="row"
@@ -134,7 +135,6 @@ const Resources: React.FC<{}> = () => {
             </Grid>
           ))}
         </Grid>
-      )}
         <div>Total Pages: {Math.ceil(shelterData.length / sheltersPerPage)}</div>
         <div>Current Page: {currentPage}</div>
         <CardPagination
@@ -142,6 +142,9 @@ const Resources: React.FC<{}> = () => {
         totalItems={shelterData.length}
         paginate={paginate}
         />
+        </>
+      )}
+        
       </Container>
     );
     

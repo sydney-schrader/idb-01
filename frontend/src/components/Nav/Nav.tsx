@@ -31,8 +31,9 @@ const Nav: React.FC<{}> = () => {
     return (
         <nav className={styles.navbar}>
             <div className={styles['logo-container']}>
+            <a href="/" style={{textDecoration: 'none'}}>
             <img src= {logo} alt="Logo" style={{height: "10%", width: "10%"}} />
-                <span>LACountyHomelessHelper</span>
+            <span>LACountyHomelessHelper</span></a>
             </div>
             <Links links={links} />
         </nav>

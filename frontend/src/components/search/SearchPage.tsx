@@ -168,7 +168,7 @@ const SearchPage: React.FC<{}> = () => {
         sx={{ padding: "30px" }}
         >
           <Typography gutterBottom variant="h4" component="div" align='center'>
-            Resource
+            Resources
           </Typography>
         </Stack>
 
