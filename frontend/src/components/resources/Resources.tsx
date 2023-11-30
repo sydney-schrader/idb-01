@@ -28,13 +28,19 @@ const Resources: React.FC<{}> = () => {
     setSearchResults(results);
   };
 
-  const handleSort = (column: string) => {
+  const handleSort = (column: string, order: string) => {
     // Make an API request with the sorting parameter
-    axios.get(`https://api.lacountyhomelesshelper.me/shelters/?sort=${column}`)
+    axios.get(`https://api.lacountyhomelesshelper.me/shelters/?${column}`)
       .then(async (response) => {
-        const updatedData = await Promise.all(response.data.map(async (shelter: any) => {
+        let updatedData = await Promise.all(response.data.map(async (shelter: any) => {
           return shelter;
         }));
+
+        // Check if the sorted column is 'total_pop' and reverse the data
+        if (order === 'decreasing') {
+          updatedData = updatedData.reverse();
+        }
+
         setShelterData(updatedData);
         isSorted(true);
       });
@@ -74,12 +80,16 @@ const Resources: React.FC<{}> = () => {
         <div>Instances per page: {perPage}</div>
         </Col>
         <Col className="d-flex justify-content-end">
-        <DropdownButton  title="Sort By" id="bg-nested-dropdown">
-          <Dropdown.Item eventKey="1" onClick={() => handleSort('name')}>Name</Dropdown.Item>
-          <Dropdown.Item eventKey="2" onClick={() => handleSort('city')}>City</Dropdown.Item>
-          <Dropdown.Item eventKey="3" onClick={() => handleSort('hours')}>Hours</Dropdown.Item>
-          <Dropdown.Item eventKey="4" onClick={() => handleSort('latitude')}>Latitude</Dropdown.Item>
-          <Dropdown.Item eventKey="5" onClick={() => handleSort('longitude')}>Longitude</Dropdown.Item>
+        <DropdownButton style={{padding:10}} title="Sort By" id="bg-nested-dropdown">
+        <Dropdown.Item onClick={() => handleSort('sort=name', '')}>Name</Dropdown.Item>
+          <Dropdown.Item onClick={() => handleSort('sort=city', '')}>City</Dropdown.Item>
+          <Dropdown.Item onClick={() => handleSort('sort=latitude', '')}>Latitude Increasing</Dropdown.Item>
+          <Dropdown.Item onClick={() => handleSort('sort=latitude', 'decreasing')}>Latitude Decresing</Dropdown.Item>
+          <Dropdown.Item  onClick={() => handleSort('sort=longitude', 'decreasing')}>Longitude Decreasing</Dropdown.Item>
+          <Dropdown.Item  onClick={() => handleSort('sort=longitude', '')}>Longitude Increasing</Dropdown.Item>
+        </DropdownButton>
+        <DropdownButton style={{padding:10}} title="Filter By" id="bg-nested-dropdown">
+        <Dropdown.Item eventKey="1" onClick={() => handleSort('hours!', '')}>Has Hours</Dropdown.Item>
         </DropdownButton>
         </Col>
         </Row>
