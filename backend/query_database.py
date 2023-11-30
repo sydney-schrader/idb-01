@@ -200,6 +200,11 @@ def apply_filter(query, filter, model_map):
             column, value = filter[0].split("<")
             class_column, class_type = model_map[column]
             query = query.filter(class_column < class_type(value))
+        elif "!" in filter[0]:
+            column, value = filter[0].split("!")
+            class_column, class_type = model_map[column]
+            print(class_column, class_type)
+            query = query.filter(class_column.isnot(None))
         else:
             assert False
     else:
