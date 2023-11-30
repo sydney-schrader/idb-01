@@ -27,17 +27,24 @@ const Cities: React.FC<{}> = () => {
     setSearchResults(results);
   };
 
-  const handleSort = (column: string) => {
+  const handleSort = (column: string, order: string) => {
     // Make an API request with the sorting parameter
     axios.get(`https://api.lacountyhomelesshelper.me/cities/?sort=${column}`)
       .then(async (response) => {
-        const updatedData = await Promise.all(response.data.map(async (shelter: any) => {
+        let updatedData = await Promise.all(response.data.map(async (shelter: any) => {
           return shelter;
         }));
+  
+        // Check if the sorted column is 'total_pop' and reverse the data
+        if (order === 'decreasing') {
+          updatedData = updatedData.reverse();
+        }
+  
         setCityData(updatedData);
         isSorted(true);
       });
   };
+  
 
   useEffect(() => {
     if(!sorted){
@@ -76,10 +83,16 @@ const Cities: React.FC<{}> = () => {
         <DropdownButton  title="Sort By" id="bg-nested-dropdown">
           {/* <Dropdown.Item eventKey="1" onClick={() => handleSort('unsheltered_pop')}>Unsheltered Population</Dropdown.Item>
           <Dropdown.Item eventKey="2" onClick={() => handleSort('sheltered_pop')}>Sheltered Population</Dropdown.Item> */}
-          <Dropdown.Item eventKey="3" onClick={() => handleSort('csa_label')}>Name</Dropdown.Item>
-          <Dropdown.Item eventKey="3" onClick={() => handleSort('total_pop')}>Total Population</Dropdown.Item>
-          <Dropdown.Item eventKey="4" onClick={() => handleSort('square_miles')}>Sqaure Miles</Dropdown.Item>
-          <Dropdown.Item eventKey="5" onClick={() => handleSort('density_total')}>Density</Dropdown.Item>
+          <Dropdown.Item eventKey="3" onClick={() => handleSort('csa_label', 'increasing')}>Name </Dropdown.Item>
+          <Dropdown.Item eventKey="3" onClick={() => handleSort('total_pop', 'increasing')}>Total Population Increasing</Dropdown.Item>
+          <Dropdown.Item eventKey="3" onClick={() => handleSort('total_pop', 'decreasing')}>Total Population Decreasing</Dropdown.Item>
+          <Dropdown.Item eventKey="4" onClick={() => handleSort('square_miles', 'increasing')}>Sqaure Miles Increasing</Dropdown.Item>
+          <Dropdown.Item eventKey="4" onClick={() => handleSort('square_miles', 'decreasing')}>Sqaure Miles Decreasing</Dropdown.Item>
+          <Dropdown.Item eventKey="5" onClick={() => handleSort('density_total', 'increasing')}>Density Increasing</Dropdown.Item>
+          <Dropdown.Item eventKey="5" onClick={() => handleSort('density_total', 'decreasing')}>Density Decreasing</Dropdown.Item>
+          
+          
+          
         </DropdownButton>
         </Col>
         </Row>
