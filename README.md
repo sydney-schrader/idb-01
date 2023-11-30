@@ -77,11 +77,38 @@ How can people access these services?
 
 https://documenter.getpostman.com/view/28474521/2s9YJZ3jad
 
+**Phase Information**
+Phase Leader's responsibility is to keep everyone on track and help to delegate tasks
 
-**Estimated work time**
+**Phase 1**
+Phase Leader: Zachary Voltz
+Git SHA: 44c40fd373e7a5632f6e4da3f6bae383335a3ada
+Sydney Schrader Estimated: 10 hours Actual: 12 hours
+Jamie Wong Estimated: 10 hours Actual: 12 hours
+Zachary Voltz Estimated: 7 hours Actual: 10 hours
+Pavan Marathi Estimated: 8 hours Actual: 10 hours
 
-100 hours
+**Phase 2**
+Phase Leader: Sydney Schrader
+Git SHA: 4bdc089cd6c8d96230f0a38188ef3d0aa55b3bbc
+Sydney Schrader Estimated: 15 hours Actual: 17 hours
+Jamie Wong Estimated: 13 hours Actual: 17 hours
+Zachary Voltz Estimated: 10 hours Actual: 12 hours
+Pavan Marathi Estimated: 9 hours Actual: 12 hours
 
-**Actual work time**
+**Phase 3**
+Phase Leader: Jamie Wong
+Git SHA: 7fb2cc78a7286e06d6acada64bda98965feade50
+Sydney Schrader Estimated: 15 hours Actual: 16 hours
+Jamie Wong Estimated: 13 hours Actual: 16 hours
+Zachary Voltz Estimated: 10 hours Actual: 11 hours
+Pavan Marathi Estimated: 9 hours Actual: 11 hours
 
-120 hours
+**Phase 4**
+Phase Leader: Pavan Marathi
+Git SHA: 
+Sydney Schrader Estimated: 6 hours Actual: 
+Jamie Wong Estimated: 5 hours Actual: 
+Zachary Voltz Estimated: 7 hours Actual: 
+Pavan Marathi Estimated: 6 hours Actual: 
+
