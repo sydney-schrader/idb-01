@@ -91,7 +91,7 @@ const Cities: React.FC<{}> = () => {
           
         </DropdownButton>
         <DropdownButton style={{padding:10}} title="Filter By" id="bg-nested-dropdown">
-          <Dropdown.Item eventKey="1" onClick={() => handleSort('unsheltered_pop!','')}> Has Unsheltered Population</Dropdown.Item>
+          <Dropdown.Item eventKey="1" onClick={() => handleSort('unsheltered_pop>0','')}> Has Unsheltered Population</Dropdown.Item>
         </DropdownButton>
         </Col>
         </Row>
