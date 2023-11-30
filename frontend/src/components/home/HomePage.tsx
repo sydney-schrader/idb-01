@@ -10,9 +10,13 @@ function Home() {
   return (
     <div className='background'>
       <div className='title-container'>
-        <h1 className='title'>
+        <h4 className='title'>
           Los Angeles <br /> Homeless Helper
-        </h1>
+        </h4>
+        <p className='lower-title' style={{color: 'white', fontSize: '20px', backgroundColor: '#ffa07b', borderRadius: 10, padding: 10}}>
+          Los Angeles Homeless Helper is a tool for both  people wanting to help homeless people around them and also a <br/>
+          tool for homeless people to see what resources are available for them
+        </p>
       </div>
       <Container className='card-container'>
         <Row>
