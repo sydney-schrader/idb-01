@@ -6,31 +6,31 @@ BASE_URL = "https://api.lacountyhomelesshelper.me"
 
 class Test(unittest.TestCase):
     # tests if the return value from the about
-    def test_about_is_dict(self):
+    def test_about_is_list(self):
         response = requests.get(BASE_URL + "/about")
         self.assertTrue(response.status_code == 200)
-        about_map = response.json()
-        self.assertTrue(isinstance(about_map, dict))
+        about_list = response.json()
+        self.assertTrue(isinstance(about_list, list))
 
     # tests if all commits in the map are greater than 0 (except John)
     def test_commits_1(self):
         response = requests.get(BASE_URL + "/about")
         self.assertTrue(response.status_code == 200)
-        about_map = response.json()
-        self.assertFalse(about_map is None)
-        for name in about_map.keys():
-            if name != "John Park":
-                self.assertGreater(about_map[name]["commits"], 0)
+        about_list = response.json()
+        self.assertFalse(about_list is None)
+        for item in about_list:
+            if item["name"] != "John Park":
+                self.assertGreater(item["commits"], 0)
                 
     # tests if all issues in the map are greater than 0 (except John)
     def test_issues_1(self):
         response = requests.get(BASE_URL + "/about")
         self.assertTrue(response.status_code == 200)
-        about_map = response.json()
-        self.assertFalse(about_map is None)
-        for name in about_map.keys():
-            if name != "John Park":
-                self.assertGreater(about_map[name]["issues"], 0)
+        about_list = response.json()
+        self.assertFalse(about_list is None)
+        for item in about_list:
+            if item["name"] != "John Park":
+                self.assertGreater(item["issues"], 0)
     
     # tests if all the medicare locations have non-null names
     def test_medicare_1(self):
@@ -93,9 +93,9 @@ class Test(unittest.TestCase):
     def test_gitlab_query_1(self):
         response = requests.get(BASE_URL + "/about")
         self.assertTrue(response.status_code == 200)
-        about_map = response.json()
-        num_authors = len(about_map.keys())
-        self.assertEqual(num_authors, 5)
+        about_list = response.json()
+        num_authors = len(about_list)
+        self.assertEqual(num_authors, 4)
         
 if __name__ == "__main__":
     unittest.main()
