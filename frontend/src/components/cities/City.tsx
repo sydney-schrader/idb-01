@@ -18,7 +18,7 @@ const City: React.FC<CityProps> = ({ card, index, highlight = null }) => {
   };
   
     return(
-        <Card style={{ alignItems: 'center', width: '18rem', height: "50rem", padding: "0 10px"}} key={index} className="box">
+        <Card style={{ alignItems: 'center', width: '18rem', height: "40rem", padding: "0 10px"}} key={index} className="box">
                 <div className='card-title'>
                   <b>
                       <Highlighter
@@ -34,7 +34,7 @@ const City: React.FC<CityProps> = ({ card, index, highlight = null }) => {
                 src={card.image_url || arcadia}
                 alt={card.csa_label}
                 className='card-image-top'
-                style={{ width: '100%' }}
+                style={{ width: '100%', height: '30%' }}
                 onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                   const target = e.target as HTMLImageElement;
                   target.src = arcadia; // Set the fallback image when an error occurs

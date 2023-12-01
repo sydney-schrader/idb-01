@@ -40,7 +40,7 @@ const Resource: React.FC<ResourceProps> = ({ card, index, highlight = null }) =>
                 src={card.image_url || volunteer}
                 alt={card.name}
                 className='card-image-top'
-                style={{ width: '100%', height: '40%'}}
+                style={{ width: '100%', height: '30%'}}
                 onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                   const target = e.target as HTMLImageElement;
                   target.src = volunteer; // Set the fallback image when an error occurs

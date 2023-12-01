@@ -11,6 +11,7 @@ import {
   CircularProgress, 
   Alert ,
   Grid,
+  Button,
   Stack
 } from '@mui/material';
 
@@ -30,7 +31,8 @@ const SearchPage: React.FC<{}> = () => {
   const [shelterResults, setShelterResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
- 
+
+  const [resultType, setResultType] = useState('cities');
 
   useEffect(() => {
     if (query.length === 0) {
@@ -92,73 +94,6 @@ const SearchPage: React.FC<{}> = () => {
         margin="normal"
       />
 
-      {isLoading && (
-        <CircularProgress />
-      )}
-
-      {error && (
-        <Alert severity="error">{error}</Alert>
-      )}
-
-      {!isLoading && !error && cityResults.length === 0 && query && (
-        <Alert severity="info">No results found.</Alert>
-      )}
-
-      <Stack
-        direction="row"
-        spacing={2}
-        justifyContent="center"
-        sx={{ padding: "30px" }}
-        >
-          <Typography gutterBottom variant="h4" component="div" align='center'>
-            Cities
-          </Typography>
-        </Stack>
-
-      {!isLoading && !error && (
-        <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        wrap="wrap"
-        spacing={2} 
-        >
-        {cityResults.map((result, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3}>
-            <City card={result} index={index} highlight={query} />
-          </Grid>
-        ))}
-        </Grid>
-      )}
-
-      <Stack
-        direction="row"
-        spacing={2}
-        justifyContent="center"
-        sx={{ padding: "30px" }}
-        >
-          <Typography gutterBottom variant="h4" component="div" align='center'>
-            Medical
-          </Typography>
-        </Stack>
-
-      {!isLoading && !error && (
-        <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        wrap="wrap"
-        spacing={2} 
-        >
-        {medicalResults.map((result, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3}>
-            <Medical card={result} index={index} highlight={query} />
-          </Grid>
-        ))}
-        </Grid>
-      )}
 
 
       <Stack
@@ -166,28 +101,116 @@ const SearchPage: React.FC<{}> = () => {
         spacing={2}
         justifyContent="center"
         sx={{ padding: "30px" }}
-        >
-          <Typography gutterBottom variant="h4" component="div" align='center'>
-            Resources
-          </Typography>
-        </Stack>
+      >
+        <Button variant="contained" onClick={() => setResultType('cities')}>Cities</Button>
+        <Button variant="contained" onClick={() => setResultType('medical')}>Medical</Button>
+        <Button variant="contained" onClick={() => setResultType('resources')}>Resources</Button>
+      </Stack>
 
-      {!isLoading && !error && (
-        <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        wrap="wrap"
-        spacing={2} 
-        >
-        {shelterResults.map((result, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3}>
-            <Resource card={result} index={index} highlight={query} />
-          </Grid>
-        ))}
-        </Grid>
+
+      {!isLoading && !error && resultType === 'cities' && cityResults.length === 0 && query && (
+        <Alert severity="info">No city results found.</Alert>
       )}
+
+      {!isLoading && !error && resultType === 'medical' && medicalResults.length === 0 && query && (
+        <Alert severity="info">No medical results found.</Alert>
+      )}
+
+      {!isLoading && !error && resultType === 'resources' && shelterResults.length === 0 && query && (
+        <Alert severity="info">No resource results found.</Alert>
+      )}
+
+      {resultType === 'cities' && (
+        <Container>
+          <Stack
+            direction="row"
+            spacing={2}
+            justifyContent="center"
+            sx={{ padding: "30px" }}
+            >
+              <Typography gutterBottom variant="h4" component="div" align='center'>
+                Cities
+              </Typography>
+          </Stack>
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            wrap="wrap"
+            spacing={2} 
+          >
+            {cityResults.map((result, index) => (
+              <Grid item xs={12} sm={6} md={4} lg={3}>
+                <City card={result} index={index} highlight={query} />
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+        
+      )}
+
+      {resultType === 'medical' && (
+        <Container>
+
+          <Stack
+            direction="row"
+            spacing={2}
+            justifyContent="center"
+            sx={{ padding: "30px" }}
+            >
+              <Typography gutterBottom variant="h4" component="div" align='center'>
+                Medical
+              </Typography>
+          </Stack>
+
+          <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          wrap="wrap"
+          spacing={2} 
+          >
+          {medicalResults.map((result, index) => (
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+              <Medical card={result} index={index} highlight={query} />
+            </Grid>
+          ))}
+          </Grid>
+        </Container>
+      )}
+
+      {resultType === 'resources' && (
+        <Container>
+          <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="center"
+          sx={{ padding: "30px" }}
+          >
+            <Typography gutterBottom variant="h4" component="div" align='center'>
+              Resources
+            </Typography>
+          </Stack>
+
+          <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          wrap="wrap"
+          spacing={2} 
+          >
+          {shelterResults.map((result, index) => (
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+              <Resource card={result} index={index} highlight={query} />
+            </Grid>
+          ))}
+          </Grid>
+        </Container>
+      )}
+
 
     </Container>
   );

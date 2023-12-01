@@ -15,6 +15,15 @@ const Medical: React.FC<MedicalProps> = ({ card, index, highlight = null }) => {
     padding: 0, 
   };
 
+  function handlePhones(){
+    if(card.phones != null) {
+      if(card.phones.length > 200) {
+        card.phones = card.phones.substr(0, 120) + "\u2026";
+      }
+    }
+    return card.phones
+  }
+
   return(
     <Card style={{ alignItems: 'center', width: '18rem',  height: '50rem'}} key={index} className="box">
             <div className="card-title">
@@ -82,7 +91,7 @@ const Medical: React.FC<MedicalProps> = ({ card, index, highlight = null }) => {
                   highlightStyle={highlightStyle}
                   searchWords={highlight?.split(" ") ?? []}
                   autoEscape={true}
-                  textToHighlight={card.phones || "Not Found"}
+                  textToHighlight={handlePhones() || "Not Found"}
                 />
               <br/>
                 <div className="card-text"> City:</div>
