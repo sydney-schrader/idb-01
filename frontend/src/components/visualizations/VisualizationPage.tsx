@@ -1,6 +1,20 @@
+import {
+    CardContent,
+    Typography,
+    Divider,
+    Stack,
+    Box,
+    Container,
+    Tooltip,
+    Skeleton,
+  } from "@mui/material";
+
 function VisualizationPage(props: any) {
     return (
-        <div> Visualization Page</div>
+        <Stack justifyContent="center" direction="column" textAlign="center">
+            <h1> Visualizations </h1>
+        </Stack>
+
     );
 }
 

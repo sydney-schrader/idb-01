@@ -18,8 +18,6 @@ interface ModelCardProps {
 }
 
 function ModelCard(props: React.PropsWithChildren<ModelCardProps>) {
-  const [raised, setRaised] = React.useState<boolean>(false);
-
   return (
     <Card
       className="modelCard"
@@ -27,9 +25,6 @@ function ModelCard(props: React.PropsWithChildren<ModelCardProps>) {
         width: props.width ?? "368px",
         height: props.height ?? "",
       }}
-      raised={raised}
-      onMouseOver={() => setRaised(true)}
-      onMouseOut={() => setRaised(false)}
     >
       <CardActionArea
         sx={{
