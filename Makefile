@@ -18,6 +18,10 @@ install:
 	(cd $(FRONTEND_DIR) && npm i react-highlight-words)
 	(cd $(FRONTEND_DIR) && npm install selenium-webdriver)
 	(cd $(FRONTEND_DIR) && npm i --save-dev @types/node)
+	(cd $(FRONTEND_DIR) && npm install d3)
+	(cd $(FRONTEND_DIR) && npm i --save-dev @types/d3)
+	(cd $(FRONTEND_DIR) && npm install recharts)
+
 
 build:
 	(cd $(FRONTEND_DIR) && npm run build)
