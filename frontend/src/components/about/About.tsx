@@ -230,7 +230,7 @@ class About extends React.Component<{}, AboutState> {
       }
     }
     for (let person of newPeople) {
-      person.commits += commitMap.get(person.name) ?? 0;
+      person.commits += commitMap.get(person.id) ?? 0;
       developerTotalCommits += person.commits;
     }
     console.log(commitMap);
@@ -275,6 +275,7 @@ class About extends React.Component<{}, AboutState> {
 
 interface Person {
   name: string;
+  id: string;
   bio: string;
   image: any;
   commits: number;
@@ -285,6 +286,7 @@ interface Person {
 const PEOPLE: Person[] = [
   {
     name: "Jamie Wong",
+    id: "Jamie Wong", 
     bio: "Im a senior computer science student at UT Austin. I'm from Houston, Texas and I like to read and play poker",
     image: jamie,
     commits: 0,
@@ -293,6 +295,7 @@ const PEOPLE: Person[] = [
   },
   {
     name: "Sydney Schrader",
+    id: "Sydney Schrader",
     bio: "I'm a Junior from Austin, TX. I like to go to Barton Springs and read in my free time.",
     image: sydney,
     commits: 0,
@@ -301,6 +304,7 @@ const PEOPLE: Person[] = [
   },
   {
     name: "Zachary Voltz",
+    id: "Zachary Voltz",
     bio: "I'm a senior CS student from Houston, Texas, and I've been programming since I was 9. Outside of programming, I like to read manga and rock climb",
     image: zach,
     commits: 0,
@@ -309,6 +313,7 @@ const PEOPLE: Person[] = [
   },
   {
     name: "Pavan Marathi",
+    id: "pmarathi",
     bio: "I'm a Junior from Houston, TX. I enjoy rock climbing and board games in my spare time.",
     image: pavan,
     commits: 0,
