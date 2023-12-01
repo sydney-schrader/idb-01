@@ -23,6 +23,14 @@
         {
             "label": "Medical",
             "href": "/medical"
+        }, 
+        {
+            "label": "Visualizations",
+            "href": "/visualizations"   
+        }, 
+        {
+            "label": "Provider Visualizations",
+            "href": "/providerVisualizations"   
         }
     ]
 }

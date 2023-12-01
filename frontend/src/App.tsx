@@ -12,6 +12,8 @@ import CityInstancePage from './components/cities/CityInstancePage';
 import ResourceInstancePage from './components/resources/ResourceInstancePage';
 import MedicalInstancePage from './components/medical/MedicalInstancePage';
 import SearchPage from './components/search/SearchPage';
+import VisualizationPage from './components/visualizations/VisualizationPage';
+import ProviderVisualizationPage from './components/providerVisualizations/ProviderVisualizations';
 
 function App() {
     return (
@@ -30,6 +32,8 @@ function App() {
         <Route path='/cities/:cityName' element={<CityInstancePage/> } />
         <Route path='/resources/:resourceName' element={<ResourceInstancePage/> } />
         <Route path='/medical/:medicalName' element={<MedicalInstancePage/> } />
+        <Route path="/visualizations" element={<VisualizationPage />} />
+        <Route path="/providerVisualizations" element={<ProviderVisualizationPage />} />
         </Routes>
        </BrowserRouter>
        </ImageProvider>

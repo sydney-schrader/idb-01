@@ -46,7 +46,7 @@ class About extends React.Component<{}, AboutState> {
       people: PEOPLE,
       totalCommits: 0,
       totalIssues: 0,
-      totalTests: 81,
+      totalTests: 0,
       loading: true,
     };
   }
