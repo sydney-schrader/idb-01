@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Stack } from "@mui/material";
 import StackedBarChart from './StackedBarChart'
+import CustomPieChart from "./CustomPieChart";
+import ScatterPlot from "./ScatterPlot";
 
 type CityData = {
   csa_label: string;
@@ -50,6 +52,14 @@ const VisualizationPage: React.FC = () => {
     <Stack justifyContent="center" direction="column" textAlign="center" height="700px">
             <h2> Sheltered and Unsheltered Homeless by City </h2>
             <StackedBarChart data={processedData} />
+    </Stack>
+    <Stack justifyContent="center" direction="column" textAlign="center" height="600px">
+            <h2> Percentage of Unsheltered Homeless by City </h2>
+            <CustomPieChart data={processedData} />
+    </Stack>
+    <Stack justifyContent="center" direction="column" textAlign="center" height="600px">
+            <h2> Percentage of Unsheltered Homeless by City </h2>
+            <ScatterPlot />
     </Stack>
         </>
   );
