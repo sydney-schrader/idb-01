@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "react-highlight-words": "^0.20.0",
+    "recharts": "^2.10.3"
+  },
+  "jest": {
+    "setupFilesAfterEnv": ["./frontend/src/setupTests.ts"]
+  }
+}
