@@ -39,7 +39,7 @@ const DevJobBar: React.FC = () => {
     var typeCounts: { [key: string]: number } = {};
 
     for(let i = 0; i < jobData.length; i++) {
-        if(jobData[i].job_type != "") {
+        if(jobData[i].job_type !== "") {
             if(typeCounts[jobData[i].job_type]) {
                 typeCounts[jobData[i].job_type]++;
             } else {

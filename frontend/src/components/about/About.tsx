@@ -291,7 +291,7 @@ const PEOPLE: Person[] = [
     image: jamie,
     commits: 0,
     issues: 0,
-    tests: 0,
+    tests: 10,
   },
   {
     name: "Sydney Schrader",
@@ -300,7 +300,7 @@ const PEOPLE: Person[] = [
     image: sydney,
     commits: 0,
     issues: 0,
-    tests: 0,
+    tests: 10,
   },
   {
     name: "Zachary Voltz",

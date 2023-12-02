@@ -1,12 +1,6 @@
 import {
-    CardContent,
-    Typography,
-    Divider,
     Stack,
-    Box,
     Container,
-    Tooltip,
-    Skeleton,
   } from "@mui/material";
 
 import DevFreePieChart from "./DevFreePieChart";
@@ -16,14 +10,6 @@ import DevJobBar from "./DevJobBar";
 
 
 function ProviderVisualizationPage(props: any) {
-    
-
-    // resources dialect
-
-   
-    // job postings last update over time
-    // job posting salary range
-    
 
     return (
         <Container>

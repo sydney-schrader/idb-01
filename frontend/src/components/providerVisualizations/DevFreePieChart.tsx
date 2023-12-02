@@ -35,7 +35,7 @@ const DevFreePieChart: React.FC = () => {
 
   var freeCount = 0;
   for(let i = 0; i < resourcesData.length; i++) {
-    if(resourcesData[i].price == "Free") {
+    if(resourcesData[i].price === "Free") {
         freeCount++;
     }
   }
