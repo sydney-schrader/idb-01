@@ -21,7 +21,6 @@ exports[`Init About 1`] = `
       <button
         className="MuiButtonBase-root MuiCardActionArea-root css-11qrgr8-MuiButtonBase-root-MuiCardActionArea-root"
         disabled={false}
-        href=""
         onBlur={[Function]}
         onContextMenu={[Function]}
         onDragLeave={[Function]}
@@ -35,11 +34,10 @@ exports[`Init About 1`] = `
         onTouchMove={[Function]}
         onTouchStart={[Function]}
         tabIndex={0}
-        target=""
         type="button"
       >
         <img
-          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img modelImage css-1vmewhb-MuiCardMedia-root"
+          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img modelImage css-13ikg24-MuiCardMedia-root"
           src="jamie.jpg"
         />
         <div
@@ -96,17 +94,7 @@ exports[`Init About 1`] = `
             className="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
           />
           <div
-            aria-label="Total issues assigned"
-            aria-labelledby={null}
             className="MuiStack-root css-18gv0ir-MuiStack-root"
-            data-mui-internal-clone-element={true}
-            onBlur={[Function]}
-            onFocus={[Function]}
-            onMouseLeave={[Function]}
-            onMouseMove={[Function]}
-            onMouseOver={[Function]}
-            onTouchEnd={[Function]}
-            onTouchStart={[Function]}
           >
             <p
               className="MuiTypography-root MuiTypography-body2 css-1digcxe-MuiTypography-root"
@@ -156,9 +144,6 @@ exports[`Init About 1`] = `
         <span
           className="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
         />
-        <span
-          className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-        />
       </button>
     </div>
     <div
@@ -167,7 +152,6 @@ exports[`Init About 1`] = `
       <button
         className="MuiButtonBase-root MuiCardActionArea-root css-11qrgr8-MuiButtonBase-root-MuiCardActionArea-root"
         disabled={false}
-        href=""
         onBlur={[Function]}
         onContextMenu={[Function]}
         onDragLeave={[Function]}
@@ -181,11 +165,10 @@ exports[`Init About 1`] = `
         onTouchMove={[Function]}
         onTouchStart={[Function]}
         tabIndex={0}
-        target=""
         type="button"
       >
         <img
-          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img modelImage css-1vmewhb-MuiCardMedia-root"
+          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img modelImage css-13ikg24-MuiCardMedia-root"
           src="sydney.jpg"
         />
         <div
@@ -242,17 +225,7 @@ exports[`Init About 1`] = `
             className="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
           />
           <div
-            aria-label="Total issues assigned"
-            aria-labelledby={null}
             className="MuiStack-root css-18gv0ir-MuiStack-root"
-            data-mui-internal-clone-element={true}
-            onBlur={[Function]}
-            onFocus={[Function]}
-            onMouseLeave={[Function]}
-            onMouseMove={[Function]}
-            onMouseOver={[Function]}
-            onTouchEnd={[Function]}
-            onTouchStart={[Function]}
           >
             <p
               className="MuiTypography-root MuiTypography-body2 css-1digcxe-MuiTypography-root"
@@ -302,9 +275,6 @@ exports[`Init About 1`] = `
         <span
           className="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
         />
-        <span
-          className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-        />
       </button>
     </div>
     <div
@@ -313,7 +283,6 @@ exports[`Init About 1`] = `
       <button
         className="MuiButtonBase-root MuiCardActionArea-root css-11qrgr8-MuiButtonBase-root-MuiCardActionArea-root"
         disabled={false}
-        href=""
         onBlur={[Function]}
         onContextMenu={[Function]}
         onDragLeave={[Function]}
@@ -327,11 +296,10 @@ exports[`Init About 1`] = `
         onTouchMove={[Function]}
         onTouchStart={[Function]}
         tabIndex={0}
-        target=""
         type="button"
       >
         <img
-          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img modelImage css-1vmewhb-MuiCardMedia-root"
+          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img modelImage css-13ikg24-MuiCardMedia-root"
           src="zach.jpg"
         />
         <div
@@ -388,17 +356,7 @@ exports[`Init About 1`] = `
             className="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
           />
           <div
-            aria-label="Total issues assigned"
-            aria-labelledby={null}
             className="MuiStack-root css-18gv0ir-MuiStack-root"
-            data-mui-internal-clone-element={true}
-            onBlur={[Function]}
-            onFocus={[Function]}
-            onMouseLeave={[Function]}
-            onMouseMove={[Function]}
-            onMouseOver={[Function]}
-            onTouchEnd={[Function]}
-            onTouchStart={[Function]}
           >
             <p
               className="MuiTypography-root MuiTypography-body2 css-1digcxe-MuiTypography-root"
@@ -448,9 +406,6 @@ exports[`Init About 1`] = `
         <span
           className="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
         />
-        <span
-          className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-        />
       </button>
     </div>
     <div
@@ -459,7 +414,6 @@ exports[`Init About 1`] = `
       <button
         className="MuiButtonBase-root MuiCardActionArea-root css-11qrgr8-MuiButtonBase-root-MuiCardActionArea-root"
         disabled={false}
-        href=""
         onBlur={[Function]}
         onContextMenu={[Function]}
         onDragLeave={[Function]}
@@ -473,11 +427,10 @@ exports[`Init About 1`] = `
         onTouchMove={[Function]}
         onTouchStart={[Function]}
         tabIndex={0}
-        target=""
         type="button"
       >
         <img
-          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img modelImage css-1vmewhb-MuiCardMedia-root"
+          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img modelImage css-13ikg24-MuiCardMedia-root"
           src="pavan.jpg"
         />
         <div
@@ -534,17 +487,7 @@ exports[`Init About 1`] = `
             className="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
           />
           <div
-            aria-label="Total issues assigned"
-            aria-labelledby={null}
             className="MuiStack-root css-18gv0ir-MuiStack-root"
-            data-mui-internal-clone-element={true}
-            onBlur={[Function]}
-            onFocus={[Function]}
-            onMouseLeave={[Function]}
-            onMouseMove={[Function]}
-            onMouseOver={[Function]}
-            onTouchEnd={[Function]}
-            onTouchStart={[Function]}
           >
             <p
               className="MuiTypography-root MuiTypography-body2 css-1digcxe-MuiTypography-root"
@@ -593,9 +536,6 @@ exports[`Init About 1`] = `
         </div>
         <span
           className="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
-        />
-        <span
-          className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
         />
       </button>
     </div>
