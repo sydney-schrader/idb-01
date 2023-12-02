@@ -12,16 +12,15 @@ import {
 import DevFreePieChart from "./DevFreePieChart";
 import DevIndustryBarChart from "./DevIndustryBarChart";
 
+import DevJobBar from "./DevJobBar";
+
 
 function ProviderVisualizationPage(props: any) {
-    // pie chart
-    // resources by percentage that are free
+    
 
     // resources dialect
 
-    // bar chart industries hiring
-
-
+   
     // job postings last update over time
     // job posting salary range
     
@@ -47,7 +46,13 @@ function ProviderVisualizationPage(props: any) {
         </Stack>
         <Stack justifyContent="center" direction="column" textAlign="center" height="700px">
             <DevIndustryBarChart />
-    </Stack>
+        </Stack>
+        <Stack justifyContent="center" direction="column" textAlign="center">
+            <h3>Jobs by Type</h3>
+        </Stack>
+        <Stack justifyContent="center" direction="column" textAlign="center" height="700px">
+            <DevJobBar />
+        </Stack>
         
         </Container>
     );
