@@ -17,10 +17,7 @@ type PieChartData = {
 // "api_url": "https://api.chiworks.me/resources"
 
 const DevFreePieChart: React.FC = () => {
-  // Sample data
-
   const [resourcesData, setResourcesData] = useState<any[]>([]);
-  const [freeCountData, setFreeCountData] = useState<any[]>([]);
 
   // Colors for each slice
   const COLORS = ['#979ab9', '#79ac4f', '#80ccfa', '#e27d8a', '#6d5c4b'];
@@ -48,7 +45,6 @@ const DevFreePieChart: React.FC = () => {
   ];
 
 
-
   
   return (
     <>
@@ -62,15 +58,12 @@ const DevFreePieChart: React.FC = () => {
             cy="50%"
             outerRadius={250}
             fill="#8884d8"
-            //label={(entry) => `(${entry.payload.percentage.toFixed(2)}%)`} // Display city name and value as label
           >
             {data.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}
                 onMouseEnter={() => {
-                  // Add hover effect, e.g., change color
-                  // You can customize this behavior based on your needs
                   console.log(`Hovered over ${entry.name}`);
                 }}
                 onMouseLeave={() => {
@@ -84,10 +77,6 @@ const DevFreePieChart: React.FC = () => {
         </PieChart>
       </ResponsiveContainer>
 
-      {/* Additional content */}
-      <div>
-        {/* You can add other information or components here */}
-      </div>
     </>
   );
 };
