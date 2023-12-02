@@ -6,15 +6,10 @@ import "./modelCardStyle.css";
 
 interface ModelCardProps {
   image?: any;
-  href?: string;
   height?: string;
-  imageMaxHeight?: string;
-  imageMinHeight?: string;
   imageHeight?: string;
   fitImage?: boolean;
   width?: string;
-  center?: boolean;
-  target?: string;
 }
 
 function ModelCard(props: React.PropsWithChildren<ModelCardProps>) {
@@ -31,12 +26,10 @@ function ModelCard(props: React.PropsWithChildren<ModelCardProps>) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "start",
-          alignItems: props.center ? "center" : "start",
+          alignItems: "start",
           width: props.width ?? "368px",
           height: props.height,
         }}
-        href={props.href ?? ""}
-        target={props.target ?? ""}
       >
         {props.image != null && (
           <CardMedia
@@ -46,9 +39,6 @@ function ModelCard(props: React.PropsWithChildren<ModelCardProps>) {
             sx={{
               height: props.imageHeight ?? "auto",
               flexGrow: 1,
-              maxHeight: props.imageMaxHeight ?? props.imageHeight ?? "none",
-              minHeight: props.imageMinHeight ?? "none",
-              width: props.fitImage ? "-webkit-fill-available" : "100%",
             }}
             component="img"
             image={props.image}

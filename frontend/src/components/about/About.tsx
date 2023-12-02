@@ -26,7 +26,6 @@ import {
   Stack,
   Box,
   Container,
-  Tooltip,
   Skeleton,
 } from "@mui/material";
 
@@ -122,7 +121,7 @@ class About extends React.Component<{}, AboutState> {
                       )}
                     </Typography>
                   </Stack>
-                  <Tooltip title={"Total issues assigned"} followCursor={true}>
+                  
                     <Stack
                       direction="column"
                       alignItems="center"
@@ -141,7 +140,7 @@ class About extends React.Component<{}, AboutState> {
                         )}
                       </Typography>
                     </Stack>
-                  </Tooltip>
+                  
                   <Stack
                     direction="column"
                     alignItems="center"
@@ -213,7 +212,7 @@ class About extends React.Component<{}, AboutState> {
     let totalCommits: number = 0;
     let developerTotalCommits: number = 0;
     let commitMap: Map<string, number> = new Map();
-    let newPeople: Person[] = this.state.people;
+    let combinedPeople: Person[] = this.state.people;
     let pageSize = 500;
     let page = 1;
     while (totalCommits % pageSize === 0) {
@@ -229,7 +228,7 @@ class About extends React.Component<{}, AboutState> {
         totalCommits++;
       }
     }
-    for (let person of newPeople) {
+    for (let person of combinedPeople) {
       person.commits += commitMap.get(person.id) ?? 0;
       developerTotalCommits += person.commits;
     }
@@ -239,16 +238,16 @@ class About extends React.Component<{}, AboutState> {
     page = 1;
     let issuesMap: Map<string, number> = new Map();
     while (totalIssues % pageSize === 0) {
-      let issuesResponse: AxiosResponse<any, any> = await axios.get(
+      let response: AxiosResponse<any, any> = await axios.get(
         `https://gitlab.com/api/v4/projects/50431924/issues?per_page=${pageSize}&page=${page++}`
       );
       
-      console.log(issuesResponse.data.length);
-      if (issuesResponse.data.length === 0) {
+      console.log(response.data.length);
+      if (response.data.length === 0) {
         break;
       }
       
-      for (let issue of issuesResponse.data) {
+      for (let issue of response.data) {
         if ( issue.closed_by != null) {
           let name =  issue.closed_by.name;
           issuesMap.set(name, (issuesMap.get(name) ?? 0) + 1);
@@ -256,13 +255,13 @@ class About extends React.Component<{}, AboutState> {
         totalIssues++;
       }
     }
-    for (let person of newPeople) {
+    for (let person of combinedPeople) {
       person.issues = issuesMap.get(person.name) ?? 0;
       assignedTotalIssues += person.issues;
     }
 
     this.setState({
-      people: newPeople,
+      people: combinedPeople,
       totalCommits: developerTotalCommits,
       totalIssues: assignedTotalIssues,
       loading: false,
@@ -309,7 +308,7 @@ const PEOPLE: Person[] = [
     image: zach,
     commits: 0,
     issues: 0,
-    tests: 0,
+    tests: 5,
   },
   {
     name: "Pavan Marathi",
@@ -318,7 +317,7 @@ const PEOPLE: Person[] = [
     image: pavan,
     commits: 0,
     issues: 0,
-    tests: 0,
+    tests: 5,
   },
 ];
 
