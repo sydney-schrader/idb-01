@@ -26,7 +26,7 @@ jest_tests:
     - cd frontend
     - npm install
     - npm i react-test-renderer
-    - npm test
+    - npm test --silent
 acceptance_test:
   stage: test
   image: python:3.10.6
