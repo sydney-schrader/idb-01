@@ -2,637 +2,1017 @@
 
 exports[`Init About 1`] = `
 <div
-  className="container"
+  className="MuiContainer-root MuiContainer-maxWidthLg page-container css-2b8hh-MuiContainer-root"
 >
-  <div
-    className="col"
+  <h3
+    className="MuiTypography-root MuiTypography-h3 css-15t90v-MuiTypography-root"
   >
-    <h1>
-      About LA Homeless Helper
-    </h1>
+    About LA County Homeless Helper
+  </h3>
+  <div
+    className="textType"
+  >
+    California has the largest amount of homless in the United States, the majority being in LA County. This website links together city homeless data, homeless resource data, and medicare/medicaid data. This disparate data can be used to analyze what locations have what services, and could be used to see what locations could use more help based on homless population density. This tool is designed for people wanting to help the homeless of LA County and also a tool for homeless people to see what resources are available for them.
+  </div>
+  <div>
     <div
-      className="textType"
+      className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root modelCard css-1pv1rul-MuiPaper-root-MuiCard-root"
     >
-      California has the largest amount of homless in the United States, the majority being in LA County. This website links together city homeless data, homeless resource data, and medicare/medicaid data. This disparate data can be used to analyze what locations have what services, and could be used to see what locations could use more help based on homless population density. This tool is designed for people wanting to help the homeless of LA County and also a tool for homeless people to see what resources are available for them.
+      <button
+        className="MuiButtonBase-root MuiCardActionArea-root css-11qrgr8-MuiButtonBase-root-MuiCardActionArea-root"
+        disabled={false}
+        href=""
+        onBlur={[Function]}
+        onContextMenu={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        target=""
+        type="button"
+      >
+        <img
+          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img modelImage css-1vmewhb-MuiCardMedia-root"
+          src="jamie.jpg"
+        />
+        <div
+          className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          <div
+            className="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+          >
+            Jamie Wong
+          </div>
+          <p
+            className="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+          >
+            Im a senior computer science student at UT Austin. I'm from Houston, Texas and I like to read and play poker
+          </p>
+        </div>
+        <div
+          className="MuiBox-root css-0"
+          style={
+            Object {
+              "flexGrow": 2,
+            }
+          }
+        />
+        <hr
+          className="MuiDivider-root MuiDivider-fullWidth css-x3v2x1-MuiDivider-root"
+        />
+        <div
+          className="MuiStack-root css-14mldtp-MuiStack-root"
+        >
+          <div
+            className="MuiStack-root css-18gv0ir-MuiStack-root"
+          >
+            <p
+              className="MuiTypography-root MuiTypography-body2 css-nle9a3-MuiTypography-root"
+            >
+              Commits
+            </p>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            >
+              <span
+                className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": "36px",
+                  }
+                }
+              />
+            </p>
+          </div>
+          <hr
+            className="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
+          />
+          <div
+            aria-label="Total issues assigned"
+            aria-labelledby={null}
+            className="MuiStack-root css-18gv0ir-MuiStack-root"
+            data-mui-internal-clone-element={true}
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onMouseLeave={[Function]}
+            onMouseMove={[Function]}
+            onMouseOver={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+          >
+            <p
+              className="MuiTypography-root MuiTypography-body2 css-1digcxe-MuiTypography-root"
+            >
+              Issues
+            </p>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            >
+              <span
+                className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": "36px",
+                  }
+                }
+              />
+            </p>
+          </div>
+          <hr
+            className="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
+          />
+          <div
+            className="MuiStack-root css-18gv0ir-MuiStack-root"
+          >
+            <p
+              className="MuiTypography-root MuiTypography-body2 css-1digcxe-MuiTypography-root"
+            >
+              Tests
+            </p>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            >
+              <span
+                className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": "36px",
+                  }
+                }
+              />
+            </p>
+          </div>
+        </div>
+        <span
+          className="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+        />
+        <span
+          className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+    <div
+      className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root modelCard css-1pv1rul-MuiPaper-root-MuiCard-root"
+    >
+      <button
+        className="MuiButtonBase-root MuiCardActionArea-root css-11qrgr8-MuiButtonBase-root-MuiCardActionArea-root"
+        disabled={false}
+        href=""
+        onBlur={[Function]}
+        onContextMenu={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        target=""
+        type="button"
+      >
+        <img
+          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img modelImage css-1vmewhb-MuiCardMedia-root"
+          src="sydney.jpg"
+        />
+        <div
+          className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          <div
+            className="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+          >
+            Sydney Schrader
+          </div>
+          <p
+            className="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+          >
+            I'm a Junior from Austin, TX. I like to go to Barton Springs and read in my free time.
+          </p>
+        </div>
+        <div
+          className="MuiBox-root css-0"
+          style={
+            Object {
+              "flexGrow": 2,
+            }
+          }
+        />
+        <hr
+          className="MuiDivider-root MuiDivider-fullWidth css-x3v2x1-MuiDivider-root"
+        />
+        <div
+          className="MuiStack-root css-14mldtp-MuiStack-root"
+        >
+          <div
+            className="MuiStack-root css-18gv0ir-MuiStack-root"
+          >
+            <p
+              className="MuiTypography-root MuiTypography-body2 css-nle9a3-MuiTypography-root"
+            >
+              Commits
+            </p>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            >
+              <span
+                className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": "36px",
+                  }
+                }
+              />
+            </p>
+          </div>
+          <hr
+            className="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
+          />
+          <div
+            aria-label="Total issues assigned"
+            aria-labelledby={null}
+            className="MuiStack-root css-18gv0ir-MuiStack-root"
+            data-mui-internal-clone-element={true}
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onMouseLeave={[Function]}
+            onMouseMove={[Function]}
+            onMouseOver={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+          >
+            <p
+              className="MuiTypography-root MuiTypography-body2 css-1digcxe-MuiTypography-root"
+            >
+              Issues
+            </p>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            >
+              <span
+                className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": "36px",
+                  }
+                }
+              />
+            </p>
+          </div>
+          <hr
+            className="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
+          />
+          <div
+            className="MuiStack-root css-18gv0ir-MuiStack-root"
+          >
+            <p
+              className="MuiTypography-root MuiTypography-body2 css-1digcxe-MuiTypography-root"
+            >
+              Tests
+            </p>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            >
+              <span
+                className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": "36px",
+                  }
+                }
+              />
+            </p>
+          </div>
+        </div>
+        <span
+          className="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+        />
+        <span
+          className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+    <div
+      className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root modelCard css-1pv1rul-MuiPaper-root-MuiCard-root"
+    >
+      <button
+        className="MuiButtonBase-root MuiCardActionArea-root css-11qrgr8-MuiButtonBase-root-MuiCardActionArea-root"
+        disabled={false}
+        href=""
+        onBlur={[Function]}
+        onContextMenu={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        target=""
+        type="button"
+      >
+        <img
+          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img modelImage css-1vmewhb-MuiCardMedia-root"
+          src="zach.jpg"
+        />
+        <div
+          className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          <div
+            className="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+          >
+            Zachary Voltz
+          </div>
+          <p
+            className="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+          >
+            I'm a senior CS student from Houston, Texas, and I've been programming since I was 9. Outside of programming, I like to read manga and rock climb
+          </p>
+        </div>
+        <div
+          className="MuiBox-root css-0"
+          style={
+            Object {
+              "flexGrow": 2,
+            }
+          }
+        />
+        <hr
+          className="MuiDivider-root MuiDivider-fullWidth css-x3v2x1-MuiDivider-root"
+        />
+        <div
+          className="MuiStack-root css-14mldtp-MuiStack-root"
+        >
+          <div
+            className="MuiStack-root css-18gv0ir-MuiStack-root"
+          >
+            <p
+              className="MuiTypography-root MuiTypography-body2 css-nle9a3-MuiTypography-root"
+            >
+              Commits
+            </p>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            >
+              <span
+                className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": "36px",
+                  }
+                }
+              />
+            </p>
+          </div>
+          <hr
+            className="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
+          />
+          <div
+            aria-label="Total issues assigned"
+            aria-labelledby={null}
+            className="MuiStack-root css-18gv0ir-MuiStack-root"
+            data-mui-internal-clone-element={true}
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onMouseLeave={[Function]}
+            onMouseMove={[Function]}
+            onMouseOver={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+          >
+            <p
+              className="MuiTypography-root MuiTypography-body2 css-1digcxe-MuiTypography-root"
+            >
+              Issues
+            </p>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            >
+              <span
+                className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": "36px",
+                  }
+                }
+              />
+            </p>
+          </div>
+          <hr
+            className="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
+          />
+          <div
+            className="MuiStack-root css-18gv0ir-MuiStack-root"
+          >
+            <p
+              className="MuiTypography-root MuiTypography-body2 css-1digcxe-MuiTypography-root"
+            >
+              Tests
+            </p>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            >
+              <span
+                className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": "36px",
+                  }
+                }
+              />
+            </p>
+          </div>
+        </div>
+        <span
+          className="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+        />
+        <span
+          className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+    <div
+      className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root modelCard css-1pv1rul-MuiPaper-root-MuiCard-root"
+    >
+      <button
+        className="MuiButtonBase-root MuiCardActionArea-root css-11qrgr8-MuiButtonBase-root-MuiCardActionArea-root"
+        disabled={false}
+        href=""
+        onBlur={[Function]}
+        onContextMenu={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        target=""
+        type="button"
+      >
+        <img
+          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img modelImage css-1vmewhb-MuiCardMedia-root"
+          src="pavan.jpg"
+        />
+        <div
+          className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          <div
+            className="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+          >
+            Pavan Marathi
+          </div>
+          <p
+            className="MuiTypography-root MuiTypography-body2 css-r40f8v-MuiTypography-root"
+          >
+            I'm a Junior from Houston, TX. I enjoy rock climbing and board games in my spare time.
+          </p>
+        </div>
+        <div
+          className="MuiBox-root css-0"
+          style={
+            Object {
+              "flexGrow": 2,
+            }
+          }
+        />
+        <hr
+          className="MuiDivider-root MuiDivider-fullWidth css-x3v2x1-MuiDivider-root"
+        />
+        <div
+          className="MuiStack-root css-14mldtp-MuiStack-root"
+        >
+          <div
+            className="MuiStack-root css-18gv0ir-MuiStack-root"
+          >
+            <p
+              className="MuiTypography-root MuiTypography-body2 css-nle9a3-MuiTypography-root"
+            >
+              Commits
+            </p>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            >
+              <span
+                className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": "36px",
+                  }
+                }
+              />
+            </p>
+          </div>
+          <hr
+            className="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
+          />
+          <div
+            aria-label="Total issues assigned"
+            aria-labelledby={null}
+            className="MuiStack-root css-18gv0ir-MuiStack-root"
+            data-mui-internal-clone-element={true}
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onMouseLeave={[Function]}
+            onMouseMove={[Function]}
+            onMouseOver={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+          >
+            <p
+              className="MuiTypography-root MuiTypography-body2 css-1digcxe-MuiTypography-root"
+            >
+              Issues
+            </p>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            >
+              <span
+                className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": "36px",
+                  }
+                }
+              />
+            </p>
+          </div>
+          <hr
+            className="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
+          />
+          <div
+            className="MuiStack-root css-18gv0ir-MuiStack-root"
+          >
+            <p
+              className="MuiTypography-root MuiTypography-body2 css-1digcxe-MuiTypography-root"
+            >
+              Tests
+            </p>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+            >
+              <span
+                className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": "36px",
+                  }
+                }
+              />
+            </p>
+          </div>
+        </div>
+        <span
+          className="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+        />
+        <span
+          className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
     </div>
   </div>
   <div
-    className="MuiStack-root css-13f3otb-MuiStack-root"
+    className="MuiStack-root css-1co5bop-MuiStack-root"
+  >
+    <div
+      className="MuiTypography-root MuiTypography-h4 MuiTypography-alignCenter MuiTypography-gutterBottom css-1trk376-MuiTypography-root"
+    >
+      LA Homeless Helper API Sources
+    </div>
+  </div>
+  <div
+    className="MuiStack-root css-pji5sw-MuiStack-root"
+  >
+    <div
+      className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-t4rqyz-MuiPaper-root-MuiCard-root"
+    >
+      <img
+        className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+        height="140"
+        src="arcadia.jpg"
+        width="140"
+      />
+      <div
+        className="MuiBox-root css-i9gxme"
+      >
+        <div
+          className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          <div
+            className="MuiTypography-root MuiTypography-h4 MuiTypography-alignCenter MuiTypography-gutterBottom css-1trk376-MuiTypography-root"
+          >
+            City Data
+          </div>
+          <p
+            className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
+          >
+            Api we used to get city data
+          </p>
+        </div>
+      </div>
+      <div
+        className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+      >
+        <a
+          className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+          href="https://geohub.lacity.org/datasets/lacounty::homeless-counts-2020/explore?location=33.759300%2C-117.328488%2C8.29&showTable=true"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          rel="noopener"
+          target="_blank"
+        >
+          Go to 
+          City Data
+        </a>
+      </div>
+    </div>
+    <div
+      className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-t4rqyz-MuiPaper-root-MuiCard-root"
+    >
+      <img
+        className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+        height="140"
+        src="volunteer.jpg"
+        width="140"
+      />
+      <div
+        className="MuiBox-root css-i9gxme"
+      >
+        <div
+          className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          <div
+            className="MuiTypography-root MuiTypography-h4 MuiTypography-alignCenter MuiTypography-gutterBottom css-1trk376-MuiTypography-root"
+          >
+            Resource Data
+          </div>
+          <p
+            className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
+          >
+            Api we used to get resource data
+          </p>
+        </div>
+      </div>
+      <div
+        className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+      >
+        <a
+          className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+          href="https://geohub.lacity.org/datasets/lacounty::homeless-shelters-and-services/api"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          rel="noopener"
+          target="_blank"
+        >
+          Go to 
+          Resource Data
+        </a>
+      </div>
+    </div>
+    <div
+      className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-t4rqyz-MuiPaper-root-MuiCard-root"
+    >
+      <img
+        className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+        height="140"
+        src="ssa.jpg"
+        width="140"
+      />
+      <div
+        className="MuiBox-root css-i9gxme"
+      >
+        <div
+          className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          <div
+            className="MuiTypography-root MuiTypography-h4 MuiTypography-alignCenter MuiTypography-gutterBottom css-1trk376-MuiTypography-root"
+          >
+            Medical Data
+          </div>
+          <p
+            className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
+          >
+            Api we used to get medical locations
+          </p>
+        </div>
+      </div>
+      <div
+        className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+      >
+        <a
+          className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+          href="https://geohub.lacity.org/datasets/lacounty::medicare-and-medicaid-offices/api"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          rel="noopener"
+          target="_blank"
+        >
+          Go to 
+          Medical Data
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    className="MuiStack-root css-1co5bop-MuiStack-root"
+  >
+    <div
+      className="MuiTypography-root MuiTypography-h4 MuiTypography-alignCenter MuiTypography-gutterBottom css-1trk376-MuiTypography-root"
+    >
+      Tools
+    </div>
+  </div>
+  <div
+    className="MuiStack-root css-pji5sw-MuiStack-root"
   >
     <div
       className="card-group"
     >
       <div
-        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-rh0ti-MuiPaper-root-MuiCard-root"
+        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r5po6n-MuiPaper-root-MuiCard-root"
       >
         <img
           className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
-          height="400"
-          src="jamie.jpg"
+          height="200"
+          src="gitlabPic.png"
+          width="100"
         />
         <div
-          className="MuiBox-root css-i9gxme"
+          className="MuiBox-root css-0"
         >
           <div
             className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
           >
             <div
-              className="MuiTypography-root MuiTypography-h4 MuiTypography-alignCenter MuiTypography-gutterBottom css-1trk376-MuiTypography-root"
+              className="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-68fhrh-MuiTypography-root"
             >
-              Jamie Wong
-            </div>
-            <div
-              className="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom css-18k87ye-MuiTypography-root"
-            >
-              Frontend Developer
-            </div>
-            <p
-              className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
-            >
-              Im a senior computer science student at UT Austin. I'm from Houston, Texas and I like to read and play poker
-            </p>
-          </div>
-        </div>
-        <div
-          className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
-        >
-          <div
-            className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom css-d3wcwz-MuiTypography-root"
-          >
-            Number of Commits: 
-            0
-          </div>
-          <div
-            className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom css-d3wcwz-MuiTypography-root"
-          >
-            Number of Issues: 
-            0
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-rh0ti-MuiPaper-root-MuiCard-root"
-      >
-        <img
-          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
-          height="400"
-          src="sydney.jpg"
-        />
-        <div
-          className="MuiBox-root css-i9gxme"
-        >
-          <div
-            className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
-          >
-            <div
-              className="MuiTypography-root MuiTypography-h4 MuiTypography-alignCenter MuiTypography-gutterBottom css-1trk376-MuiTypography-root"
-            >
-              Sydney Schrader
-            </div>
-            <div
-              className="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom css-18k87ye-MuiTypography-root"
-            >
-              Frontend Developer
-            </div>
-            <p
-              className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
-            >
-              I'm a Junior from Austin, TX. I like to go to Barton Springs and read in my free time.
-            </p>
-          </div>
-        </div>
-        <div
-          className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
-        >
-          <div
-            className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom css-d3wcwz-MuiTypography-root"
-          >
-            Number of Commits: 
-            0
-          </div>
-          <div
-            className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom css-d3wcwz-MuiTypography-root"
-          >
-            Number of Issues: 
-            0
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-rh0ti-MuiPaper-root-MuiCard-root"
-      >
-        <img
-          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
-          height="400"
-          src="zach.jpg"
-        />
-        <div
-          className="MuiBox-root css-i9gxme"
-        >
-          <div
-            className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
-          >
-            <div
-              className="MuiTypography-root MuiTypography-h4 MuiTypography-alignCenter MuiTypography-gutterBottom css-1trk376-MuiTypography-root"
-            >
-              Zachary Voltz
-            </div>
-            <div
-              className="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom css-18k87ye-MuiTypography-root"
-            >
-              Backend Developer
-            </div>
-            <p
-              className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
-            >
-              I'm a senior CS student from Houston, Texas, and I've been programming since I was 9. Outside of programming, I like to read manga and rock climb
-            </p>
-          </div>
-        </div>
-        <div
-          className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
-        >
-          <div
-            className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom css-d3wcwz-MuiTypography-root"
-          >
-            Number of Commits: 
-            0
-          </div>
-          <div
-            className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom css-d3wcwz-MuiTypography-root"
-          >
-            Number of Issues: 
-            0
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-rh0ti-MuiPaper-root-MuiCard-root"
-      >
-        <img
-          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
-          height="400"
-          src="pavan.jpg"
-        />
-        <div
-          className="MuiBox-root css-i9gxme"
-        >
-          <div
-            className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
-          >
-            <div
-              className="MuiTypography-root MuiTypography-h4 MuiTypography-alignCenter MuiTypography-gutterBottom css-1trk376-MuiTypography-root"
-            >
-              Pavan Marathi
-            </div>
-            <div
-              className="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom css-18k87ye-MuiTypography-root"
-            >
-              Backend Developer
-            </div>
-            <p
-              className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
-            >
-              I'm a Junior from Houston, TX. I enjoy rock climbing and board games in my spare time.
-            </p>
-          </div>
-        </div>
-        <div
-          className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
-        >
-          <div
-            className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom css-d3wcwz-MuiTypography-root"
-          >
-            Number of Commits: 
-            0
-          </div>
-          <div
-            className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom css-d3wcwz-MuiTypography-root"
-          >
-            Number of Issues: 
-            0
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    className="col"
-  >
-    <div
-      className="MuiStack-root css-1co5bop-MuiStack-root"
-    >
-      <div
-        className="MuiTypography-root MuiTypography-h4 MuiTypography-alignCenter MuiTypography-gutterBottom css-1trk376-MuiTypography-root"
-      >
-        LA Homeless Helper API Sources
-      </div>
-    </div>
-    <div
-      className="MuiStack-root css-pji5sw-MuiStack-root"
-    >
-      <div
-        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-t4rqyz-MuiPaper-root-MuiCard-root"
-      >
-        <img
-          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
-          height="140"
-          src="arcadia.jpg"
-          width="140"
-        />
-        <div
-          className="MuiBox-root css-i9gxme"
-        >
-          <div
-            className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
-          >
-            <div
-              className="MuiTypography-root MuiTypography-h4 MuiTypography-alignCenter MuiTypography-gutterBottom css-1trk376-MuiTypography-root"
-            >
-              City Data
-            </div>
-            <p
-              className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
-            >
-              Api we used to get city data
-            </p>
-          </div>
-        </div>
-        <div
-          className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
-        >
-          <a
-            className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-            href="https://geohub.lacity.org/datasets/lacounty::homeless-counts-2020/explore?location=33.759300%2C-117.328488%2C8.29&showTable=true"
-            onBlur={[Function]}
-            onFocus={[Function]}
-            rel="noopener"
-            target="_blank"
-          >
-            Go to 
-            City Data
-          </a>
-        </div>
-      </div>
-      <div
-        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-t4rqyz-MuiPaper-root-MuiCard-root"
-      >
-        <img
-          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
-          height="140"
-          src="volunteer.jpg"
-          width="140"
-        />
-        <div
-          className="MuiBox-root css-i9gxme"
-        >
-          <div
-            className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
-          >
-            <div
-              className="MuiTypography-root MuiTypography-h4 MuiTypography-alignCenter MuiTypography-gutterBottom css-1trk376-MuiTypography-root"
-            >
-              Resource Data
-            </div>
-            <p
-              className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
-            >
-              Api we used to get resource data
-            </p>
-          </div>
-        </div>
-        <div
-          className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
-        >
-          <a
-            className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-            href="https://geohub.lacity.org/datasets/lacounty::homeless-shelters-and-services/api"
-            onBlur={[Function]}
-            onFocus={[Function]}
-            rel="noopener"
-            target="_blank"
-          >
-            Go to 
-            Resource Data
-          </a>
-        </div>
-      </div>
-      <div
-        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-t4rqyz-MuiPaper-root-MuiCard-root"
-      >
-        <img
-          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
-          height="140"
-          src="ssa.jpg"
-          width="140"
-        />
-        <div
-          className="MuiBox-root css-i9gxme"
-        >
-          <div
-            className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
-          >
-            <div
-              className="MuiTypography-root MuiTypography-h4 MuiTypography-alignCenter MuiTypography-gutterBottom css-1trk376-MuiTypography-root"
-            >
-              Medical Data
-            </div>
-            <p
-              className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
-            >
-              Api we used to get medical locations
-            </p>
-          </div>
-        </div>
-        <div
-          className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
-        >
-          <a
-            className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-            href="https://geohub.lacity.org/datasets/lacounty::medicare-and-medicaid-offices/api"
-            onBlur={[Function]}
-            onFocus={[Function]}
-            rel="noopener"
-            target="_blank"
-          >
-            Go to 
-            Medical Data
-          </a>
-        </div>
-      </div>
-    </div>
-    <div
-      className="MuiStack-root css-1co5bop-MuiStack-root"
-    >
-      <div
-        className="MuiTypography-root MuiTypography-h4 MuiTypography-alignCenter MuiTypography-gutterBottom css-1trk376-MuiTypography-root"
-      >
-        Tools
-      </div>
-    </div>
-    <div
-      className="MuiStack-root css-pji5sw-MuiStack-root"
-    >
-      <div
-        className="card-group"
-      >
-        <div
-          className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r5po6n-MuiPaper-root-MuiCard-root"
-        >
-          <img
-            className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
-            height="200"
-            src="gitlabPic.png"
-            width="100"
-          />
-          <div
-            className="MuiBox-root css-0"
-          >
-            <div
-              className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
-            >
-              <div
-                className="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-68fhrh-MuiTypography-root"
-              >
-                Gitlab
-              </div>
-              <p
-                className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
-              >
-                Development Platform
-              </p>
-            </div>
-          </div>
-          <div
-            className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
-          >
-            <a
-              className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-              href="https://gitlab.com/sydneyschrader/cs373-idb-01"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              rel="noopener"
-              target="_blank"
-            >
-              Go to 
               Gitlab
-            </a>
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
+            >
+              Development Platform
+            </p>
           </div>
         </div>
         <div
-          className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r5po6n-MuiPaper-root-MuiCard-root"
+          className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
         >
-          <img
-            className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
-            height="200"
-            src="React-icon.jpg"
-            width="100"
-          />
+          <a
+            className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+            href="https://gitlab.com/sydneyschrader/cs373-idb-01"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            rel="noopener"
+            target="_blank"
+          >
+            Go to 
+            Gitlab
+          </a>
+        </div>
+      </div>
+      <div
+        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r5po6n-MuiPaper-root-MuiCard-root"
+      >
+        <img
+          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+          height="200"
+          src="React-icon.jpg"
+          width="100"
+        />
+        <div
+          className="MuiBox-root css-0"
+        >
           <div
-            className="MuiBox-root css-0"
+            className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
           >
             <div
-              className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+              className="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-68fhrh-MuiTypography-root"
             >
-              <div
-                className="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-68fhrh-MuiTypography-root"
-              >
-                React
-              </div>
-              <p
-                className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
-              >
-                Web UI Library
-              </p>
-            </div>
-          </div>
-          <div
-            className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
-          >
-            <a
-              className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-              href="https://react.dev/"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              rel="noopener"
-              target="_blank"
-            >
-              Go to 
               React
-            </a>
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
+            >
+              Web UI Library
+            </p>
           </div>
         </div>
         <div
-          className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r5po6n-MuiPaper-root-MuiCard-root"
+          className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
         >
-          <img
-            className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
-            height="200"
-            src="bootstrapPic.jpg"
-            width="100"
-          />
+          <a
+            className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+            href="https://react.dev/"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            rel="noopener"
+            target="_blank"
+          >
+            Go to 
+            React
+          </a>
+        </div>
+      </div>
+      <div
+        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r5po6n-MuiPaper-root-MuiCard-root"
+      >
+        <img
+          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+          height="200"
+          src="bootstrapPic.jpg"
+          width="100"
+        />
+        <div
+          className="MuiBox-root css-0"
+        >
           <div
-            className="MuiBox-root css-0"
+            className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
           >
             <div
-              className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+              className="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-68fhrh-MuiTypography-root"
             >
-              <div
-                className="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-68fhrh-MuiTypography-root"
-              >
-                Bootstrap
-              </div>
-              <p
-                className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
-              >
-                CSS Framework
-              </p>
-            </div>
-          </div>
-          <div
-            className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
-          >
-            <a
-              className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-              href="https://getbootstrap.com/"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              rel="noopener"
-              target="_blank"
-            >
-              Go to 
               Bootstrap
-            </a>
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
+            >
+              CSS Framework
+            </p>
           </div>
         </div>
         <div
-          className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r5po6n-MuiPaper-root-MuiCard-root"
+          className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
         >
-          <img
-            className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
-            height="200"
-            src="flaskPic.jpg"
-            width="100"
-          />
+          <a
+            className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+            href="https://getbootstrap.com/"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            rel="noopener"
+            target="_blank"
+          >
+            Go to 
+            Bootstrap
+          </a>
+        </div>
+      </div>
+      <div
+        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r5po6n-MuiPaper-root-MuiCard-root"
+      >
+        <img
+          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+          height="200"
+          src="flaskPic.jpg"
+          width="100"
+        />
+        <div
+          className="MuiBox-root css-0"
+        >
           <div
-            className="MuiBox-root css-0"
+            className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
           >
             <div
-              className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+              className="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-68fhrh-MuiTypography-root"
             >
-              <div
-                className="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-68fhrh-MuiTypography-root"
-              >
-                Flask
-              </div>
-              <p
-                className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
-              >
-                Micro Web Framework
-              </p>
-            </div>
-          </div>
-          <div
-            className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
-          >
-            <a
-              className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-              href="https://flask.palletsprojects.com/en/3.0.x/"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              rel="noopener"
-              target="_blank"
-            >
-              Go to 
               Flask
-            </a>
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
+            >
+              Micro Web Framework
+            </p>
           </div>
         </div>
         <div
-          className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r5po6n-MuiPaper-root-MuiCard-root"
+          className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
         >
-          <img
-            className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
-            height="200"
-            src="sqlAlchPic.jpg"
-            width="100"
-          />
+          <a
+            className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+            href="https://flask.palletsprojects.com/en/3.0.x/"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            rel="noopener"
+            target="_blank"
+          >
+            Go to 
+            Flask
+          </a>
+        </div>
+      </div>
+      <div
+        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r5po6n-MuiPaper-root-MuiCard-root"
+      >
+        <img
+          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+          height="200"
+          src="sqlAlchPic.jpg"
+          width="100"
+        />
+        <div
+          className="MuiBox-root css-0"
+        >
           <div
-            className="MuiBox-root css-0"
+            className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
           >
             <div
-              className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+              className="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-68fhrh-MuiTypography-root"
             >
-              <div
-                className="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-68fhrh-MuiTypography-root"
-              >
-                SQLAlchemy
-              </div>
-              <p
-                className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
-              >
-                SQL Toolkit
-              </p>
-            </div>
-          </div>
-          <div
-            className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
-          >
-            <a
-              className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-              href="https://www.sqlalchemy.org/"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              rel="noopener"
-              target="_blank"
-            >
-              Go to 
               SQLAlchemy
-            </a>
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
+            >
+              SQL Toolkit
+            </p>
           </div>
         </div>
         <div
-          className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r5po6n-MuiPaper-root-MuiCard-root"
+          className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
         >
-          <img
-            className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
-            height="200"
-            src="postmanPic.jpg"
-            width="100"
-          />
+          <a
+            className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+            href="https://www.sqlalchemy.org/"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            rel="noopener"
+            target="_blank"
+          >
+            Go to 
+            SQLAlchemy
+          </a>
+        </div>
+      </div>
+      <div
+        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r5po6n-MuiPaper-root-MuiCard-root"
+      >
+        <img
+          className="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+          height="200"
+          src="postmanPic.jpg"
+          width="100"
+        />
+        <div
+          className="MuiBox-root css-0"
+        >
           <div
-            className="MuiBox-root css-0"
+            className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
           >
             <div
-              className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+              className="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-68fhrh-MuiTypography-root"
             >
-              <div
-                className="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-68fhrh-MuiTypography-root"
-              >
-                Postman
-              </div>
-              <p
-                className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
-              >
-                API documentation
-              </p>
-            </div>
-          </div>
-          <div
-            className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
-          >
-            <a
-              className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-              href="https://documenter.getpostman.com/view/28474521/2s9YJZ3jad"
-              onBlur={[Function]}
-              onFocus={[Function]}
-              rel="noopener"
-              target="_blank"
-            >
-              Go to 
               Postman
-            </a>
+            </div>
+            <p
+              className="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
+            >
+              API documentation
+            </p>
           </div>
+        </div>
+        <div
+          className="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+        >
+          <a
+            className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+            href="https://documenter.getpostman.com/view/28474521/2s9YJZ3jad"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            rel="noopener"
+            target="_blank"
+          >
+            Go to 
+            Postman
+          </a>
         </div>
       </div>
     </div>
@@ -645,6 +1025,32 @@ Array [
   <nav
     className="navbar"
   >
+    <div
+      className="logo-container"
+    >
+      <a
+        href="/"
+        style={
+          Object {
+            "textDecoration": "none",
+          }
+        }
+      >
+        <img
+          alt="Logo"
+          src="lahhLogo.png"
+          style={
+            Object {
+              "height": "10%",
+              "width": "10%",
+            }
+          }
+        />
+        <span>
+          LACountyHomelessHelper
+        </span>
+      </a>
+    </div>
     <div
       className="links-container"
     >
@@ -702,6 +1108,24 @@ Array [
           Medical
         </a>
       </div>
+      <div
+        className="link"
+      >
+        <a
+          href="/visualizations"
+        >
+          Visualizations
+        </a>
+      </div>
+      <div
+        className="link"
+      >
+        <a
+          href="/providerVisualizations"
+        >
+          Provider Visualizations
+        </a>
+      </div>
     </div>
   </nav>,
   <div
@@ -710,13 +1134,29 @@ Array [
     <div
       className="title-container"
     >
-      <h1
+      <h4
         className="title"
       >
         Los Angeles 
         <br />
          Homeless Helper
-      </h1>
+      </h4>
+      <p
+        className="lower-title"
+        style={
+          Object {
+            "backgroundColor": "#ffa07b",
+            "borderRadius": 10,
+            "color": "white",
+            "fontSize": "20px",
+            "padding": 10,
+          }
+        }
+      >
+        Los Angeles Homeless Helper is a tool for both  people wanting to help homeless people around them and also a 
+        <br />
+        tool for homeless people to see what resources are available for them
+      </p>
     </div>
     <div
       className="card-container container"
@@ -732,11 +1172,18 @@ Array [
             style={
               Object {
                 "alignItems": "center",
+                "backgroundColor": "#ffb091",
+                "height": "27rem",
               }
             }
           >
             <div
               className="header-1 card-title h5"
+              style={
+                Object {
+                  "color": "white",
+                }
+              }
             >
               <b>
                 Cities
@@ -748,6 +1195,7 @@ Array [
               src="cities-image.jpg"
               style={
                 Object {
+                  "height": "100%",
                   "width": "100%",
                 }
               }
@@ -778,11 +1226,18 @@ Array [
             style={
               Object {
                 "alignItems": "center",
+                "backgroundColor": "#ffb091",
+                "height": "27rem",
               }
             }
           >
             <div
               className="header-1 card-title h5"
+              style={
+                Object {
+                  "color": "white",
+                }
+              }
             >
               <b>
                 Resources
@@ -794,7 +1249,8 @@ Array [
               src="resources-image.jpg"
               style={
                 Object {
-                  "width": "90%",
+                  "height": "100%",
+                  "width": "100%",
                 }
               }
             />
@@ -824,11 +1280,18 @@ Array [
             style={
               Object {
                 "alignItems": "center",
+                "backgroundColor": "#ffb091",
+                "height": "27rem",
               }
             }
           >
             <div
               className="header-1 card-title h5"
+              style={
+                Object {
+                  "color": "white",
+                }
+              }
             >
               <b>
                 Medical
@@ -840,6 +1303,7 @@ Array [
               src="medicare-image.jpg"
               style={
                 Object {
+                  "height": "100%",
                   "width": "100%",
                 }
               }
@@ -874,53 +1338,92 @@ exports[`Init City 1`] = `
   style={
     Object {
       "alignItems": "center",
+      "height": "40rem",
       "padding": "0 10px",
       "width": "18rem",
     }
   }
 >
   <div
-    className="header-1 card-title h5"
+    className="card-title"
   >
-    <b />
+    <b>
+      <span>
+        <span
+          className=""
+        >
+          City of Agoura Hills
+        </span>
+      </span>
+    </b>
   </div>
   <img
+    alt="City of Agoura Hills"
     className="card-image-top"
     onError={[Function]}
     src="arcadia.jpg"
     style={
       Object {
+        "height": "30%",
         "width": "100%",
       }
     }
   />
   <div
-    className="text-center card-body"
+    className="card-body"
   >
     <p>
-      Unsheltered population: 
+      <div
+        className="card-text"
+      >
+         Unsheltered Population:
+      </div>
+      2
+      <br />
+      <div
+        className="card-text"
+      >
+         Sheltered Population:
+      </div>
+      0
        
       <br />
-      Sheltered population: 
+      <div
+        className="card-text"
+      >
+         Total Homeless Population:
+      </div>
+      2
        
       <br />
-      Total homeless population: 
+      <div
+        className="card-text"
+      >
+         Square Miles of City:
+      </div>
+      5.42772
        
       <br />
-      Square miles of city: 
+      <div
+        className="card-text"
+      >
+         Density of Total Homeless Population:
+      </div>
+      0.368479
       <br />
-      Density of total homeless population: 
     </p>
     <a
       className="card-link  btn btn-primary"
       disabled={false}
-      href="/cities/undefined"
+      href="/cities/City of Agoura Hills"
+      name="City of Agoura Hills"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
       View 
+      City of Agoura Hills
     </a>
   </div>
 </div>
@@ -932,21 +1435,32 @@ exports[`Init Medicare 1`] = `
   style={
     Object {
       "alignItems": "center",
+      "height": "50rem",
       "width": "18rem",
     }
   }
 >
   <div
-    className="header-1 card-title h5"
+    className="card-title"
   >
-    <b />
+    <b>
+      <span>
+        <span
+          className=""
+        >
+          Alafia Mental Health Center
+        </span>
+      </span>
+    </b>
   </div>
   <img
+    alt="Alafia Mental Health Center"
     className="card-image-top"
     onError={[Function]}
     src="ssa.jpg"
     style={
       Object {
+        "height": "200px",
         "width": "100%",
       }
     }
@@ -955,29 +1469,78 @@ exports[`Init Medicare 1`] = `
     className="card-body"
   >
     <p>
-      Name: 
-       
+      <div
+        className="card-text"
+      >
+         Name:
+      </div>
+      <span>
+        <span
+          className=""
+        >
+          Alafia Mental Health Center
+        </span>
+      </span>
       <br />
-      Address: 
-       
+      <div
+        className="card-text"
+      >
+         Address:
+      </div>
+      <span>
+        <span
+          className=""
+        >
+          11410 Avalon Blvd., 
+        </span>
+      </span>
       <br />
-      Hours: 
-       
+      <div
+        className="card-text"
+      >
+         Hours:
+      </div>
+      <span>
+        <span
+          className=""
+        >
+          Not Found
+        </span>
+      </span>
       <br />
-      Phone number: 
+      <div
+        className="card-text"
+      >
+         Phone Number:
+      </div>
+      <span>
+        <span
+          className=""
+        >
+          (323) 352 -6422
+        </span>
+      </span>
       <br />
-      City: 
+      <div
+        className="card-text"
+      >
+         City:
+      </div>
+      <span />
+      <br />
     </p>
     <a
       className="card-link btn btn-primary"
       disabled={false}
-      href="/medical/undefined"
+      href="/medical/Alafia Mental Health Center"
+      name="Alafia Mental Health Center"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
       View 
+      Alafia Mental Health Center
     </a>
   </div>
 </div>
@@ -987,6 +1550,32 @@ exports[`Init NavBar 1`] = `
 <nav
   className="navbar"
 >
+  <div
+    className="logo-container"
+  >
+    <a
+      href="/"
+      style={
+        Object {
+          "textDecoration": "none",
+        }
+      }
+    >
+      <img
+        alt="Logo"
+        src="lahhLogo.png"
+        style={
+          Object {
+            "height": "10%",
+            "width": "10%",
+          }
+        }
+      />
+      <span>
+        LACountyHomelessHelper
+      </span>
+    </a>
+  </div>
   <div
     className="links-container"
   >
@@ -1044,6 +1633,24 @@ exports[`Init NavBar 1`] = `
         Medical
       </a>
     </div>
+    <div
+      className="link"
+    >
+      <a
+        href="/visualizations"
+      >
+        Visualizations
+      </a>
+    </div>
+    <div
+      className="link"
+    >
+      <a
+        href="/providerVisualizations"
+      >
+        Provider Visualizations
+      </a>
+    </div>
   </div>
 </nav>
 `;
@@ -1054,21 +1661,38 @@ exports[`Init Resource 1`] = `
   style={
     Object {
       "alignItems": "center",
+      "height": "50rem",
       "width": "18rem",
     }
   }
 >
   <div
     className="header-1 card-title h5"
+    style={
+      Object {
+        "height": "10%",
+        "width": "100%",
+      }
+    }
   >
-    <b />
+    <b>
+      <span>
+        <span
+          className=""
+        >
+          1736 Family Crisis Center
+        </span>
+      </span>
+    </b>
   </div>
   <img
+    alt="1736 Family Crisis Center"
     className="card-image-top"
     onError={[Function]}
     src="volunteer.jpg"
     style={
       Object {
+        "height": "30%",
         "width": "100%",
       }
     }
@@ -1077,33 +1701,78 @@ exports[`Init Resource 1`] = `
     className="card-body"
   >
     <p>
-      Name: 
-       
-      <br />
-      Address: 
-       
-      <br />
-      Hours: 
-       
-      <br />
-      Zip Code: 
-      <br />
-      <a
-        href="#"
+      <div
+        className="card-text"
       >
-        Website not available
-      </a>
+         Name:
+      </div>
+      <span>
+        <span
+          className=""
+        >
+          1736 Family Crisis Center
+        </span>
+      </span>
+      <br />
+      <div
+        className="card-text"
+      >
+         Address:
+      </div>
+      <span>
+        <span
+          className=""
+        >
+          2116 Arlington Ave
+        </span>
+      </span>
+      <br />
+      <div
+        className="card-text"
+      >
+         Hours:
+      </div>
+      <span>
+        <span
+          className=""
+        >
+          Monday through Friday, 8:30am to 5:30pm. Evenings and Saturdays by appointment.
+        </span>
+      </span>
+      <br />
+      <div
+        className="card-text"
+      >
+         Phone Number:
+      </div>
+      <span>
+        <span
+          className=""
+        >
+          Not Found
+        </span>
+      </span>
+      <br />
+      <div
+        className="card-text"
+      >
+         City:
+      </div>
+      <span />
+      <br />
     </p>
     <a
       className="card-link btn btn-primary"
       disabled={false}
-      href="/resources/undefined"
+      href="/resources/1736 Family Crisis Center"
+      name="1736 Family Crisis Center"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
       View 
+      1736 Family Crisis Center
     </a>
   </div>
 </div>

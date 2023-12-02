@@ -88,7 +88,7 @@ it('renders Instances on the Home page', () => {
 
 it('renders about page', () => {
     render(<About />);
-    expect(screen.getByText('About LA Homeless Helper')).toBeInTheDocument();
+    expect(screen.getByText('About LA County Homeless Helper')).toBeInTheDocument();
 });
 
 it('renders about page tools', () => {

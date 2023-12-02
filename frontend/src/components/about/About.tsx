@@ -233,7 +233,7 @@ class About extends React.Component<{}, AboutState> {
       person.commits += commitMap.get(person.id) ?? 0;
       developerTotalCommits += person.commits;
     }
-    console.log(commitMap);
+    
     let totalIssues: number = 0;
     let assignedTotalIssues: number = 0;
     page = 1;
