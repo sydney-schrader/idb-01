@@ -26,6 +26,7 @@ jest_tests:
     - cd frontend
     - npm install
     - npm i react-test-renderer
+    - npm i jsdom
     - npm test --silent
 acceptance_test:
   stage: test

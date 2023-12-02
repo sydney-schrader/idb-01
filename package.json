@@ -1,9 +1,13 @@
 {
   "dependencies": {
+    "jsdom": "^23.0.1",
     "react-highlight-words": "^0.20.0",
     "recharts": "^2.10.3"
   },
   "jest": {
-    "setupFilesAfterEnv": ["./frontend/src/setupTests.ts"]
+    "setupFilesAfterEnv": [
+      "./frontend/src/setupTests.ts"
+    ],
+    "testEnvironment": "jsdom"
   }
 }
