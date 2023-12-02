@@ -58,7 +58,7 @@ const VisualizationPage: React.FC = () => {
             <CustomPieChart data={processedData} />
     </Stack>
     <Stack justifyContent="center" direction="column" textAlign="center" height="600px">
-            <h2> Percentage of Unsheltered Homeless by City </h2>
+            <h2> Number of Resources per City </h2>
             <ScatterPlot />
     </Stack>
         </>
